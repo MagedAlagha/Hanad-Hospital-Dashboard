@@ -1,0 +1,84 @@
+<ng-container *ngIf="FieldManagementData$ | async as FieldManagementData">
+    <app-dialog-shared
+        [width]="'80vw'"
+        [dialogHeader]="'ادارة الحقول'"
+        (close)="close()"
+    >
+        <div class="bodyDialog">
+            <ng-container *ngIf="FieldManagementData.Fields as Fields">
+                <p-table
+                    styleClass="p-datatable-gridlines"
+                    [rows]="10"
+                    responsiveLayout="scroll"
+                    [value]="Fields.data"
+                    [loading]="Fields.loading"
+                >
+                    <ng-template pTemplate="caption">
+                        <div
+                            class="grid flex justify-content-between align-items-center"
+                            style="margin: 0"
+                        >
+                            <div class="lg:md-3">
+                                <app-search-field
+                                    #filter
+                                    pInputText
+                                    type="text"
+                                    placeholder="Search"
+                                    class="w-full"
+                                ></app-search-field>
+                            </div>
+                            <div class="lg:md-3">
+                                <app-button-component
+                                    [label]="'add new'"
+                                    (action)="openAddOrEditField()"
+                                >
+                                </app-button-component>
+                                <!-- <app-button-component
+                                    [label]="'ClassificationManagement'"
+                                    (action)="openClassificationManagement()"
+                                >
+                                </app-button-component> -->
+                            </div>
+                        </div>
+                    </ng-template>
+                    <!-- <app-icon-shared
+                    (click)="openAddOrEditField(item)"
+                        [label]="'edit'"
+                    ></app-icon-shared> -->
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>#</th>
+                            <th>اسم الحقل</th>
+                            <th>نوع الحقل</th>
+                            <th>الخيار</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-item let-index="rowIndex">
+                        <tr>
+                            <td>{{index}}</td>
+                            <td>{{ item.Name }}</td>
+                            <td>{{ item.FieldTypeName }}</td>
+                            <td>
+                                <app-icon-shared
+                                    (click)="deleteFeild(item.ID)"
+                                    [label]="'delete'"
+                                ></app-icon-shared>
+                            </td>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="footer"> </ng-template>
+
+                    <ng-template pTemplate="loadingbody">
+                    </ng-template> </p-table
+            ></ng-container>
+        </div>
+        <div class="footerDialog"></div>
+    </app-dialog-shared>
+    <ng-container *ngIf="FieldManagementData.AddFieldDialog as AddFieldDialog">
+        <app-add-field
+            [ComponentType]="ComponentType"
+            *ngIf="AddFieldDialog?.isOpen"
+        ></app-add-field>
+    </ng-container>
+</ng-container>

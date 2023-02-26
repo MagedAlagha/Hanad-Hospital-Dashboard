@@ -1,0 +1,36 @@
+<app-dialog-shared [width]="'55vw'" [dialogHeader]='title' (close)="closeDialog()">
+    <div class="bodyDialog">
+            <form [formGroup]="tasksForm" >
+                <div class="grid p-fluid">
+                    <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                        <app-input-field label="اسم المهمة" formControlName="TaskName"></app-input-field>
+                    </div>
+                    <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                        <app-select-field formControlName="TaskType" [filter]="true" [label]="'نوع المهمة'" [formControl]="select"   [dropdownItems]="tasks" > </app-select-field>
+                    </div>
+                    <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                        <app-select-field formControlName="Section" [filter]="false" [label]="'القسم'" [formControl]="select"   [dropdownItems]="sections" > </app-select-field>
+                    </div>
+
+                    <div class="col-12 mb-2 lg:col-2 lg:mb-0" >
+                   <!--  <label for="">انجاز المهمة</label>
+                        <p-progressBar p-progressbar-label="انجاز المهمة"	 [value]="20"></p-progressBar>
+                    </div> -->
+                        <app-input-field label=" انجاز المهمة %"  ></app-input-field>
+                    </div>
+                    <div class="col-12 mb-2 lg:col-3 lg:mb-0" style="margin-top: 2.1rem;">
+                        <app-check-box  formControlName="visible" [label]="'ظهور المهمة'" ></app-check-box>
+                    </div>
+                    <div class="col-12 mb-2 lg:col-12 lg:mb-0 " >
+                     <app-file-uploader ></app-file-uploader>
+                    </div>
+                </div>
+            </form>
+    </div>
+    <div class="footerDialog">
+        <app-button-component label="حفظ" [classColor]="'p-button-raised'" [pTooltipCustom]="'حفط'"
+            [Icon]="'pi pi-folder-open'"></app-button-component>
+        <app-button-component label="مسح بيانات الحقول" [classColor]="'p-button-raised p-button-secondary'"
+            [pTooltipCustom]="'مسح الحقول '" [Icon]="'pi pi-eraser'"></app-button-component>
+    </div>
+</app-dialog-shared>

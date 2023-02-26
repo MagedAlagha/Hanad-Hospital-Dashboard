@@ -1,0 +1,55 @@
+<div class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3">
+    <div class="text-900 text-xl font-semibold mb-3 md:mb-0">Translate</div>
+    <div class="inline-flex align-items-center">
+        <span class="p-input-icon-left flex-auto mr-2">
+            <app-button-component label="transfer" (click)="Convert()"></app-button-component>
+            <!-- <app-button-component label="transfer" (click)="showConfirm()"></app-button-component> -->
+        </span>
+    </div>
+</div>
+<hr>
+<form [formGroup]="TranslateForm">
+    <div class="grid p-fluid">
+        <div class="field col-12 md:col-6">
+            <label>beforeEn</label>
+            <textarea
+                pInputTextarea
+                [autoResize]="false"
+                rows="15" cols="30"
+                formControlName="beforeEn"
+                spellcheck="false"
+            ></textarea>
+        </div>
+        <div class="field col-12 md:col-6">
+            <label>afterEn</label>
+            <textarea
+                pInputTextarea
+                [autoResize]="false"
+                rows="15" cols="30"
+                formControlName="afterEn"
+                spellcheck="false"
+            ></textarea>
+        </div>
+        <div class="field col-12 md:col-6">
+            <label>beforeAr</label>
+            <textarea
+                pInputTextarea
+                [autoResize]="false"
+                rows="15" cols="30"
+                formControlName="beforeAr"
+                spellcheck="false"
+            ></textarea>
+        </div>
+        <div class="field col-12 md:col-6">
+            <label>afterAr</label>
+            <textarea
+                pInputTextarea
+                [autoResize]="false"
+                rows="15" cols="30"
+                formControlName="afterAr"
+                spellcheck="false"
+            ></textarea>
+        </div>
+    </div>
+</form>
+

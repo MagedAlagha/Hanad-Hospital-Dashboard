@@ -1,0 +1,179 @@
+<ng-container>
+    <div class="card">
+        <div class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3">
+            <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
+                معالجة التذاكر والدعم الفني
+            </div>
+        </div>
+        <hr>
+        <br>
+        <ng-container *ngIf="dataTable" >
+            <p-table styleClass="p-datatable-gridlines" [rows]="4" [paginator]="true" style="width: 100%"
+                [value]="dataTable">
+                <ng-template pTemplate="caption">
+                    <div class="table-header">
+                        <form>
+                            <div class="grid p-fluid">
+                                <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+                                    <app-input-field label="موضوع التزكرة">
+                                    </app-input-field>
+                                </div>
+                                <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                                    <app-input-field label="حالة التزكرة">
+                                    </app-input-field>
+                                </div>
+                                <div style="margin: 39px 23px 0 0;">
+                                    <div class="inline-flex align-items-center">
+                                        <app-button-component [classColor]="'p-button-help'" [Icon]="'pi pi-id-card'"
+                                        label="بحث متقدم" [isCustomLable]="true" [pTooltipCustom]="'بحث متقدم'">
+                                    </app-button-component>
+                                        <app-button-component label="مسح الفلاتر" class="pr-2" [classColor]="'p-button-raised p-button-secondary '"
+                                            [pTooltipCustom]="'مسح الفلاتر '" [Icon]="'pi pi-eraser'"></app-button-component>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">موضوع التزكرة</th>
+                        <th class="text-center">التاريخ</th>
+                        <th class="text-center">القسم</th>
+                        <th class="text-center">الحالة</th>
+                        <th class="text-center">الموظف الذي قام بالرد</th>
+                        <th class="text-center"> الاجراء</th>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item let-index="rowIndex">
+                    <tr  >
+                        <td> <span class="reorder-row-icon">{{ index + 1 }}</span></td>
+                        <td>{{item.Subject}}</td>
+                        <td>{{item.Date}}</td>
+                        <td>{{item.Section}}</td>
+                        <td>{{item.Status}}</td>
+                        <td>{{item.EmpReplay}}</td>
+
+                       <td class="text-center">
+                        <app-icon-shared [Icon]="'pi pi-eye'" [classColor]="'var(--gray-600)'" (action)="showReplayDialog(item)" [pTooltipCustom]="
+                            'عرض التزكرة'
+                        "></app-icon-shared>
+                        <!--
+                            <app-icon-shared [Icon]="'pi pi-pencil'" [classColor]="'var(--blue-400)'"
+                                [pTooltipCustom]="'الرد على التزكرة'" ></app-icon-shared>
+
+                        </td> -->
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="footer"> </ng-template>
+                <ng-template pTemplate="loadingbody"> </ng-template>
+            </p-table>
+        </ng-container>
+    </div>
+</ng-container>
+
+<ng-container>
+    <div class="card">
+        <div class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3">
+            <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
+                الردود ومعالجة التذاكر
+            </div>
+        </div>
+        <hr>
+        <br>
+        <p-accordion>
+            <p-accordionTab header="انشاء مجمع تجاري">
+                <ng-container *ngIf="dataTable" >
+                    <p-table styleClass="p-datatable-gridlines" [rows]="3" [paginator]="true" style="width: 100%"
+                        [value]="dataTable">
+
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">موضوع التزكرة</th>
+                                <th class="text-center">رسالة التزكرة</th>
+                                <th class="text-center">الاجراءات</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item let-index="rowIndex">
+                            <tr  >
+                                <td> <span class="reorder-row-icon">{{ index + 1 }}</span></td>
+                                <td>{{item.Subject}}</td>
+                                <td>{{item.Message}}</td>
+                                <td class="text-center">
+                                   <!--  <app-icon-shared [Icon]="'pi pi-eye'" [classColor]="'var(--gray-600)'" [pTooltipCustom]="
+                                    'عرض التزكرة'
+                                "></app-icon-shared> -->
+
+                                    <app-icon-shared [Icon]="'pi pi-pencil'" [classColor]="'var(--blue-400)'"
+                                        [pTooltipCustom]="'الرد على التزكرة'" (action)="addReplayDialog(item)"  ></app-icon-shared>
+
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="footer"> </ng-template>
+                        <ng-template pTemplate="loadingbody"> </ng-template>
+                    </p-table>
+                </ng-container>
+
+
+            </p-accordionTab>
+            <p-accordionTab header="قسم المساحة">
+                <ng-container *ngIf="dataTable" >
+                    <p-table styleClass="p-datatable-gridlines" [rows]="3" [paginator]="true" style="width: 100%"
+                        [value]="dataTable">
+
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">موضوع التزكرة</th>
+                                <th class="text-center">رسالة التزكرة</th>
+                                <th class="text-center">الاجراءات</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item let-index="rowIndex">
+                            <tr  >
+                                <td> <span class="reorder-row-icon">{{ index + 1 }}</span></td>
+                                <td>{{item.Subject}}</td>
+                                <td>{{item.Message}}</td>
+                                <td class="text-center">
+                                   <!--  <app-icon-shared [Icon]="'pi pi-eye'" [classColor]="'var(--gray-600)'" [pTooltipCustom]="
+                                    'عرض التزكرة'
+                                "></app-icon-shared> -->
+
+                                    <app-icon-shared [Icon]="'pi pi-pencil'" [classColor]="'var(--blue-400)'"
+                                        [pTooltipCustom]="'الرد على التزكرة'" (action)="addReplayDialog(item)"  ></app-icon-shared>
+
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="footer"> </ng-template>
+                        <ng-template pTemplate="loadingbody"> </ng-template>
+                    </p-table>
+                </ng-container>
+
+
+            </p-accordionTab>
+
+        </p-accordion>
+    </div>
+</ng-container>
+<app-replay-ticket-modal *ngIf="(replayTicket$ | async).isOpen"></app-replay-ticket-modal>

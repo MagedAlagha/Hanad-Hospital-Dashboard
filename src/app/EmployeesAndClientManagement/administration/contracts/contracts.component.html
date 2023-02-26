@@ -1,0 +1,61 @@
+<ng-container>
+    <div class="card">
+        <div class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3">
+            <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
+                العقود
+            </div>
+            <div class="inline-flex align-items-center">
+                <span class="p-input-icon-left flex-auto mr-2">
+                    <app-button-component [classColor]="'p-button-outlined'" [Icon]="'pi pi-plus'" label="اضافة عقد"
+                        [isCustomLable]="true" [pTooltipCustom]="'اضافة عقد '" (action)="addFormDataDialog()">
+                    </app-button-component>
+                </span>
+            </div>
+        </div>
+        <hr>
+
+
+        <form>
+            <div class="grid p-fluid">
+
+                <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                    <app-search-field placeholder="بحث...">
+                    </app-search-field>
+                </div>
+            </div>
+        </form>
+        <br>
+        <ng-container *ngIf="dataTabel" >
+            <p-table styleClass="p-datatable-gridlines" [rows]="10" [paginator]="true" style="width: 100%"
+                [value]="dataTabel">
+                <ng-template pTemplate="header" >
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">اسم العقد</th>
+                        <th class="text-center">الاجراءات</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item let-index="rowIndex">
+                    <tr>
+                        <td > <span class="reorder-row-icon">{{ index + 1 }}</span></td>
+                        <td>{{item.ContractName}}</td>
+                        <td class="text-center">
+                            <app-icon-shared [Icon]="'pi pi-pencil'" [classColor]="'var(--blue-400)'"
+                                [pTooltipCustom]="'تعديل العقد'" (action)="addFormDataDialog()" ></app-icon-shared>
+                            <app-icon-shared [Icon]="'pi pi-trash'" [classColor]="'var(--red-400)'"
+                                [pTooltipCustom]="'حذف'"></app-icon-shared>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td class="text-center" colspan="3">لا يوجد بيانات</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="footer"> </ng-template>
+                <ng-template pTemplate="loadingbody"> </ng-template>
+            </p-table>
+        </ng-container>
+    </div>
+</ng-container>
+<app-add-form-contracts *ngIf="(displayContractsDialog$ | async).isOpen"></app-add-form-contracts>

@@ -1,0 +1,179 @@
+<ng-container [ngSwitch]="Category.ScoringTypeId">
+    <ng-container *ngSwitchCase="1">
+        <p-table
+            [value]="Category?.Items"
+            #categorys
+            dataKey="id"
+            [rowHover]="false"
+            styleClass="p-datatable-gridlines"
+            responsiveLayout="scroll"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 40%">{{ Category?.CategoryName }}</th>
+                    <ng-container>
+                        <th *ngFor="let option of Category?.Options">
+                            {{ option.OptionName }}
+                        </th></ng-container
+                    >
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item let-index="rowIndex">
+                <tr>
+                    <td style="width: 40%">
+                        {{ item.ItemName }}
+                    </td>
+                    <ng-container>
+                        <td *ngFor="let option of Category?.Options">
+                            <div class="field-radiobutton">
+                                <p-radioButton
+                                    [name]="'option' + item.ItemId"
+                                    [(ngModel)]="item.ItemValue"
+                                    [value]="option.OptionId"
+                                    [inputId]="'option' + option.OptionId"
+                                ></p-radioButton>
+                            </div>
+                        </td>
+                    </ng-container>
+                </tr>
+            </ng-template>
+        </p-table>
+    </ng-container>
+    <ng-container *ngSwitchCase="2">
+        <p-table
+            [value]="Category?.Items"
+            #categorys
+            dataKey="id"
+            [rowHover]="false"
+            styleClass="p-datatable-gridlines"
+            responsiveLayout="scroll"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 40%">{{ Category?.CategoryName }}</th>
+                    <th>
+                        <ng-container>
+                            <span class="mx-1"> الدرجات من </span>
+                            <span class="mx-1">
+                                ( {{ Category.MinGrade }})
+                            </span>
+                            <span class="mx-1"> الى </span>
+                            <span class="mx-1">
+                                ( {{ Category.MaxGrade }})
+                            </span>
+                        </ng-container>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item let-index="rowIndex">
+                <tr>
+                    <td style="width: 40%">
+                        {{ item.ItemName }}
+                    </td>
+                    <ng-container>
+                        <td style="width: 60%">
+                            <app-input-number-field
+                                [min]="Category.MinGrade"
+                                [max]="Category.MaxGrade"
+                                [(ngModel)]="item.ItemValue"
+                            ></app-input-number-field>
+                        </td>
+                    </ng-container>
+                </tr>
+            </ng-template>
+        </p-table>
+    </ng-container>
+    <ng-container *ngSwitchCase="3">
+        <p-table
+            [value]="Category?.Items"
+            #categorys
+            dataKey="id"
+            [rowHover]="false"
+            styleClass="p-datatable-gridlines"
+            responsiveLayout="scroll"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 40%">{{ Category?.CategoryName }}</th>
+                    <th>#</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item let-index="rowIndex">
+                <tr>
+                    <td style="width: 40%">
+                        {{ item.ItemName }}
+                    </td>
+                    <ng-container>
+                        <td style="width: 60%">
+                            <app-input-field
+                                [(ngModel)]="item.ItemValue"
+                            ></app-input-field>
+                        </td>
+                    </ng-container>
+                </tr>
+            </ng-template>
+        </p-table>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="4">
+        <p-table
+            [value]="Category?.Items"
+            #categorys
+            dataKey="id"
+            [rowHover]="false"
+            styleClass="p-datatable-gridlines"
+            responsiveLayout="scroll"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 40%">{{ Category?.CategoryName }}</th>
+                    <th>#</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item let-index="rowIndex">
+                <tr>
+                    <td style="width: 40%">
+                        {{ item.ItemName }}
+                    </td>
+
+                    <td style="width: 60%">
+                        <ng-container [ngSwitch]="item.ItemTypeId">
+                            <ng-container *ngSwitchCase="1">
+                                <div class="flex">
+                                    <div
+                                        class="field-radiobutton mx-1"
+                                        *ngFor="let option of item.ItemOptions"
+                                    >
+                                        <p-radioButton
+                                            [name]="'option' + item.ItemId"
+                                            [value]="option.OptionId"
+                                            [(ngModel)]="item.ItemValue"
+                                            [inputId]="
+                                                'option' + option.OptionId
+                                            "
+                                        ></p-radioButton>
+                                        <label
+                                            [for]="'option' + option.OptionId"
+                                        >
+                                            {{ option.OptionName }}</label
+                                        >
+                                    </div>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngSwitchCase="2">
+                                <app-input-number-field
+                                    [(ngModel)]="item.ItemValue"
+                                ></app-input-number-field
+                            ></ng-container>
+                            <ng-container *ngSwitchCase="3">
+                                <app-input-field
+                                    [(ngModel)]="item.ItemValue"
+                                ></app-input-field
+                            ></ng-container>
+                        </ng-container>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </ng-container>
+</ng-container>

@@ -1,0 +1,14 @@
+<label [class]="required ? 'label-required' : ''"
+    >{{ label | translate }}
+</label>
+<input
+    [ngClass]="{'ng-invalid ng-dirty': (inputFieldControl.errors?.['required'] && (inputFieldControl.touched || submitted)), 'p-inputtext-sm': true}"
+    pInputText
+    type="text"
+    [formControl]="inputFieldControl"
+    style="width: 100%"
+/>
+<!-- <app-validation
+    [control]="inputFieldControl"
+    [submitted]="submitted"
+></app-validation> -->

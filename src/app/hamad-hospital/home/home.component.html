@@ -1,0 +1,91 @@
+<div class="card">
+    <div class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3">
+        <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
+            الصفحة الرئيسية - السلايدر
+        </div>
+    </div>
+    <hr>
+    <br>
+
+
+    <form [formGroup]="formSlider" >
+        <div class="grid p-fluid">
+            <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                <label for="">اضافة صورة للسلايدر</label>
+                <p-fileUpload  mode="basic" accept="image/*" formControlName="Image" name="myfile[]" ></p-fileUpload>
+            </div>
+            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+                <app-input-field label="العنوان بالعربي" formControlName="TitleAr">
+                </app-input-field>
+            </div>
+            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+                <app-input-field label="العنوان بالانجليزي" formControlName="TitleEn">
+                </app-input-field>
+            </div>
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0  align-items-center  justify-content-evenly ">
+                <app-check-box  label="الحالة" formControlName="IsActive"> </app-check-box>
+            </div>
+            <div class="col-12 mb-2 lg:col-4 lg:mb-0  align-items-center  justify-content-evenly ">
+                <div class="inline-flex align-items-center">
+                    <app-button-component [classColor]="'p-button-raised'" (action)="save()" [Icon]="'pi pi-id-card'"
+                    label="حفظ" [isCustomLable]="true" [pTooltipCustom]="'حفظ'">
+                </app-button-component>
+                    <app-button-component label="مسح الحقول" class="pr-2" [classColor]="'p-button-raised p-button-secondary '"
+                        [pTooltipCustom]="'مسح الحقول '" [Icon]="'pi pi-eraser'"></app-button-component>
+                </div>
+            </div>
+
+            <div >
+
+            </div>
+        </div>
+    </form>
+
+
+<br>
+  <!--   <ng-container *ngIf="" > </ng-container> -->
+
+        <p-table styleClass="p-datatable-gridlines" [rows]="10" [paginator]="true" style="width: 100%"
+            [value]="[1 , 2  , 3 , 4 , 5 , 6]">
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">الاسم</th>
+                    <th class="text-center">الدور الوظيفي</th>
+                    <th class="text-center">الهاتف</th>
+                    <th class="text-center">السكن</th>
+                    <th class="text-center">القسم</th>
+                    <th class="text-center">الاجراءات</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item let-index="rowIndex">
+                <tr  >
+                    <td> <span class="reorder-row-icon">{{ index + 1 }}</span></td>
+                    <td>{{item.Name}}</td>
+                    <td>{{item.JobRole}}</td>
+                    <td>{{item.Phone}}</td>
+                    <td>{{item.City}}</td>
+                    <td>{{item.Section}}</td>
+                    <td class="text-center">
+
+                        <app-icon-shared [Icon]="'pi pi-pencil'" [classColor]="'var(--blue-400)'"
+                            [pTooltipCustom]="'تعديل البيانات'" ></app-icon-shared>
+
+                        <app-icon-shared [Icon]="'pi pi-trash'" [classColor]="'var(--red-400)'"
+                            [pTooltipCustom]="'حذف'"></app-icon-shared>
+
+
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="footer"> </ng-template>
+            <ng-template pTemplate="loadingbody"> </ng-template>
+        </p-table>
+
+</div>

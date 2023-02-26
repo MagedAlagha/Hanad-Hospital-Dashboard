@@ -1,0 +1,27 @@
+<app-dialog-shared [width]="'50vw'" [dialogHeader]="'Shared.TRANSACTIONS'|translate" (close)="Close()">
+    <div class="bodyDialog">
+        <ng-container *ngIf="codes$ |async as codes; else loading">
+            <form [formGroup]="TransactionsForm">
+                <div class="grid p-fluid">
+                    <div class="field col-12 md:col-4">
+                        <app-select-field [dropdownItems]="codes.Actions" [label]="'Shared.ACTION'|translate"
+                            formControlName="ActionCode">
+                        </app-select-field>
+                    </div>
+                    <div class="col-12 mb-2 lg:col-8 lg:mb-0">
+                        <app-text-area-field [label]="'Shared.NOTES'|translate" formControlName="Notes">
+                        </app-text-area-field>
+                    </div>
+                </div>
+            </form>
+        </ng-container>
+
+        <ng-template #loading>
+            <app-spinner-loading></app-spinner-loading>
+        </ng-template>
+
+    </div>
+    <div class="footerDialog">
+        <app-button-component (click)="save()" label="save"></app-button-component>
+    </div>
+</app-dialog-shared>

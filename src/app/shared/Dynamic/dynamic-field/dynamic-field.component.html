@@ -1,0 +1,47 @@
+<ng-container [ngSwitch]="TypeField">
+    <!-- نص -->
+    <ng-container *ngSwitchCase="1">
+        <app-input-field [formControl]="valueFieldControl" [label]="label">
+        </app-input-field>
+    </ng-container>
+    <!-- رقم -->
+    <ng-container *ngSwitchCase="2">
+        <app-input-number-field
+            [formControl]="valueFieldControl"
+            [label]="label"
+        >
+        </app-input-number-field>
+    </ng-container>
+    <!-- ألتاريخ -->
+    <ng-container *ngSwitchCase="3">
+        <app-calender-feild [formControl]="valueFieldControl" [label]="label">
+        </app-calender-feild>
+    </ng-container>
+
+    <!-- قائمة منسدلة -->
+    <ng-container *ngSwitchCase="4">
+        <app-select-field
+            [formControl]="valueFieldControl"
+            [label]="label"
+            [dropdownItems]="dropdownItems"
+            [optionLabel]="optionLabel"
+            [optionValue]="optionValue"
+        >
+        </app-select-field>
+    </ng-container>
+    <!-- قائمة منسدلة -->
+    <!-- <ng-container *ngSwitchCase="6">
+        <app-multi-select-field
+            [formControl]="valueFieldControl"
+            [label]="label"
+        >
+        </app-multi-select-field>
+    </ng-container> -->
+    <!-- مربع اختيار -->
+    <!-- <ng-container *ngSwitchCase="7">
+        <app-check-box
+            [formControl]="valueFieldControl"
+            [label]="label"
+        ></app-check-box>
+    </ng-container> -->
+</ng-container>

@@ -1,0 +1,110 @@
+<app-dialog-shared [width]="'70vw'" [dialogHeader]='title' (close)="closeDialog()">
+    <div class="bodyDialog">
+        <ng-container>
+            <form [formGroup]="addProjectForm">
+                <div class="grid p-fluid">
+                    <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                        <app-input-field label="اسم المشروع" formControlName="ProjectName" >
+                        </app-input-field>
+                    </div>
+                    <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                        <app-input-field label="رقم المشروع" formControlName="ProjectID" >
+                        </app-input-field>
+                    </div>
+                    <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+                        <app-input-field label=" الموقع(احداثيات) / Wan " formControlName="LocationWAN" >
+                        </app-input-field>
+                    </div>
+                    <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+                        <app-input-field label=" الموقع(احداثيات) / Lan " formControlName="LocationLAN" >
+                        </app-input-field>
+                    </div>
+                    <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+                        <app-calender-feild
+                        [label]="'بداية المشروع'"  formControlName="StartProject" ></app-calender-feild>
+                    </div>
+                    <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+                        <app-calender-feild
+                        [label]="'الوقت التقريبي لتسليم المشروع'"  formControlName="EndTimeProject" ></app-calender-feild>
+                    </div>
+                    <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                        <app-text-area-field [rows]="3" label="ملاحظات" formControlName="Notes" >
+                        </app-text-area-field>
+                    </div>
+                </div>
+            </form>
+        </ng-container>
+
+    <br>
+ <!--    style="background: #f5f6fa; border-bottom: 1px solid #e8e8e8;" -->
+      <ng-container *ngIf="addTasks">
+        <div class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3 " >
+            <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
+                اضافة مهام للمشروع
+            </div>
+            <div class="inline-flex align-items-center">
+                <span class="p-input-icon-left flex-auto mr-2">
+                    <app-button-component [classColor]="'p-button-outlined'" [Icon]="'pi pi-plus'" label="اضافة"
+                        [isCustomLable]="true" [pTooltipCustom]="'اضافة مشروع جديد'" (action)="addtasksDialog()">
+                    </app-button-component>
+                </span>
+            </div>
+        </div>
+        <hr>
+        <p-accordion *ngIf="dataTable">
+            <p-accordionTab header="قسم الرسام">
+                <p-table styleClass="p-datatable-gridlines" [rows]="1" [paginator]="true" style="width: 100%"
+                [value]="dataTable">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">اسم المهمة</th>
+                        <th class="text-center">نوع المهمة</th>
+                        <th class="text-center">القسم</th>
+                        <th class="text-center">ظهور المهمة</th>
+                        <th class="text-center">الاجراءات</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item let-index="rowIndex">
+                    <tr>
+                        <td class="flex justify-content-center">  <app-check-box></app-check-box></td>
+                        <td>{{item.TaskName}}</td>
+                        <td>{{item.TaskType}}</td>
+                        <td>{{item.Section}}</td>
+                        <td>{{item.visible}}</td>
+                        <td class="text-center">
+                            <app-icon-shared [Icon]="'pi pi-file'" [classColor]="'var(--cyan-400)'" (action)="attachedFilesDialog()"
+                            [pTooltipCustom]="'الملفات المرفقة'"></app-icon-shared>
+                            <app-icon-shared [Icon]="'pi pi-pencil'" [classColor]="'var(--blue-400)'" (action)="addtasksDialog(item)"
+                                [pTooltipCustom]="'تعديل'"></app-icon-shared>
+                            <app-icon-shared [Icon]="'pi pi-trash'" [classColor]="'var(--red-400)'"
+                                [pTooltipCustom]="'حذف'"></app-icon-shared>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="footer"> </ng-template>
+                <ng-template pTemplate="loadingbody"> </ng-template>
+            </p-table>
+
+
+            </p-accordionTab>
+
+        </p-accordion>
+      </ng-container>
+    </div>
+    <div class="footerDialog">
+      <ng-container *ngIf="hideBtns">
+        <app-button-component label="حفظ" [classColor]="'p-button-raised'" [pTooltipCustom]="'حفط'"
+        [Icon]="'pi pi-folder-open'"></app-button-component>
+    <app-button-component label="مسح بيانات الحقول" [classColor]="'p-button-raised p-button-secondary'"
+        [pTooltipCustom]="'مسح الحقول '" [Icon]="'pi pi-eraser'"></app-button-component>
+    <app-button-component label="اضافة عميل" [classColor]="'p-button-success'"
+        [pTooltipCustom]="'انتقال الى صفحة العملاء'" [Icon]="'pi pi-user-plus'"></app-button-component>
+      </ng-container>
+    </div>
+</app-dialog-shared>

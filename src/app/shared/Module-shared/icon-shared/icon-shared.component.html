@@ -1,0 +1,36 @@
+<!-- <button
+    (click)="action.emit()"
+    tooltipPosition="top"
+    [disabled]="disabled"
+    pButton
+    type="button"
+    class="ml-auto mr-2"
+    [class]="classColor + ' ' + 'p-button-sm action-icon'"
+    [icon]="Icon"
+    [pTooltip]="pTooltipCustom"
+></button> -->
+
+<!-- <button
+    (click)="action.emit()"
+    tooltipPosition="top"
+    [disabled]="disabled"
+    class="mx-2 pure-icon"
+    [pTooltip]="
+        pTooltipCustom
+
+    "
+>
+    <span
+        [class]="
+           Icon
+        "
+    ></span>
+</button> -->
+
+<i
+    [class]="Icon + ' ' + 'p-button-sm action-icon general-icon-hover'"
+    [ngStyle]="{ color: classColor }"
+    tooltipPosition="top"
+    [pTooltip]="pTooltipCustom"
+    (click)="action.emit()"
+></i>

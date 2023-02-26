@@ -1,0 +1,145 @@
+<app-dialog-shared
+    [width]="'40vw'"
+    [dialogHeader]="'اضافة حقل'"
+    (close)="close()"
+>
+    <div class="bodyDialog" *ngIf="Codes$ | async as code">
+        <div class="flex">
+            <div class="col-12 md:col-4">
+                <p-panelMenu
+                    [model]="code"
+                    [style]="{ width: '100%' }"
+                ></p-panelMenu>
+                <!-- <p-listbox
+                    [options]="code.FieldType"
+                    [listStyle]="{ 'max-width': '250px' }"
+                    optionLabel="Name"
+                    optionValue="Code"
+                    (onChange)="SelectFieldType($event)"
+                ></p-listbox> -->
+            </div>
+            <div class="col-12 md:col-8">
+                <form [formGroup]="AddFeildForm">
+                    <div class="grid p-fluid">
+                        <div class="field col-12 md:col-12">
+                            <app-input-field
+                                [label]="'الإسم'"
+                                formControlName="Name"
+                            >
+                            </app-input-field>
+                        </div>
+                        <ng-container *ngIf="isMinMax">
+                            <div class="field col-12 md:col-6">
+                                <app-input-number-field
+                                    [label]="' القيمة من '"
+                                    formControlName="MinValue"
+                                >
+                                </app-input-number-field>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <app-input-number-field
+                                    [label]="'الى'"
+                                    formControlName="MaxValue"
+                                >
+                                </app-input-number-field>
+                            </div>
+                        </ng-container>
+
+                        <div class="field col-12 md:col-1"></div>
+                        <div class="field col-12 md:col-4">
+                            <app-check-box
+                                [label]="'مطلوب'"
+                                formControlName="IsRequired"
+                            >
+                            </app-check-box>
+                        </div>
+                        <div class="field col-12 md:col-6">
+                            <app-check-box
+                                [label]="'يعرض في الجدول'"
+                                formControlName="IsShowInGrid"
+                            >
+                            </app-check-box>
+                        </div>
+                        <ng-container *ngIf="isOptions">
+                            <div class="field col-12 md:col-10">
+                                <app-input-field
+                                    [label]="'الخيار'"
+                                    [formControl]="Option"
+                                    [submitted]="submitted"
+                                >
+                                </app-input-field>
+                            </div>
+                            <div
+                                class="field col-12 md:col-1"
+                                style="margin-top: 2rem"
+                            >
+                                <app-icon-shared
+                                    [label]="'add'"
+                                    (action)="AddOPtion()"
+                                ></app-icon-shared>
+                            </div>
+                            <div class="field col-12 md:col-12">
+                                <ng-container>
+                                    <p-table
+                                        [value]="Options"
+                                        styleClass="p-datatable-gridlines"
+                                        [rows]="10"
+                                        responsiveLayout="scroll"
+                                        #dt1
+                                    >
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>الخيار</th>
+                                                <th>الاجراءات</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template
+                                            pTemplate="body"
+                                            let-item
+                                            let-rowIndex="rowIndex"
+                                        >
+                                            <tr>
+                                                <td>{{ rowIndex + 1 }}</td>
+                                                <td>{{ item.OptionName }}</td>
+
+                                                <td>
+                                                    <app-icon-shared
+                                                        [label]="'delete'"
+                                                        (action)="
+                                                            deleteOption(
+                                                                rowIndex
+                                                            )
+                                                        "
+                                                    ></app-icon-shared>
+                                                </td>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="emptymessage">
+                                            <!-- <tr>
+                                        <td class="text-center" colspan="7">No Data</td>
+                                    </tr> -->
+                                        </ng-template>
+                                        <ng-template pTemplate="footer">
+                                        </ng-template>
+
+                                        <ng-template pTemplate="loadingbody">
+                                        </ng-template> </p-table
+                                ></ng-container>
+                            </div>
+                        </ng-container>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footerDialog">
+        <div class="flex justify-content-end">
+            <app-button-component
+                [label]="'save'"
+                (action)="saveFeild()"
+            ></app-button-component>
+            <app-button-component [label]="'clear'"></app-button-component>
+        </div>
+    </div>
+</app-dialog-shared>

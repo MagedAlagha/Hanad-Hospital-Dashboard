@@ -1,0 +1,7 @@
+<div class="field-checkbox">
+    <p-checkbox id="checkBox" [formControl]="checkboxFieldControl" [binary]="true">
+    </p-checkbox>
+
+    <label for="checkBox">{{ label | translate }}</label>
+</div>
+<app-validation [control]="checkboxFieldControl" [submitted]="submitted"></app-validation>

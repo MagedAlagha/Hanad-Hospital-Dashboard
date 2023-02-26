@@ -1,0 +1,197 @@
+/* You can add global styles to this file, and also import other style files */
+$gutter: 1rem; //for primeflex grid system
+
+/* Layout */
+@import "assets/layout/styles/layout/layout.scss";
+
+/* PrimeNG */
+@import "../node_modules/primeng/resources/primeng.min.css";
+@import "../node_modules/primeflex/primeflex.scss";
+@import "../node_modules/primeicons/primeicons.css";
+
+/* Quill Text Editor for p-editor */
+@import "../node_modules/quill/dist/quill.core.css";
+@import "../node_modules/quill/dist/quill.snow.css";
+
+/* Demos */
+@import "assets/demo/styles/flags/flags.css";
+@import "assets/demo/styles/badges.scss";
+@import "assets/demo/styles/code.scss";
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-weight: normal;
+}
+
+.p-dialog-header {
+    display: block !important;
+    padding: 0 0 1.5rem !important;
+    border-top-right-radius: 6px !important;
+    border-top-left-radius: 6px !important;
+}
+
+.p-dialog .p-dialog-header .p-dialog-header-icon:last-child {
+    display: none;
+}
+
+.label-required:after {
+    content: " *";
+    color: red;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+
+// treee
+/* start p-tree(parent-child) style */
+
+// .p-treenode-content {
+//     border: 1px solid #ccc;
+//     margin-top: 0.3rem;
+// }
+// .p-treenode-content .p-treenode-selectable {
+//     border: none !important;
+// }
+// .p-tree .p-treenode-children {
+//     padding: 0 0 0 1rem !important;
+// }
+// .p-tree .p-tree-container .p-treenode .p-treenode-content .p-treenode-icon {
+//     margin-left: 0.5rem;
+// }
+
+// ul.p-treenode-children > p-treenode.p-element {
+//     position: relative;
+// }
+
+// ul.p-treenode-children > p-treenode.p-element::before {
+//     position: absolute;
+//     content: " ";
+//     top: -15px;
+//     right: unset;
+//     left: -14px;
+//     width: 11px;
+//     height: 70px;
+//     border-right: unset;
+//     border-left: 1px solid #dee2e6;
+//     border-bottom: 1px solid #dee2e6;
+//     border-bottom-left-radius: unset;
+//     border-bottom-right-radius: 5px;
+//     z-index: 999;
+// }
+
+// .p-treenode-label {
+//     width: 100%;
+// }
+
+.p-datatable-header {
+    border-radius: 10px 10px 0px 0px !important;
+}
+
+.p-autocomplete-input {
+    border-radius: 6px 0 0 6px !important;
+    height: 37px !important;
+    border-inline-end: 0 !important ;
+}
+
+.p-inputtext-sm .p-inputtext {
+    font-size: 1rem !important;
+}
+
+// /* custom main layout */
+// .layout-content-wrapper {
+//     padding: 0.6rem 2rem;
+// }
+
+// .p-dialog-content {
+//     padding: 0 1.5rem 0.8rem 1.5rem !important;
+// }
+// .layout-root-menuitem {
+//     padding: 10px 5px !important;
+// }
+.card {
+    padding: 1rem;
+}
+
+.p-calendar,
+.p-dropdown {
+    height: 36px;
+}
+.p-dropdown {
+    align-items: center;
+}
+.beforr::before {
+    content: "-";
+    width: 50px;
+    height: 50px;
+    position: relative;
+    top: 25px;
+    left: 17px;
+}
+.status-circle {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-color: white;
+    border: 5px solid;
+    border-radius: 50%;
+}
+.status-icon {
+    border-left: 5px solid;
+    height: 36px;
+    // padding: 6px;
+}
+.p-listbox .p-listbox-list .p-listbox-item {
+    padding: 0.25rem 0.25rem  !important;
+}
+// @media screen and (min-width: 992px) {
+//     .layout-container.layout-horizontal
+//         .layout-menu
+//         .layout-root-menuitem
+//         > ul {
+//         max-height: 36rem;
+//     }
+// }
+.topbar-user-profile {
+    .p-button{
+        padding: 0.5rem 1.25rem !important;
+        background-color: #fff;
+        border-radius: 12px;
+        border: 1px solid #dfe7ef;
+        color: #000;
+        box-shadow: 0px 4px 30px rgba(221, 224, 255, 0.54);
+
+    }
+/*     .p-button:hover{
+        background-color: rgb(255, 255, 255);
+        border: 1px solid #dfe7ef;
+        color: #000;
+    } */
+    .p-tieredmenu .p-menuitem-link .p-menuitem-icon{
+        margin-inline-end: 0.5rem;
+    }
+
+
+}
+.p-dialog .p-dialog-header .p-dialog-header-icon:last-child {
+    display: none;
+}
+
+.p-dialog-header {
+    display: block !important;
+    padding: 0 0 1.5rem !important;
+    border-top-right-radius: 6px !important;
+    border-top-left-radius: 6px !important;
+}
+
+
+ .scrollbar::-webkit-scrollbar {
+    width: 4px;               /* width of the entire scrollbar */
+  }
+
+
+   .scrollbar::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    border-radius: 3px;       /* roundness of the scroll thumb */
+  }
+

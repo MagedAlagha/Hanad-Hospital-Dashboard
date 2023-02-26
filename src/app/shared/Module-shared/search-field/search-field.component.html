@@ -1,0 +1,17 @@
+<label>{{ label | translate }}</label>
+<span class="p-input-icon-right">
+    <i class="pi pi-search"></i>
+    <input
+        [ngClass]="{'ng-invalid ng-dirty': (searchFieldControl.errors?.['required'] && (searchFieldControl.touched || submitted)), 'p-inputtext-sm w-full': true}"
+        (onChange)="onChange($event)"
+        (keyup.enter)="onEnter($event)"
+        pInputText
+        type="text"
+        [placeholder]="placeholder"
+        [formControl]="searchFieldControl"
+    />
+</span>
+<!-- <app-validation
+    [control]="searchFieldControl"
+    [submitted]="submitted"
+></app-validation> -->

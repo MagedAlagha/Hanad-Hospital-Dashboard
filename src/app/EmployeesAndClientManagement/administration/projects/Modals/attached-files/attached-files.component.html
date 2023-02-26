@@ -1,0 +1,43 @@
+<app-dialog-shared [width]="'55vw'" [dialogHeader]='"المرفقات"' (close)="closeDialog()">
+    <div class="bodyDialog">
+        <div class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3 " >
+            <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
+                الصور المرفقة
+            </div>
+        </div>
+        <hr>
+
+        <div class="grid p-fluid">
+            <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+                <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image" [preview] ="true" width="100%" >
+                </p-image>
+            </div>
+            <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+                <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image" [preview] ="true" width="100%">
+                </p-image>
+            </div>
+            <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+                <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image" [preview] ="true" width="100%">
+                </p-image>
+            </div>
+            <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+                <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image" [preview] ="true" width="100%">
+                </p-image>
+            </div>
+        </div>
+
+        <div class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3 mt-3 " >
+            <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
+                الملفات المرفقة
+            </div>
+        </div>
+        <hr>
+
+    </div>
+    <div class="footerDialog">
+        <app-button-component label="حفظ" [classColor]="'p-button-raised'" [pTooltipCustom]="'حفط'"
+            [Icon]="'pi pi-folder-open'"></app-button-component>
+        <app-button-component label="مسح بيانات الحقول" [classColor]="'p-button-raised p-button-secondary'"
+            [pTooltipCustom]="'مسح الحقول '" [Icon]="'pi pi-eraser'"></app-button-component>
+    </div>
+</app-dialog-shared>

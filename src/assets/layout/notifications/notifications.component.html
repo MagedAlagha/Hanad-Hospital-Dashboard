@@ -1,0 +1,69 @@
+<p-sidebar
+    [(visible)]="visible"
+    position="left"
+    [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'"
+    styleClass="layout-config-sidebar w-25rem"
+>
+    <ng-container *ngIf="Notifications$ | async as Notifications">
+        <div style="cursor: pointer" class="flex justify-content-between">
+            <h5>الاشعارات</h5>
+            <p-tag
+                (click)="ReadAll(Notifications)"
+                icon="pi pi-check"
+                value="تحديد الكل كمقروء"
+                severity="warning"
+            ></p-tag>
+        </div>
+
+        <hr />
+        <ul class="list-none p-0 m-0">
+            <ng-container *ngFor="let item of Notifications; index as i">
+                <li
+
+                    (click)="navigate(item)"
+                    [pTooltip]="item.message"
+                    tooltipPosition="left"
+                    [ngClass]="{
+                        'p-3 mb-3  cursor-pointer border-round  text-indigo-900': true,
+                        'bg-purple-50': !item.is_read,
+                        'bg-teal-50': item.is_read
+                    }"
+                >
+                    <div
+                        class="flex align-items-center justify-content-between"
+                    >
+                        <div class="flex align-items-center">
+                            <i
+                                *ngIf="!item.is_read"
+                                class="pi pi-bell text-2xl ml-2"
+                                pBadge
+                                severity="danger"
+                            ></i>
+                            <i
+                                *ngIf="item.is_read"
+                                class="pi pi-bell text-2xl ml-2"
+                            ></i>
+                            <span class="text-md font-bold">{{
+                                item.Title
+                            }}</span>
+                        </div>
+                        <span class="text-sm font-medium"
+                            >{{ item.created_time | date : "dd/MM/yyyy" }}
+                        </span>
+                    </div>
+                    <div
+
+                        class="text-sm font-medium m-2"
+                        style="
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            white-space: nowrap;
+                        "
+                    >
+                        {{ item.text }}
+                    </div>
+                </li>
+            </ng-container>
+        </ul>
+    </ng-container>
+</p-sidebar>

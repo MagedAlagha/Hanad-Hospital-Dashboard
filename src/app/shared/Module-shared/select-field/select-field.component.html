@@ -1,0 +1,30 @@
+<ng-container *ngIf="!loading; else loader" >
+    <div class="flex align-items-center gap-1">
+        <label *ngIf="isLabel" [class]="required ? 'label-required' : ''"
+            >{{ label | translate }}
+        </label>
+        <ng-content [side-label]></ng-content>
+    </div>
+
+    <p-dropdown
+        [ngClass]="{'ng-invalid ng-dirty': (!!(selectFieldControl.errors?.['required']) && (selectFieldControl.touched || submitted)), 'p-inputtext-sm': true}"
+        appendTo="body"
+        [options]="dropdownItemsForComponent"
+        [optionLabel]="optionLabel"
+        [optionValue]="optionValue"
+        [required]="required"
+        [placeholder]="placeholder | translate"
+        [filter]="filter"
+        [style]="{ width: '100%' }"
+        (onChange)="Change($event.value)"
+        [formControl]="selectFieldControl"
+    >
+    </p-dropdown>
+    <!-- <app-validation
+        [control]="selectFieldControl"
+        [submitted]="submitted"
+    ></app-validation> -->
+</ng-container>
+<ng-template #loader>
+    <app-spinner-loading></app-spinner-loading>
+</ng-template>

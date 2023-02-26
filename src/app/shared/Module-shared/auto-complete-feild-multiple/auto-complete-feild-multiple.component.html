@@ -1,0 +1,20 @@
+<label [class]="required ? 'label-required' : ''" *ngIf="isLabel">{{
+    label | translate
+}}</label>
+<p-autoComplete
+    appendTo="body"
+    #input="ngModel"
+    [multiple]="true"
+    [ngModel]="valueAutoComplete"
+    [suggestions]="dataFilter"
+    (completeMethod)="filter($event)"
+    (onSelect)="onSelect($event)"
+    (onUnselect)="onUnselect($event)"
+    [disabled]="disabled"
+    [field]="field"
+    [required]="required"
+></p-autoComplete>
+<app-validation
+    [control]="input.control"
+    [submitted]="submitted"
+></app-validation>

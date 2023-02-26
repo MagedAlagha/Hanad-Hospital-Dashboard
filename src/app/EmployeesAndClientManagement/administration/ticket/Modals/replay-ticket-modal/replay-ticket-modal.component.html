@@ -1,0 +1,36 @@
+<app-dialog-shared [width]="'70vw'" [dialogHeader]='title' (close)="closeDialog()">
+    <div class="bodyDialog">
+
+        <div *ngFor="let data of data">
+           <p> {{data}}</p>
+        </div>
+
+        <form [formGroup]="replayForm" >
+            <div class="grid p-fluid">
+                <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                    <app-text-area-field [rows]="3" formControlName="Message" label="رسالة التزكرة">
+                    </app-text-area-field>
+                </div>
+                <ng-container *ngIf="showData">
+                    <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                        <app-text-area-field [rows]="3" formControlName="Replay" label="الرد على التزكرة">
+                        </app-text-area-field>
+                    </div>
+                </ng-container>
+
+            </div>
+        </form>
+
+
+    </div>
+
+    <div class="footerDialog">
+        <ng-container *ngIf="hideBtns">
+        <app-button-component label="ارسال الرد" [classColor]="'p-button-raised'" [pTooltipCustom]="'ارسال الرد'"
+            [Icon]="'pi pi-folder-open'"></app-button-component>
+        <app-button-component label="مسح بيانات الحقول" [classColor]="'p-button-raised p-button-secondary'"
+            [pTooltipCustom]="'مسح الحقول '" [Icon]="'pi pi-eraser'"></app-button-component>
+        </ng-container>
+    </div>
+
+</app-dialog-shared>

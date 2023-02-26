@@ -1,0 +1,5 @@
+<label>{{ label | translate }}</label>
+<p-multiSelect appendTo="body" [options]="dropdownItems" [optionLabel]="optionLabel" [optionValue]="optionValue"
+    [disabled]="disabled" [(ngModel)]="val" [required]="required" (onChange)="select($event.value)" #input="ngModel"
+    class="p-inputtext-sm" appendTo="body"></p-multiSelect>
+<app-validation [control]="input.control" [submitted]="submitted"></app-validation>

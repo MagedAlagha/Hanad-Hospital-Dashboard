@@ -1,0 +1,92 @@
+<!--  Table -->
+<div class="grid">
+    <!-- <div class="col-12 lg:col-6 flex justify-content-start align-items-end">
+        <h5>{{'Shared.TRANSACTIONS'|translate}}</h5>
+    </div> -->
+</div>
+<ng-container *ngIf="transactions$ | async as transactions">
+    <p-table
+        [value]="transactions.data"
+        [loading]="transactions.loading"
+        #dt1
+        dataKey="id"
+        [rowHover]="true"
+        styleClass="p-datatable-gridlines"
+        [globalFilterFields]="[
+            'name',
+            'country.name',
+            'representative.name',
+            'status'
+        ]"
+        responsiveLayout="scroll"
+    >
+        <ng-template pTemplate="caption">
+            <div
+                class="grid flex justify-content-between align-items-center"
+                style="margin: 0"
+            >
+                <div class="lg:md-3">
+                    <app-search-field></app-search-field>
+                </div>
+                <div class="lg:md-3">
+                    <!-- <app-button-component (click)="display=true" [label]="'makeAction'">
+                    </app-button-component> -->
+                </div>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>{{ "Shared.SCREEN_NAME" | translate }}</th>
+                <th>{{ "Shared.EMPLOYEE" | translate }}</th>
+                <th>{{ "Shared.ACTION" | translate }}</th>
+                <th>{{ "Shared.ACTION_DATE" | translate }}</th>
+
+                <th>{{ "Shared.NOTES" | translate }}</th>
+                <!-- <th>{{ '#' }}</th> -->
+                <th>{{ "Shared.ACTIONS" | translate }}</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr
+                [class.hightlight-row-success]="item.ActionCode == 14"
+                [class.hightlight-row-danger]="item.ActionCode == 15"
+            >
+                <td>
+                    <span class="mx-1"> {{ item.ScreenName }}</span>
+                </td>
+                <td>{{ item.UserFullName }}</td>
+                <td>{{ item.CodeName }}</td>
+                <td>{{ item.ActionTime | date : " HH:mm | dd-MM-yyyy" }}</td>
+                <td>{{ item.Notes }}</td>
+                <!-- <td>  <app-icon-shared
+                    *ngIf="
+                        item.ActionCode == 15 || item.ActionCode == 14
+                    "
+                    [label]="'active'"
+                    extraClass="p-button-sm"
+                ></app-icon-shared>
+            </td> -->
+                <td>
+                    <app-icon-shared
+                        *ngIf="item.ShowAction"
+                        (action)="makeAction(item.ID)"
+                        label="transfer"
+                    >
+                    </app-icon-shared>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="7">
+                    {{ "Shared.NO_CUSTOMERS_FOUND" | translate }}
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="loadingbody">
+            <tr>
+                <td colspan="7">Loading customers data. Please wait.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</ng-container>

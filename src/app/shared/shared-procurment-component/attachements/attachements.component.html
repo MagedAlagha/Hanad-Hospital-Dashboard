@@ -1,0 +1,135 @@
+<!-- tabel -->
+<div class="grid">
+    <div class="col-12 lg:col-6 flex justify-content-start align-items-end">
+        <h5>{{ "Shared.ATTACHEMENTS" | translate }}</h5>
+    </div>
+</div>
+<p-table
+    [value]="attachement$ | async"
+    [loading]="!(attachement$ | async)"
+    #dt1
+    dataKey="id"
+    [rowHover]="true"
+    styleClass="p-datatable-gridlines"
+    [globalFilterFields]="[]"
+    responsiveLayout="scroll"
+>
+    <ng-template pTemplate="caption">
+        <div
+            class="grid flex justify-content-between align-items-center"
+            style="margin: 0"
+        >
+            <div class="lg:md-3">
+                <app-search-field></app-search-field>
+            </div>
+            <div class="lg:md-3">
+                <app-button-component
+                    *ngIf="!canNotAdd"
+                    (click)="display = true"
+                    [label]="'add new'"
+                >
+                </app-button-component>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>{{ "Shared.FILE_TYPE" | translate }}</th>
+            <th>{{ "Shared.FILE_NAME_DESCRIPTION" | translate }}</th>
+            <th>{{ "Shared.UPLOAD_DATE" | translate }}</th>
+            <th>{{ 'وقت التحميل' }}</th>
+            <th>{{ "Shared.USER" | translate }}</th>
+            <th>{{ "خيارات"  }}</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+        <tr>
+            <td>{{ item?.FileExt }}</td>
+            <td>{{ item?.FileName }}</td>
+            <td>{{ item?.FileDate | date : " dd/MM/yyyy" }}</td>
+            <td>{{ item?.FileDate | date : "HH:mm" }}</td>
+
+            <td>{{ item?.UserFullName }}</td>
+            <td>
+                <app-icon-shared
+                    label="download"
+                    (action)="DownloadFile(item?.FileName)"
+                ></app-icon-shared>
+                <app-icon-shared
+                *ngIf="item?.CanDelete"
+                    label="delete"
+                    (action)="deleteFile(item?.ID)"
+                ></app-icon-shared>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="6">{{ "Shared.NO_CUSTOMERS_FOUND" | translate }}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="loadingbody">
+        <tr>
+            <td colspan="6">Loading customers data. Please wait.</td>
+        </tr>
+    </ng-template>
+</p-table>
+<!-- dialog -->
+<app-dialog-shared
+    (close)="display = false"
+    *ngIf="display"
+    [dialogHeader]="'Shared.ADD_FILE' | translate"
+>
+    <div class="bodyDialog">
+        <ng-container *ngIf="codes$ | async as codes">
+            <form [formGroup]="AttachementsForm">
+                <div class="grid p-fluid">
+                    <div class="field col-12 md:col-3">
+                        <app-select-field
+                            [dropdownItems]="codes.File"
+                            [label]="'Shared.FILE_TYPE' | translate"
+                            formControlName="FileType"
+                        >
+                        </app-select-field>
+                    </div>
+                    <!-- <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+                        <app-input-field  [label]="'Shared.BROWSE_FILE'|translate"
+                            formControlName="BrowseFile">
+                        </app-input-field>
+                    </div> -->
+                    <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                        <app-text-area-field
+                            [rows]="2"
+                            [label]="'Shared.FILE_NAME_DESCRIPTION' | translate"
+                            formControlName="FileDesc"
+                        >
+                        </app-text-area-field>
+                    </div>
+
+                    <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                        <p-fileUpload
+                            (onSelect)="onSelect($event)"
+                            [multiple]="true"
+                            [showUploadButton]="false"
+                            [showCancelButton]="false"
+                        >
+                            <ng-template pTemplate="content">
+                                <ul *ngIf="uploadedFiles.length">
+                                    <li *ngFor="let file of uploadedFiles">
+                                        {{ file.name }} - {{ file.size }} bytes
+                                    </li>
+                                </ul>
+                            </ng-template>
+                        </p-fileUpload>
+                    </div>
+                </div>
+            </form>
+        </ng-container>
+    </div>
+    <div class="footerDialog">
+        <app-button-component
+            label="save"
+            (click)="save()"
+        ></app-button-component>
+    </div>
+</app-dialog-shared>

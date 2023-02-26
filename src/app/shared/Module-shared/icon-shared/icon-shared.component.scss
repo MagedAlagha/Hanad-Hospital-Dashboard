@@ -1,0 +1,40 @@
+
+
+//   .pure-icon {
+//     width: 2rem;
+//     height: 2rem;
+//     color:  #64748b;
+//     border: 0 none;
+//     background: transparent;
+//     border-radius: 50%;
+//     transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+//     cursor: pointer;
+//   }
+//   .pure-icon:enabled:hover {
+//     color: #64748b;
+//     border-color: transparent;
+//     background: rgba(139, 128, 128, 0.03);
+//   }
+//   .pure-icon:focus {
+//     outline: 0 none;
+//     outline-offset: 0;
+//     box-shadow: 0 0 0 0.2rem rgba(147, 197, 253, 0.5);
+//   }
+
+.action-icon {
+    height: 35px;
+    width: 40px;
+    font-size: 1.2rem;
+    padding: 9px;
+    margin: 0 5px;
+    text-align: center;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 0 10px 1px #f0f0f0;
+  }
+
+  .general-icon-hover:hover{
+    color: white;
+    background-color: #c5c9df;
+  }

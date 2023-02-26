@@ -1,0 +1,14 @@
+<p-fileUpload
+    #fileUpload
+    (onSelect)="onSelect($event)"
+    [multiple]="true"
+    mode="basic"
+    [chooseLabel]="'ملف'"
+    [uploadIcon]="'pi pi-upload'"
+>
+</p-fileUpload>
+<ng-container *ngIf="showFilesUploaded"
+    ><div *ngFor="let item of uploadedFiles" class="m-2">
+        {{ item.name }}
+    </div></ng-container
+>

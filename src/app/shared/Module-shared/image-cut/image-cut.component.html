@@ -1,0 +1,47 @@
+<app-dialog-shared
+    [width]="'40vw'"
+    [height]="'30vw'"
+    dialogHeader="اضافة صورة"
+    (close)="Close()"
+>
+    <div class="bodyDialog">
+        <div class="card-body" style="max-height: 400px; overflow-y: scroll">
+            <input
+                [hidden]="true"
+                type="file"
+                (change)="fileChangeEvent($event)"
+                class="w-100"
+                #inputFile
+            />
+            <app-button-component
+                (click)="inputFile.click()"
+                [Icon]="'pi pi-image'"
+                [label]="'اختيار صورة'"
+                [isCustomLable]="true"
+            ></app-button-component>
+            <div class="row">
+                <div class="text-center col-md-8">
+                    <image-cropper
+                        [imageChangedEvent]="imageChangedEvent"
+                        [maintainAspectRatio]="true"
+                        [aspectRatio]="4 / 4"
+                        [resizeToWidth]="150"
+                        format="png"
+                        (imageCropped)="imageCropped($event)"
+                        (imageLoaded)="imageLoaded()"
+                        (cropperReady)="cropperReady()"
+                        (loadImageFailed)="loadImageFailed()"
+                    ></image-cropper>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footerDialog">
+        <div class="flex justify-content-end">
+            <app-button-component
+                (action)="saveImg()"
+                [label]="'save'"
+            ></app-button-component>
+        </div>
+    </div>
+</app-dialog-shared>

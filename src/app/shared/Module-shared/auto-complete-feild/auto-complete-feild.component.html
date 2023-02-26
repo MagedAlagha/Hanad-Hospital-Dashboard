@@ -1,0 +1,30 @@
+<label [class]="required ? 'label-required' : ''" *ngIf="isLabel">{{
+    label | translate
+}}</label>
+<div class="flex">
+    <p-autoComplete
+        [ngClass]="{'ng-invalid ng-dirty': (autoCompleteControl.errors?.['required'] && (autoCompleteControl.touched || submitted)), 'p-inputtext-sm': true}"
+        [dataKey]="tableName"
+        appendTo="body"
+        [style.min-width]="'90%'"
+        [placeholder]="'Shared.SEARCH_KEYWORD' | translate"
+        [required]="required"
+        [suggestions]="Filter$ | async"
+        [field]="field"
+        [dropdown]="false"
+        [formControl]="autoCompleteControl"
+        (completeMethod)="test()"
+        (onSelect)="onSelect($event)"
+        [lazy]="true"
+        [disabled]="disabled"
+    >
+    </p-autoComplete>
+    <span class="p-inputgroup-addon" style="margin-right: -25px; z-index: 10"
+        ><i class="pi pi-search"></i
+    ></span>
+</div>
+
+<!-- <app-validation
+    [control]="autoCompleteControl"
+    [submitted]="submitted"
+></app-validation> -->

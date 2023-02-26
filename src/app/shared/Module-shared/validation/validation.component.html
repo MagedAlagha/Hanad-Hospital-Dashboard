@@ -1,0 +1,10 @@
+<ng-container *ngIf="control?.errors">
+    <div class="errors">
+        <small
+            class="text-red-500"
+            *ngIf="control?.errors?.['required'] && (control?.touched || submitted)"
+        >
+            {{ "Shared.THIS_FEILD_IS_REQUIRED" | translate }}
+        </small>
+    </div>
+</ng-container>

@@ -1,0 +1,29 @@
+<label
+    [class]="required ? 'label-required' : ''"
+    style="white-space: nowrap; width: 100%"
+    >{{ label | translate }}{{ isPresentag ? " (%)" : "" }}</label
+>
+<div class="flex align-items-center">
+    <p-inputNumber
+        [ngClass]="{'ng-invalid ng-dirty': !!(numberFieldControl.errors?.['required'] && (numberFieldControl.touched || submitted)), 'p-inputtext-sm': true}"
+        [suffix]="suffix"
+        [prefix]="prefix"
+        [showButtons]="showButtons"
+        [useGrouping]="useGrouping"
+        [formControl]="numberFieldControl"
+        [maxFractionDigits]="5"
+        [min]="min"
+        [max]="max"
+        [mode]="mode"
+        (onInput)="Change($event.value)"
+        (onBlur)="CheckIdNo($event)"
+    >
+    </p-inputNumber>
+
+    <span *ngIf="labelSideField"> {{ "-" + labelSideField }}</span>
+</div>
+
+<!-- <app-validation
+    [control]="numberFieldControl"
+    [submitted]="submitted"
+></app-validation> -->

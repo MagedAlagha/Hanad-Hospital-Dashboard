@@ -1,0 +1,12 @@
+<div class="row" *ngIf="Evaluation$ | async as Evaluation">
+    <ng-container *ngIf="!Evaluation.loading">
+        <div
+            class="col-12"
+            *ngFor="let Category of Categories"
+
+        >
+            <app-category-for-evaluation
+                [Category]="Category"
+            ></app-category-for-evaluation></div
+    ></ng-container>
+</div>

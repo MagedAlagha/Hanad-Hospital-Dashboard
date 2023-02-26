@@ -1,0 +1,16 @@
+<label [class]="required ? 'label-required' : ''">{{
+    label | translate
+}}</label>
+<textarea
+    [ngClass]="{'ng-invalid ng-dirty': (TextareaFieldControl.errors?.['required'] && (TextareaFieldControl.touched || submitted))}"
+    appendTo="body"
+    [rows]="rows"
+    [autoResize]="false"
+    (ngModelChange)="onChange($event)"
+    pInputTextarea
+    [formControl]="TextareaFieldControl"
+></textarea>
+<!-- <app-validation
+    [control]="TextareaFieldControl"
+    [submitted]="submitted"
+></app-validation> -->

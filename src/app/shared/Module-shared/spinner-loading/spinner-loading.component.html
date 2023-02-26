@@ -1,0 +1,17 @@
+<div *ngIf="Skeleton; else Spinner">
+    <div class="p-fluid p-formgrid grid">
+        <div
+            class="field col-12"
+            [class]="Cols"
+            *ngFor="let item of FeildsArray"
+        >
+            <p-skeleton width="100%" [height]="heightInRem"></p-skeleton>
+        </div>
+    </div>
+</div>
+
+<ng-template #Spinner>
+    <div>
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</ng-template>

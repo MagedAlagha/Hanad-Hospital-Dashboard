@@ -1,0 +1,60 @@
+<ng-container *ngIf="dataTree$ | async as data">
+    <p-tree
+        [selectionMode]="selectionMode"
+        [value]="data?.data"
+        [filter]="filter"
+        [selectionMode]="selectionMode"
+        [draggableNodes]="draggableNodes"
+        [droppableNodes]="droppableNodes"
+        [emptyMessage]="emptyMessage"
+        [filterBy]="filterBy"
+        [loading]="data?.loading"
+        [(selection)]="itemsSelected"
+        (onNodeSelect)="nodeSelect.emit($event)"
+        (onNodeUnselect)="nodeUnselect.emit($event)"
+        (onNodeExpand)="nodeExpand.emit($event)"
+        [virtualScroll]="virtualScroll"
+        [virtualScrollItemSize]="virtualScrollItemSize"
+        [scrollHeight]="scrollHeight"
+        [layout]="layout"
+        [draggableScope]="draggableScope"
+        [droppableScope]="droppableScope"
+        (onNodeDrop)="onNodeDrop.emit($event)"
+        (onNodeDrag)="onNodeDrag.emit($event)"
+        [validateDrop]="validateDrop"
+    >
+        <ng-template let-node pTemplate="default">
+            <div
+                class="flex align-items-center justify-content-between col-md-12"
+            >
+                <b>{{ FromAccountTree ? node.txt : node.Name }}</b>
+                <div>
+                    <ng-container *ngIf="node.isAdd">
+                        <app-icon-shared
+                            label="add"
+                            (action)="onNodeAdd.emit(node)"
+                        >
+                        </app-icon-shared
+                    ></ng-container>
+                    <ng-container *ngIf="node.isEdit">
+                        <app-icon-shared
+                            label="edit"
+                            (action)="onNodeEdit.emit(node)"
+                        >
+                        </app-icon-shared
+                    ></ng-container>
+                    <ng-container *ngIf="node.isDelete">
+                        <app-icon-shared
+                            label="delete"
+                            (action)="onNodeDelete.emit(node)"
+                        ></app-icon-shared
+                    ></ng-container>
+                </div>
+            </div>
+        </ng-template> </p-tree
+></ng-container>
+<!-- (onNodeSelect)="nodeSelect($event)"
+    (onNodeUnselect)="nodeUnselect($event)"
+    [(selection)]="selectedFile"
+
+-->
