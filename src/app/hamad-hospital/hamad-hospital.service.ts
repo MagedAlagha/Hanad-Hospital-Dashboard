@@ -1,3 +1,4 @@
+import { HttpService } from 'src/app/shared/services/http.service';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, distinctUntilChanged, map } from 'rxjs';
 import { getFormApiGonfig } from '../shared/models';
@@ -10,7 +11,7 @@ import { HttpHRService } from '../shared/services/httpHR.service';
 })
 export class HamadHospitalService {
     constructor(
-        private _http: HttpHRService,
+        private _http: HttpService,
         private _getFormApiService: GetFormApiService,
         private _authService: AuthService
     ) {}
@@ -37,7 +38,7 @@ export class HamadHospitalService {
         );
     }
     saveData(data: any) {
-        return this._http.saveData('HeaderSlider/HeaderSliderSave', data);
+        return this._http.updateFormData('HeaderSlider/HeaderSliderSave', data);
     }
 
     getFormApi(

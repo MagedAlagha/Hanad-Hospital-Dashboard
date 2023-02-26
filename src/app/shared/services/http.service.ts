@@ -100,6 +100,9 @@ export class HttpService {
     saveData(route: string, body: any) {
         return this.http.post(this.baseUrl + route, this.convartData(body));
     }
+    updateData(route: string, body: any) {
+        return this.http.put(this.baseUrl + route, this.convartData(body));
+    }
     editData(route: string, body: any) {
         return this.http.put(this.baseUrl + route, this.convartData(body));
     }
@@ -156,6 +159,21 @@ export class HttpService {
             }
         });
         return this.http.post(this.baseUrl + route, data);
+    }
+    updateFormData(route: string, body: any) {
+        const data = new FormData();
+        Object.keys(body).forEach((key) => {
+            if (body[key] instanceof Date)
+                body[key] = moment(body[key]).format('YYYY-MM-DD');
+            if (body[key] instanceof Array) {
+                body[key].forEach((element: any) => {
+                    data.append(key, element);
+                });
+            } else {
+                data.append(key, body[key]);
+            }
+        });
+        return this.http.put(this.baseUrl + route, data);
     }
 
     getFiles(route: string, params: any = null) {

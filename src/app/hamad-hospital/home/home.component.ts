@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
@@ -12,7 +12,8 @@ import { HamadHospitalService } from '../hamad-hospital.service';
 export class HomeComponent implements OnInit {
     formSlider: FormGroup;
     FormData: FormGroup;
-
+    fileSelected: any;
+    @ViewChild('fileUpload') fileUpload: any;
     constructor(
         fb: FormBuilder,
         private _HamadHospitalService: HamadHospitalService,
@@ -47,6 +48,7 @@ export class HomeComponent implements OnInit {
 
     save() {
         // this._HamadHospitalService.saveData(this.formSlider.value);
+        console.log('fileUpload', this.fileUpload);
         if (this.formSlider.invalid) {
             this.messageService.add({
                 severity: 'error',
@@ -56,7 +58,10 @@ export class HomeComponent implements OnInit {
             });
         } else {
             console.log(this.formSlider.value, 'fffpeoeoeoeo');
-            this._HamadHospitalService.saveData(this.formSlider.value);
+            this._HamadHospitalService.saveData({
+                ...this.formSlider.value,
+                Image: this.fileSelected,
+            }).subscribe()
         }
         console.log(this.formSlider.value, 'gegegegeg');
     }

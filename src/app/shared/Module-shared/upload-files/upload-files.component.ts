@@ -35,6 +35,7 @@ export class UploadFilesComponent implements OnInit {
     @Input() body: any;
     @Input() URL: string = '/upload';
     @Input() isAuto: boolean = false;
+    @Input() multiple: boolean = false;
     @Input() showFilesUploaded: boolean = false;
     @Output() onSelectFiles = new EventEmitter<any>();
     @Output() afterAutoSave = new EventEmitter<any>();
@@ -44,9 +45,13 @@ export class UploadFilesComponent implements OnInit {
     ngOnInit() {}
 
     onSelect(event: any) {
-        this.uploadedFiles = event.currentFiles;
-        this.fileUpload.clear();
-        this.onSelectFiles.emit(this.uploadedFiles);
+        if (this.multiple) {
+            this.uploadedFiles = [...this.uploadedFiles, ...event.currentFiles];
+            this.onSelectFiles.emit(this.uploadedFiles);
+        } else {
+            this.uploadedFiles = event.currentFiles;
+            this.onSelectFiles.emit(this.uploadedFiles[0]);
+        }
         if (this.isAuto) {
             let arr$: Observable<any>[] = [];
             if (this.uploadedFiles.length) {
@@ -64,5 +69,6 @@ export class UploadFilesComponent implements OnInit {
                 });
             }
         }
+        this.fileUpload.clear();
     }
 }

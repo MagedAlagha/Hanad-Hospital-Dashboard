@@ -12,7 +12,7 @@
         <div class="grid p-fluid">
             <div class="col-12 mb-2 lg:col-12 lg:mb-0">
                 <label for="">اضافة صورة للسلايدر</label>
-                <p-fileUpload mode="basic" accept="image/*" formControlName="Image" name="myfile[]"></p-fileUpload>
+                <app-upload-files (onSelectFiles)="fileSelected=$event"[showFilesUploaded]='true' ></app-upload-files>
             </div>
             <div class="col-12 mb-2 lg:col-6 lg:mb-0">
                 <app-input-field label="العنوان بالعربي" formControlName="TitleAr">
@@ -36,9 +36,6 @@
                 </div>
             </div>
 
-            <div>
-
-            </div>
         </div>
     </form>
 

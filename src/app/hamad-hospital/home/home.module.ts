@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import { CheckBoxComponent } from 'src/app/shared/Module-shared/check-box/check-box.component';
 import {FileUploadModule} from 'primeng/fileupload';
+import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/upload-files.component';
 
 
 
@@ -35,7 +36,8 @@ import {FileUploadModule} from 'primeng/fileupload';
     ReactiveFormsModule,
     InputSwitchModule,
     CheckBoxComponent,
-    FileUploadModule
+    FileUploadModule,
+    UploadFilesComponent
   ]
 })
 export class HomeModule { }
