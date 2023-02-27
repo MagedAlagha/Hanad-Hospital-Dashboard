@@ -22,6 +22,14 @@ import { HamadHospitalComponent } from './hamad-hospital.component';
                             './home/home.module'
                         ).then((m) => m.HomeModule),
                 },
+                {
+                    path: 'services',
+                    data: { breadcrumb: 'خدمات المستشفى' },
+                    loadChildren: () =>
+                        import(
+                            './services-page/services-page.module'
+                        ).then((m) => m.ServicesPageModule),
+                },
 
 
 

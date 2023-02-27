@@ -39,7 +39,7 @@
             <p-galleria [value]="images" [responsiveOptions]="galleriaResponsiveOptions"
                         [containerStyle]="{'max-width': '800px', 'margin':'auto'}" [numVisible]="6" [circular]="true">
                 <ng-template pTemplate="item" let-item>
-                    <img [src]="item.itemImageSrc" style="width: 100%; display: block;"/>
+                    <img [src]="item.itemImageSrc"  [style]="{ width: '100%' }" style=" display: block;"/>
                 </ng-template>
                 <ng-template pTemplate="thumbnail" let-item>
                     <div class="grid nogutter justify-center">

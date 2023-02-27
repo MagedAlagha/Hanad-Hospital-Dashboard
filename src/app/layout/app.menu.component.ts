@@ -36,10 +36,10 @@ export class AppMenuComponent implements OnInit {
                         ],
                     },
                     {
-                        label: ' الموظفين',
+                        label: ' خدمات المستفى',
                         icon: 'pi pi-users   ',
                         routerLink: [
-                            '/employees-client-management/administration/employees',
+                            '/hamad-hospital/services',
                         ],
                     },
                     {

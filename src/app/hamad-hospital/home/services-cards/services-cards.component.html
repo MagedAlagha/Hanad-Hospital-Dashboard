@@ -1,0 +1,143 @@
+<div class="card">
+    <div class="flex flex-column md:flex-row  mb-3">
+        <div class="text-900 text-xl font-semibold mb-3 md:mb-0">الخدمات</div>
+    </div>
+    <hr />
+    <br />
+    <form [formGroup]="formServices">
+    <p-tabView>
+        <p-tabPanel header="التأهيل الطبي">
+            <div class="grid p-fluid mt-3">
+                <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                    <app-upload-files
+                    (onSelectFiles)="fileSelected_01 = $event"
+                    [showFilesUploaded]="true"
+                ></app-upload-files>
+                </div>
+                <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                    <app-text-area-field
+                    [rows]="3"
+                        [label]="'وصف التاهيل الطبي /عربي'"
+                        formControlName="MedicalRehabilitationIconDescAr"
+                    >
+                    </app-text-area-field>
+                </div>
+                <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                    <app-text-area-field
+                    [rows]="3"
+                        [label]="'وصف التاهيل الطبي /انجليزي'"
+                        formControlName="MedicalRehabilitationIconDescEn"
+                    >
+                    </app-text-area-field>
+                </div>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="الأطراف الصناعية">
+            <div class="grid p-fluid mt-3">
+                <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                    <app-upload-files
+                    (onSelectFiles)="fileSelected_02 = $event"
+                    [showFilesUploaded]="true"
+                ></app-upload-files>
+                </div>
+                <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                    <app-text-area-field
+                    [rows]="3"
+                        [label]="'وصف الأطراف الصناعية /عربي'"
+                        formControlName="ProstheticsDescAr"
+                    >
+                    </app-text-area-field>
+                </div>
+                <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                    <app-text-area-field
+                    [rows]="3"
+                        [label]="'وصف الأطراف الصناعية /انجليزي'"
+                        formControlName="ProstheticsDescEn"
+                    >
+                    </app-text-area-field>
+                </div>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="السموع والتوازن">
+            <div class="grid p-fluid mt-3">
+                <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                    <app-upload-files
+                    (onSelectFiles)="fileSelected_03 = $event"
+                    [showFilesUploaded]="true"
+                ></app-upload-files>
+                </div>
+                <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                    <app-text-area-field
+                    [rows]="3"
+                        [label]="'وصف السموع والتوازن /عربي'"
+                        formControlName="HearingDescAr"
+                    >
+                    </app-text-area-field>
+                </div>
+                <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                    <app-text-area-field
+                    [rows]="3"
+                        [label]="'وصف السموع والتوازن /انجليزي'"
+                        formControlName="HearingDescEn"
+                    >
+                    </app-text-area-field>
+                </div>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="العيادات الخارجية">
+            <div class="grid p-fluid mt-3">
+                <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                    <app-upload-files
+                    (onSelectFiles)="fileSelected_04 = $event"
+                    [showFilesUploaded]="true"
+                ></app-upload-files>
+                </div>
+                <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                    <app-text-area-field
+                    [rows]="3"
+                        [label]="'العيادات الخارجية /عربي'"
+                        formControlName="OutpatientClinicsDescAr"
+                    >
+                    </app-text-area-field>
+                </div>
+                <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                    <app-text-area-field
+                    [rows]="3"
+                        [label]="'العيادات الخارجية /انجليزي'"
+                        formControlName="OutpatientClinicsDescEn"
+                    >
+                    </app-text-area-field>
+                </div>
+            </div>
+        </p-tabPanel>
+    </p-tabView>
+    </form>
+<hr>
+    <div
+    class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
+>
+    <div class="inline-flex align-items-center">
+        <app-button-component
+            [classColor]="'p-button-raised'"
+            (action)="save()"
+            [Icon]="'pi pi-id-card'"
+            label="حفظ"
+            [isCustomLable]="true"
+            [pTooltipCustom]="'حفظ'"
+        >
+        </app-button-component>
+        <app-button-component
+            label="مسح الحقول"
+            class="pr-2"
+            (action)="clear()"
+            [classColor]="'p-button-raised p-button-secondary '"
+            [pTooltipCustom]="'مسح الحقول '"
+            [Icon]="'pi pi-eraser'"
+        ></app-button-component>
+    </div>
+</div>
+
+</div>
+
+
+

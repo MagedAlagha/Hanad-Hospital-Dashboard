@@ -1,178 +1,123 @@
 <div class="card">
-    <div class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3">
+    <div
+        class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3"
+    >
         <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
             الصفحة الرئيسية - السلايدر
         </div>
     </div>
-    <hr>
-    <br>
-
+    <hr />
+    <br />
 
     <form [formGroup]="formSlider">
         <div class="grid p-fluid">
             <div class="col-12 mb-2 lg:col-12 lg:mb-0">
                 <label for="">اضافة صورة للسلايدر</label>
-                <app-upload-files (onSelectFiles)="fileSelected=$event"[showFilesUploaded]='true' ></app-upload-files>
+                <app-upload-files
+                    (onSelectFiles)="fileSelected = $event"
+                    [showFilesUploaded]="true"
+                ></app-upload-files>
             </div>
             <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-                <app-input-field label="العنوان بالعربي" formControlName="TitleAr">
+                <app-input-field
+                    label="العنوان بالعربي"
+                    formControlName="TitleAr"
+                >
                 </app-input-field>
             </div>
             <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-                <app-input-field label="العنوان بالانجليزي" formControlName="TitleEn">
+                <app-input-field
+                    label="العنوان بالانجليزي"
+                    formControlName="TitleEn"
+                >
                 </app-input-field>
             </div>
-            <div class="col-12 mb-2 lg:col-2 lg:mb-0  align-items-center  justify-content-evenly ">
-                <app-check-box label="الحالة" formControlName="IsActive"> </app-check-box>
+            <div
+                class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
+            >
+                <app-check-box label="الحالة" formControlName="IsActive">
+                </app-check-box>
             </div>
-            <div class="col-12 mb-2 lg:col-4 lg:mb-0  align-items-center  justify-content-evenly ">
+            <div
+                class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
+            >
                 <div class="inline-flex align-items-center">
-                    <app-button-component [classColor]="'p-button-raised'" (action)="save()" [Icon]="'pi pi-id-card'"
-                        label="حفظ" [isCustomLable]="true" [pTooltipCustom]="'حفظ'">
+                    <app-button-component
+                        [classColor]="'p-button-raised'"
+                        (action)="save()"
+                        [Icon]="'pi pi-id-card'"
+                        label="حفظ"
+                        [isCustomLable]="true"
+                        [pTooltipCustom]="'حفظ'"
+                    >
                     </app-button-component>
-                    <app-button-component label="مسح الحقول" class="pr-2" (action)="clear()"
-                        [classColor]="'p-button-raised p-button-secondary '" [pTooltipCustom]="'مسح الحقول '"
-                        [Icon]="'pi pi-eraser'"></app-button-component>
+                    <app-button-component
+                        label="مسح الحقول"
+                        class="pr-2"
+                        (action)="clear()"
+                        [classColor]="'p-button-raised p-button-secondary '"
+                        [pTooltipCustom]="'مسح الحقول '"
+                        [Icon]="'pi pi-eraser'"
+                    ></app-button-component>
                 </div>
             </div>
-
         </div>
     </form>
 
+    <br />
+    <ng-container *ngIf="sliderData$ | async as sliderData">
+        <p-table
+            styleClass="p-datatable-gridlines"
+            [rows]="10"
+            [paginator]="true"
+            style="width: 100%"
+            [value]="sliderData"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">العنوان عربي</th>
+                    <th class="text-center">العنوان انجليزي</th>
+                    <th class="text-center">الحالة</th>
+                    <!-- <th class="text-center">الصورة</th> -->
+                    <th class="text-center">الاجراءات</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item let-index="rowIndex">
+                <tr>
+                    <td>
+                        <span class="reorder-row-icon">{{ index + 1 }}</span>
+                    </td>
+                    <td>{{ item.TitleAr }}</td>
+                    <td>{{ item.TitleEn }}</td>
+                    <td>{{ item.IsActive }}</td>
+                    <!-- <td> <span >{{ item.ImagePath?.slice("/")?.pop() }}</span> </td> -->
+                    <td class="text-center">
+                        <app-icon-shared
+                            [Icon]="'pi pi-pencil'"
+                            [classColor]="'var(--blue-400)'"
+                            [pTooltipCustom]="'تعديل البيانات'"
+                            (action)="editItem(item)"
+                        ></app-icon-shared>
 
-    <br>
-    <!--   <ng-container *ngIf="" > </ng-container> -->
-
-    <p-table styleClass="p-datatable-gridlines" [rows]="10" [paginator]="true" style="width: 100%"
-        [value]="[1 , 2  , 3 , 4 , 5 , 6]">
-
-        <ng-template pTemplate="header">
-            <tr>
-                <th class="text-center">#</th>
-                <th class="text-center">الاسم</th>
-                <th class="text-center">الدور الوظيفي</th>
-                <th class="text-center">الهاتف</th>
-                <th class="text-center">السكن</th>
-                <th class="text-center">القسم</th>
-                <th class="text-center">الاجراءات</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-item let-index="rowIndex">
-            <tr>
-                <td> <span class="reorder-row-icon">{{ index + 1 }}</span></td>
-                <td>{{item.Name}}</td>
-                <td>{{item.JobRole}}</td>
-                <td>{{item.Phone}}</td>
-                <td>{{item.City}}</td>
-                <td>{{item.Section}}</td>
-                <td class="text-center">
-
-                    <app-icon-shared [Icon]="'pi pi-pencil'" [classColor]="'var(--blue-400)'"
-                        [pTooltipCustom]="'تعديل البيانات'"></app-icon-shared>
-
-                    <app-icon-shared [Icon]="'pi pi-trash'" [classColor]="'var(--red-400)'"
-                        [pTooltipCustom]="'حذف'"></app-icon-shared>
-
-
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="emptymessage">
-            <tr>
-                <td class="text-center" colspan="6">لا يوجد بيانات</td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="footer"> </ng-template>
-        <ng-template pTemplate="loadingbody"> </ng-template>
-    </p-table>
-
+                        <app-icon-shared
+                            [Icon]="'pi pi-trash'"
+                            [classColor]="'var(--red-400)'"
+                            [pTooltipCustom]="'حذف'"
+                            (action)="deleteItem(item)"
+                        ></app-icon-shared>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="footer"> </ng-template>
+            <ng-template pTemplate="loadingbody"> </ng-template>
+        </p-table>
+    </ng-container>
 </div>
 
-<div class="card">
-    <div class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3">
-        <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
-            الخدمات
-        </div>
-    </div>
-    <hr>
-    <br>
-    <form [formGroup]="FormData">
-        <div class="grid p-fluid">
-
-            <div class="col-12 mb-2 lg:col-3 lg:mb-0">
-                <app-input-field [label]="'مسار أيقونة إعادة التأهيل الطبي'"
-                    formControlName="MedicalRehabilitationIconPath">
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-3 lg:mb-0">
-                <app-input-field [label]="'رمز التأهيل الطبي Ar'" formControlName="MedicalRehabilitationIconDescAr">
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-3 lg:mb-0">
-                <app-input-field [label]="'رمز التأهيل الطبي En'" formControlName="MedicalRehabilitationIconDescEn">
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-3 lg:mb-0">
-                <app-input-field [label]="'مسار أيقونة الأطراف الصناعية'" formControlName="ProstheticsIconPath">
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-3 lg:طmb-0">
-                <app-input-field [label]="'الأطراف الصناعية Ar'" formControlName="ProstheticsDescAr">
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-3 lg:طmb-0">
-                <app-input-field [label]="'الأطراف الصناعية En'" formControlName="ProstheticsDescEn">
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-3 lg:طmb-0">
-                <app-input-field [label]="'مسار أيقونة السمع'" formControlName="HearingIconPath">
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-3 lg:طmb-0">
-                <app-input-field [label]="'وصف السمع Ar'" formControlName="HearingDescAr">
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-3 lg:طmb-0">
-                <app-input-field [label]="'وصف السمع En'" formControlName="HearingDescEn">
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-3 lg:طmb-0">
-                <app-input-field [label]="'مسار أيقونة العيادات الخارجية'" formControlName="OutpatientClinicsIconPath">
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-3 lg:طmb-0">
-                <app-input-field [label]="'العيادات الخارجية Ar'" formControlName="OutpatientClinicsDescAr">
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-3 lg:طmb-0">
-                <app-input-field [label]="'العيادات الخارجية En'" formControlName="OutpatientClinicsDescEn">
-                </app-input-field>
-            </div>
-            <!--
-                <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                    <app-select-field [label]='"حالة التنفيذ " | translate' [dropdownItems]="[]">
-                    </app-select-field>
-                </div>
-                <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                    <app-calender-feild label="تاريخ البدء من">
-                    </app-calender-feild>
-                </div>
-                <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                    <app-calender-feild label="الى">
-                    </app-calender-feild>
-                </div>
-                <div class="field col-3 md:col-2">
-                    <app-input-number-field [label]="'نسبة الانجاز من'">
-                    </app-input-number-field>
-                </div>
-                <div class="field col-3 md:col-2">
-                    <app-input-number-field [label]="'الى'">
-                    </app-input-number-field>
-                </div>
-                <div class="lg:md-3" class="p-button-outlined" style="margin: 43px 0rem 20px 0;" pButton pRipple>
-                    <app-button-component class="mx-2" label="search">
-                    </app-button-component>
-                </div> -->
-        </div>
-    </form>
-</div>
+<app-services-cards></app-services-cards>

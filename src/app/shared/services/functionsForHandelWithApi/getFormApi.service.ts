@@ -3,12 +3,13 @@ import { getFormApiGonfig } from './../../models';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, of } from 'rxjs';
 import { HttpHRService } from '../httpHR.service';
+import { HttpService } from '../http.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class GetFormApiService {
-    constructor(private _http: HttpHRService) {}
+    constructor(private _http: HttpService) {}
 
     getFormApi(
         store: BehaviorSubject<any>,

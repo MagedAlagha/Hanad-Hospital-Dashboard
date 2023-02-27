@@ -5,7 +5,7 @@
 
 export const environment = {
     production: false,
-    baseUrl: `https://meal.accessline.ps/api/v/`,
+    baseUrl: `http://hamad_api.accessline.ps/api/`,
     baseUrlHR: `https://hr-api.accessline.ps/api/`,
-    FileUrl: 'https://meal.accessline.ps/Resources/Files/',
+    FileUrl: 'http://hamad_api.accessline.ps/Resources/Files/',
 };
