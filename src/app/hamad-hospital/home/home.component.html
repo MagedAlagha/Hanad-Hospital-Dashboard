@@ -88,6 +88,7 @@
                     <th class="text-center">العنوان عربي</th>
                     <th class="text-center">العنوان انجليزي</th>
                     <th class="text-center">الحالة</th>
+                    <th class="text-center">الترتيب</th>
                     <!-- <th class="text-center">الصورة</th> -->
                     <th class="text-center">الاجراءات</th>
                 </tr>
@@ -100,6 +101,7 @@
                     <td>{{ item.TitleAr }}</td>
                     <td>{{ item.TitleEn }}</td>
                     <td>{{ item.IsActive }}</td>
+                    <td>{{ item.Sorting }}</td>
                     <!-- <td> <span >{{ item.ImagePath?.slice("/")?.pop() }}</span> </td> -->
                     <td class="text-center">
                         <app-icon-shared

@@ -1,6 +1,6 @@
-<button class="layout-config-button p-link" type="button" (click)="onConfigButtonClick()">
+<!-- <button class="layout-config-button p-link" type="button" (click)="onConfigButtonClick()">
     <i class="pi pi-cog"></i>
-</button>
+</button> -->
 
 <p-sidebar [(visible)]="visible" position="right" [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'" styleClass="layout-config-sidebar w-18rem">
     <ng-container *ngIf="!minimal">
@@ -45,7 +45,7 @@
     <h5>Themes</h5>
     <div class="flex flex-wrap gap-3">
         <div *ngFor="let theme of componentThemes">
-            <a style="cursor: pointer" (click)="changeTheme(theme.name)" class="inline-flex justify-content-center align-items-center w-2rem h-2rem border-round" 
+            <a style="cursor: pointer" (click)="changeTheme(theme.name)" class="inline-flex justify-content-center align-items-center w-2rem h-2rem border-round"
                 [ngStyle]="{'background-color': colorScheme === 'light' ? theme.lightColor : theme.darkColor, 'color': colorScheme === 'light' ? '#ffffff' : '#000000'}">
                 <i class="pi pi-check" *ngIf="currentTheme === theme.name"></i>
             </a>

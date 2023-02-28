@@ -11,7 +11,7 @@ import { ServicesPageService } from '../services-page.service';
 export class MedicalRehabilitationServicesComponent {
     formMedicalRehabilitationServices!: FormGroup<any>;
     MedicalRehabilitationServices$!: Observable<any>;
-
+    ID:any;
     constructor(
         fb: FormBuilder,
         private _servicesPageService: ServicesPageService
@@ -33,11 +33,24 @@ export class MedicalRehabilitationServicesComponent {
     }
 
     save() {
-        this._servicesPageService.saveMedicalRehabilitationServices(this.formMedicalRehabilitationServices.value);
+        if(!this.ID){
+            this._servicesPageService.saveMedicalRehabilitationServices(this.formMedicalRehabilitationServices.value);
+        }else{
+            this._servicesPageService.saveMedicalRehabilitationServices({
+                ...this.formMedicalRehabilitationServices.value ,
+                ID:this.ID
+            });
+
+        }
     }
 
-    clear() {}
-    editItem(item: any) {}
+    clear() {
+        this.formMedicalRehabilitationServices.reset();
+    }
+    editItem(item: any) {
+        this.formMedicalRehabilitationServices.patchValue(item);
+        this.ID = item.ID;
+    }
     deleteItem(item: any) {
         this._servicesPageService.deleteMedicalRehabilitationServices(item.ID);
     }

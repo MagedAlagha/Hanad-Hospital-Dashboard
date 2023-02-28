@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
 
     fileSelected: any;
     sliderData$!: Observable<any>;
+    ID: any;
     @ViewChild('fileUpload') fileUpload: any;
     constructor(
         fb: FormBuilder,
@@ -24,11 +25,11 @@ export class HomeComponent implements OnInit {
         private _translateService: TranslateService
     ) {
         this.formSlider = fb.group({
-            ID:[null],
-            Image: [''],
-            TitleAr: [''],
-            TitleEn: [''],
-            Sorting: [''],
+            ID: [null],
+            Image: [null],
+            TitleAr: [null],
+            TitleEn: [null],
+            Sorting: [null],
             IsActive: [false],
         });
     }
@@ -48,19 +49,28 @@ export class HomeComponent implements OnInit {
                 ),
             });
         } else {
-            console.log(this.formSlider.value, 'fffpeoeoeoeo');
-            this._homeService.saveData({
-                ...this.formSlider.value,
-                Image: this.fileSelected,
-            });
+            /* console.log(this.formSlider.value, 'fffpeoeoeoeo'); */
+            if (!this.ID) {
+                this._homeService.saveData({
+                    ...this.formSlider.value,
+                    Image: this.fileSelected,
+                });
+            } else {
+                this._homeService.saveData({
+                    ...this.formSlider.value,
+                    Image: this.fileSelected,
+                    ID:this.ID
+                });
+            }
+
             this.clear();
         }
         console.log(this.formSlider.value, 'gegegegeg');
     }
 
     editItem(item: any) {
-        console.log(item);
         this.formSlider.patchValue(item);
+        this.ID = item.ID;
     }
     deleteItem(item: any) {
         this._homeService.deleteSlider(item.ID);

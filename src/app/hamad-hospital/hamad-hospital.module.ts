@@ -30,6 +30,14 @@ import { HamadHospitalComponent } from './hamad-hospital.component';
                             './services-page/services-page.module'
                         ).then((m) => m.ServicesPageModule),
                 },
+                {
+                    path: 'electronic-services',
+                    data: { breadcrumb: 'الخدمات الالكترونية' },
+                    loadChildren: () =>
+                        import(
+                            './electronic-services/electronic-services.module'
+                        ).then((m) => m.ElectronicServicesModule),
+                },
 
 
 

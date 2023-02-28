@@ -30,23 +30,23 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     {
                         label: ' الصفحة الرئيسية',
-                        icon: 'pi pi-users  ',
+                        icon: 'pi pi-home',
                         routerLink: [
                             '/hamad-hospital/home',
                         ],
                     },
                     {
                         label: ' خدمات المستفى',
-                        icon: 'pi pi-users   ',
+                        icon: 'pi pi-slack',
                         routerLink: [
                             '/hamad-hospital/services',
                         ],
                     },
                     {
-                        label: ' المشاريع',
+                        label: 'الخدمات الالكترونية',
                         icon: 'pi pi-th-large',
                         routerLink: [
-                            '/employees-client-management/administration/projects',
+                            '/hamad-hospital/electronic-services',
                         ],
                     },
                     {

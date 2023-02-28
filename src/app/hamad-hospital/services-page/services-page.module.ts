@@ -20,6 +20,7 @@ import { SelectFieldComponent } from 'src/app/shared/Module-shared/select-field/
 import { HearingBalanceComponent } from './hearing-balance/hearing-balance.component';
 import { ProstheticsTypesComponent } from './Modal/prosthetics-types/prosthetics-types.component';
 import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-shared/dialog-shared.component';
+import { DiagnosticUnitComponent } from './outpatient-clinics/diagnostic-unit/diagnostic-unit.component';
 
 
 
@@ -30,7 +31,8 @@ import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-share
     MedicalRehabilitationServicesComponent,
     ProstheticsComponent,
     HearingBalanceComponent,
-    ProstheticsTypesComponent
+    ProstheticsTypesComponent,
+    DiagnosticUnitComponent
   ],
   imports: [
     CommonModule,
