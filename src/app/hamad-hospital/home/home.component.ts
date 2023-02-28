@@ -24,11 +24,12 @@ export class HomeComponent implements OnInit {
         private _translateService: TranslateService
     ) {
         this.formSlider = fb.group({
+            ID:[null],
             Image: [''],
             TitleAr: [''],
             TitleEn: [''],
-            Sorting: ['1'],
-            IsActive: [''],
+            Sorting: [''],
+            IsActive: [false],
         });
     }
 

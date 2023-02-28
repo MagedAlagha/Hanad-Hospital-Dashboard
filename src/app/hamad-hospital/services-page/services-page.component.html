@@ -8,18 +8,16 @@
 <hr />
 <br />
 
-
-
     <p-tabView>
         <p-tabPanel header=" التاهيل الطبي">
             <app-medical-rehabilitation-features></app-medical-rehabilitation-features>
             <app-medical-rehabilitation-services></app-medical-rehabilitation-services>
         </p-tabPanel>
         <p-tabPanel header="الأطراف الصناعية">
-
+            <app-prosthetics></app-prosthetics>
         </p-tabPanel>
         <p-tabPanel header="السموع والتوازن">
-
+            <app-hearing-balance></app-hearing-balance>
         </p-tabPanel>
         <p-tabPanel header="العيادات الخارجية">
 
@@ -27,3 +25,4 @@
     </p-tabView>
 </div>
 
+<app-prosthetics-types *ngIf="(prostheticsTypesDialog$ | async).isOpen"></app-prosthetics-types>

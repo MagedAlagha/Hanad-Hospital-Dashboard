@@ -1,57 +1,81 @@
-<div class="flex flex-column md:flex-row mb-3 mt-7">
-    <div class="text-900 text-xl font-bold mb-3 md:mb-0">
-        وحدات التاهيل الطبي
+<div
+    class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3"
+>
+    <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
+        أنواع الاطراف الصناعية
+    </div>
+    <div class="inline-flex align-items-center">
+        <span class="p-input-icon-left flex-auto mr-2">
+            <app-button-component
+                [classColor]="'p-button-outlined'"
+                [Icon]="'pi pi-plus'"
+                label="اضافة انواع الاطراف الصناعية"
+                [isCustomLable]="true"
+                [pTooltipCustom]="' انواع الاطراف الصناعية'"
+                (action)="addArtificiallimbDialog()"
+            >
+            </app-button-component>
+        </span>
     </div>
 </div>
 <hr />
-<form [formGroup]="formMedicalRehabilitationServices">
-    <div class="grid p-fluid mt-3">
 
-        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+<form [formGroup]="formprosthetics">
+    <div class="grid p-fluid mt-3">
+        <div class="col-12 mb-2 lg:col-4 lg:mb-0">
             <app-input-field
-                [label]="'عنوان وحدة التاهيل الطبي /عربي'"
+                [label]="'اسم الطرف الطبي /عربي'"
                 formControlName="NameAr"
             >
             </app-input-field>
         </div>
-        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+        <div class="col-12 mb-2 lg:col-5 lg:mb-0">
             <app-input-field
-                [label]="'عنوان وحدة التاهيل الطبي /انجليزي'"
-                formControlName="NameEn">
+                [label]="'اسم الطرف الطبي /انجليزي'"
+                formControlName="NameEn"
+            >
             </app-input-field>
         </div>
-        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-            <app-text-area-field
-                [rows]="3"
-                [label]="'وصف وحدة التاهيل الطبي /عربي'"
-                formControlName="DescAr"
+        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <app-input-field
+                [label]="'العمر / العربية'"
+                formControlName="AgeAr"
             >
-            </app-text-area-field>
+            </app-input-field>
         </div>
-        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-            <app-text-area-field
-                [rows]="3"
-                [label]="'وصف وحدة التاهيل الطبي /انجليزي'"
-                formControlName="DescEn"
+        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <app-input-field
+                [label]="'العمر / الانجليزية'"
+                formControlName="AgeEn"
             >
-            </app-text-area-field>
+            </app-input-field>
+        </div>
+        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <app-input-field label="ترتيب الطرف" formControlName="Sorting">
+            </app-input-field>
+        </div>
+       <!--  <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <ng-container *ngIf="prostheticsTypes$ |async as code">
+            <app-select-field
+                [dropdownItems]="code.NameAr"
+                formControlName="ProstheticsTypeID"
+                [label]="'اختيار نوع الطرف'"
+                [optionLabel]="code.NameAr"
+                [optionValue]="code.ID" >
+            </app-select-field>
+            </ng-container>
+        </div> -->
+        <div
+            class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
+            style="margin-top: 2.9rem"
+        >
+            <app-check-box label="الحالة" formControlName="IsActive">
+            </app-check-box>
         </div>
 
-        <div class="col-12 mb-2 lg:col-2 lg:mb-0" >
-            <app-input-field
-                label="ترتيب الخدمة"
-                formControlName="Sorting"
-            >
-            </app-input-field>
-        </div>
         <div
-        class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"  style="margin-top: 2.9rem;"
-    >
-        <app-check-box label="الحالة" formControlName="IsActive">
-        </app-check-box>
-    </div>
-        <div
-            class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"  style="margin-top: 2.5rem;"
+            class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
+            style="margin-top: 2.5rem"
         >
             <div class="inline-flex align-items-center">
                 <app-button-component
@@ -75,7 +99,7 @@
         </div>
     </div>
     <br />
-    <ng-container *ngIf="MedicalRehabilitationServices$ | async as data">
+    <ng-container *ngIf="prosthetics$ | async as data">
         <p-table
             styleClass="p-datatable-gridlines"
             [rows]="10"
@@ -86,8 +110,11 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
+                    <th class="text-center">نوع الطرف</th>
                     <th class="text-center">العنوان عربي</th>
                     <th class="text-center">العنوان انجليزي</th>
+                    <th class="text-center">العمر عربي</th>
+                    <th class="text-center">العمر العمر انجليزي</th>
                     <th class="text-center">الحالة</th>
                     <th class="text-center">الترتيب</th>
                     <th class="text-center">الاجراءات</th>
@@ -129,3 +156,10 @@
         </p-table>
     </ng-container>
 </form>
+
+<!-- <div
+class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"  style="margin-top: 2.9rem"
+>
+<app-check-box label="قم بإختياره ان كان نوع فرعي" formControlName="ProstheticsTypeID">
+</app-check-box>
+</div> -->

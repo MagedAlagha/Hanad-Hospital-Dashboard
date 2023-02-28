@@ -70,7 +70,7 @@ export class SelectFieldComponent
     @Input() loading: boolean = false;
     @Input() emptyOption: boolean = false;
     @Input() isLabel: boolean = true;
-    @Input() placeholder: string = 'Shared.Select';
+    @Input() placeholder: string = 'اختيار';
 
     @Output() onSelectionChange = new EventEmitter<any>();
     Destroied: boolean = false;

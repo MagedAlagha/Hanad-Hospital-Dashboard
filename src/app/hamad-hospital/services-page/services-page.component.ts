@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { ServicesPageService } from './services-page.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { ServicesPageService } from './services-page.service';
 export class ServicesPageComponent implements OnInit {
     formServicesPage!: FormGroup<any>;
     dataTable$!: Observable<any>;
+    prostheticsTypesDialog$!: Observable<any>;
 
     constructor(
         fb: FormBuilder,
@@ -27,5 +28,16 @@ export class ServicesPageComponent implements OnInit {
 
     ngOnInit() {
         this._servicesPageService.getMedicalRehabilitationFeatures();
+        this._servicesPageService.getMedicalRehabilitationServices();
+        this._servicesPageService.getprosthetics();
+        this._servicesPageService.getProstheticsTypes();
+        this.prostheticsTypesDialog$ = this._servicesPageService.Selector$(
+            'prostheticsTypesDialog'
+        ).pipe(tap(value=>{
+        }))
     }
+
+
+
+
 }

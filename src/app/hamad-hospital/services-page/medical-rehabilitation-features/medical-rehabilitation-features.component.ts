@@ -17,11 +17,11 @@ export class MedicalRehabilitationFeaturesComponent {
         private _servicesPageService: ServicesPageService
     ) {
         this.formServicesPage = fb.group({
-            id: [0],
-            nameAr: [''],
-            nameEn: [''],
-            isActive: [true],
-            sorting: [0],
+            ID: [null],
+            NameAr: [null],
+            NameEn: [null],
+            IsActive: [null],
+            Sorting: [null],
         });
     }
     /* id:[''], */
@@ -36,6 +36,6 @@ export class MedicalRehabilitationFeaturesComponent {
     clear() {}
     editItem(item: any) {}
     deleteItem(item: any) {
-        this._servicesPageService.deleteMedicalRehabilitationFeatures(item.id);
+        this._servicesPageService.deleteMedicalRehabilitationFeatures(item.ID);
     }
 }

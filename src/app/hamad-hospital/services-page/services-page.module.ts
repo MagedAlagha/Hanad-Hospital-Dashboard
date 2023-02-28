@@ -15,6 +15,11 @@ import { TextAreaFieldComponent } from 'src/app/shared/Module-shared/text-area-f
 import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/upload-files.component';
 import { MedicalRehabilitationFeaturesComponent } from './medical-rehabilitation-features/medical-rehabilitation-features.component';
 import { MedicalRehabilitationServicesComponent } from './medical-rehabilitation-services/medical-rehabilitation-services.component';
+import { ProstheticsComponent } from './prosthetics/prosthetics.component';
+import { SelectFieldComponent } from 'src/app/shared/Module-shared/select-field/select-field.component';
+import { HearingBalanceComponent } from './hearing-balance/hearing-balance.component';
+import { ProstheticsTypesComponent } from './Modal/prosthetics-types/prosthetics-types.component';
+import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-shared/dialog-shared.component';
 
 
 
@@ -22,7 +27,10 @@ import { MedicalRehabilitationServicesComponent } from './medical-rehabilitation
   declarations: [
     ServicesPageComponent,
     MedicalRehabilitationFeaturesComponent,
-    MedicalRehabilitationServicesComponent
+    MedicalRehabilitationServicesComponent,
+    ProstheticsComponent,
+    HearingBalanceComponent,
+    ProstheticsTypesComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +51,9 @@ import { MedicalRehabilitationServicesComponent } from './medical-rehabilitation
     CheckBoxComponent,
     FileUploadModule,
     UploadFilesComponent,
-    TabViewModule
+    TabViewModule,
+    SelectFieldComponent,
+    DialogSharedComponent
   ]
 })
 export class ServicesPageModule { }

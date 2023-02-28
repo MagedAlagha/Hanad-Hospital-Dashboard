@@ -10,26 +10,26 @@ import { ServicesPageService } from '../services-page.service';
 })
 export class MedicalRehabilitationServicesComponent {
     formMedicalRehabilitationServices!: FormGroup<any>;
-    dataTable$!: Observable<any>;
+    MedicalRehabilitationServices$!: Observable<any>;
 
     constructor(
         fb: FormBuilder,
         private _servicesPageService: ServicesPageService
     ) {
         this.formMedicalRehabilitationServices = fb.group({
-            id: [0],
-            nameAr: [''],
-            nameEn: [''],
-            descAr: [''],
-            descEn: [''],
-            isActive: [true],
-            sorting: [0],
+            ID: [null],
+            NameAr: [null],
+            NameEn: [null],
+            DescAr: [null],
+            DescEn: [null],
+            IsActive: [null],
+            Sorting: [null],
         });
     }
     /* id:[''], */
 
     ngOnInit() {
-        this.dataTable$ = this._servicesPageService.Selector$('dataTable');
+        this.MedicalRehabilitationServices$ = this._servicesPageService.Selector$('MedicalRehabilitationServices');
     }
 
     save() {
@@ -39,6 +39,6 @@ export class MedicalRehabilitationServicesComponent {
     clear() {}
     editItem(item: any) {}
     deleteItem(item: any) {
-        this._servicesPageService.deleteMedicalRehabilitationServices(item.id);
+        this._servicesPageService.deleteMedicalRehabilitationServices(item.ID);
     }
 }
