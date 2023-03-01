@@ -9,35 +9,18 @@ import { ServicesPageService } from './services-page.service';
     styleUrls: ['./services-page.component.scss'],
 })
 export class ServicesPageComponent implements OnInit {
-    formServicesPage!: FormGroup<any>;
     dataTable$!: Observable<any>;
     prostheticsTypesDialog$!: Observable<any>;
 
-    constructor(
-        fb: FormBuilder,
-        private _servicesPageService: ServicesPageService
-    ) {
-        this.formServicesPage = fb.group({
-            id: [''],
-            nameAr: [''],
-            nameEn: [''],
-            isActive: [''],
-            sorting: [0],
-        });
-    }
+    constructor(private _servicesPageService: ServicesPageService) {}
 
     ngOnInit() {
         this._servicesPageService.getMedicalRehabilitationFeatures();
         this._servicesPageService.getMedicalRehabilitationServices();
         this._servicesPageService.getprosthetics();
         this._servicesPageService.getProstheticsTypes();
-        this.prostheticsTypesDialog$ = this._servicesPageService.Selector$(
-            'prostheticsTypesDialog'
-        ).pipe(tap(value=>{
-        }))
+        this.prostheticsTypesDialog$ = this._servicesPageService
+            .Selector$('prostheticsTypesDialog')
+            .pipe(tap((value) => {}));
     }
-
-
-
-
 }

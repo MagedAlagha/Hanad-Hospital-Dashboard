@@ -21,6 +21,7 @@ import { HearingBalanceComponent } from './hearing-balance/hearing-balance.compo
 import { ProstheticsTypesComponent } from './Modal/prosthetics-types/prosthetics-types.component';
 import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-shared/dialog-shared.component';
 import { DiagnosticUnitComponent } from './outpatient-clinics/diagnostic-unit/diagnostic-unit.component';
+import { TreeComponent } from 'src/app/shared/Module-shared/tree/tree.component';
 
 
 
@@ -55,7 +56,8 @@ import { DiagnosticUnitComponent } from './outpatient-clinics/diagnostic-unit/di
     UploadFilesComponent,
     TabViewModule,
     SelectFieldComponent,
-    DialogSharedComponent
+    DialogSharedComponent,
+    TreeComponent
   ]
 })
 export class ServicesPageModule { }

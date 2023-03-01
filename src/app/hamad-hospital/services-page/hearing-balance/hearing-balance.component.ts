@@ -41,7 +41,9 @@ export class HearingBalanceComponent {
     }
 
     clear() {}
-    editItem(item: any) {}
+    editItem(item: any) {
+        window.scroll(0, 0);
+    }
     deleteItem(item: any) {
         this._servicesPageService.deleteprosthetics(item.ID);
     }

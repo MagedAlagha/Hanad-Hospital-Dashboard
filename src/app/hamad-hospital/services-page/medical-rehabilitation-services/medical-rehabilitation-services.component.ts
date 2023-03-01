@@ -50,6 +50,7 @@ export class MedicalRehabilitationServicesComponent {
     editItem(item: any) {
         this.formMedicalRehabilitationServices.patchValue(item);
         this.ID = item.ID;
+        window.scroll(0, 0);
     }
     deleteItem(item: any) {
         this._servicesPageService.deleteMedicalRehabilitationServices(item.ID);

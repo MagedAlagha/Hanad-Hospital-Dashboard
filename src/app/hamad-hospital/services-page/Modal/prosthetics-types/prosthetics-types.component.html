@@ -1,17 +1,22 @@
-<app-dialog-shared [width]="'72vw'" [dialogHeader]="'انواع الاطراف الصناعية'" (close)="closeDialog()">
+<app-dialog-shared
+    [width]="'72vw'"
+    [dialogHeader]="'انواع الاطراف الصناعية'"
+    (close)="closeDialog()"
+>
     <div class="bodyDialog">
         <ng-container>
-
             <form [formGroup]="formprostheticsTypes">
                 <div class="grid p-fluid mt-3">
                     <div class="col-12 mb-2 lg:col-4 lg:mb-0">
                         <app-input-field
-                            [label]="'نوع الطرف الطبي /عربي'" formControlName="NameAr">
+                            [label]="'الاسم /عربي'"
+                            formControlName="NameAr"
+                        >
                         </app-input-field>
                     </div>
                     <div class="col-12 mb-2 lg:col-5 lg:mb-0">
                         <app-input-field
-                            [label]="'نوع الطرف الطبي /انجليزي'"
+                            [label]="'الاسم /انجليزي'"
                             formControlName="NameEn"
                         >
                         </app-input-field>
@@ -23,32 +28,22 @@
                         >
                         </app-input-field>
                     </div>
-                    <!-- <div
-                    class="col-12 mb-2 lg:col-3 lg:mb-0 ">
-                       <app-select-field
-                    [dropdownItems]="[
-                        { Code:' 1', Name: 'الاطراف الصناعية العلوية' },
-                        { Code: '2', Name: 'الاطراف الصناعية السفلية' }
-                    ]"
-                    formControlName="ProstheticsTypeID"
-                    [label]="'اختيار نوع الطرف'"
-                   >
-                    </app-select-field>
-                </div> -->
+
+
                     <div
-                        class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"  style="margin-top: 2.9rem"
+                        class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
+                        style="margin-top: 2.9rem"
                     >
-                        <app-check-box label="الحالة" formControlName="IsActive">
+                        <app-check-box
+                            label="الحالة"
+                            formControlName="IsActive"
+                        >
                         </app-check-box>
                     </div>
-                    <!-- <div
-                        class="col-12 mb-2 lg:col-3 lg:mb-0 align-items-center justify-content-evenly"  style="margin-top: 2.9rem"
-                    >
-                        <app-check-box label="قم بإختياره ان كان نوع فرعي" formControlName="ProstheticsTypeID">
-                        </app-check-box>
-                    </div> -->
+
                     <div
-                        class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"  style="margin-top: 2.5rem"
+                        class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
+                        style="margin-top: 2.5rem"
                     >
                         <div class="inline-flex align-items-center">
                             <app-button-component
@@ -64,7 +59,9 @@
                                 label="مسح الحقول"
                                 class="pr-2"
                                 (action)="clear()"
-                                [classColor]="'p-button-raised p-button-secondary '"
+                                [classColor]="
+                                    'p-button-raised p-button-secondary '
+                                "
                                 [pTooltipCustom]="'مسح الحقول '"
                                 [Icon]="'pi pi-eraser'"
                             ></app-button-component>
@@ -83,18 +80,23 @@
                         <ng-template pTemplate="header">
                             <tr>
                                 <th class="text-center">#</th>
-                                <th class="text-center">نوع الطرف</th>
-                                <th class="text-center">العنوان عربي</th>
-                                <th class="text-center">العنوان انجليزي</th>
+                                <th class="text-center">الاسم عربي</th>
+                                <th class="text-center">الاسم انجليزي</th>
                                 <th class="text-center">الحالة</th>
                                 <th class="text-center">الترتيب</th>
                                 <th class="text-center">الاجراءات</th>
                             </tr>
                         </ng-template>
-                        <ng-template pTemplate="body" let-item let-index="rowIndex">
+                        <ng-template
+                            pTemplate="body"
+                            let-item
+                            let-index="rowIndex"
+                        >
                             <tr>
                                 <td>
-                                    <span class="reorder-row-icon">{{ index + 1 }}</span>
+                                    <span class="reorder-row-icon">{{
+                                        index + 1
+                                    }}</span>
                                 </td>
                                 <td>{{ item.NameAr }}</td>
                                 <td>{{ item.NameEn }}</td>
@@ -119,7 +121,9 @@
                         </ng-template>
                         <ng-template pTemplate="emptymessage">
                             <tr>
-                                <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                                <td class="text-center" colspan="6">
+                                    لا يوجد بيانات
+                                </td>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="footer"> </ng-template>
@@ -127,15 +131,35 @@
                     </p-table>
                 </ng-container>
             </form>
-
         </ng-container>
-    </div>
-    <div class="footerDialog">
-
-        <app-button-component label="حفظ" [classColor]="'p-button-raised'" [pTooltipCustom]="'حفط'"(action)="save()"
-        [Icon]="'pi pi-user-plus'"></app-button-component>
-    <app-button-component label="مسح بيانات الحقول" [classColor]="'p-button-raised p-button-secondary'"
-        [pTooltipCustom]="'مسح الحقول '" [Icon]="'pi pi-eraser'"></app-button-component>
-
+    <!--  <app-tree [data$]="prostheticsTypes$" [keyParent]="'ParentID'" [keyID]="'ID'"></app-tree> -->
     </div>
 </app-dialog-shared>
+
+
+
+
+
+
+
+
+                       <!--  <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+                            <app-select-field
+                            optionLabel="NameAr"
+                            optionValue="ID"
+                                [dropdownItems]="prostheticsTypes$ | async"
+                                formControlName="ParentID"
+                                [label]="'اختيار نوع الطرف'"
+                            >
+                            </app-select-field>
+                        </div> -->
+
+                    <div
+                        class="col-12 mb-2 lg:col-3 lg:mb-0 align-items-center justify-content-evenly"  style="margin-top: 2.9rem"
+                    >
+                        <app-check-box label="قم بإختياره ان كان نوع فرعي" formControlName="ProstheticsTypeID">
+                        </app-check-box>
+                    </div>
+
+
+                    <!-- -->

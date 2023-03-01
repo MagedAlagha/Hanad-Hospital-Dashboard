@@ -129,7 +129,7 @@ export class ServicesPageService {
         return this._http
             .saveData('ProstheticsTypes/ProstheticsTypesSave', data)
             .subscribe((value) => {
-                this.getprosthetics();
+                this.getProstheticsTypes();
             });
     }
     deleteProstheticsTypes(ID: any) {
@@ -138,7 +138,7 @@ export class ServicesPageService {
                 ID: ID,
             })
             .subscribe((value) => {
-                this.getprosthetics();
+                this.getProstheticsTypes();
             });
     }
     getProstheticsTypes() {

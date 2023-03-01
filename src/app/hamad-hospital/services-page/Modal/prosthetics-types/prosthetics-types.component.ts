@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { ServicesPageService } from '../../services-page.service';
 
 @Component({
-  selector: 'app-prosthetics-types',
-  templateUrl: './prosthetics-types.component.html',
-  styleUrls: ['./prosthetics-types.component.scss']
+    selector: 'app-prosthetics-types',
+    templateUrl: './prosthetics-types.component.html',
+    styleUrls: ['./prosthetics-types.component.scss'],
 })
 export class ProstheticsTypesComponent {
     formprostheticsTypes!: FormGroup<any>;
     prostheticsTypes$!: Observable<any>;
+    ID: any;
     constructor(
         fb: FormBuilder,
         private _servicesPageService: ServicesPageService
@@ -27,20 +28,43 @@ export class ProstheticsTypesComponent {
     /* id:[''], */
 
     ngOnInit() {
-        console.log('test')
-        this.prostheticsTypes$ = this._servicesPageService.Selector$('prostheticsTypes');
+        console.log('test');
+        this.prostheticsTypes$ = this._servicesPageService
+            .Selector$('prostheticsTypes')
+            .pipe(
+                tap((value) => {
+                    console.log('fawfwwfwfw', value);
+                })
+            );
     }
 
     save() {
-        this._servicesPageService.saveProstheticsTypes(this.formprostheticsTypes.value);
+        if (!this.ID) {
+            this._servicesPageService.saveProstheticsTypes(
+                this.formprostheticsTypes.value
+            );
+        } else {
+            this._servicesPageService.saveProstheticsTypes({
+                ...this.formprostheticsTypes.value,
+                ID: this.ID,
+            });
+        }
     }
-    clear() {}
-    editItem(item: any) {}
+    clear() {
+        this.formprostheticsTypes.reset();
+    }
+    editItem(item: any) {
+        this.formprostheticsTypes.patchValue(item);
+        this.ID = item.ID;
+    }
     deleteItem(item: any) {
         this._servicesPageService.deleteProstheticsTypes(item.ID);
     }
 
     closeDialog() {
-        this._servicesPageService.displayDialogs('prostheticsTypesDialog', false);
+        this._servicesPageService.displayDialogs(
+            'prostheticsTypesDialog',
+            false
+        );
     }
 }

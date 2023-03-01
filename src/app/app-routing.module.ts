@@ -80,14 +80,6 @@ const routes: Routes = [
             },
             // -----------------------------------------------------------------------------------
             {
-                path: 'employees-client-management',
-                data: { breadcrumb: '' },
-                loadChildren: () =>
-                    import(
-                        './EmployeesAndClientManagement/EmployeesAndClientManagement.module'
-                    ).then((m) => m.EmployeesAndClientManagementModule),
-            },
-            {
                 path: 'hamad-hospital',
                 data: { breadcrumb: '' },
                 loadChildren: () =>
@@ -120,13 +112,7 @@ const routes: Routes = [
                 (m) => m.NotfoundModule
             ),
     },
-    {
-        path: 'evaluation',
-        loadChildren: () =>
-            import('./EmployeesAndClientManagement/evaluation/evaluation.module').then(
-                (m) => m.EvaluationModule
-            ),
-    },
+
     { path: '**', redirectTo: '/notfound' },
 ];
 

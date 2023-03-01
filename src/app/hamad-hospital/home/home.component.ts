@@ -71,9 +71,12 @@ export class HomeComponent implements OnInit {
     editItem(item: any) {
         this.formSlider.patchValue(item);
         this.ID = item.ID;
+        window.scroll(0, 0);
+
     }
     deleteItem(item: any) {
         this._homeService.deleteSlider(item.ID);
+
     }
     clear() {
         this.formSlider.reset();

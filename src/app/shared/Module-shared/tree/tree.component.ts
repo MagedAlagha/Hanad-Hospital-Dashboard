@@ -51,13 +51,18 @@ export class TreeComponent implements OnInit {
     @Output() onNodeDelete = new EventEmitter();
     ngOnInit() {
         this.dataTree$ = this.data$.pipe(
-            tap((value) => {}),
+            tap((value) => {
+                console.log("cc value" , value);
+            }),
             map((value: { data: []; loading: boolean }) => {
                 return {
                     ...value,
                     data: this.convertToTree(value.data),
                 };
-            })
+            }),
+            tap((value) => {
+                console.log("value value" , value);
+            }),
         );
     }
     s: any = '&&';

@@ -33,16 +33,16 @@ export class ProstheticsComponent {
     ngOnInit() {
         console.log('test')
         this.prosthetics$ = this._servicesPageService.Selector$('prosthetics');
-        this.prostheticsTypes$ = this._servicesPageService.Selector$('prostheticsTypes').pipe(map(value=>{
-            console.log('value value ' , value)
-        }));
+        this.prostheticsTypes$ = this._servicesPageService.Selector$('prostheticsTypes');
     }
 
     save() {
         this._servicesPageService.saveprosthetics(this.formprosthetics.value);
     }
     clear() {}
-    editItem(item: any) {}
+    editItem(item: any) {
+        window.scroll(0, 0);
+    }
     deleteItem(item: any) {
         this._servicesPageService.deleteprosthetics(item.ID);
     }
