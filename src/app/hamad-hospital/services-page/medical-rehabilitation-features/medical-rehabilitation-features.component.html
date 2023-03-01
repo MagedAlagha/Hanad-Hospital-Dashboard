@@ -61,13 +61,14 @@
         </div>
     </div>
     <br />
-    <ng-container *ngIf="dataTable$ | async as dataTable">
+    <ng-container *ngIf="dataTable$ | async as data">
         <p-table
             styleClass="p-datatable-gridlines"
             [rows]="10"
             [paginator]="true"
             style="width: 100%"
-            [value]="dataTable"
+            [value]="data"
+            [loading]="data.loading"
         >
             <ng-template pTemplate="header">
                 <tr>

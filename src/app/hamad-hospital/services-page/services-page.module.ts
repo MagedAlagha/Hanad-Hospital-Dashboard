@@ -61,7 +61,8 @@ import { AddMainItemModalComponent } from './Modal/add-main-item-modal/add-main-
     TabViewModule,
     SelectFieldComponent,
     DialogSharedComponent,
-    TreeComponent
+    TreeComponent,
+    SelectFieldComponent
   ]
 })
 export class ServicesPageModule { }

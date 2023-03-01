@@ -56,3 +56,6 @@ export class MedicalRehabilitationServicesComponent {
         this._servicesPageService.deleteMedicalRehabilitationServices(item.ID);
     }
 }
+
+
+

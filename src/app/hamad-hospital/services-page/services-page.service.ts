@@ -20,6 +20,8 @@ export class ServicesPageService {
         MedicalRehabilitationServices: { data: [], loading: false },
         prosthetics: { data: [], loading: false },
         prostheticsTypes: { data: [], loading: false },
+        OutpatientClinicsDepartments: { data: [], loading: false },
+        OutpatientClinicsDepartmentsServices: { data: [], loading: false },
         prostheticsTypesDialog: { isOpen: false, data: '' },
         addSubitemModalDialog: { isOpen: false, data: '' },
         addMainItemDialog: { isOpen: false, data: '' },
@@ -176,6 +178,59 @@ export class ServicesPageService {
             .updateData('Services/Services_OutpatientClinicsSectionEn_Update/OutpatientClinicsSectionEn', data)
             .subscribe();
     }
+    /*  ******* First Section Department ******* */
+    saveOutpatientClinicsDepartments(data: any) {
+        return this._http
+            .saveFormData('OutpatientClinicsDepartments/OutpatientClinicsDepartmentsSave', data)
+            .subscribe((value)=>{
+                this.getOutpatientClinicsDepartments();
+            });
+    }
+    getOutpatientClinicsDepartments() {
+        this.getFormApi(
+            'OutpatientClinicsDepartments/OutpatientClinicsDepartmentsSearch',
+            'OutpatientClinicsDepartments',{},
+            { isLoading: true }
+        );
+    }
+
+
+    deleteOutpatientClinicsDepartments(ID: any) {
+        return this._http
+            .deleteData('OutpatientClinicsDepartments/OutpatientClinicsDepartmentsDelete', {
+                ID: ID,
+            })
+            .subscribe((value) => {
+                this.getOutpatientClinicsDepartments();
+            });
+    }
+
+    /*  ******* First  another Sections  ******* */
+    saveOutpatientClinicsDepartmentsServices(data: any) {
+        return this._http
+            .saveData('OutpatientClinicsDepartmentsServices/OutpatientClinicsDepartmentsServicesSave', data)
+            .subscribe((value)=>{
+                this.getOutpatientClinicsDepartmentsServices();
+            });
+    }
+    getOutpatientClinicsDepartmentsServices() {
+        this.getFormApi(
+            'OutpatientClinicsDepartmentsServices/OutpatientClinicsDepartmentsServicesSearch',
+            'OutpatientClinicsDepartmentsServices',{},
+            { isLoading: true }
+        );
+    }
+
+
+    deleteOutpatientClinicsDepartmentsServices(ID: any) {
+        return this._http
+            .deleteData('OutpatientClinicsDepartmentsServices/OutpatientClinicsDepartmentsServicesDelete', {
+                ID: ID,
+            })
+            .subscribe((value) => {
+                this.getOutpatientClinicsDepartmentsServices();
+            });
+    }
 
     /*  ******* Save Data Services ******* */
     /*  */
@@ -210,6 +265,8 @@ export interface jobFunctionalModel {
     MedicalRehabilitationServices?: { data: any; loading: boolean };
     prosthetics?: { data: any; loading: boolean };
     prostheticsTypes?: { data: any; loading: boolean };
+    OutpatientClinicsDepartments?: { data: any; loading: boolean };
+    OutpatientClinicsDepartmentsServices?: { data: any; loading: boolean };
     prostheticsTypesDialog?: { isOpen: false; data: any };
     addSubitemModalDialog?: { isOpen: false; data: any };
     addMainItemDialog?: { isOpen: false; data: any };

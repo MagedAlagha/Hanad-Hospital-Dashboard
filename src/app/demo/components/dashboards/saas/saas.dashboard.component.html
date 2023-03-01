@@ -5,7 +5,7 @@
                 <i class="fa-solid fa-users text-5xl text-blue-500"></i>
                 <div class="ml-3">
 
-                    <span class="text-blue-500 block white-space-nowrap">مستخدمين النظام</span>
+                    <span class="text-blue-500 block white-space-nowrap">طاقم العمل </span>
                     <span class="text-blue-500 block text-4xl font-bold">3882</span>
                 </div>
             </div>
@@ -17,7 +17,7 @@
             <div class="flex align-items-center p-3">
                 <i class="fa-solid fa-user-group text-5xl text-orange-500"></i>
                 <div class="ml-3">
-                    <span class="text-orange-500 block white-space-nowrap">العملاء</span>
+                    <span class="text-orange-500 block white-space-nowrap">قصص النجاح</span>
                     <span class="text-orange-500 block text-4xl font-bold">532</span>
                 </div>
             </div>
@@ -29,7 +29,7 @@
             <div class="flex align-items-center p-3">
                 <i class="fa-solid fa-users-gear text-5xl text-purple-500"></i>
                 <div class="ml-3">
-                    <span class="text-purple-500 block white-space-nowrap">الموظفين</span>
+                    <span class="text-purple-500 block white-space-nowrap">العمليات الجراحية</span>
                     <span class="text-purple-500 block text-4xl font-bold">440</span>
                 </div>
             </div>
@@ -41,8 +41,8 @@
             <div class="flex align-items-center p-3">
                 <i class="fa-solid fa-chart-pie text-5xl text-green-500"></i>
                 <div class="ml-3">
-                    <span class="text-green-500 block white-space-nowrap">نسبة المشاريع المكتملة</span>
-                    <span class="text-green-500 block text-4xl font-bold">12.6%</span>
+                    <span class="text-green-500 block white-space-nowrap">مرضى المستشفى</span>
+                    <span class="text-green-500 block text-4xl font-bold">12.6</span>
                 </div>
             </div>
             <img [src]="'assets/demo/images/dashboard/rate' + (colorScheme === 'light' ? '' : '-dark') + '.svg'" class="w-full" alt="conversion">
@@ -54,44 +54,27 @@
         <div class="card h-full">
             <h5> تسهيلات الوصول</h5>
             <div class="grid">
-                <div  class="col-12 md:col-6 xl:col-2">
-                    <div class="p-3 border-1 surface-border flex align-items-center justify-content-between hover:surface-100 cursor-pointer border-round" routerLink="employees-client-management/administration/clients" >
+                <div  class="col-12 md:col-6 xl:col-3">
+                    <div class="p-3 border-1 surface-border flex align-items-center justify-content-between hover:surface-100 cursor-pointer border-round" routerLink="hamad-hospital/home" >
                         <div class="flex align-items-center">
                             <i class="fa-solid fa-user-group text-2xl"></i>
-                            <span class="text-900 text-lg font-semibold pr-3">العملاء</span>
-                      </div>
-                    </div>
-                </div>
-                <div  class="col-12 md:col-6 xl:col-2">
-                    <div class="p-3 border-1 surface-border flex align-items-center justify-content-between hover:surface-100 cursor-pointer border-round" routerLink="employees-client-management/administration/employees" >
-                        <div class="flex align-items-center">
-                            <i class="fa-solid fa-users-gear text-2xl"></i>
-                            <span class="text-900 text-lg font-semibold pr-3">الموظفين</span>
-                      </div>
-                    </div>
-                </div>
-                <div  class="col-12 md:col-6 xl:col-2">
-                    <div class="p-3 border-1 surface-border flex align-items-center justify-content-between hover:surface-100 cursor-pointer border-round"  routerLink="employees-client-management/administration/projects">
-                        <div class="flex align-items-center">
-                            <i class="pi pi-th-large text-2xl"></i>
-                            <span class="text-900 text-lg font-semibold pr-3">المشاريع</span>
-                      </div>
-                    </div>
-                </div>
-                <div  class="col-12 md:col-6 xl:col-2">
-                    <div class="p-3 border-1 surface-border flex align-items-center justify-content-between hover:surface-100 cursor-pointer border-round"  routerLink="employees-client-management/administration/contracts">
-                        <div class="flex align-items-center">
-                            <i class="pi pi-copy  text-2xl"></i>
-                            <span class="text-900 text-lg font-semibold pr-3">العقود</span>
+                            <span class="text-900 text-lg font-semibold pr-3">الصفحة الرئيسية</span>
                       </div>
                     </div>
                 </div>
                 <div  class="col-12 md:col-6 xl:col-3">
-                    <div class="p-3 border-1 surface-border flex align-items-center justify-content-between hover:surface-100 cursor-pointer border-round"  routerLink="">
+                    <div class="p-3 border-1 surface-border flex align-items-center justify-content-between hover:surface-100 cursor-pointer border-round" routerLink="hamad-hospital/services" >
                         <div class="flex align-items-center">
-                            <i class="pi pi-ticket  text-2xl"></i>
-                            <span class="text-900 text-lg font-semibold pr-3">معالجة التذاكر والدعم الفني
-                            </span>
+                            <i class="fa-solid fa-users-gear text-2xl"></i>
+                            <span class="text-900 text-lg font-semibold pr-3">خدمات المستشفى</span>
+                      </div>
+                    </div>
+                </div>
+                <div  class="col-12 md:col-6 xl:col-3">
+                    <div class="p-3 border-1 surface-border flex align-items-center justify-content-between hover:surface-100 cursor-pointer border-round"  routerLink="hamad-hospital/electronic-services">
+                        <div class="flex align-items-center">
+                            <i class="pi pi-th-large text-2xl"></i>
+                            <span class="text-900 text-lg font-semibold pr-3">الخدمات الالكترونية</span>
                       </div>
                     </div>
                 </div>
@@ -103,46 +86,46 @@
     </div>
     <div class="col-12 lg:col-6 xl:col-3">
         <div class="card h-full">
-            <h5>أخر العملاء</h5>
+            <h5>أخر الاخبار</h5>
             <ul class="list-none p-0 m-0">
                 <li class="mb-4 flex align-items-center">
                     <p-avatar label="BS" size="large" shape="circle" styleClass="text-base font-bold"
                               [style]="{'background-color':'rgba(101, 214, 173, 0.1)', 'color': '#27AB83', 'border': '1px solid #65D6AD'}"></p-avatar>
                     <div class="ml-3">
-                        <span class="block">محمد ابراهيم</span>
-                        <span class="text-color-secondary block">مدير النظام</span>
+                        <span class="block">تجهيز مختبر طبي</span>
+                        <span class="text-color-secondary block">ادمن</span>
                     </div>
                 </li>
                 <li class="mb-4 flex align-items-center">
                     <p-avatar label="LA" size="large" shape="circle" styleClass="text-base font-bold"
                               [style]="{'background-color':'rgba(250, 219, 95, 0.1)', 'color': '#DE911D', 'border': '1px solid #FADB5F'}"></p-avatar>
                     <div class="ml-3">
-                        <span class="block">علي خليل </span>
-                        <span class="text-color-secondary  block">مستخدم النظام</span>
+                        <span class="block">زيارة مدنية </span>
+                        <span class="text-color-secondary  block">ادمن</span>
                     </div>
                 </li>
                 <li class="mb-4 flex align-items-center">
                     <p-avatar label="JB" size="large" shape="circle" styleClass="text-base font-bold"
                               [style]="{'background-color':'rgba(94, 208, 250, 0.1)', 'color': '#1992D4', 'border': '1px solid #5ED0FA'}"></p-avatar>
                     <div class="ml-3">
-                        <span class="block">ابراهيم عبدالله</span>
-                        <span class="text-color-secondary  block">ادمن النظام</span>
+                        <span class="block">عنوان الخبر</span>
+                        <span class="text-color-secondary  block">ادمن</span>
                     </div>
                 </li>
                 <li class="mb-4 flex align-items-center">
                     <p-avatar label="JJ" size="large" shape="circle" styleClass="text-base font-bold"
                               [style]="{'background-color':'rgba(43, 176, 237, 0.1)', 'color': '#127FBF', 'border': '1px solid #2BB0ED'}"></p-avatar>
                     <div class="ml-3">
-                        <span class="block">خليل ناصر</span>
-                        <span class="text-color-secondary  block">مسؤول النظام</span>
+                        <span class="block">اليوم الطبي</span>
+                        <span class="text-color-secondary  block">ادمن</span>
                     </div>
                 </li>
                 <li class="mb-4 flex align-items-center">
                     <p-avatar label="AB" size="large" shape="circle" styleClass="text-base font-bold"
                               [style]="{'background-color':'rgba(255, 155, 155, 0.1)', 'color': '#CF1124', 'border': '1px solid #FF9B9B'}"></p-avatar>
                     <div class="ml-3">
-                        <span class="block">خالد فتحي</span>
-                        <span class="text-color-secondary  block">ادمن النظام</span>
+                        <span class="block">عنوان الخير</span>
+                        <span class="text-color-secondary  block">ادمن</span>
                     </div>
                 </li>
             </ul>
@@ -151,13 +134,114 @@
     </div>
     <div class="col-12 lg:col-6 xl:col-3">
         <div class="card h-full">
-            <h5>أخر العقود</h5>
+            <h5>أخر المقالات</h5>
             <ul class="list-none p-0 m-0">
                 <li class="mb-4 flex align-items-center">
                     <p-avatar label="BS" size="large" shape="circle" styleClass="text-base font-bold"
                               [style]="{'background-color':'rgba(101, 214, 173, 0.1)', 'color': '#27AB83', 'border': '1px solid #65D6AD'}"></p-avatar>
                     <div class="ml-3">
-                        <span class="block">عقد تصميم خارجي</span>
+                        <span class="block">عنوان المقالة</span>
+                        <span class="text-color-secondary block"> د محمد</span>
+                    </div>
+                </li>
+                <li class="mb-4 flex align-items-center">
+                    <p-avatar label="LA" size="large" shape="circle" styleClass="text-base font-bold"
+                              [style]="{'background-color':'rgba(250, 219, 95, 0.1)', 'color': '#DE911D', 'border': '1px solid #FADB5F'}"></p-avatar>
+                    <div class="ml-3">
+                        <span class="block">عن الاطراف الصناعية  </span>
+                        <span class="text-color-secondary  block">د علي</span>
+                    </div>
+                </li>
+                <li class="mb-4 flex align-items-center">
+                    <p-avatar label="JB" size="large" shape="circle" styleClass="text-base font-bold"
+                              [style]="{'background-color':'rgba(94, 208, 250, 0.1)', 'color': '#1992D4', 'border': '1px solid #5ED0FA'}"></p-avatar>
+                    <div class="ml-3">
+                        <span class="block"> السمنة والغذاء</span>
+                        <span class="text-color-secondary  block">د سمية</span>
+                    </div>
+                </li>
+                <li class="mb-4 flex align-items-center">
+                    <p-avatar label="JJ" size="large" shape="circle" styleClass="text-base font-bold"
+                              [style]="{'background-color':'rgba(43, 176, 237, 0.1)', 'color': '#127FBF', 'border': '1px solid #2BB0ED'}"></p-avatar>
+                    <div class="ml-3">
+                        <span class="block"> حب الشباب</span>
+                        <span class="text-color-secondary  block"> د سامي </span>
+                    </div>
+                </li>
+                <li class="mb-4 flex align-items-center">
+                    <p-avatar label="AB" size="large" shape="circle" styleClass="text-base font-bold"
+                              [style]="{'background-color':'rgba(255, 155, 155, 0.1)', 'color': '#CF1124', 'border': '1px solid #FF9B9B'}"></p-avatar>
+                    <div class="ml-3">
+                        <span class="block">النظام الغذائي</span>
+                        <span class="text-color-secondary  block">د خليل</span>
+                    </div>
+                </li>
+
+            </ul>
+            <button type="button" pButton pRipple class="w-full mt-3 " label="مشاهدة الكل" icon="pi pi-arrow-right" iconPos="right"></button>
+        </div>
+    </div>
+    <div class="col-12 lg:col-6 xl:col-3">
+        <div class="card h-full">
+            <h5>رسائل مستفيدين</h5>
+            <ul class="list-none p-0 m-0">
+
+                <li class="mb-4 flex align-items-center">
+                    <p-avatar label="AB" size="large" shape="circle" styleClass="text-base font-bold"
+                              [style]="{'background-color':'rgba(255, 155, 155, 0.1)', 'color': '#CF1124', 'border': '1px solid #FF9B9B'}"></p-avatar>
+                    <div class="ml-3">
+                        <span class="block">عنوان تجريبي</span>
+                        <span class="text-color-secondary  block">محمد احمد</span>
+                    </div>
+                </li>
+                <li class="mb-4 flex align-items-center">
+                    <p-avatar label="BS" size="large" shape="circle" styleClass="text-base font-bold"
+                              [style]="{'background-color':'rgba(101, 214, 173, 0.1)', 'color': '#27AB83', 'border': '1px solid #65D6AD'}"></p-avatar>
+                    <div class="ml-3">
+                        <span class="block">عنوان تجريبي</span>
+                        <span class="text-color-secondary block">علي محمد</span>
+                    </div>
+                </li>
+                <li class="mb-4 flex align-items-center">
+                    <p-avatar label="LA" size="large" shape="circle" styleClass="text-base font-bold"
+                              [style]="{'background-color':'rgba(250, 219, 95, 0.1)', 'color': '#DE911D', 'border': '1px solid #FADB5F'}"></p-avatar>
+                    <div class="ml-3">
+                        <span class="block">عنوان تجريبي </span>
+                        <span class="text-color-secondary  block">خليل سعيد</span>
+                    </div>
+                </li>
+
+                <li class="mb-4 flex align-items-center">
+                    <p-avatar label="JJ" size="large" shape="circle" styleClass="text-base font-bold"
+                              [style]="{'background-color':'rgba(43, 176, 237, 0.1)', 'color': '#127FBF', 'border': '1px solid #2BB0ED'}"></p-avatar>
+                    <div class="ml-3">
+                        <span class="block">عنوان تجريبي</span>
+                        <span class="text-color-secondary  block">ابراهيم خليل</span>
+                    </div>
+                </li>
+                <li class="mb-4 flex align-items-center">
+                    <p-avatar label="JB" size="large" shape="circle" styleClass="text-base font-bold"
+                              [style]="{'background-color':'rgba(94, 208, 250, 0.1)', 'color': '#1992D4', 'border': '1px solid #5ED0FA'}"></p-avatar>
+                    <div class="ml-3">
+                        <span class="block">عنوان تجريبي</span>
+                        <span class="text-color-secondary  block">سعد سامر</span>
+                    </div>
+                </li>
+
+
+            </ul>
+            <button type="button" pButton pRipple class="w-full mt-3 " label="مشاهدة الكل" icon="pi pi-arrow-right" iconPos="right"></button>
+        </div>
+    </div>
+    <div class="col-12 lg:col-6 xl:col-3">
+        <div class="card h-full">
+            <h5> خدمات الزائرين</h5>
+            <ul class="list-none p-0 m-0">
+                <li class="mb-4 flex align-items-center">
+                    <p-avatar label="BS" size="large" shape="circle" styleClass="text-base font-bold"
+                              [style]="{'background-color':'rgba(101, 214, 173, 0.1)', 'color': '#27AB83', 'border': '1px solid #65D6AD'}"></p-avatar>
+                    <div class="ml-3">
+                        <span class="block">اقتراح</span>
                         <span class="text-color-secondary block">محمد خالد</span>
                     </div>
                 </li>
@@ -165,141 +249,40 @@
                     <p-avatar label="LA" size="large" shape="circle" styleClass="text-base font-bold"
                               [style]="{'background-color':'rgba(250, 219, 95, 0.1)', 'color': '#DE911D', 'border': '1px solid #FADB5F'}"></p-avatar>
                     <div class="ml-3">
-                        <span class="block">عقد تصميم فيلا </span>
-                        <span class="text-color-secondary  block">علي محمد</span>
+                        <span class="block">ملاحظة </span>
+                        <span class="text-color-secondary  block">سميرة علي</span>
                     </div>
                 </li>
                 <li class="mb-4 flex align-items-center">
                     <p-avatar label="JB" size="large" shape="circle" styleClass="text-base font-bold"
                               [style]="{'background-color':'rgba(94, 208, 250, 0.1)', 'color': '#1992D4', 'border': '1px solid #5ED0FA'}"></p-avatar>
                     <div class="ml-3">
-                        <span class="block">عقد بناء مجمع</span>
-                        <span class="text-color-secondary  block">علي الخوالدي</span>
+                        <span class="block">شكوى</span>
+                        <span class="text-color-secondary  block">علياء احمد</span>
                     </div>
                 </li>
                 <li class="mb-4 flex align-items-center">
                     <p-avatar label="JJ" size="large" shape="circle" styleClass="text-base font-bold"
                               [style]="{'background-color':'rgba(43, 176, 237, 0.1)', 'color': '#127FBF', 'border': '1px solid #2BB0ED'}"></p-avatar>
                     <div class="ml-3">
-                        <span class="block">عقد تصميم مدرسة</span>
-                        <span class="text-color-secondary  block">سامي خليل</span>
+                        <span class="block">استفسار</span>
+                        <span class="text-color-secondary  block">احمد عبدالله</span>
                     </div>
                 </li>
                 <li class="mb-4 flex align-items-center">
                     <p-avatar label="AB" size="large" shape="circle" styleClass="text-base font-bold"
                               [style]="{'background-color':'rgba(255, 155, 155, 0.1)', 'color': '#CF1124', 'border': '1px solid #FF9B9B'}"></p-avatar>
                     <div class="ml-3">
-                        <span class="block">عقد تصميم المستفشى</span>
-                        <span class="text-color-secondary  block">ابراهيم علي</span>
+                        <span class="block">ملاحظة</span>
+                        <span class="text-color-secondary  block">سامي</span>
                     </div>
                 </li>
 
             </ul>
             <button type="button" pButton pRipple class="w-full mt-3 " label="مشاهدة الكل" icon="pi pi-arrow-right" iconPos="right"></button>
         </div>
-    </div>
-    <div class="col-12 lg:col-6 xl:col-3">
-        <div class="card h-full">
-            <h5>أخر المشاريع المفتوحة</h5>
-            <ul class="list-none p-0 m-0">
-
-                <li class="mb-4 flex align-items-center">
-                    <p-avatar label="AB" size="large" shape="circle" styleClass="text-base font-bold"
-                              [style]="{'background-color':'rgba(255, 155, 155, 0.1)', 'color': '#CF1124', 'border': '1px solid #FF9B9B'}"></p-avatar>
-                    <div class="ml-3">
-                        <span class="block">مشروع تجريبي</span>
-                        <span class="text-color-secondary  block">مدينة مكة</span>
-                    </div>
-                </li>
-                <li class="mb-4 flex align-items-center">
-                    <p-avatar label="BS" size="large" shape="circle" styleClass="text-base font-bold"
-                              [style]="{'background-color':'rgba(101, 214, 173, 0.1)', 'color': '#27AB83', 'border': '1px solid #65D6AD'}"></p-avatar>
-                    <div class="ml-3">
-                        <span class="block">مشروع القاسم</span>
-                        <span class="text-color-secondary block">مدينة الرياض</span>
-                    </div>
-                </li>
-                <li class="mb-4 flex align-items-center">
-                    <p-avatar label="LA" size="large" shape="circle" styleClass="text-base font-bold"
-                              [style]="{'background-color':'rgba(250, 219, 95, 0.1)', 'color': '#DE911D', 'border': '1px solid #FADB5F'}"></p-avatar>
-                    <div class="ml-3">
-                        <span class="block">مشروع النملة </span>
-                        <span class="text-color-secondary  block">مدينة جدة</span>
-                    </div>
-                </li>
-
-                <li class="mb-4 flex align-items-center">
-                    <p-avatar label="JJ" size="large" shape="circle" styleClass="text-base font-bold"
-                              [style]="{'background-color':'rgba(43, 176, 237, 0.1)', 'color': '#127FBF', 'border': '1px solid #2BB0ED'}"></p-avatar>
-                    <div class="ml-3">
-                        <span class="block">مشروع شاهين</span>
-                        <span class="text-color-secondary  block">مدينة جدة</span>
-                    </div>
-                </li>
-                <li class="mb-4 flex align-items-center">
-                    <p-avatar label="JB" size="large" shape="circle" styleClass="text-base font-bold"
-                              [style]="{'background-color':'rgba(94, 208, 250, 0.1)', 'color': '#1992D4', 'border': '1px solid #5ED0FA'}"></p-avatar>
-                    <div class="ml-3">
-                        <span class="block">مشروع سقيفة</span>
-                        <span class="text-color-secondary  block">مدينة الطائف</span>
-                    </div>
-                </li>
-
-
-            </ul>
-            <button type="button" pButton pRipple class="w-full mt-3 " label="مشاهدة الكل" icon="pi pi-arrow-right" iconPos="right"></button>
-        </div>
-    </div>
-    <div class="col-12 lg:col-6 xl:col-3">
-        <div class="card h-full">
-            <h5> أخر المشاريع المكتملة</h5>
-            <ul class="list-none p-0 m-0">
-                <li class="mb-4 flex align-items-center">
-                    <p-avatar label="BS" size="large" shape="circle" styleClass="text-base font-bold"
-                              [style]="{'background-color':'rgba(101, 214, 173, 0.1)', 'color': '#27AB83', 'border': '1px solid #65D6AD'}"></p-avatar>
-                    <div class="ml-3">
-                        <span class="block">مشروع القاسم</span>
-                        <span class="text-color-secondary block">مدينة الرياض</span>
-                    </div>
-                </li>
-                <li class="mb-4 flex align-items-center">
-                    <p-avatar label="LA" size="large" shape="circle" styleClass="text-base font-bold"
-                              [style]="{'background-color':'rgba(250, 219, 95, 0.1)', 'color': '#DE911D', 'border': '1px solid #FADB5F'}"></p-avatar>
-                    <div class="ml-3">
-                        <span class="block">مشروع النملة </span>
-                        <span class="text-color-secondary  block">مدينة جدة</span>
-                    </div>
-                </li>
-                <li class="mb-4 flex align-items-center">
-                    <p-avatar label="JB" size="large" shape="circle" styleClass="text-base font-bold"
-                              [style]="{'background-color':'rgba(94, 208, 250, 0.1)', 'color': '#1992D4', 'border': '1px solid #5ED0FA'}"></p-avatar>
-                    <div class="ml-3">
-                        <span class="block">مشروع سقيفة</span>
-                        <span class="text-color-secondary  block">مدينة الطائف</span>
-                    </div>
-                </li>
-                <li class="mb-4 flex align-items-center">
-                    <p-avatar label="JJ" size="large" shape="circle" styleClass="text-base font-bold"
-                              [style]="{'background-color':'rgba(43, 176, 237, 0.1)', 'color': '#127FBF', 'border': '1px solid #2BB0ED'}"></p-avatar>
-                    <div class="ml-3">
-                        <span class="block">مشروع شاهين</span>
-                        <span class="text-color-secondary  block">مدينة جدة</span>
-                    </div>
-                </li>
-                <li class="mb-4 flex align-items-center">
-                    <p-avatar label="AB" size="large" shape="circle" styleClass="text-base font-bold"
-                              [style]="{'background-color':'rgba(255, 155, 155, 0.1)', 'color': '#CF1124', 'border': '1px solid #FF9B9B'}"></p-avatar>
-                    <div class="ml-3">
-                        <span class="block">مشروع تجريبي</span>
-                        <span class="text-color-secondary  block">مدينة مكة</span>
-                    </div>
-                </li>
-
-            </ul>
-            <button type="button" pButton pRipple class="w-full mt-3 " label="مشاهدة الكل" icon="pi pi-arrow-right" iconPos="right"></button>
-        </div>
-    </div>
-    <!-- custom css -->
+    </div> -->
+     custom css -->
 
 
 

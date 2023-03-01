@@ -21,6 +21,8 @@ export class ServicesPageComponent implements OnInit {
         this._servicesPageService.getMedicalRehabilitationServices();
         this._servicesPageService.getprosthetics();
         this._servicesPageService.getProstheticsTypes();
+        this._servicesPageService.getOutpatientClinicsDepartments();
+        this._servicesPageService.getOutpatientClinicsDepartmentsServices();
         this.prostheticsTypesDialog$ = this._servicesPageService
             .Selector$('prostheticsTypesDialog')
             .pipe(tap((value) => {}));
