@@ -67,4 +67,31 @@ export class ProstheticsTypesComponent {
             false
         );
     }
+
+    addMainItem(item?: any) {
+        this._servicesPageService.displayDialogs(
+            'addMainItemDialog',
+            true,
+            item
+        );
+    }
+
+    add(item: any) {
+        this._servicesPageService.displayDialogs(
+            'addSubitemModalDialog',
+            true,
+            item
+        );
+        console.log("item" , item)
+    }
+    edit(item: any) {
+        this._servicesPageService.displayDialogs(
+            'addMainItemDialog',
+            true,
+            item
+        );
+    }
+    del(item: any) {
+        this._servicesPageService.deleteProstheticsTypes(item.ID);
+    }
 }

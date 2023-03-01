@@ -372,7 +372,7 @@ ul.p-treenode-children > p-treenode.p-element::before {
     color: #ffffff;
     border-color:  #8a15381f;
   }
-  .p-button.p-button-outlined {
+/*   .p-button.p-button-outlined {
     background-color: transparent;
     color:  #8a1538;
     border: 1px solid;
@@ -386,7 +386,7 @@ ul.p-treenode-children > p-treenode.p-element::before {
     background:  #8a15381f;
     color:  #8a1538;
     border: 1px solid;
-  }
+  } */
   .p-inputtext:enabled:hover  , .p-dropdown:not(.p-disabled):hover{
     border-color: #8a1538
   }

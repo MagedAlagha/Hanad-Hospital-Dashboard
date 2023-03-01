@@ -11,6 +11,8 @@ import { ServicesPageService } from './services-page.service';
 export class ServicesPageComponent implements OnInit {
     dataTable$!: Observable<any>;
     prostheticsTypesDialog$!: Observable<any>;
+    addSubitemModalDialog$!: Observable<any>;
+    addMainItemDialog$!: Observable<any>;
 
     constructor(private _servicesPageService: ServicesPageService) {}
 
@@ -21,6 +23,12 @@ export class ServicesPageComponent implements OnInit {
         this._servicesPageService.getProstheticsTypes();
         this.prostheticsTypesDialog$ = this._servicesPageService
             .Selector$('prostheticsTypesDialog')
+            .pipe(tap((value) => {}));
+        this.addSubitemModalDialog$ = this._servicesPageService
+            .Selector$('addSubitemModalDialog')
+            .pipe(tap((value) => {}));
+        this.addMainItemDialog$ = this._servicesPageService
+            .Selector$('addMainItemDialog')
             .pipe(tap((value) => {}));
     }
 }

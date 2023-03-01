@@ -27,9 +27,27 @@
             <div
                 class="flex align-items-center justify-content-between col-md-12"
             >
-                <b>{{ FromAccountTree ? node.txt : node.Name }}</b>
+                <b>{{ node[keyName] }}</b>
                 <div>
-                    <ng-container *ngIf="node.isAdd">
+                    <app-icon-shared
+                        [Icon]="'pi pi-trash'"
+                        [classColor]="'var(--red-400)'"
+                        [pTooltipCustom]="'حذف'"
+                        (action)="onNodeDelete.emit(node)"
+                    ></app-icon-shared>
+                    <app-icon-shared
+                    [Icon]="'pi pi-pencil'"
+                    [classColor]="'var(--blue-400)'"
+                    [pTooltipCustom]="'تعديل فرع'"
+                    (action)="onNodeEdit.emit(node)"
+                ></app-icon-shared>
+                <app-icon-shared
+                [Icon]="'pi pi-plus'"
+                [classColor]="'var(--blue-400)'"
+                [pTooltipCustom]="'اضافة قائمة فرعية'"
+                (action)="onNodeAdd.emit(node)"
+            ></app-icon-shared>
+                    <!-- <ng-container *ngIf="node.isAdd">
                         <app-icon-shared
                             label="add"
                             (action)="onNodeAdd.emit(node)"
@@ -48,11 +66,12 @@
                             label="delete"
                             (action)="onNodeDelete.emit(node)"
                         ></app-icon-shared
-                    ></ng-container>
+                    ></ng-container> -->
                 </div>
             </div>
-        </ng-template> </p-tree
-></ng-container>
+        </ng-template>
+    </p-tree></ng-container
+>
 <!-- (onNodeSelect)="nodeSelect($event)"
     (onNodeUnselect)="nodeUnselect($event)"
     [(selection)]="selectedFile"

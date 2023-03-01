@@ -21,6 +21,8 @@ export class ServicesPageService {
         prosthetics: { data: [], loading: false },
         prostheticsTypes: { data: [], loading: false },
         prostheticsTypesDialog: { isOpen: false, data: '' },
+        addSubitemModalDialog: { isOpen: false, data: '' },
+        addMainItemDialog: { isOpen: false, data: '' },
     });
     store$ = this.store.asObservable();
     updateStore(newSate: jobFunctionalModel) {
@@ -144,7 +146,7 @@ export class ServicesPageService {
     getProstheticsTypes() {
         this.getFormApi(
             'ProstheticsTypes/ProstheticsTypesSearch',
-            'prostheticsTypes',
+            'prostheticsTypes',{},
             { isLoading: true }
         );
     }
@@ -178,7 +180,7 @@ export class ServicesPageService {
     /*  ******* Save Data Services ******* */
     /*  */
 
-    displayDialogs = (DialogName: string, isOpen: boolean, data?: any) => {
+    displayDialogs = (DialogName: selectorsType, isOpen: boolean, data?: any) => {
         let dialog = {
             [DialogName]: {
                 isOpen: isOpen,
@@ -209,5 +211,7 @@ export interface jobFunctionalModel {
     prosthetics?: { data: any; loading: boolean };
     prostheticsTypes?: { data: any; loading: boolean };
     prostheticsTypesDialog?: { isOpen: false; data: any };
+    addSubitemModalDialog?: { isOpen: false; data: any };
+    addMainItemDialog?: { isOpen: false; data: any };
 }
 export type selectorsType = keyof jobFunctionalModel;

@@ -22,6 +22,8 @@ import { ProstheticsTypesComponent } from './Modal/prosthetics-types/prosthetics
 import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-shared/dialog-shared.component';
 import { DiagnosticUnitComponent } from './outpatient-clinics/diagnostic-unit/diagnostic-unit.component';
 import { TreeComponent } from 'src/app/shared/Module-shared/tree/tree.component';
+import { AddSubitemModalComponent } from './Modal/add-subitem-modal/add-subitem-modal.component';
+import { AddMainItemModalComponent } from './Modal/add-main-item-modal/add-main-item-modal.component';
 
 
 
@@ -33,7 +35,9 @@ import { TreeComponent } from 'src/app/shared/Module-shared/tree/tree.component'
     ProstheticsComponent,
     HearingBalanceComponent,
     ProstheticsTypesComponent,
-    DiagnosticUnitComponent
+    DiagnosticUnitComponent,
+    AddSubitemModalComponent,
+    AddMainItemModalComponent
   ],
   imports: [
     CommonModule,

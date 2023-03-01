@@ -28,6 +28,7 @@ export class TreeComponent implements OnInit {
     @Input() keyID: string = 'Code';
     @Input() keyParent: string = 'ParentCode';
     @Input() filterBy: string = 'Name';
+    @Input() keyName: string = 'Name';
     @Input() virtualScroll: boolean = false;
     @Input() virtualScrollItemSize: number = 40;
     @Input() scrollHeight: string = '400px';
@@ -52,7 +53,7 @@ export class TreeComponent implements OnInit {
     ngOnInit() {
         this.dataTree$ = this.data$.pipe(
             tap((value) => {
-                console.log("cc value" , value);
+                console.log('cc value', value);
             }),
             map((value: { data: []; loading: boolean }) => {
                 return {
@@ -61,8 +62,8 @@ export class TreeComponent implements OnInit {
                 };
             }),
             tap((value) => {
-                console.log("value value" , value);
-            }),
+                console.log('value value', value);
+            })
         );
     }
     s: any = '&&';

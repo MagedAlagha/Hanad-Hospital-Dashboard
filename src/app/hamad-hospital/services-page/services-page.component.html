@@ -26,3 +26,5 @@
 </div>
 
 <app-prosthetics-types *ngIf="(prostheticsTypesDialog$ | async).isOpen"></app-prosthetics-types>
+<app-add-subitem-modal *ngIf="(addSubitemModalDialog$ | async).isOpen"></app-add-subitem-modal>
+<app-add-main-item-modal *ngIf="(addMainItemDialog$ | async).isOpen"></app-add-main-item-modal>

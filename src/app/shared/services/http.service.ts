@@ -155,7 +155,10 @@ export class HttpService {
                     data.append(key, element);
                 });
             } else {
-                data.append(key, body[key]);
+                if( body[key]!=null){
+                    data.append(key, body[key]);
+                }
+
             }
         });
         return this.http.post(this.baseUrl + route, data);

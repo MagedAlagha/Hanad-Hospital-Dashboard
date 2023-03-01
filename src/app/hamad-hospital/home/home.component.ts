@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
         private _translateService: TranslateService
     ) {
         this.formSlider = fb.group({
-            ID: [null],
+            ID: [],
             Image: [null],
             TitleAr: [null],
             TitleEn: [null],
