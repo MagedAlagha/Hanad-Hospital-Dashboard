@@ -1,0 +1,9 @@
+<app-dialog-shared
+    [width]="'55vw'"
+    [dialogHeader]="'موضوع الرسالة '"
+    (close)="closeDialog()"
+>
+    <div class="bodyDialog">
+        <p class="p-3" style="border-radius: 4px; background-color: #f5f6fa; border: 1px dotted #ccc;">{{ data.TextMessage }}</p>
+    </div>
+</app-dialog-shared>

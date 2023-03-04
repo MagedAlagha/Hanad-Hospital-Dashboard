@@ -1,34 +1,25 @@
 <div class="surface-ground h-screen w-screen flex align-items-center justify-content-center" [ngClass]="{'p-input-filled': filledInput}">
     <div class="surface-card py-7 px-5 sm:px-7 shadow-2 flex flex-column w-11 sm:w-30rem" style="border-radius:14px">
         <div class="text-center">
-            <img src="../../../../../assets/img/logo2.png" width="70%" alt="">
+            <img src="../../../../../assets/img/logo.svg" width="70%" alt="">
         </div>
         <hr>
-        <p class=" mb-4 text-center ">تسجيل الدخول ك <strong>
-            
-              <p-dropdown optionLabel="value" [formControl]="loginDropdown"  class="dropdown-login" optionValue="code" [options]="[{code:1 , value:'موظف'} ,{code:2 , value:'عميل'},{code:3 , value:'ادراي'},{code:4 , value:'ادمن'}]" placeholder="موظف" ></p-dropdown>
-              </strong>
-        
-            </p>
+        <p class=" mb-4 text-center ">تسجيل الدخول  <strong></strong></p>
 
         <span class="p-input-icon-left mb-4">
            <!--  <i class="pi pi-user"></i> -->
-            <input type="text" pInputText placeholder="اسم المستخدم" class="w-full">         
+            <input type="text" pInputText placeholder="اسم المستخدم" class="w-full">
         </span>
 
         <span class="p-input-icon-left mb-4">
            <!--  <i class="pi pi-key"></i> -->
-           <p-password  placeholder="كلمة المرور" class="w-full" [toggleMask]="true"></p-password> 
+           <p-password  placeholder="كلمة المرور" class="w-full" [toggleMask]="true"></p-password>
 
-<!--             <input type="password" pInputText placeholder="كلمة المرور" class="w-full">         
+<!--             <input type="password" pInputText placeholder="كلمة المرور" class="w-full">
  -->        </span>
 
         <button [routerLink]="['/']" (click)="login()" pButton pRipple label="تسجيل الدخول" class="mb-4 btn-login "></button>
 
-       <!--  <span class="text-center mb-3">تسجيل الدخول ك عميل</span>
-        <span class="text-center mb-4">تسجيل الدخول ك ادراي</span>
- -->
-    
     </div>
 </div>
 

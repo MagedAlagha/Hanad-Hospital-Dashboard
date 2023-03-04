@@ -62,6 +62,7 @@ export class MainInfoComponent implements OnInit {
     /*  */
     saveStats() {
         this._mainInfoService.saveStats(this.formStats.value);
+        this.clearStats();
     }
     clearStats() {
         this.formStats.reset();
@@ -69,7 +70,6 @@ export class MainInfoComponent implements OnInit {
 
     editItem(item?: any) {
         this.formStats.patchValue(item);
-        this.ID = item.ID;
     }
     deleteItem(item?: any) {
         this._mainInfoService.deleteStats(item.ID);

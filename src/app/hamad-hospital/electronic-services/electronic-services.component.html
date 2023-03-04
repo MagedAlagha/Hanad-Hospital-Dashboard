@@ -1,5 +1,5 @@
 
-<div class="card">
+<div class="card electronic-services">
     <div class="flex flex-column md:flex-row  mb-3">
     <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
         صفحة الخدمات الالكترونية
@@ -7,14 +7,316 @@
     </div>
     <hr />
     <br />
-
         <p-tabView>
-            <p-tabPanel header=" خدمة مستفيدين">
+            <p-tabPanel header=" المواعيد">
+                <ng-container *ngIf="PublicServices$ | async as data">
+                    <p-table
+                        styleClass="p-datatable-gridlines"
+                        [rows]="10"
+                        [paginator]="true"
+                        style="width: 100%"
+                        [value]="data.data"
+                        [loading]="data.loading"
+                    >
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">الاسم كامل</th>
+                                <th class="text-center">الايميل</th>
+                                <th class="text-center">الموبايل</th>
+                                <th class="text-center">العنوان بالكامل</th>
+                                <th class="text-center">الموعد</th>
+                                <th class="text-center">القسم</th>
+                                <th class="text-center">عرض الرسالة</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item let-index="rowIndex">
+                            <tr>
+                                <td>
+                                    <span class="reorder-row-icon">{{ index + 1 }}</span>
+                                </td>
+                                <td>{{ item.FullName }}</td>
+                                <td>{{ item.Email }}</td>
+                                <td>{{ item.PhoneNumber }}</td>
+                                <td>{{ item.Address }}</td>
+                                <td>{{ item.Appointment | date }}</td>
+                                <td *ngIf="item.DepartmentID ===null"> - </td>
+                                <td *ngIf="item.DepartmentID ===0"> - </td>
+                                <td *ngIf="item.DepartmentID ===1"> العظام</td>
+                                <td *ngIf="item.DepartmentID ===2"> القلب</td>
+                                <td *ngIf="item.DepartmentID ===3"> الاطراف الصناعية</td>
+                                <td *ngIf="item.DepartmentID ===4"> العيون</td>
+                                <td class="text-center">
+                                    <app-icon-shared
+                                        [Icon]="'pi pi-eye'"
+                                        [classColor]="'var(--blue-400)'"
+                                        [pTooltipCustom]="'عرض الرسالة'"
+                                        (action)="openDialog(item)"
+                                    ></app-icon-shared>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="footer"> </ng-template>
+                        <ng-template pTemplate="loadingbody"> </ng-template>
+                    </p-table>
+                </ng-container>
             </p-tabPanel>
-            <p-tabPanel header="خدمة زائرين">
+            <p-tabPanel header="الاقتراحات والشكاوي">
+                <ng-container *ngIf="Suggestion$  | async as data">
+                    <p-table
+                        styleClass="p-datatable-gridlines"
+                        [rows]="10"
+                        [paginator]="true"
+                        style="width: 100%"
+                        [value]="data.data"
+                        [loading]="data.loading"
+                    >
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">الاسم كامل</th>
+                                <th class="text-center">الايميل</th>
+                                <th class="text-center">الموبايل</th>
+                                <th class="text-center">العنوان بالكامل</th>
+                                <th class="text-center">عرض الرسالة</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item let-index="rowIndex">
+                            <tr>
+                                <td>
+                                    <span class="reorder-row-icon">{{ index + 1 }}</span>
+                                </td>
+                                <td>{{ item.FullName }}</td>
+                                <td>{{ item.Email }}</td>
+                                <td>{{ item.PhoneNumber }}</td>
+                                <td>{{ item.Address }}</td>
+                                <td class="text-center">
+                                    <app-icon-shared
+                                        [Icon]="'pi pi-eye'"
+                                        [classColor]="'var(--blue-400)'"
+                                        [pTooltipCustom]="'عرض الرسالة'"
+                                        (action)="openDialog(item)"
+                                    ></app-icon-shared>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="footer"> </ng-template>
+                        <ng-template pTemplate="loadingbody"> </ng-template>
+                    </p-table>
+                </ng-container>
             </p-tabPanel>
-            <p-tabPanel header="خدمة مؤسسات">
+            <p-tabPanel header="تقييم أداء">
+                <ng-container *ngIf="Rating$  | async as data">
+                    <p-table
+                        styleClass="p-datatable-gridlines"
+                        [rows]="10"
+                        [paginator]="true"
+                        style="width: 100%"
+                        [value]="data.data"
+                        [loading]="data.loading"
+                    >
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">الاسم كامل</th>
+                                <th class="text-center">الايميل</th>
+                                <th class="text-center">الموبايل</th>
+                                <th class="text-center">العنوان بالكامل</th>
+                                <th class="text-center">التقييم الاداء</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item let-index="rowIndex">
+                            <tr>
+                                <td>
+                                    <span class="reorder-row-icon">{{ index + 1 }}</span>
+                                </td>
+                                <td>{{ item.FullName }}</td>
+                                <td>{{ item.Email }}</td>
+                                <td>{{ item.PhoneNumber }}</td>
+                                <td>{{ item.Address }}</td>
+                                <td>{{item.HospitalRating}}</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="footer"> </ng-template>
+                        <ng-template pTemplate="loadingbody"> </ng-template>
+                    </p-table>
+                </ng-container>
+            </p-tabPanel>
+            <p-tabPanel header="الزائريين">
+                <ng-container *ngIf="Visitors$  | async as data">
+                    <p-table
+                        styleClass="p-datatable-gridlines"
+                        [rows]="10"
+                        [paginator]="true"
+                        style="width: 100%"
+                        [value]="data.data"
+                        [loading]="data.loading"
+                    >
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">الاسم كامل</th>
+                                <th class="text-center">الايميل</th>
+                                <th class="text-center">الموبايل</th>
+                                <th class="text-center">العنوان بالكامل</th>
+                                <th class="text-center">سبب التواصل</th>
+                                <th class="text-center">عرض الرسالة</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item let-index="rowIndex">
+                            <tr>
+                                <td>
+                                    <span class="reorder-row-icon">{{ index + 1 }}</span>
+                                </td>
+                                <td>{{ item.FullName }}</td>
+                                <td>{{ item.Email }}</td>
+                                <td>{{ item.PhoneNumber }}</td>
+                                <td>{{ item.Address }}</td>
+                                <td *ngIf="item.CommunicationReason ===null"> - </td>
+                                <td *ngIf="item.CommunicationReason ===0"> - </td>
+                                <td *ngIf="item.CommunicationReason ===1"> اقتراح</td>
+                                <td *ngIf="item.CommunicationReason ===2"> ملاحظة</td>
+                                <td *ngIf="item.CommunicationReason ===3"> شكوى</td>
+                                <td *ngIf="item.CommunicationReason ===4"> استفسار</td>
+
+                                <td class="text-center">
+                                    <app-icon-shared
+                                        [Icon]="'pi pi-eye'"
+                                        [classColor]="'var(--blue-400)'"
+                                        [pTooltipCustom]="'عرض الرسالة'"
+                                        (action)="openDialog(item)"
+                                    ></app-icon-shared>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="footer"> </ng-template>
+                        <ng-template pTemplate="loadingbody"> </ng-template>
+                    </p-table>
+                </ng-container>
+            </p-tabPanel>
+            <p-tabPanel header="طلبات التغطية الصحفية">
+                <ng-container *ngIf="PressCoverageRequest$  | async as data">
+                    <p-table
+                        styleClass="p-datatable-gridlines"
+                        [rows]="10"
+                        [paginator]="true"
+                        style="width: 100%"
+                        [value]="data.data"
+                        [loading]="data.loading"
+                    >
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">الاسم كامل</th>
+                                <th class="text-center">الايميل</th>
+                                <th class="text-center">الموبايل</th>
+                                <th class="text-center">العنوان بالكامل</th>
+                                <th class="text-center">عرض الرسالة</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item let-index="rowIndex">
+                            <tr>
+                                <td>
+                                    <span class="reorder-row-icon">{{ index + 1 }}</span>
+                                </td>
+                                <td>{{ item.FullName }}</td>
+                                <td>{{ item.Email }}</td>
+                                <td>{{ item.PhoneNumber }}</td>
+                                <td>{{ item.Address }}</td>
+                                <td class="text-center">
+                                    <app-icon-shared
+                                        [Icon]="'pi pi-eye'"
+                                        [classColor]="'var(--blue-400)'"
+                                        [pTooltipCustom]="'عرض الرسالة'"
+                                        (action)="openDialog(item)"
+                                    ></app-icon-shared>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="footer"> </ng-template>
+                        <ng-template pTemplate="loadingbody"> </ng-template>
+                    </p-table>
+                </ng-container>
+            </p-tabPanel>
+            <p-tabPanel header="طلبات الزيارة">
+                <ng-container *ngIf="VisitRequest$  | async as data">
+                    <p-table
+                        styleClass="p-datatable-gridlines"
+                        [rows]="10"
+                        [paginator]="true"
+                        style="width: 100%"
+                        [value]="data.data"
+                        [loading]="data.loading"
+                    >
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">الاسم كامل</th>
+                                <th class="text-center">الايميل</th>
+                                <th class="text-center">الموبايل</th>
+                                <th class="text-center">العنوان بالكامل</th>
+                                <th class="text-center">عرض الرسالة</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item let-index="rowIndex">
+                            <tr>
+                                <td>
+                                    <span class="reorder-row-icon">{{ index + 1 }}</span>
+                                </td>
+                                <td>{{ item.FullName }}</td>
+                                <td>{{ item.Email }}</td>
+                                <td>{{ item.PhoneNumber }}</td>
+                                <td>{{ item.Address }}</td>
+                                <td class="text-center">
+                                    <app-icon-shared
+                                        [Icon]="'pi pi-eye'"
+                                        [classColor]="'var(--blue-400)'"
+                                        [pTooltipCustom]="'عرض الرسالة'"
+                                        (action)="openDialog(item)"
+                                    ></app-icon-shared>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="footer"> </ng-template>
+                        <ng-template pTemplate="loadingbody"> </ng-template>
+                    </p-table>
+                </ng-container>
             </p-tabPanel>
 
         </p-tabView>
     </div>
+
+
+    <app-show-message-modal
+    *ngIf="(showMessageDialog$ | async).isOpen"
+></app-show-message-modal>

@@ -13,12 +13,15 @@ import { IconSharedComponent } from 'src/app/shared/Module-shared/icon-shared/ic
 import { InputFieldComponent } from 'src/app/shared/Module-shared/input-field/input-field.component';
 import { TextAreaFieldComponent } from 'src/app/shared/Module-shared/text-area-field/text-area-field.component';
 import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/upload-files.component';
+import { ShowMessageModalComponent } from './Modals/show-message-modal/show-message-modal.component';
+import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-shared/dialog-shared.component';
 
 
 
 @NgModule({
   declarations: [
-    ElectronicServicesComponent
+    ElectronicServicesComponent,
+    ShowMessageModalComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +42,8 @@ import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/
     CheckBoxComponent,
     FileUploadModule,
     UploadFilesComponent,
-    TabViewModule
+    TabViewModule,
+    DialogSharedComponent
   ]
 })
 export class ElectronicServicesModule { }

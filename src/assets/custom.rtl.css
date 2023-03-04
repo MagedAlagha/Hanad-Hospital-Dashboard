@@ -426,3 +426,8 @@ ul.p-treenode-children > p-treenode.p-element::before {
  .p-button.p-button-icon-only{
     padding: 0.40rem 1rem;
  }
+
+
+ .electronic-services .p-tabview-nav{
+    display: flex !important;
+ }

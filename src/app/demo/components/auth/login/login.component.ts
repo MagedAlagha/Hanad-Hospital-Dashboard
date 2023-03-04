@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
 @Component({
 	templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
-
-	constructor(private layoutService: LayoutService) {}
+    loginForm:FormGroup;
+	constructor(private layoutService: LayoutService , fb:FormBuilder) {
+        this.loginForm = fb.group({
+        })
+    }
 
 	get filledInput(): boolean {
 		return this.layoutService.config.inputStyle === 'filled';
@@ -19,15 +22,15 @@ export class LoginComponent implements OnInit {
 		localStorage.setItem('employee', 'employee');
 		localStorage.setItem('admin', 'admin');
 		localStorage.setItem('managment', 'managment');  */
-		localStorage.setItem('login', this.userID); 
+		localStorage.setItem('login', this.userID);
 	}
 
 	ngOnInit() {
-       
+
 		this.loginDropdown.valueChanges.subscribe(x => {
 			this.userID = x ;
 		 })
     }
 
-	
+
 }
