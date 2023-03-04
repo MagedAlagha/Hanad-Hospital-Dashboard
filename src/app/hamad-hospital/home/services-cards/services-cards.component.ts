@@ -24,8 +24,8 @@ export class ServicesCardsComponent {
     ) {
         this.formServices = fb.group({
             MedicalRehabilitationIconPath: [null],
-            MedicalRehabilitationIconDescAr: [null],
-            MedicalRehabilitationIconDescEn: [null],
+            MedicalRehabilitationDescAr: [null],
+            MedicalRehabilitationDescEn: [null],
             ProstheticsIconPath: [null],
             ProstheticsDescAr: [null],
             ProstheticsDescEn: [null],
