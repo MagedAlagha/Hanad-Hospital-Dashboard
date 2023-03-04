@@ -68,29 +68,14 @@ export class ProstheticsTypesComponent {
         );
     }
 
-    addMainItem(item?: any) {
-        this._servicesPageService.displayDialogs(
-            'addMainItemDialog',
-            true,
-            item
-        );
-    }
-
-    add(item: any) {
+    addOrEdit(item?: any, ParentID?: any) {
         this._servicesPageService.displayDialogs(
             'addSubitemModalDialog',
             true,
-            item
-        );
-        console.log("item" , item)
-    }
-    edit(item: any) {
-        this._servicesPageService.displayDialogs(
-            'addMainItemDialog',
-            true,
-            item
+            { dataEdit: item, ParentID: ParentID }
         );
     }
+
     del(item: any) {
         this._servicesPageService.deleteProstheticsTypes(item.ID);
     }

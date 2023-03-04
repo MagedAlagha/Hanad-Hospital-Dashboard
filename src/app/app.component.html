@@ -1,1 +1,33 @@
 <router-outlet></router-outlet>
+<p-confirmDialog #cd [style]="{ width: '30vw' }">
+    <ng-template pTemplate="header">
+        <div
+            class="flex justify-content-between align-items-start header"
+            style="background: #f5f6fa; border-bottom: 1px solid #e8e8e8"
+        >
+            <h5 class="mx-3 my-3">{{ "Shared.CONFIRM" | translate }}</h5>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <hr />
+        <div class="flex justify-content-end">
+            <button
+                class="p-button-sm mx-1"
+                type="button"
+                pButton
+                icon="pi pi-check"
+                [label]="'Shared.YES' | translate"
+                (click)="cd.accept()"
+            ></button>
+            <button
+                class="p-button-sm mx-1 p-button-danger"
+                type="button"
+                pButton
+                icon="pi pi-times"
+                [label]="'Shared.NO' | translate"
+                (click)="cd.reject()"
+            ></button>
+        </div>
+    </ng-template>
+</p-confirmDialog>
+<p-toast></p-toast>

@@ -11,7 +11,6 @@ import { ServicesPageService } from '../../services-page.service';
 export class AddSubitemModalComponent {
     formSubItemTypes!: FormGroup<any>;
     prostheticsTypes$!: Observable<any>;
-    ID: any;
     constructor(
         fb: FormBuilder,
         private _servicesPageService: ServicesPageService
@@ -22,34 +21,30 @@ export class AddSubitemModalComponent {
             NameEn: [''],
             IsActive: [false],
             Sorting: [''],
+            ParentID: [''],
         });
     }
     ngOnInit() {
         console.log('test');
+
         const data =
             this._servicesPageService.dataStore.addSubitemModalDialog?.data;
+
         if (data) {
-            this.ID = data.ID;
-            console.log(' this.ID', this.ID);
-        } else {
-            console.log('No Data');
+            console.log('data', data);
+            this.formSubItemTypes.patchValue({ ParentID: data?.ParentID });
+            this.formSubItemTypes.patchValue(data?.dataEdit);
+            console.log('formSubItemTypes', this.formSubItemTypes?.value);
         }
     }
     save() {
-        this._servicesPageService.saveProstheticsTypes({
-            ...this.formSubItemTypes.value,
-            ParentID: this.ID,
-        });
-
-        /*  if(!this.ID){
-            this._servicesPageService.saveProstheticsTypes(
-                this.formSubItemTypes.value
-            );
-        }else{
-            this._servicesPageService.saveProstheticsTypes(
-              {... this.formSubItemTypes.value , ParentID:this.ID}
-            );
-        } */
+        this._servicesPageService
+            .saveProstheticsTypes({
+                ...this.formSubItemTypes.value,
+            })
+            .subscribe((value) => {
+                this.formSubItemTypes.reset();
+            });
     }
     clear() {
         this.formSubItemTypes.reset();
