@@ -12,7 +12,7 @@ import { NotificationsService } from './notifications.service';
     providedIn: 'root',
 })
 export class AuthService implements OnDestroy {
-    private baseUrl: string = environment.baseUrl + 'Auth/Token';
+    private baseUrl: string = environment.baseUrl + 'Auth/Login';
     private ipAddress: string | undefined;
     constructor(
         private router: Router,
@@ -51,7 +51,7 @@ export class AuthService implements OnDestroy {
     }
     logout() {
         localStorage.removeItem('CurrentUser');
-        this.router.navigate(['/auth/login']);
+        this.router.navigate(['/auth/Login']);
     }
     get isActive() {
         var user = JSON.parse(localStorage.getItem('CurrentUser')!);
