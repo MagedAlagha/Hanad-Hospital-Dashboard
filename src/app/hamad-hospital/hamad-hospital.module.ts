@@ -51,8 +51,8 @@ import { HamadHospitalComponent } from './hamad-hospital.component';
                     data: { breadcrumb: 'المعلومات الرئيسية' },
                     loadChildren: () =>
                         import(
-                            './advertisements/advertisements.module'
-                        ).then((m) => m.AdvertisementsModule),
+                            './main-info/main-info.module'
+                        ).then((m) => m.MainInfoModule),
                 },
 
 
