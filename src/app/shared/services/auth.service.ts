@@ -41,7 +41,7 @@ export class AuthService implements OnDestroy {
     }
     getUserData() {
         this.http
-            .get('https://hr-api.accessline.ps/api/Employees/mini')
+            .get('http://hamad_api.accessline.ps/api/Stats/StatsSearch')
             .subscribe((value: any) => {
                 localStorage.setItem('CurrentUserInfo', JSON.stringify(value));
                 const DefaultProg = value[0]?.DefaultProg?.split(',')[1];
