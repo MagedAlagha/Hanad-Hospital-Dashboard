@@ -1,3 +1,4 @@
+import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, distinctUntilChanged, map } from 'rxjs';
 import { getFormApiGonfig } from 'src/app/shared/models';
@@ -24,7 +25,6 @@ export class ServicesPageService {
         OutpatientClinicsDepartmentsServices: { data: [], loading: false },
         prostheticsTypesDialog: { isOpen: false, data: '' },
         addSubitemModalDialog: { isOpen: false, data: '' },
-        addMainItemDialog: { isOpen: false, data: '' },
     });
     store$ = this.store.asObservable();
     updateStore(newSate: jobFunctionalModel) {
@@ -131,10 +131,10 @@ export class ServicesPageService {
     /*  ******* Save prosthetics Type ******* */
     saveProstheticsTypes(data: any) {
         return this._http
-            .saveData('ProstheticsTypes/ProstheticsTypesSave', data)
-            .subscribe((value) => {
+            .saveData('ProstheticsTypes/ProstheticsTypesSave', data).pipe(tap(value=>{
                 this.getProstheticsTypes();
-            });
+            }))
+
     }
     deleteProstheticsTypes(ID: any) {
         return this._http
@@ -269,6 +269,5 @@ export interface jobFunctionalModel {
     OutpatientClinicsDepartmentsServices?: { data: any; loading: boolean };
     prostheticsTypesDialog?: { isOpen: false; data: any };
     addSubitemModalDialog?: { isOpen: false; data: any };
-    addMainItemDialog?: { isOpen: false; data: any };
 }
 export type selectorsType = keyof jobFunctionalModel;

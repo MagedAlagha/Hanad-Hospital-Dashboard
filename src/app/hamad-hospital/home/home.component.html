@@ -79,7 +79,7 @@
             styleClass="p-datatable-gridlines"
             [rows]="10"
             [paginator]="true"
-            style="width: 100%"
+            [style.width]="'100%'"
             [value]="sliderData"
         >
             <ng-template pTemplate="header">
@@ -89,7 +89,7 @@
                     <th class="text-center">العنوان انجليزي</th>
                     <th class="text-center">الحالة</th>
                     <th class="text-center">الترتيب</th>
-                    <!-- <th class="text-center">الصورة</th> -->
+                    <th class="text-center">الصورة</th>
                     <th class="text-center">الاجراءات</th>
                 </tr>
             </ng-template>
@@ -102,7 +102,17 @@
                     <td>{{ item.TitleEn }}</td>
                     <td>{{ item.IsActive }}</td>
                     <td>{{ item.Sorting }}</td>
-                    <!-- <td> <span >{{ item.ImagePath?.slice("/")?.pop() }}</span> </td> -->
+                    <td>
+                        <!-- {{Avatar + item?.ImagePath}} -->
+                        <span>
+                            <p-image
+                                [src]="Avatar + item?.ImagePath"
+                                alt="Image"
+                                width="40px"
+                                [preview]="true"
+                            ></p-image>
+                     </span>
+                    </td>
                     <td class="text-center">
                         <app-icon-shared
                             [Icon]="'pi pi-pencil'"

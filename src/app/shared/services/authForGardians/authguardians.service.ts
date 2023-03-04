@@ -1,4 +1,3 @@
-import { LoginByParentService } from './../../../MAEL_SYSTEM/Kindergarten/login-by-parent/login-by-parent.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { of } from 'rxjs';
@@ -16,7 +15,6 @@ export class AuthGuardiansService implements OnDestroy {
     constructor(
         private router: Router,
         private http: HttpClient,
-        public _LoginByParentService: LoginByParentService
     ) {}
 
     login(infoLogin: any) {

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { HamadHospitalService } from '../hamad-hospital.service';
 import { HomeService } from './home.service';
 
@@ -16,6 +17,7 @@ export class HomeComponent implements OnInit {
     fileSelected: any;
     sliderData$!: Observable<any>;
     ID: any;
+    Avatar=environment.FileUrl
     @ViewChild('fileUpload') fileUpload: any;
     constructor(
         fb: FormBuilder,

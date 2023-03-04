@@ -12,20 +12,22 @@
                     label="اضافة قائمة رئيسية"
                     [isCustomLable]="true"
                     [pTooltipCustom]="' اضافة قائمة رئيسية'"
-                    (action)="addMainItem()"
+                    (action)="addOrEdit()"
                 >
                 </app-button-component>
             </span>
         </div>
-        <br>
-        <br>
+        <br />
+        <br />
 
-      <app-tree [data$] = "prostheticsTypes$" [keyName]="'NameAr'" [keyParent]="'ParentID'"   [keyID]="'ID'"(onNodeAdd)="add($event)"(onNodeDelete)="del($event)" (onNodeEdit)="edit($event)" ></app-tree>
+        <app-tree
+            [data$]="prostheticsTypes$"
+            [keyName]="'NameAr'"
+            [keyParent]="'ParentID'"
+            [keyID]="'ID'"
+            (onNodeAdd)="addOrEdit(null, $event?.ID)"
+            (onNodeDelete)="del($event)"
+            (onNodeEdit)="addOrEdit($event)"
+        ></app-tree>
     </div>
-
 </app-dialog-shared>
-
-
-
-
-

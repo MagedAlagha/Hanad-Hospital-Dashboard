@@ -1,6 +1,9 @@
-<app-dialog-shared [width]="'60vw'" [dialogHeader]="'اضافة قائمة فرعية'" (close)="closeDialog()">
+<app-dialog-shared
+    [width]="'60vw'"
+    [dialogHeader]="'اضافة خدمة '"
+    (close)="closeDialog()"
+>
     <div class="bodyDialog">
-
         <ng-container>
             <form [formGroup]="formSubItemTypes">
                 <div class="grid p-fluid mt-3">
@@ -42,7 +45,7 @@
                         styleClass="p-datatable-gridlines"
                         [rows]="10"
                         [paginator]="true"
-                        style="width: 100%"
+                        [style.width]="'100%'"
                         [value]="data.data"
                     >
                         <ng-template pTemplate="header">
@@ -100,14 +103,20 @@
                 </ng-container>
             </form>
         </ng-container>
-
-
     </div>
     <div class="footerDialog">
-
-        <app-button-component label="حفظ"  [classColor]="'p-button'" [pTooltipCustom]="'حفط'" (action)="save()"
-        [Icon]="'pi pi-folder-open'"></app-button-component>
-    <app-button-component label="مسح بيانات الحقول" [classColor]="' p-button-secondary'"
-        [pTooltipCustom]="'مسح الحقول '" [Icon]="'pi pi-eraser'"></app-button-component>
+        <app-button-component
+            label="حفظ"
+            [classColor]="'p-button'"
+            [pTooltipCustom]="'حفط'"
+            (action)="save()"
+            [Icon]="'pi pi-folder-open'"
+        ></app-button-component>
+        <app-button-component
+            label="مسح بيانات الحقول"
+            [classColor]="' p-button-secondary'"
+            [pTooltipCustom]="'مسح الحقول '"
+            [Icon]="'pi pi-eraser'"
+        ></app-button-component>
     </div>
 </app-dialog-shared>

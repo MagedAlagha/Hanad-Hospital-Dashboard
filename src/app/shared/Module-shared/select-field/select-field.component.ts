@@ -113,52 +113,6 @@ export class SelectFieldComponent
     }
     registerOnChange(fn: any) {
         this.onChange = fn;
-        this.onChanges
-            .pipe(
-                tap((changes) => {
-                    if (changes['dropdownItems']) {
-                        if (this.dropdownItems) {
-                            this.dropdownItemsForComponent = [
-                                ...this.dropdownItems,
-                            ];
-                        }
-                        if (
-                            this.dropdownItemsForComponent &&
-                            this.dropdownItemsForComponent.length >= 6
-                        ) {
-                            this.filter = true;
-                        }
-                        if (
-                            this.dropdownItemsForComponent &&
-                            this.dropdownItemsForComponent.length > 0 &&
-                            this.emptyOption
-                        ) {
-                            let emptyValue = `{"${this.optionLabel}": "غير محدد","${this.optionValue}":null }`;
-                            this.dropdownItemsForComponent.unshift(
-                                JSON.parse(emptyValue)
-                            );
-                        }
-                        this.isDefualtFun();
-                    }
-                }),
-                filter(() => !this.Destroied),
-                tap((changes) => {
-                    if (changes['submitted']) {
-                        if (this.submitted && this.selectFieldControl.invalid) {
-                            this.messageService.add({
-                                severity: 'error',
-                                summary: `${this._translateService.instant(
-                                    this.label
-                                )} ${this._translateService.instant(
-                                    'Shared.IS_REQUIRED'
-                                )}`,
-                                detail: '',
-                            });
-                        }
-                    }
-                })
-            )
-            .subscribe();
     }
     registerOnTouched(fn: any) {
         this.onTouch = fn;
@@ -224,6 +178,52 @@ export class SelectFieldComponent
             this.selectFieldControl.valueChanges.subscribe((value) => {
                 this.onChange(value);
             });
+        this.onChanges
+            .pipe(
+                tap((changes) => {
+                    if (changes['dropdownItems']) {
+                        if (this.dropdownItems) {
+                            this.dropdownItemsForComponent = [
+                                ...this.dropdownItems,
+                            ];
+                        }
+                        if (
+                            this.dropdownItemsForComponent &&
+                            this.dropdownItemsForComponent.length >= 6
+                        ) {
+                            this.filter = true;
+                        }
+                        if (
+                            this.dropdownItemsForComponent &&
+                            this.dropdownItemsForComponent.length > 0 &&
+                            this.emptyOption
+                        ) {
+                            let emptyValue = `{"${this.optionLabel}": "غير محدد","${this.optionValue}":null }`;
+                            this.dropdownItemsForComponent.unshift(
+                                JSON.parse(emptyValue)
+                            );
+                        }
+                        this.isDefualtFun();
+                    }
+                }),
+                filter(() => !this.Destroied),
+                tap((changes) => {
+                    if (changes['submitted']) {
+                        if (this.submitted && this.selectFieldControl.invalid) {
+                            this.messageService.add({
+                                severity: 'error',
+                                summary: `${this._translateService.instant(
+                                    this.label
+                                )} ${this._translateService.instant(
+                                    'Shared.IS_REQUIRED'
+                                )}`,
+                                detail: '',
+                            });
+                        }
+                    }
+                })
+            )
+            .subscribe();
     }
 
     ngOnDestroy() {
