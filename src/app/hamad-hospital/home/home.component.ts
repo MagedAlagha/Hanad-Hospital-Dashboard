@@ -13,7 +13,6 @@ import { HomeService } from './home.service';
 })
 export class HomeComponent implements OnInit {
     formSlider: FormGroup;
-
     fileSelected: any;
     sliderData$!: Observable<any>;
     ID: any;

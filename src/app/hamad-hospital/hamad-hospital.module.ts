@@ -38,6 +38,22 @@ import { HamadHospitalComponent } from './hamad-hospital.component';
                             './electronic-services/electronic-services.module'
                         ).then((m) => m.ElectronicServicesModule),
                 },
+                {
+                    path: 'advertisements',
+                    data: { breadcrumb: 'اعلان التوظيف' },
+                    loadChildren: () =>
+                        import(
+                            './advertisements/advertisements.module'
+                        ).then((m) => m.AdvertisementsModule),
+                },
+                {
+                    path: 'main-info',
+                    data: { breadcrumb: 'المعلومات الرئيسية' },
+                    loadChildren: () =>
+                        import(
+                            './advertisements/advertisements.module'
+                        ).then((m) => m.AdvertisementsModule),
+                },
 
 
 

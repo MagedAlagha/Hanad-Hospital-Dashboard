@@ -49,6 +49,20 @@ export class AppMenuComponent implements OnInit {
                             '/hamad-hospital/electronic-services',
                         ],
                     },
+                    {
+                        label: 'اعلان التوظيف',
+                        icon: 'pi pi-th-large',
+                        routerLink: [
+                            '/hamad-hospital/advertisements',
+                        ],
+                    },
+                    {
+                        label: 'معلومات رئيسية',
+                        icon: 'pi pi-th-large',
+                        routerLink: [
+                            '/hamad-hospital/advertisements',
+                        ],
+                    },
 
                 ],
             },
