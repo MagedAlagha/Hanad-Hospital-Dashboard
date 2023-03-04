@@ -9,6 +9,8 @@ import { IconSharedComponent } from 'src/app/shared/Module-shared/icon-shared/ic
 import { TextAreaFieldComponent } from 'src/app/shared/Module-shared/text-area-field/text-area-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CheckBoxComponent } from 'src/app/shared/Module-shared/check-box/check-box.component';
+import { FileUploadModule } from 'primeng/fileupload';
+import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/upload-files.component';
 
 
 
@@ -32,6 +34,8 @@ import { CheckBoxComponent } from 'src/app/shared/Module-shared/check-box/check-
     TextAreaFieldComponent ,
     ReactiveFormsModule,
     CheckBoxComponent,
+    FileUploadModule,
+    UploadFilesComponent,
  ]
 })
 export class MainInfoModule { }

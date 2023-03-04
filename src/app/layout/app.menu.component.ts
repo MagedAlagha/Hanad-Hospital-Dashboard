@@ -60,7 +60,7 @@ export class AppMenuComponent implements OnInit {
                         label: 'معلومات رئيسية',
                         icon: 'pi pi-th-large',
                         routerLink: [
-                            '/hamad-hospital/advertisements',
+                            '/hamad-hospital/main-info',
                         ],
                     },
 
