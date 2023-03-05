@@ -62,6 +62,14 @@ import { HamadHospitalComponent } from './hamad-hospital.component';
                             './about-hospital/about-hospital.module'
                         ).then((m) => m.AboutHospitalModule),
                 },
+                {
+                    path: 'media-center',
+                    data: { breadcrumb: 'المركز الاعلامي' },
+                    loadChildren: () =>
+                        import(
+                            './media-center/media-center.module'
+                        ).then((m) => m.MediaCenterModule),
+                },
 
 
 

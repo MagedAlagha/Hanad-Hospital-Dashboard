@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from '../shared/services/auth.service';
 import { LayoutService } from './service/app.layout.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class AppTopBarComponent {
 
     searchActive: boolean = false;
 
-    constructor(public layoutService: LayoutService) {}
+    constructor(public layoutService: LayoutService ,  private auth: AuthService) {}
 
     onMenuButtonClick() {
         this.layoutService.onMenuToggle();
@@ -62,5 +63,9 @@ export class AppTopBarComponent {
 
     get tabs(): MenuItem[] {
         return this.layoutService.tabs;
+    }
+
+    logout(){
+   this.auth.logout()
     }
 }

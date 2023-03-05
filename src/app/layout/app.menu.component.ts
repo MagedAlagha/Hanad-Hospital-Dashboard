@@ -70,6 +70,13 @@ export class AppMenuComponent implements OnInit {
                             '/hamad-hospital/about',
                         ],
                     },
+                    {
+                        label: 'المركز الاعلامي',
+                        icon: 'pi pi-images',
+                        routerLink: [
+                            '/hamad-hospital/media-center',
+                        ],
+                    },
 
                 ],
             },

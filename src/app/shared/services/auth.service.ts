@@ -52,7 +52,7 @@ export class AuthService implements OnDestroy {
     }
     logout() {
         localStorage.removeItem('CurrentUser');
-        this.router.navigate(['/auth/Login']);
+        this.router.navigate(['/auth/login']);
     }
     get isActive() {
         var user = JSON.parse(localStorage.getItem('CurrentUser')!);
