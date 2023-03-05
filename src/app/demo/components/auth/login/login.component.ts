@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
         private auth: AuthService
     ) {
         this.loginForm = fb.group({
-            Username: [],
-            Password: [],
+            Username: ['' , Validators.required],
+            Password: ['', Validators.required],
         });
     }
 
@@ -25,12 +25,7 @@ export class LoginComponent implements OnInit {
     loginDropdown = new FormControl();
     userID!: string;
     login() {
-        /* localStorage.setItem('client', 'client');
-		localStorage.setItem('employee', 'employee');
-		localStorage.setItem('admin', 'admin');
-		localStorage.setItem('managment', 'managment');  */
-        /* localStorage.setItem('login', this.userID); */
-
+        console.log(this.loginForm.value , "'''''")
         this.auth.login(this.loginForm.value).subscribe({
             next: () => {
                 console.log('login');

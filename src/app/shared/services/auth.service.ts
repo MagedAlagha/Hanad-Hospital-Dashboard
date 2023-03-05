@@ -21,10 +21,11 @@ export class AuthService implements OnDestroy {
     ) {}
 
     login(infoLogin: any) {
+        console.log('infoLogin',infoLogin)
         return this.http
             .post(this.baseUrl, {
-                UserName: infoLogin.userName,
-                Password: infoLogin.password,
+                UserName: infoLogin.Username,
+                Password: infoLogin.Password,
             })
             .pipe(
                 tap((res: any) => {
