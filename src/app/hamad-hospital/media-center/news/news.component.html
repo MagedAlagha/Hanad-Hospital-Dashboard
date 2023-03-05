@@ -1,0 +1,54 @@
+    <ng-container *ngIf="news$ | async as data">
+        <p-table
+            styleClass="p-datatable-gridlines"
+            [rows]="10"
+            [paginator]="true"
+            style="width: 100%"
+            [value]="data.data"
+            [loading]="data.loading"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">الاسم كامل</th>
+                    <th class="text-center">الايميل</th>
+                    <th class="text-center">الموبايل</th>
+                    <th class="text-center">العنوان بالكامل</th>
+                    <th class="text-center">الموعد</th>
+                    <th class="text-center">القسم</th>
+                    <th class="text-center">عرض الرسالة</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item let-index="rowIndex">
+                <tr>
+                    <td>
+                        <span class="reorder-row-icon">{{ index + 1 }}</span>
+                    </td>
+                    <td>{{ item.FullName }}</td>
+                    <td>{{ item.Email }}</td>
+                    <td>{{ item.PhoneNumber }}</td>
+                    <td>{{ item.Address }}</td>
+                    <td *ngIf="item.DepartmentID ===null"> - </td>
+                    <td *ngIf="item.DepartmentID ===0"> - </td>
+                    <td *ngIf="item.DepartmentID ===1"> العظام</td>
+                    <td *ngIf="item.DepartmentID ===2"> القلب</td>
+                    <td *ngIf="item.DepartmentID ===3"> الاطراف الصناعية</td>
+                    <td *ngIf="item.DepartmentID ===4"> العيون</td>
+                    <td class="text-center">
+                        <app-icon-shared
+                            [Icon]="'pi pi-eye'"
+                            [classColor]="'var(--blue-400)'"
+                            [pTooltipCustom]="'عرض الرسالة'"
+                        ></app-icon-shared>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="footer"> </ng-template>
+            <ng-template pTemplate="loadingbody"> </ng-template>
+        </p-table>
+    </ng-container>

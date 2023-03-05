@@ -14,7 +14,7 @@ export class MediaCenterService {
     ) {}
     store = new BehaviorSubject<jobFunctionalModel>({
         Stats: { data: [], loading: false },
-        MediaSections: { data: [], loading: false },
+        MediaSectionsItems: { data: [], loading: false },
     });
     store$ = this.store.asObservable();
     updateStore(newSate: jobFunctionalModel) {
@@ -34,6 +34,30 @@ export class MediaCenterService {
         );
     }
 
+
+    /*  *******  Start MediaSectionsItems - API ******* */
+    saveMediaSectionsItems(data: any) {
+        return this._http
+            .saveFormData('MediaSectionsItems/MediaSectionsItemsSave', data)
+            .subscribe((value) => {
+                this.getMediaSectionsItems();
+            });
+    }
+    deleteMediaSectionsItems(ID: any) {
+        return this._http
+            .deleteData('MediaSectionsItems/MediaSectionsItemsDelete', {
+                ID: ID,
+            })
+            .subscribe((value) => {
+                this.getMediaSectionsItems();
+            });
+    }
+    getMediaSectionsItems() {
+        this.getFormApi('MediaSectionsItems/MediaSectionsItemsSearch', 'MediaSectionsItems',{MediaSectionID:2}, {
+            isLoading: true,
+        });
+    }
+
     getFormApi(
         api: string,
         selector: selectorsType,
@@ -51,6 +75,6 @@ export class MediaCenterService {
 }
 export interface jobFunctionalModel {
     Stats?: { data: any; loading: boolean };
-    MediaSections?: { data: any; loading: boolean };
+    MediaSectionsItems?: { data: any; loading: boolean };
 }
 export type selectorsType = keyof jobFunctionalModel;

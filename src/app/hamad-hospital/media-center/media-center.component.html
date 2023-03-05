@@ -5,33 +5,41 @@
         </div>
     </div>
     <hr />
- <!--    <form [formGroup]="formMainInfo">
+    <form [formGroup]="Form_MediaSectionsItems">
         <div class="grid p-fluid mt-3">
-            <div class="col-12 mb-2 lg:col-12 lg:mb-0">
-                <label for="">اضافة لوقو</label>
+            <div class="col-12 mb-2 lg:col-1 lg:mb-0">
+                <label for="">اضافة صورة للمقال</label>
                 <app-upload-files
                     (onSelectFiles)="fileSelected = $event"
                     [showFilesUploaded]="true"
                 ></app-upload-files>
             </div>
-            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+            <div class="col-12 mb-2 lg:col-1 lg:mb-0">
+                <label for="">اضافة فيديو للمقال</label>
+                <app-upload-files
+                    (onSelectFiles)="fileSelected2 = $event"
+                    [showFilesUploaded]="true"
+                ></app-upload-files>
+            </div>
+            <div class="col-12 mb-2 lg:col-5 lg:mb-0">
                 <app-input-field
-                [label]="'اسم المستشفى  /عربي'"
-                formControlName="HospitalNameAr">
-            </app-input-field>
+                    [label]="'العنوان/عربي'"
+                    formControlName="TitleAr"
+                >
+                </app-input-field>
+            </div>
+            <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                <app-input-field
+                    [label]="'العنوان  /انجليزي'"
+                    formControlName="TitleEn"
+                >
+                </app-input-field>
             </div>
             <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-                <app-input-field
-                [label]="'اسم المستشفى  /انجلزي'"
-                formControlName="HospitalNamEn">
-            </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-
                 <app-text-area-field
                     [rows]="2"
                     [label]="'الوصف /عربي'"
-                    formControlName="AboutAr"
+                    formControlName="DescAr"
                 >
                 </app-text-area-field>
             </div>
@@ -39,89 +47,41 @@
                 <app-text-area-field
                     [rows]="2"
                     [label]="'وصف  /انجليزي'"
-                    formControlName="AboutEn"
+                    formControlName="DescEn"
                 >
                 </app-text-area-field>
             </div>
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <app-input-field
+                    label="ترتيب المقال / الفيديو"
+                    formControlName="Sorting"
+                >
+                </app-input-field>
+            </div>
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <app-select-field
+                    [dropdownItems]="[
+                        { Code: 1, Name: 'الأخبار' },
+                        { Code: 2, Name: 'معرض الصور' },
+                        { Code: 3, Name: 'معرض الفيديو' },
+                        { Code: 4, Name: 'المقالات الطبية' },
+                        { Code: 5, Name: 'قصص صحفية' },
+                        { Code: 6, Name: 'قصص رقمية' },
+                    ]"
+                    formControlName="MediaSectionID"
+                    [label]="'اختيار القسم'"
 
+                >
+                </app-select-field>
+            </div>
+            <div
+                class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
+                style="margin-top: 2.9rem"
+            >
+                <app-check-box label="الحالة" formControlName="IsActive">
+                </app-check-box>
+            </div>
 
-            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                <app-input-field
-                    [label]="'رابط فيسبوك'"
-                    formControlName="FacebookLink"
-                >
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                <app-input-field
-                    [label]="'رابط يوتيوب'"
-                    formControlName="YoutubeLink"
-                >
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                <app-input-field
-                    [label]="'رابط انستقرام'"
-                    formControlName="InstagramLink"
-                >
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                <app-input-field
-                    [label]="'رابط تويتر'"
-                    formControlName="TwitterLink"
-                >
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                <app-input-field
-                    [label]="'رابط واتس اب'"
-                    formControlName="WhatsAppLink"
-                >
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                <app-input-field
-                    [label]="'سوشيال ميديا هاشتاق'"
-                    formControlName="SocialMediaTag"
-                >
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-3 lg:mb-0">
-                <app-input-field
-                    [label]="'الموقع  /عربي'"
-                    formControlName="LocationAr"
-                >
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-3 lg:mb-0">
-                <app-input-field
-                    [label]="'الموقع  /انجلزي'"
-                    formControlName="LocationAr"
-                >
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                <app-input-field
-                    [label]="'موبايل'"
-                    formControlName="Mobile"
-                >
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                <app-input-field
-                    [label]="'الهاتف'"
-                    formControlName="Phone"
-                >
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                <app-input-field
-                    [label]="'الايميل'"
-                    formControlName="Email"
-                >
-                </app-input-field>
-            </div>
             <div
                 class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
                 style="margin-top: 2.5rem"
@@ -147,5 +107,40 @@
                 </div>
             </div>
         </div>
-    </form> -->
+    </form>
 </div>
+
+<div class="card electronic-services">
+    <div class="flex flex-column md:flex-row  mb-3">
+    <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
+        المركز الاعلامي - جداول الاقسام
+    </div>
+    </div>
+    <hr />
+
+        <p-tabView>
+            <p-tabPanel header=" الاخبار">
+
+            </p-tabPanel>
+            <p-tabPanel header=" معرض الصور">
+
+            </p-tabPanel>
+            <p-tabPanel header=" معرض الفيديو">
+
+            </p-tabPanel>
+            <p-tabPanel header=" المقالات الطبية">
+
+            </p-tabPanel>
+            <p-tabPanel header=" قصص صحفية">
+
+            </p-tabPanel>
+            <p-tabPanel header=" قصص رقمية">
+
+            </p-tabPanel>
+
+        </p-tabView>
+    </div>
+
+
+
+

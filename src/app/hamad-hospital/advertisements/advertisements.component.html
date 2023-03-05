@@ -45,7 +45,7 @@
                 </app-input-field>
             </div>
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                <app-input-field label="ترتيب الخدمة" formControlName="Sorting">
+                <app-input-field label="ترتيب الاعلان" formControlName="Sorting">
                 </app-input-field>
             </div>
             <div
@@ -86,7 +86,7 @@
 <div class="card">
     <div class="flex flex-column md:flex-row mb-3">
         <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
-            اعلان التوظيف الحالي
+            الاعلانات الحالية
         </div>
     </div>
     <hr />
@@ -121,7 +121,7 @@
                     <td>{{ item.ButtonLink }}</td>
                     <td>{{ item.IsActive }}</td>
                     <td>{{ item.Sorting }}</td>
-                    <td class="text-center">
+                    <td class="text-center d-flex " >
                         <app-icon-shared
                             [Icon]="'pi pi-pencil'"
                             [classColor]="'var(--blue-400)'"
