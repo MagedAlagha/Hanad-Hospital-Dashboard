@@ -11,8 +11,10 @@ import { MediaCenterService } from './media-center.service';
 })
 export class MediaCenterComponent implements OnInit {
     Form_MediaSectionsItems!: FormGroup;
+    Form_ImageSection!: FormGroup;
     fileSelected: any;
     fileSelected2: any;
+    fileSelected3: any;
     @ViewChild('fileUpload') fileUpload: any;
 
     constructor(
@@ -31,6 +33,11 @@ export class MediaCenterComponent implements OnInit {
             MainServiceID: [''],
             IsActive: [''],
             Sorting: [''],
+        });
+        this.Form_ImageSection = fb.group({
+            ID: [null],
+            MediaSectionsItemID: [],
+            Sorting: [],
         });
     }
 
@@ -57,6 +64,18 @@ export class MediaCenterComponent implements OnInit {
             this.clear();
         }
         console.log(this.Form_MediaSectionsItems.value, 'gegegegeg');
+    }
+
+
+
+    saveImageSection(){
+        this._mediaCenterService.saveImageSection({
+            ...this.Form_ImageSection.value,
+            ImagePath: this.fileSelected3,
+        });
+    }
+    clearImageSection(){
+        this.Form_ImageSection.reset();
     }
 
     openDialog(item:any){

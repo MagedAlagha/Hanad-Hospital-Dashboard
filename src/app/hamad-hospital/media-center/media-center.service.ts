@@ -15,6 +15,7 @@ export class MediaCenterService {
     store = new BehaviorSubject<jobFunctionalModel>({
         Stats: { data: [], loading: false },
         MediaSectionsItems: { data: [], loading: false },
+        ImageSection: { data: [], loading: false },
     });
     store$ = this.store.asObservable();
     updateStore(newSate: jobFunctionalModel) {
@@ -34,7 +35,6 @@ export class MediaCenterService {
         );
     }
 
-
     /*  *******  Start MediaSectionsItems - API ******* */
     saveMediaSectionsItems(data: any) {
         return this._http
@@ -53,9 +53,49 @@ export class MediaCenterService {
             });
     }
     getMediaSectionsItems() {
-        this.getFormApi('MediaSectionsItems/MediaSectionsItemsSearch', 'MediaSectionsItems',{MediaSectionID:2}, {
-            isLoading: true,
-        });
+        this.getFormApi(
+            'MediaSectionsItems/MediaSectionsItemsSearch',
+            'MediaSectionsItems',
+            { MediaSectionID: 2 },
+            {
+                isLoading: true,
+            }
+        );
+    }
+
+    /*  *******  Start ImageSection - API ******* */
+    saveImageSection(data: any) {
+        return this._http
+            .saveFormData(
+                'MediaSectionsItemsImages/MediaSectionsItemsImagesSave',
+                data
+            )
+            .subscribe((value) => {
+                this.getImageSection();
+            });
+    }
+  /*   MediaSectionsItemID: 1 */
+    getImageSection() {
+        this.getFormApi(
+            'MediaSectionsItemsImages/MediaSectionsItemsImagesSearch',
+            'ImageSection',
+            {  },
+            {
+                isLoading: true,
+            }
+        );
+    }
+    deleteImageSection(ID: any) {
+        return this._http
+            .deleteData(
+                'MediaSectionsItemsImages/MediaSectionsItemsImagesDelete',
+                {
+                    ID: ID,
+                }
+            )
+            .subscribe((value) => {
+                this.getImageSection();
+            });
     }
 
     getFormApi(
@@ -76,5 +116,6 @@ export class MediaCenterService {
 export interface jobFunctionalModel {
     Stats?: { data: any; loading: boolean };
     MediaSectionsItems?: { data: any; loading: boolean };
+    ImageSection?: { data: any; loading: boolean };
 }
 export type selectorsType = keyof jobFunctionalModel;

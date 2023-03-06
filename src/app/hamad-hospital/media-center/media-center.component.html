@@ -66,11 +66,23 @@
                         { Code: 3, Name: 'معرض الفيديو' },
                         { Code: 4, Name: 'المقالات الطبية' },
                         { Code: 5, Name: 'قصص صحفية' },
-                        { Code: 6, Name: 'قصص رقمية' },
+                        { Code: 6, Name: 'قصص رقمية' }
                     ]"
                     formControlName="MediaSectionID"
-                    [label]="'اختيار القسم'"
-
+                    [label]="'اختيار المركز الاعلامي'"
+                >
+                </app-select-field>
+            </div>
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <app-select-field
+                    [dropdownItems]="[
+                        { Code: 1, Name: 'التأهيل الطبي' },
+                        { Code: 2, Name: 'الاطراف الصناعية' },
+                        { Code: 3, Name: 'السمع والتوازن' },
+                        { Code: 4, Name: 'العيادة الخارجية' }
+                    ]"
+                    formControlName="MainServiceID"
+                    [label]="'اختيار القسم الرئيسي'"
                 >
                 </app-select-field>
             </div>
@@ -109,38 +121,85 @@
         </div>
     </form>
 </div>
+<div class="card">
+    <div class="flex flex-column md:flex-row mb-3">
+        <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
+            اضافة صور للاقسام
+        </div>
+    </div>
+    <hr />
+    <form [formGroup]="Form_ImageSection">
+        <div class="grid p-fluid mt-3">
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <label for="">اضافة صورة</label>
+                <app-upload-files
+                    (onSelectFiles)="fileSelected3 = $event"
+                    [showFilesUploaded]="true"
+                ></app-upload-files>
+            </div>
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <app-select-field
+                    [dropdownItems]="[
+                        { Code: 1, Name: 'الأخبار' },
+                        { Code: 2, Name: 'معرض الصور' },
+                        { Code: 4, Name: 'المقالات الطبية' },
+                        { Code: 5, Name: 'قصص صحفية' },
+                        { Code: 6, Name: 'قصص رقمية' }
+                    ]"
+                    formControlName="MediaSectionsItemID"
+                    [label]="'اختيار المركز الاعلامي'"
+                >
+                    <!--    { Code: 3, Name: 'معرض الفيديو' }, -->
+                </app-select-field>
+            </div>
+
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <app-input-field label="الترتيب" formControlName="Sorting">
+                </app-input-field>
+            </div>
+
+            <div
+                class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
+                style="margin-top: 2.5rem"
+            >
+                <div class="inline-flex align-items-center">
+                    <app-button-component
+                        [classColor]="'p-button-raised'"
+                        (action)="saveImageSection()"
+                        [Icon]="'pi pi-id-card'"
+                        label="حفظ"
+                        [isCustomLable]="true"
+                        [pTooltipCustom]="'حفظ'"
+                    >
+                    </app-button-component>
+                    <app-button-component
+                        label="مسح الحقول"
+                        class="pr-2"
+                        (action)="clearImageSection()"
+                        [classColor]="'p-button-raised p-button-secondary '"
+                        [pTooltipCustom]="'مسح الحقول '"
+                        [Icon]="'pi pi-eraser'"
+                    ></app-button-component>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 
 <div class="card electronic-services">
-    <div class="flex flex-column md:flex-row  mb-3">
-    <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
-        المركز الاعلامي - جداول الاقسام
-    </div>
+    <div class="flex flex-column md:flex-row mb-3">
+        <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
+            المركز الاعلامي - جداول الاقسام
+        </div>
     </div>
     <hr />
 
-        <p-tabView>
-            <p-tabPanel header=" الاخبار">
-
-            </p-tabPanel>
-            <p-tabPanel header=" معرض الصور">
-
-            </p-tabPanel>
-            <p-tabPanel header=" معرض الفيديو">
-
-            </p-tabPanel>
-            <p-tabPanel header=" المقالات الطبية">
-
-            </p-tabPanel>
-            <p-tabPanel header=" قصص صحفية">
-
-            </p-tabPanel>
-            <p-tabPanel header=" قصص رقمية">
-
-            </p-tabPanel>
-
-        </p-tabView>
-    </div>
-
-
-
-
+    <p-tabView>
+        <p-tabPanel header=" الاخبار"> </p-tabPanel>
+        <p-tabPanel header=" معرض الصور"> </p-tabPanel>
+        <p-tabPanel header=" معرض الفيديو"> </p-tabPanel>
+        <p-tabPanel header=" المقالات الطبية"> </p-tabPanel>
+        <p-tabPanel header=" قصص صحفية"> </p-tabPanel>
+        <p-tabPanel header=" قصص رقمية"> </p-tabPanel>
+    </p-tabView>
+</div>
