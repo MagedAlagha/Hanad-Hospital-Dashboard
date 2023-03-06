@@ -11,11 +11,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckBoxComponent } from 'src/app/shared/Module-shared/check-box/check-box.component';
 
 import {EditorModule} from 'primeng/editor';
+import { ShowMessageModalComponent } from './Modals/show-message-modal/show-message-modal.component';
+import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-shared/dialog-shared.component';
 
 
 @NgModule({
   declarations: [
-    AboutHospitalComponent
+    AboutHospitalComponent,
+    ShowMessageModalComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +37,8 @@ import {EditorModule} from 'primeng/editor';
     ReactiveFormsModule,
     CheckBoxComponent,
     EditorModule,
-    FormsModule
+    FormsModule ,
+    DialogSharedComponent
 ]
 })
 export class AboutHospitalModule { }

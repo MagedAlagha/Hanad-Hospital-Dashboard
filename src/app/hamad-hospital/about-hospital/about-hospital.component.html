@@ -1,19 +1,49 @@
 <div class="card">
     <div class="flex flex-column md:flex-row mb-3">
         <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
-            حول المستشفى
+            حول المستشفى / اضافة المحتوى والاقسام
         </div>
     </div>
     <hr />
-   <form [formGroup]="FormEditor">
-    <p-editor formControlName="description" [style]="{'height':'320px'}">
-
-    </p-editor>
+   <form [formGroup]="Form_AboutHospital">
+    <div class="grid p-fluid mt-3">
+        <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+            <app-input-field
+            [label]="'اسم القسم  /انجليزي'"
+            formControlName="NameAr">
+        </app-input-field>
+        </div>
+        <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+            <app-input-field
+            [label]="'اسم القسم  /انجليزي'"
+            formControlName="NameEn">
+        </app-input-field>
+        </div>
+        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <app-input-field label="الترتيب " formControlName="Sorting">
+            </app-input-field>
+        </div>
+        <div
+            class="col-12 mb-2 lg:col-1 lg:mb-0 align-items-center justify-content-evenly"
+            style="margin-top: 2.9rem"
+        >
+            <app-check-box label="الحالة" formControlName="IsActive">
+            </app-check-box>
+        </div>
+        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+            <label for="">محتوى القسم / عربي</label>
+            <p-editor formControlName="DescAr" [style]="{'height':'320px'}">
+            </p-editor>
+        </div>
+        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+            <label for="">محتوى القسم / انجليزي</label>
+            <p-editor formControlName="DescEn" [style]="{'height':'320px'}">
+            </p-editor>
+        </div>
+    </div>
    </form>
 
-    <div
-    class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
->
+    <div class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly">
     <div class="inline-flex align-items-center">
         <app-button-component
             [classColor]="'p-button-raised'"
@@ -34,6 +64,79 @@
         ></app-button-component>
     </div>
 
-
-
 </div>
+
+<br>
+<div class="flex flex-column md:flex-row mb-3">
+    <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
+        الاقسام والمحتوى الحالي
+    </div>
+</div>
+<hr />
+<ng-container *ngIf="AboutHospital$ | async as data">
+    <p-table
+        styleClass="p-datatable-gridlines"
+        [rows]="10"
+        [paginator]="true"
+        style="width: 100%"
+        [value]="data.data"
+        [loading]="data.loading"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th class="text-center">#</th>
+                <th class="text-center">الاسم عربي</th>
+                <th class="text-center">الاسم انجليزي</th>
+                <th class="text-center">الحالة</th>
+                <th class="text-center">الترتيب</th>
+                <th class="text-center">الوصف</th>
+                <th class="text-center">الاجراءات</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item let-index="rowIndex">
+            <tr>
+                <td>
+                    <span class="reorder-row-icon">{{ index + 1 }}</span>
+                </td>
+                <td>{{ item.NameAr }}</td>
+                <td>{{ item.NameEn }}</td>
+                <td>{{ item.IsActive }}</td>
+                <td>{{ item.Sorting }}</td>
+                <td class="text-center">
+                    <app-icon-shared
+                        [Icon]="'pi pi-eye'"
+                        [classColor]="'var(--blue-400)'"
+                        [pTooltipCustom]="'عرض الرسالة'"
+                        (action)="openDialog(item)"
+                    ></app-icon-shared>
+                </td>
+                <td class="text-center">
+                    <app-icon-shared
+                        [Icon]="'pi pi-pencil'"
+                        [classColor]="'var(--blue-400)'"
+                        [pTooltipCustom]="'تعديل البيانات'"
+                        (action)="editItem(item)"
+                    ></app-icon-shared>
+
+                    <app-icon-shared
+                        [Icon]="'pi pi-trash'"
+                        [classColor]="'var(--red-400)'"
+                        [pTooltipCustom]="'حذف'"
+                        (action)="deleteItem(item)"
+                    ></app-icon-shared>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td class="text-center" colspan="6">لا يوجد بيانات</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="footer"> </ng-template>
+        <ng-template pTemplate="loadingbody"> </ng-template>
+    </p-table>
+</ng-container>
+
+<app-show-message-modal
+*ngIf="(showMessageDialog$ | async).isOpen"
+></app-show-message-modal>

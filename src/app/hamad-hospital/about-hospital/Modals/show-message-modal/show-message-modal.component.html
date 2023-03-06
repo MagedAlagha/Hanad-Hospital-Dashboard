@@ -1,0 +1,13 @@
+<app-dialog-shared
+    [width]="'55vw'"
+    [dialogHeader]="'موضوع الرسالة '"
+    (close)="closeDialog()"
+>
+    <div class="bodyDialog">
+        <p class="p-3" style="word-break: break-all;  border-radius: 4px; background-color: #f5f6fa; border: 1px dotted #ccc;">{{
+            isEn
+              ? data?.DescEn
+              : data?.DescAr
+          }}</p>
+    </div>
+</app-dialog-shared>
