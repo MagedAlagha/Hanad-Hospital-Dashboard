@@ -91,7 +91,7 @@ export class ElectronicServicesService {
         this.getFormApi(
             'PublicServices/PublicServicesSearch',
             'PressCoverageRequest',
-            { ServiceID: 4 },
+            { ServiceID: 5 },
             { isLoading: true }
         );
     }
@@ -99,7 +99,7 @@ export class ElectronicServicesService {
         this.getFormApi(
             'PublicServices/PublicServicesSearch',
             'VisitRequest',
-            { ServiceID: 4 },
+            { ServiceID: 6 },
             { isLoading: true }
         );
     }

@@ -416,9 +416,6 @@ ul.p-treenode-children > p-treenode.p-element::before {
 .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus{
     box-shadow: inset 0 0 0 0.2rem  #8a15381f;
 }
-.p-tabview-nav {
-    display: inline-flex !important;
-}
 
  .p-inputtext.p-inputtext-sm , .p-button.p-button-sm {
     padding: 0.45625rem 0.65625rem;

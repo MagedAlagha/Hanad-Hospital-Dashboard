@@ -51,7 +51,7 @@ export class MainInfoService {
         });
     }
     getStats() {
-        this.getFormApi('Stats/StatsSearch', 'Stats' , { isLoading: true });
+        this.getFormApi('Stats/StatsSearch', 'Stats' ,{}, { isLoading: true });
     }
 
 

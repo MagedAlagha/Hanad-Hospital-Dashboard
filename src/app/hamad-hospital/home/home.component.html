@@ -74,13 +74,14 @@
     </form>
 
     <br />
-    <ng-container *ngIf="sliderData$ | async as sliderData">
+    <ng-container *ngIf="sliderData$ | async as data">
         <p-table
             styleClass="p-datatable-gridlines"
             [rows]="10"
             [paginator]="true"
             [style.width]="'100%'"
-            [value]="sliderData"
+            [value]="data.data"
+            [loading]="data.loading"
         >
             <ng-template pTemplate="header">
                 <tr>

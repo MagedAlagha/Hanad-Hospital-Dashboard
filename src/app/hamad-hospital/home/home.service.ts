@@ -51,7 +51,7 @@ deleteSlider(ID: any) {
     });
 }
 getSliderData() {
-    this.getFormApi('HeaderSlider/HeaderSliderSearch', 'sliderData' , { isLoading: true });
+    this.getFormApi('HeaderSlider/HeaderSliderSearch', 'sliderData' ,{}, { isLoading: true });
 }
 
 /*  ******* Save Data Services ******* */

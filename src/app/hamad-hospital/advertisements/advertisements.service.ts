@@ -52,7 +52,7 @@ export class AdvertisementsService {
             });
     }
     getAdvertisements() {
-        this.getFormApi('Advertisements/AdvertisementsSearch', 'dataTable', {
+        this.getFormApi('Advertisements/AdvertisementsSearch', 'dataTable',{}, {
             isLoading: true,
         });
     }
