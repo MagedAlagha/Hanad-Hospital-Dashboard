@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
+import { map, Observable, tap } from 'rxjs';
 import { MediaCenterService } from './media-center.service';
 
 @Component({
@@ -11,10 +12,11 @@ import { MediaCenterService } from './media-center.service';
 })
 export class MediaCenterComponent implements OnInit {
     Form_MediaSectionsItems!: FormGroup;
-    Form_ImageSection!: FormGroup;
     fileSelected: any;
     fileSelected2: any;
     fileSelected3: any;
+    addPhotosDialog$!: Observable<any>;
+    MediaSectionsItems$!: Observable<any>;
     @ViewChild('fileUpload') fileUpload: any;
 
     constructor(
@@ -34,15 +36,14 @@ export class MediaCenterComponent implements OnInit {
             IsActive: [''],
             Sorting: [''],
         });
-        this.Form_ImageSection = fb.group({
-            ID: [null],
-            MediaSectionsItemID: [],
-            Sorting: [],
-        });
     }
 
     ngOnInit(): void {
         this._mediaCenterService.getMediaSectionsItems();
+        this.MediaSectionsItems$ =
+            this._mediaCenterService.Selector$('MediaSectionsItems');
+        this.addPhotosDialog$ =
+            this._mediaCenterService.Selector$('addPhotosDialog');
     }
 
     save() {
@@ -55,10 +56,10 @@ export class MediaCenterComponent implements OnInit {
                 ),
             });
         } else {
-             this._mediaCenterService.saveMediaSectionsItems({
+            this._mediaCenterService.saveMediaSectionsItems({
                 ...this.Form_MediaSectionsItems.value,
                 ImagePath: this.fileSelected,
-                VideoPath:this.fileSelected2
+                VideoPath: this.fileSelected2,
             });
 
             this.clear();
@@ -66,20 +67,17 @@ export class MediaCenterComponent implements OnInit {
         console.log(this.Form_MediaSectionsItems.value, 'gegegegeg');
     }
 
-
-
-    saveImageSection(){
-        this._mediaCenterService.saveImageSection({
-            ...this.Form_ImageSection.value,
-            ImagePath: this.fileSelected3,
-        });
-    }
-    clearImageSection(){
-        this.Form_ImageSection.reset();
-    }
-
-    openDialog(item:any){
-
-    }
+    openDialog(item: any) {}
     clear() {}
+
+    edit(item: any) {
+        this.Form_MediaSectionsItems.patchValue(item);
+    }
+    deleteItem(item: any) {
+        this._mediaCenterService.deleteMediaSectionsItems(item.ID);
+    }
+
+    addPhotosDialog(item?: any) {
+        this._mediaCenterService.displayDialogs('addPhotosDialog', true, item);
+    }
 }

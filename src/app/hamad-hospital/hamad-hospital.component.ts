@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UsersService } from './users/users.service';
 
 @Component({
   selector: 'app-hamad-hospital',
   templateUrl: './hamad-hospital.component.html',
   styleUrls: ['./hamad-hospital.component.scss']
 })
-export class HamadHospitalComponent {
+export class HamadHospitalComponent implements OnInit {
+constructor(private _usersService:UsersService){
 
+}
+
+ngOnInit(): void {
+    this._usersService.getUsers();
+
+}
 }

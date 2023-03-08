@@ -121,70 +121,6 @@
         </div>
     </form>
 </div>
-<div class="card">
-    <div class="flex flex-column md:flex-row mb-3">
-        <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
-            اضافة صور للاقسام
-        </div>
-    </div>
-    <hr />
-    <form [formGroup]="Form_ImageSection">
-        <div class="grid p-fluid mt-3">
-            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                <label for="">اضافة صورة</label>
-                <app-upload-files
-                    (onSelectFiles)="fileSelected3 = $event"
-                    [showFilesUploaded]="true"
-                ></app-upload-files>
-            </div>
-            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                <app-select-field
-                    [dropdownItems]="[
-                        { Code: 1, Name: 'الأخبار' },
-                        { Code: 2, Name: 'معرض الصور' },
-                        { Code: 4, Name: 'المقالات الطبية' },
-                        { Code: 5, Name: 'قصص صحفية' },
-                        { Code: 6, Name: 'قصص رقمية' }
-                    ]"
-                    formControlName="MediaSectionsItemID"
-                    [label]="'اختيار المركز الاعلامي'"
-                >
-                    <!--    { Code: 3, Name: 'معرض الفيديو' }, -->
-                </app-select-field>
-            </div>
-
-            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                <app-input-field label="الترتيب" formControlName="Sorting">
-                </app-input-field>
-            </div>
-
-            <div
-                class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
-                style="margin-top: 2.5rem"
-            >
-                <div class="inline-flex align-items-center">
-                    <app-button-component
-                        [classColor]="'p-button-raised'"
-                        (action)="saveImageSection()"
-                        [Icon]="'pi pi-id-card'"
-                        label="حفظ"
-                        [isCustomLable]="true"
-                        [pTooltipCustom]="'حفظ'"
-                    >
-                    </app-button-component>
-                    <app-button-component
-                        label="مسح الحقول"
-                        class="pr-2"
-                        (action)="clearImageSection()"
-                        [classColor]="'p-button-raised p-button-secondary '"
-                        [pTooltipCustom]="'مسح الحقول '"
-                        [Icon]="'pi pi-eraser'"
-                    ></app-button-component>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
 
 <div class="card electronic-services">
     <div class="flex flex-column md:flex-row mb-3">
@@ -194,12 +130,91 @@
     </div>
     <hr />
 
-    <p-tabView>
+    <ng-container *ngIf="MediaSectionsItems$ | async as data">
+        <p-table
+            styleClass="p-datatable-gridlines"
+            [rows]="10"
+            [paginator]="true"
+             [style.width]="'100%'"
+            [value]="data"
+
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">الاسم عربي</th>
+                    <th class="text-center">الاسم انجليزي</th>
+                    <th class="text-center">القسم الرئيسي</th>
+                    <th class="text-center">المركز الاجتماعي</th>
+                    <th class="text-center">الترتيب</th>
+                    <th class="text-center">صور القسم</th>
+                    <th class="text-center">الاجراءات</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item let-index="rowIndex">
+                <tr>
+                    <td>
+                        <span class="reorder-row-icon">{{ index + 1 }}</span>
+                    </td>
+                    <td>{{ item.TitleAr }}</td>
+                    <td>{{ item.TitleEn }}</td>
+                    <td *ngIf="item.MainServiceID === null"> - </td>
+                    <td *ngIf="item.MediaSectionID === null"> - </td>
+                    <td *ngIf="item.MediaSectionID ===0"> الاخبار </td>
+                    <td *ngIf="item.MediaSectionID ===1"> معرض الصور</td>
+                    <td *ngIf="item.MediaSectionID ===2"> معرض الفيديو</td>
+                    <td *ngIf="item.MediaSectionID ===3"> المقالات الطبية</td>
+                    <td *ngIf="item.MediaSectionID ===4"> فقصص صحفية</td>
+                    <td *ngIf="item.MediaSectionID ===5"> فقصص رقمية</td>
+                    <td>{{ item.Sorting }}</td>
+
+                    <td class="text-center">
+                        <app-icon-shared
+                            [Icon]="'pi pi-plus'"
+                            [classColor]="'var(--blue-400)'"
+                            [pTooltipCustom]="'اضافة صور للقسم'"
+                            (action)="addPhotosDialog(item)"
+                        ></app-icon-shared>
+                    </td>
+                    <td class="text-center">
+                        <app-icon-shared
+                            [Icon]="'pi pi-pencil'"
+                            [classColor]="'var(--blue-400)'"
+                            [pTooltipCustom]="'تعديل '"
+                            (action)="edit(item)"
+                        ></app-icon-shared>
+
+                        <app-icon-shared
+                            [Icon]="'pi pi-trash'"
+                            [classColor]="'var(--red-400)'"
+                            [pTooltipCustom]="'حذف'"
+                            (action)="deleteItem(item)"
+                        ></app-icon-shared>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="footer"> </ng-template>
+            <ng-template pTemplate="loadingbody"> </ng-template>
+        </p-table>
+    </ng-container>
+
+
+
+   <!--  <p-tabView>
         <p-tabPanel header=" الاخبار"> </p-tabPanel>
         <p-tabPanel header=" معرض الصور"> </p-tabPanel>
         <p-tabPanel header=" معرض الفيديو"> </p-tabPanel>
         <p-tabPanel header=" المقالات الطبية"> </p-tabPanel>
         <p-tabPanel header=" قصص صحفية"> </p-tabPanel>
         <p-tabPanel header=" قصص رقمية"> </p-tabPanel>
-    </p-tabView>
+    </p-tabView> -->
 </div>
+
+
+
+<app-add-photos-modal *ngIf="(addPhotosDialog$ | async).isOpen"></app-add-photos-modal>

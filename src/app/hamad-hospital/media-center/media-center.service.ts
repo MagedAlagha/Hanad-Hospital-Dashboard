@@ -14,8 +14,9 @@ export class MediaCenterService {
     ) {}
     store = new BehaviorSubject<jobFunctionalModel>({
         Stats: { data: [], loading: false },
-        MediaSectionsItems: { data: [], loading: false },
+        MediaSectionsItems:undefined,
         ImageSection: { data: [], loading: false },
+        addPhotosDialog: { isOpen: false, data: '' },
     });
     store$ = this.store.asObservable();
     updateStore(newSate: jobFunctionalModel) {
@@ -34,6 +35,20 @@ export class MediaCenterService {
             distinctUntilChanged()
         );
     }
+
+    displayDialogs = (
+        DialogName: selectorsType,
+        isOpen: boolean,
+        data?: any
+    ) => {
+        let dialog = {
+            [DialogName]: {
+                isOpen: isOpen,
+                data: data,
+            },
+        };
+        this.updateStore(dialog);
+    };
 
     /*  *******  Start MediaSectionsItems - API ******* */
     saveMediaSectionsItems(data: any) {
@@ -56,12 +71,12 @@ export class MediaCenterService {
         this.getFormApi(
             'MediaSectionsItems/MediaSectionsItemsSearch',
             'MediaSectionsItems',
-            { MediaSectionID: 2 },
             {
                 isLoading: true,
             }
         );
     }
+ /*    MediaSectionID: 2 */
 
     /*  *******  Start ImageSection - API ******* */
     saveImageSection(data: any) {
@@ -115,7 +130,8 @@ export class MediaCenterService {
 }
 export interface jobFunctionalModel {
     Stats?: { data: any; loading: boolean };
-    MediaSectionsItems?: { data: any; loading: boolean };
+    MediaSectionsItems?: any;
     ImageSection?: { data: any; loading: boolean };
+    addPhotosDialog?: { isOpen: false; data: any };
 }
 export type selectorsType = keyof jobFunctionalModel;

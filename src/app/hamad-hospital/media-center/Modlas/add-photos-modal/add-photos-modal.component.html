@@ -1,0 +1,45 @@
+<app-dialog-shared
+    [width]="'40vw'"
+    [dialogHeader]="'اضافة صور للاقسام '"
+    (close)="closeDialog()"
+>
+    <div class="bodyDialog">
+        <form [formGroup]="Form_ImageSection">
+            <div class="grid p-fluid mt-3">
+                <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+                    <label for="">اضافة صورة</label>
+                    <app-upload-files
+                        (onSelectFiles)="fileSelected = $event"
+                        [showFilesUploaded]="true"
+                    ></app-upload-files>
+                </div>
+
+                <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+                    <app-input-field label="الترتيب" formControlName="Sorting">
+                    </app-input-field>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+    <div class="footerDialog">
+    <app-button-component
+    [classColor]="'p-button-raised'"
+    (action)="saveImageSection()"
+    [Icon]="'pi pi-id-card'"
+    label="حفظ"
+    [isCustomLable]="true"
+    [pTooltipCustom]="'حفظ'"
+>
+</app-button-component>
+<app-button-component
+    label="مسح الحقول"
+    class="pr-2"
+    (action)="clearImageSection()"
+    [classColor]="'p-button-raised p-button-secondary '"
+    [pTooltipCustom]="'مسح الحقول '"
+    [Icon]="'pi pi-eraser'"
+></app-button-component>
+    </div>
+</app-dialog-shared>

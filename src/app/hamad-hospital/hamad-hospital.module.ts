@@ -70,8 +70,22 @@ import { HamadHospitalComponent } from './hamad-hospital.component';
                             './media-center/media-center.module'
                         ).then((m) => m.MediaCenterModule),
                 },
-
-
+                {
+                    path: 'users',
+                    data: { breadcrumb: 'المستخدمين' },
+                    loadChildren: () =>
+                        import(
+                            './users/users.module'
+                        ).then((m) => m.UsersModule),
+                },
+                {
+                    path: 'permissions',
+                    data: { breadcrumb: 'الصلاحيات' },
+                    loadChildren: () =>
+                        import(
+                            './permissions/permissions.module'
+                        ).then((m) => m.PermissionsModule),
+                },
 
             ],
         },

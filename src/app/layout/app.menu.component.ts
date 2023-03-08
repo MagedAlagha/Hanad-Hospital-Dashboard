@@ -24,6 +24,40 @@ export class AppMenuComponent implements OnInit {
                     //     routerLink: ['/dashboard-sales'],
                     // },
                 ],},
+                {
+                    label: 'الادارة',
+                    icon: 'pi pi-home',
+                    items: [
+                        {
+                            label: 'المستخدمين',
+                            icon: 'pi pi-users',
+                            routerLink: [
+                                '/hamad-hospital/users',
+                            ],
+                        },
+                        {
+                            label: 'الصلاحيات',
+                            icon: 'pi pi-cog',
+                            routerLink: [
+                                '/hamad-hospital/permissions',
+                            ],
+                        },
+                    ],
+                },
+                {
+                    label: 'الخدمات الالكترونية',
+                    icon: 'pi pi-home',
+                    items: [
+                        {
+                            label: 'الطلبات الواردة',
+                            icon: 'pi pi-th-large',
+                            routerLink: [
+                                '/hamad-hospital/electronic-services',
+                            ],
+                        },
+
+                    ],
+                },
             {
                 label: 'صفحات الموقع',
                 icon: 'pi pi-home',
@@ -42,13 +76,7 @@ export class AppMenuComponent implements OnInit {
                             '/hamad-hospital/services',
                         ],
                     },
-                    {
-                        label: 'الخدمات الالكترونية',
-                        icon: 'pi pi-th-large',
-                        routerLink: [
-                            '/hamad-hospital/electronic-services',
-                        ],
-                    },
+
                     {
                         label: 'اعلان التوظيف',
                         icon: 'pi pi-compass',
@@ -81,47 +109,7 @@ export class AppMenuComponent implements OnInit {
                 ],
             },
 
-         /*    {
-                label: 'القائمة الرئيسية',
-                icon: 'pi pi-home',
-                items: [
-                    {
-                        label: ' الصفحة الرئيسية',
-                        icon: 'pi pi-users  ',
-                        routerLink: [
-                            '/employees-client-management/administration/clients',
-                        ],
-                    },
-                    {
-                        label: ' الموظفين',
-                        icon: 'pi pi-users   ',
-                        routerLink: [
-                            '/employees-client-management/administration/employees',
-                        ],
-                    },
-                    {
-                        label: ' المشاريع',
-                        icon: 'pi pi-th-large',
-                        routerLink: [
-                            '/employees-client-management/administration/projects',
-                        ],
-                    },
-                    {
-                        label: ' العقود',
-                        icon: 'pi pi-copy',
-                        routerLink: [
-                            '/employees-client-management/administration/contracts',
-                        ],
-                    },
-                    {
-                        label: 'التزاكر',
-                        icon: 'pi pi-ticket',
-                        routerLink: [
-                            '/employees-client-management/administration/ticket',
-                        ],
-                    },
-                ],
-            }, */
+
 
 
             /* {

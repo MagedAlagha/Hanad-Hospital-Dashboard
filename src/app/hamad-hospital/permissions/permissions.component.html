@@ -1,0 +1,110 @@
+<div class="card">
+    <div class="flex flex-column md:flex-row mb-3">
+        <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
+            اضافة صلاحيات
+        </div>
+    </div>
+    <hr />
+    <form [formGroup]="Form_Permissions">
+        <div class="grid p-fluid mt-3">
+            <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+                <app-input-field
+                    [label]="'الصلاحية'"
+                    formControlName="PermissionID">
+                </app-input-field>
+            </div>
+
+           <!--  [optionLabel]="'FullName'",
+            [optionValue]="'ID'", -->
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <ng-container *ngIf="users$ | async as data">
+                    <app-select-field
+                    [dropdownItems]="data"
+                    formControlName="ForUserID"
+                    [label]="'اختيار المستخدم'" >
+                   </app-select-field>
+                </ng-container>
+            </div>
+
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <app-input-field label="علم" formControlName="Flag">
+                </app-input-field>
+            </div>
+
+            <div
+                class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
+            style="margin-top: 2.5rem;"
+            >
+                <div class="inline-flex align-items-center">
+                    <app-button-component
+                        [classColor]="'p-button-raised'"
+                        (action)="save()"
+                        [Icon]="'pi pi-id-card'"
+                        label="حفظ"
+                        [isCustomLable]="true"
+                        [pTooltipCustom]="'حفظ'"
+                    >
+                    </app-button-component>
+                    <app-button-component
+                        label="مسح الحقول"
+                        class="pr-2"
+                        (action)="clear()"
+                        [classColor]="'p-button-raised p-button-secondary '"
+                        [pTooltipCustom]="'مسح الحقول '"
+                        [Icon]="'pi pi-eraser'"
+                    ></app-button-component>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="card electronic-services">
+    <div class="flex flex-column md:flex-row mb-3">
+        <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
+            المستخدمين الحاليين
+        </div>
+    </div>
+    <hr />
+
+    <ng-container *ngIf="Permissions$ | async as data">
+        <p-table
+            styleClass="p-datatable-gridlines"
+            [rows]="10"
+            [paginator]="true"
+            [style.width]="'100%'"
+            [ngStyle]=""
+            [value]="data.data"
+            [loading]="data.loading"
+
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">الوصف</th>
+                    <th class="text-center">اسم الاب</th>
+                    <th class="text-center">التحقق</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item let-index="rowIndex">
+                <tr>
+                    <td>
+                        <span class="reorder-row-icon">{{ index + 1 }}</span>
+                    </td>
+                    <td>{{ item.Description }}</td>
+                    <td>{{ item.Parent }}</td>
+                    <td>{{ item.Checked }}</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="footer"> </ng-template>
+            <ng-template pTemplate="loadingbody"> </ng-template>
+        </p-table>
+    </ng-container>
+
+
+</div>
