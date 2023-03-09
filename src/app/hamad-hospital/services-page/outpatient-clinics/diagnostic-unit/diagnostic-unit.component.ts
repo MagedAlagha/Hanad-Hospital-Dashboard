@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { ServicesPageService } from '../../services-page.service';
 
 @Component({
@@ -19,6 +19,8 @@ export class DiagnosticUnitComponent {
     fileSelected: any;
     ID:any;
     Services_ID:any;
+    isEn = document.dir == 'ltr' ? true : false;
+
     constructor(
         fb: FormBuilder,
         private _servicesPageService: ServicesPageService
@@ -51,7 +53,7 @@ export class DiagnosticUnitComponent {
 
     ngOnInit() {
         this.prosthetics$ = this._servicesPageService.Selector$('prosthetics');
-        this.getOutpatientClinicsDepartments$ = this._servicesPageService.Selector$('OutpatientClinicsDepartments')
+        this.getOutpatientClinicsDepartments$ = this._servicesPageService.Selector$('OutpatientClinicsDepartments');
         this.OutpatientClinicsDepartmentsServices$ = this._servicesPageService.Selector$('OutpatientClinicsDepartmentsServices')
     }
 

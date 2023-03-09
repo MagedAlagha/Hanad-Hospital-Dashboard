@@ -23,6 +23,7 @@ import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-share
 import { DiagnosticUnitComponent } from './outpatient-clinics/diagnostic-unit/diagnostic-unit.component';
 import { TreeComponent } from 'src/app/shared/Module-shared/tree/tree.component';
 import { AddSubitemModalComponent } from './Modal/add-subitem-modal/add-subitem-modal.component';
+import { EditorModule } from 'primeng/editor';
 
 
 
@@ -60,7 +61,8 @@ import { AddSubitemModalComponent } from './Modal/add-subitem-modal/add-subitem-
     SelectFieldComponent,
     DialogSharedComponent,
     TreeComponent,
-    SelectFieldComponent
+    SelectFieldComponent,
+    EditorModule
   ]
 })
 export class ServicesPageModule { }

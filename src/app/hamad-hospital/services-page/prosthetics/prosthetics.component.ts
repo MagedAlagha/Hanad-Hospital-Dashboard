@@ -12,6 +12,7 @@ export class ProstheticsComponent {
     formprosthetics!: FormGroup<any>;
     prosthetics$!: Observable<any>;
     prostheticsTypes$!: Observable<any>;
+    isEn = document.dir == 'ltr' ? true : false;
     constructor(
         fb: FormBuilder,
         private _servicesPageService: ServicesPageService
@@ -41,6 +42,7 @@ export class ProstheticsComponent {
     }
     clear() {}
     editItem(item: any) {
+        this.formprosthetics.patchValue(item);
         window.scroll(0, 0);
     }
     deleteItem(item: any) {

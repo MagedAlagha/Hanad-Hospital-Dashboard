@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ServicesPageService } from '../services-page.service';
 
 @Component({
@@ -11,7 +11,6 @@ import { ServicesPageService } from '../services-page.service';
 export class MedicalRehabilitationFeaturesComponent {
     formServicesPage!: FormGroup<any>;
     dataTable$!: Observable<any>;
-    ID:any;
     constructor(
         fb: FormBuilder,
         private _servicesPageService: ServicesPageService
@@ -24,29 +23,22 @@ export class MedicalRehabilitationFeaturesComponent {
             Sorting: [null],
         });
     }
-    /* id:[''], */
 
     ngOnInit() {
-        this.dataTable$ = this._servicesPageService.Selector$('dataTable');
+           this.dataTable$ = this._servicesPageService.Selector$('dataTable');
     }
 
     save() {
-       if(!this.ID){
-        this._servicesPageService.saveMedicalRehabilitationFeatures(this.formServicesPage.value);
-       }else{
-        this._servicesPageService.saveMedicalRehabilitationFeatures({
-            ...this.formServicesPage.value ,
-            ID:this.ID
-        });
-       }
+        this._servicesPageService.saveMedicalRehabilitationFeatures(
+            this.formServicesPage.value
+        );
     }
     clear() {
         this.formServicesPage.reset();
     }
     editItem(item: any) {
-       this.formServicesPage.patchValue(item);
-       this.ID = item.ID;
-       window.scroll(0, 0);
+        this.formServicesPage.patchValue(item);
+        window.scroll(0, 0);
     }
     deleteItem(item: any) {
         this._servicesPageService.deleteMedicalRehabilitationFeatures(item.ID);

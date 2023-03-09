@@ -135,7 +135,7 @@
 
 <br />
 <div class="flex flex-column md:flex-row mb-3">
-    <div class="text-900 text-xl font-bold mb-3 md:mb-0">الاقسام الاخرى</div>
+    <div class="text-900 text-xl font-bold mb-3 md:mb-0">قسم العيادات</div>
 </div>
 <hr />
 
@@ -157,21 +157,22 @@
             </app-input-field>
         </div>
          <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-            <app-select-field
-                [dropdownItems]="[
-                    { Code: 1, Name: 'العيادات التخصصية' },
-                    { Code: 2, Name: 'قسم الاشعة' },
-                    { Code: 3, Name: 'المختبر' }
-                ]"
+            <ng-container *ngIf="getOutpatientClinicsDepartments$ | async as data">
+                <app-select-field
+                [dropdownItems]="data.data"
+                [optionLabel]="isEn?'NameEn':'NameAr'"
+                [optionValue]="'ID'"
                 formControlName="OutpatientClinicsDepartmentID"
                 [label]="'اختيار القسم'"
 
             >
             </app-select-field>
+            </ng-container>
+
         </div>
 
         <div
-            class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
+            class="col-12 mb-2 lg:col-1 lg:mb-0 align-items-center justify-content-evenly"
             style="margin-top: 2.9rem"
         >
             <app-check-box label="الحالة" formControlName="IsActive">
@@ -179,6 +180,7 @@
         </div>
         <div
             class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
+            style="margin-top: 2.5rem"
         >
             <div class="inline-flex align-items-center">
                 <app-button-component
@@ -265,11 +267,16 @@
 <div class="grid p-fluid mt-3">
     <div class="col-12 mb-2 lg:col-6 lg:mb-0">
         <form [formGroup]="formOutpatientClinicsSectionAr">
-            <app-input-field
-                [label]="'وحدة التشخيص / العربية'"
-                formControlName="outpatientClinicsSectionAr"
-            >
-            </app-input-field>
+
+                <label for="">وحدة التشخيص / العربية</label>
+                <p-editor
+                    dir="ltr"
+                    formControlName="outpatientClinicsSectionAr"
+                    [style]="{ height: '320px' }"
+                >
+                </p-editor>
+
+
             <div class="inline-flex align-items-center mt-3">
                 <app-button-component
                     [classColor]="'p-button-raised'"
@@ -285,11 +292,15 @@
     </div>
     <div class="col-12 mb-2 lg:col-6 lg:mb-0">
         <form [formGroup]="formOutpatientClinicsSectionEn">
-            <app-input-field
-                [label]="'وحدة التشخيص / الانجليزية'"
+
+            <label for="">وحدة التشخيص / الانجليزية</label>
+            <p-editor
+                dir="ltr"
                 formControlName="outpatientClinicsSectionEn"
+                [style]="{ height: '320px' }"
             >
-            </app-input-field>
+            </p-editor>
+
             <div class="inline-flex align-items-center mt-3">
                 <app-button-component
                     [classColor]="'p-button-raised'"

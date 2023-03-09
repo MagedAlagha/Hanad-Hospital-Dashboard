@@ -1,56 +1,62 @@
+<p-tabView class="sum-tapView">
+    <p-tabPanel header=" وحدة التشخيص / العربية">
+        <form [formGroup]="formHearingSectionAr">
+            <div class="grid p-fluid mt-1">
+                <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                    <label for="">قم باضافة المحتوى باللغة العربية</label>
+                    <p-editor
+                        dir="ltr"
+                        formControlName="hearingSectionAr"
+                        [style]="{ height: '320px' }"
+                    >
+                    </p-editor>
+                </div>
 
-    <div class="grid p-fluid mt-3">
-        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-            <form [formGroup]="formHearingSectionAr">
-                <app-input-field
-                [label]="'وحدة التشخيص / العربية'"
-                formControlName="hearingSectionAr"
-            >
-            </app-input-field>
-            <div class="inline-flex align-items-center mt-3">
-                <app-button-component
-                    [classColor]="'p-button-raised'"
-                    (action)="saveHearingSectionAr()"
-                    [Icon]="'pi pi-id-card'"
-                    label="حفظ"
-                    [isCustomLable]="true"
-                    [pTooltipCustom]="'حفظ'"
-                >
-                </app-button-component>
+                <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+                    <div class="inline-flex align-items-center mt-3">
+                        <app-button-component
+                            [classColor]="'p-button-raised'"
+                            (action)="saveHearingSectionAr()"
+                            [Icon]="'pi pi-id-card'"
+                            label="حفظ"
+                            [isCustomLable]="true"
+                            [pTooltipCustom]="'حفظ'"
+                        >
+                        </app-button-component>
+                    </div>
+                </div>
             </div>
-            </form>
-
-        </div>
-        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+        </form>
+    </p-tabPanel>
+    <p-tabPanel header="وحدة التشخيص / الانجليزية">
             <form [formGroup]="formHearingSectionEn">
-                <app-input-field
-                [label]="'وحدة التشخيص / الانجليزية'"
-                formControlName="hearingSectionEn"
-            >
-            </app-input-field>
-            <div class="inline-flex align-items-center mt-3">
-                <app-button-component
-                    [classColor]="'p-button-raised'"
-                    (action)="saveHearingSectionEn()"
-                    [Icon]="'pi pi-id-card'"
-                    label="حفظ"
-                    [isCustomLable]="true"
-                    [pTooltipCustom]="'حفظ'"
-                >
-                </app-button-component>
-            </div>
+                <div class="grid p-fluid mt-1">
+                    <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                        <label for="">قم باضافة المحتوى باللغة الانجليزية</label>
+                        <p-editor
+                            dir="ltr"
+                            formControlName="hearingSectionEn"
+                            [style]="{ height: '320px' }"
+                        >
+                        </p-editor>
+                    </div>
+
+                    <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+                        <div class="inline-flex align-items-center mt-3">
+                            <app-button-component
+                                [classColor]="'p-button-raised'"
+                                (action)="saveHearingSectionEn()"
+                                [Icon]="'pi pi-id-card'"
+                                label="حفظ"
+                                [isCustomLable]="true"
+                                [pTooltipCustom]="'حفظ'"
+                            >
+                            </app-button-component>
+                        </div>
+                    </div>
+                </div>
             </form>
-        </div>
 
-
-        <div
-            class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"  style="margin-top: 2.5rem"
-        >
-
-        </div>
-    </div>
-    <br />
-
-
-
+    </p-tabPanel>
+</p-tabView>
 

@@ -23,6 +23,7 @@ export class ServicesPageService {
         prostheticsTypes: { data: [], loading: false },
         OutpatientClinicsDepartments: { data: [], loading: false },
         OutpatientClinicsDepartmentsServices: { data: [], loading: false },
+        Services: { data: [], loading: false },
         prostheticsTypesDialog: { isOpen: false, data: '' },
         addSubitemModalDialog: { isOpen: false, data: '' },
     });
@@ -131,10 +132,12 @@ export class ServicesPageService {
     /*  ******* Save prosthetics Type ******* */
     saveProstheticsTypes(data: any) {
         return this._http
-            .saveData('ProstheticsTypes/ProstheticsTypesSave', data).pipe(tap(value=>{
-                this.getProstheticsTypes();
-            }))
-
+            .saveData('ProstheticsTypes/ProstheticsTypesSave', data)
+            .pipe(
+                tap((value) => {
+                    this.getProstheticsTypes();
+                })
+            );
     }
     deleteProstheticsTypes(ID: any) {
         return this._http
@@ -148,7 +151,8 @@ export class ServicesPageService {
     getProstheticsTypes() {
         this.getFormApi(
             'ProstheticsTypes/ProstheticsTypesSearch',
-            'prostheticsTypes',{},
+            'prostheticsTypes',
+            {},
             { isLoading: true }
         );
     }
@@ -156,50 +160,68 @@ export class ServicesPageService {
     /*  ******* Save hearingSectionAr ******* */
     saveHearingSectionAr(data: any) {
         return this._http
-            .updateData('Services/Services_HearingSectionAr_Update/HearingSectionAr', data)
+            .updateData(
+                'Services/Services_HearingSectionAr_Update/HearingSectionAr',
+                data
+            )
             .subscribe();
     }
     /*  ******* Save hearingSectionEn ******* */
     saveHearingSectionEn(data: any) {
         return this._http
-            .updateData('Services/Services_HearingSectionEn_Update/HearingSectionEn', data)
+            .updateData(
+                'Services/Services_HearingSectionEn_Update/HearingSectionEn',
+                data
+            )
             .subscribe();
     }
 
     /*  ******* Save OutpatientClinicsSectionAr ******* */
     saveOutpatientClinicsSectionAr(data: any) {
         return this._http
-            .updateData('Services/Services_OutpatientClinicsSectionAr_Update/OutpatientClinicsSectionAr', data)
+            .updateData(
+                'Services/Services_OutpatientClinicsSectionAr_Update/OutpatientClinicsSectionAr',
+                data
+            )
             .subscribe();
     }
     /*  ******* Save OutpatientClinicsSectionEn ******* */
     saveOutpatientClinicsSectionEn(data: any) {
         return this._http
-            .updateData('Services/Services_OutpatientClinicsSectionEn_Update/OutpatientClinicsSectionEn', data)
+            .updateData(
+                'Services/Services_OutpatientClinicsSectionEn_Update/OutpatientClinicsSectionEn',
+                data
+            )
             .subscribe();
     }
     /*  ******* First Section Department ******* */
     saveOutpatientClinicsDepartments(data: any) {
         return this._http
-            .saveFormData('OutpatientClinicsDepartments/OutpatientClinicsDepartmentsSave', data)
-            .subscribe((value)=>{
+            .saveFormData(
+                'OutpatientClinicsDepartments/OutpatientClinicsDepartmentsSave',
+                data
+            )
+            .subscribe((value) => {
                 this.getOutpatientClinicsDepartments();
             });
     }
     getOutpatientClinicsDepartments() {
         this.getFormApi(
             'OutpatientClinicsDepartments/OutpatientClinicsDepartmentsSearch',
-            'OutpatientClinicsDepartments',{},
+            'OutpatientClinicsDepartments',
+            {},
             { isLoading: true }
         );
     }
 
-
     deleteOutpatientClinicsDepartments(ID: any) {
         return this._http
-            .deleteData('OutpatientClinicsDepartments/OutpatientClinicsDepartmentsDelete', {
-                ID: ID,
-            })
+            .deleteData(
+                'OutpatientClinicsDepartments/OutpatientClinicsDepartmentsDelete',
+                {
+                    ID: ID,
+                }
+            )
             .subscribe((value) => {
                 this.getOutpatientClinicsDepartments();
             });
@@ -208,34 +230,54 @@ export class ServicesPageService {
     /*  ******* First  another Sections  ******* */
     saveOutpatientClinicsDepartmentsServices(data: any) {
         return this._http
-            .saveData('OutpatientClinicsDepartmentsServices/OutpatientClinicsDepartmentsServicesSave', data)
-            .subscribe((value)=>{
+            .saveData(
+                'OutpatientClinicsDepartmentsServices/OutpatientClinicsDepartmentsServicesSave',
+                data
+            )
+            .subscribe((value) => {
                 this.getOutpatientClinicsDepartmentsServices();
             });
     }
     getOutpatientClinicsDepartmentsServices() {
         this.getFormApi(
             'OutpatientClinicsDepartmentsServices/OutpatientClinicsDepartmentsServicesSearch',
-            'OutpatientClinicsDepartmentsServices',{},
+            'OutpatientClinicsDepartmentsServices',
+            {},
             { isLoading: true }
         );
     }
 
-
     deleteOutpatientClinicsDepartmentsServices(ID: any) {
         return this._http
-            .deleteData('OutpatientClinicsDepartmentsServices/OutpatientClinicsDepartmentsServicesDelete', {
-                ID: ID,
-            })
+            .deleteData(
+                'OutpatientClinicsDepartmentsServices/OutpatientClinicsDepartmentsServicesDelete',
+                {
+                    ID: ID,
+                }
+            )
             .subscribe((value) => {
                 this.getOutpatientClinicsDepartmentsServices();
             });
     }
 
-    /*  ******* Save Data Services ******* */
+    /*  ******* get data ******* */
+
+    getServices() {
+        this.getFormApi(
+            'Services/ServicesSearch',
+            'Services',
+            {},
+            { isLoading: true }
+        );
+    }
+
     /*  */
 
-    displayDialogs = (DialogName: selectorsType, isOpen: boolean, data?: any) => {
+    displayDialogs = (
+        DialogName: selectorsType,
+        isOpen: boolean,
+        data?: any
+    ) => {
         let dialog = {
             [DialogName]: {
                 isOpen: isOpen,
@@ -267,6 +309,7 @@ export interface jobFunctionalModel {
     prostheticsTypes?: { data: any; loading: boolean };
     OutpatientClinicsDepartments?: { data: any; loading: boolean };
     OutpatientClinicsDepartmentsServices?: { data: any; loading: boolean };
+    Services?: { data: any; loading: boolean };
     prostheticsTypesDialog?: { isOpen: false; data: any };
     addSubitemModalDialog?: { isOpen: false; data: any };
 }

@@ -13,10 +13,11 @@ export class PermissionsComponent {
     Form_Permissions!: FormGroup;
     Permissions$!: Observable<any>;
     users$!: Observable<any>;
+    ForUserID: any;
     constructor(
         fb: FormBuilder,
         private _permissionsService: PermissionsService,
-        private _usersService:UsersService
+        private _usersService: UsersService
     ) {
         this.Form_Permissions = fb.group({
             PermissionID: [],
@@ -25,15 +26,31 @@ export class PermissionsComponent {
         });
     }
     ngOnInit(): void {
-        this._permissionsService.getPermissions();
+        /*  this._permissionsService.getPermissions(); */
         this.Permissions$ = this._permissionsService.Selector$('Permissions');
-        this.users$ = this._usersService.Selector$('Users').pipe(map(value=> value.data  ));
+        this.users$ = this._usersService.Selector$('Users').pipe(
+            tap((val: any) => {
+                this.Form_Permissions.get('ForUserID')?.setValue(
+                    val?.data[0]?.ID
+                );
+                console.log('fwwfwf');
+            })
+        );
+    }
 
-      this.Form_Permissions.get('forUserID')?.valueChanges.subscribe(value=>console.log("value 3636" , value))
+    onChange(event: any) {
+        console.log('fwwfwf', event);
+        this._permissionsService.getPermissions(event.ID);
     }
 
     save() {
-        this._permissionsService.savePermissions(this.Form_Permissions.value);
+        this._permissionsService
+            .savePermissions(this.Form_Permissions.value)
+            .subscribe((value) =>
+                this._permissionsService.getPermissions(this.ForUserID)
+            );
     }
-    clear() {}
+    clear() {
+        this.Form_Permissions.reset();
+    }
 }

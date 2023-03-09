@@ -10,19 +10,24 @@
             <div class="col-12 mb-2 lg:col-3 lg:mb-0">
                 <app-input-field
                     [label]="'الصلاحية'"
-                    formControlName="PermissionID">
+                    formControlName="PermissionID"
+                >
                 </app-input-field>
             </div>
 
-           <!--  [optionLabel]="'FullName'",
+            <!--  [optionLabel]="'FullName'",
             [optionValue]="'ID'", -->
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <ng-container *ngIf="users$ | async as data">
                     <app-select-field
-                    [dropdownItems]="data"
-                    formControlName="ForUserID"
-                    [label]="'اختيار المستخدم'" >
-                   </app-select-field>
+                    (onSelectionChange)="onChange($event)"
+                        [dropdownItems]="data.data"
+                        [optionLabel]="'FullName'"
+                        [optionValue]="'ID'"
+                        formControlName="ForUserID"
+                        [label]="'اختيار المستخدم'"
+                    >
+                    </app-select-field>
                 </ng-container>
             </div>
 
@@ -33,7 +38,7 @@
 
             <div
                 class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
-            style="margin-top: 2.5rem;"
+                style="margin-top: 2.5rem"
             >
                 <div class="inline-flex align-items-center">
                     <app-button-component
@@ -76,7 +81,6 @@
             [ngStyle]=""
             [value]="data.data"
             [loading]="data.loading"
-
         >
             <ng-template pTemplate="header">
                 <tr>
@@ -105,6 +109,4 @@
             <ng-template pTemplate="loadingbody"> </ng-template>
         </p-table>
     </ng-container>
-
-
 </div>

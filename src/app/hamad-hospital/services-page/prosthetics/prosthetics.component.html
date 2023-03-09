@@ -2,7 +2,7 @@
     class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3"
 >
     <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
-         الاطراف الصناعية
+        الاطراف الصناعية
     </div>
     <div class="inline-flex align-items-center">
         <span class="p-input-icon-left flex-auto mr-2">
@@ -23,10 +23,7 @@
 <form [formGroup]="formprosthetics">
     <div class="grid p-fluid mt-3">
         <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-            <app-input-field
-                [label]="'الاسم /عربي'"
-                formControlName="NameAr"
-            >
+            <app-input-field [label]="'الاسم /عربي'" formControlName="NameAr">
             </app-input-field>
         </div>
         <div class="col-12 mb-2 lg:col-5 lg:mb-0">
@@ -54,16 +51,17 @@
             <app-input-field label="الترتيب" formControlName="Sorting">
             </app-input-field>
         </div>
-         <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-
-            <app-select-field
-                [dropdownItems]="prostheticsTypes$ |async"
-                formControlName="ProstheticsTypeID"
-                [label]="'اختيار نوع الطرف'"
-                optionLabel="NameAr"
-                optionValue="ID" >
-            </app-select-field>
-
+        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <ng-container *ngIf="prostheticsTypes$ | async as data">
+                <app-select-field
+                    [dropdownItems]="data?.data"
+                    [optionLabel]="isEn?'NameEn':'NameAr'"
+                    [optionValue]="'ID'"
+                    formControlName="ProstheticsTypeID"
+                    [label]="'اختيار نوع الطرف'"
+                >
+                </app-select-field>
+            </ng-container>
         </div>
         <div
             class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
@@ -104,7 +102,7 @@
             styleClass="p-datatable-gridlines"
             [rows]="10"
             [paginator]="true"
-           [style.width]="'100%'"
+            [style.width]="'100%'"
             [value]="data"
             [loading]="data.loading"
         >

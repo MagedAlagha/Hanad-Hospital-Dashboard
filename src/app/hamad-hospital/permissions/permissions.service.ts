@@ -35,16 +35,19 @@ export class PermissionsService {
     }
 
     /* ********************** Permissions ************************** */
+   /*  .subscribe((value) => {
+        this.getPermissions();
+    }) */
     savePermissions(data: any) {
-        return this._http.saveData('Permissions', data).subscribe((value) => {
-            this.getPermissions();
-        });
+        return this._http.saveData('Users/Permissions', data);
     }
-    getPermissions() {
+    getPermissions(ID:any) {
         this.getFormApi(
+            'Users/Permissions',
             'Permissions',
-            'Permissions',
-            {},
+            {
+                ForUserID:ID
+            },
             {
                 isLoading: true,
             }
