@@ -39,6 +39,8 @@ export class DiagnosticUnitComponent {
             ID: [],
             NameAr: [],
             NameEn: [],
+            DescAr: [],
+            DescEn: [],
             OutpatientClinicsDepartmentID: [],
             IsActive: [],
             Sorting: [],

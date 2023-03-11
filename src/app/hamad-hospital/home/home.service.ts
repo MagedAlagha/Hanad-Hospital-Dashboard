@@ -17,6 +17,7 @@ store = new BehaviorSubject<jobFunctionalModel>({
     codes: undefined,
     needsTable: { data: [], loading: false },
     sliderData: { data: [], loading: false },
+    Stats: undefined,
     filterForNeedsTable: undefined,
 });
 store$ = this.store.asObservable();
@@ -53,6 +54,9 @@ deleteSlider(ID: any) {
 getSliderData() {
     this.getFormApi('HeaderSlider/HeaderSliderSearch', 'sliderData' ,{}, { isLoading: true });
 }
+getStats() {
+    this.getFormApi('Stats/StatsSearch', 'Stats');
+}
 
 /*  ******* Save Data Services ******* */
 /*  */
@@ -79,6 +83,7 @@ export interface jobFunctionalModel {
 codes?: any;
 needsTable?: { data: any; loading: boolean };
 filterForNeedsTable?: any;
+Stats?: any;
 sliderData:{ data: any; loading: boolean };
 }
 export type selectorsType = keyof jobFunctionalModel;

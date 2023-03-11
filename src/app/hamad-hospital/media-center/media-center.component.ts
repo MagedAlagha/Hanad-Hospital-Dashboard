@@ -17,6 +17,9 @@ export class MediaCenterComponent implements OnInit {
     fileSelected3: any;
     addPhotosDialog$!: Observable<any>;
     MediaSectionsItems$!: Observable<any>;
+    MediaType$!: Observable<any>;
+    itemShow:any;
+    ID:any;
     @ViewChild('fileUpload') fileUpload: any;
 
     constructor(
@@ -26,7 +29,6 @@ export class MediaCenterComponent implements OnInit {
         private _translateService: TranslateService
     ) {
         this.Form_MediaSectionsItems = fb.group({
-            ID: [''],
             MediaSectionID: [''],
             TitleAr: [''],
             TitleEn: [''],
@@ -39,32 +41,56 @@ export class MediaCenterComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this._mediaCenterService.getImageSection();
+        this._mediaCenterService.getMediaType();
         this._mediaCenterService.getMediaSectionsItems();
         this.MediaSectionsItems$ =
             this._mediaCenterService.Selector$('MediaSectionsItems');
         this.addPhotosDialog$ =
             this._mediaCenterService.Selector$('addPhotosDialog');
+            this.MediaType$ = this._mediaCenterService.Selector$('MediaType')
     }
 
     save() {
-        console.log('fileUpload', this.fileUpload);
-        if (this.Form_MediaSectionsItems.invalid) {
-            this.messageService.add({
-                severity: 'error',
-                detail: this._translateService.instant(
-                    'Shared.THERE_ARE_REQUIRED_FIELDS'
-                ),
-            });
-        } else {
-            this._mediaCenterService.saveMediaSectionsItems({
-                ...this.Form_MediaSectionsItems.value,
-                ImagePath: this.fileSelected,
-                VideoPath: this.fileSelected2,
-            });
+        if(!this.ID){
+            if (this.Form_MediaSectionsItems.invalid) {
+                this.messageService.add({
+                    severity: 'error',
+                    detail: this._translateService.instant(
+                        'Shared.THERE_ARE_REQUIRED_FIELDS'
+                    ),
+                });
+            } else {
+                this._mediaCenterService.saveMediaSectionsItems({
+                    ...this.Form_MediaSectionsItems.value,
+                    ImagePath: this.fileSelected,
+                    VideoPath: this.fileSelected2,
+                });
 
-            this.clear();
+                this.clear();
+            }
+        }else{
+
+            if (this.Form_MediaSectionsItems.invalid) {
+                this.messageService.add({
+                    severity: 'error',
+                    detail: this._translateService.instant(
+                        'Shared.THERE_ARE_REQUIRED_FIELDS'
+                    ),
+                });
+            } else {
+                this._mediaCenterService.saveMediaSectionsItems({
+                    ...this.Form_MediaSectionsItems.value,
+                    ImagePath: this.fileSelected,
+                    VideoPath: this.fileSelected2,
+                    ID:this.ID
+                });
+
+                this.clear();
+            }
+
         }
-        console.log(this.Form_MediaSectionsItems.value, 'gegegegeg');
+
     }
 
     openDialog(item: any) {}
@@ -72,6 +98,7 @@ export class MediaCenterComponent implements OnInit {
 
     edit(item: any) {
         this.Form_MediaSectionsItems.patchValue(item);
+        this.ID = item.ID;
     }
     deleteItem(item: any) {
         this._mediaCenterService.deleteMediaSectionsItems(item.ID);
@@ -79,5 +106,7 @@ export class MediaCenterComponent implements OnInit {
 
     addPhotosDialog(item?: any) {
         this._mediaCenterService.displayDialogs('addPhotosDialog', true, item);
+        this.itemShow = item.ID;
+        this._mediaCenterService.getImageSection(item.ID);
     }
 }

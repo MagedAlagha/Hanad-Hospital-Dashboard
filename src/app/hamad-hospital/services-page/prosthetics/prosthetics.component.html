@@ -54,8 +54,8 @@
         <div class="col-12 mb-2 lg:col-2 lg:mb-0">
             <ng-container *ngIf="prostheticsTypes$ | async as data">
                 <app-select-field
-                    [dropdownItems]="data?.data"
-                    [optionLabel]="isEn?'NameEn':'NameAr'"
+                    [dropdownItems]="data"
+                    [optionLabel]="isEn ? 'NameEn' : 'NameAr'"
                     [optionValue]="'ID'"
                     formControlName="ProstheticsTypeID"
                     [label]="'اختيار نوع الطرف'"
@@ -67,7 +67,7 @@
             class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
             style="margin-top: 2.9rem"
         >
-            <app-check-box label="الحالة" formControlName="IsActive">
+            <app-check-box label="فعال" formControlName="IsActive">
             </app-check-box>
         </div>
 
@@ -113,7 +113,7 @@
                     <th class="text-center">العنوان انجليزي</th>
                     <th class="text-center">العمر عربي</th>
                     <th class="text-center">العمر العمر انجليزي</th>
-                    <th class="text-center">الحالة</th>
+                    <th class="text-center">فعال</th>
                     <th class="text-center">الترتيب</th>
                     <th class="text-center">الاجراءات</th>
                 </tr>

@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { HomeService } from 'src/app/hamad-hospital/home/home.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
 @Component({
@@ -20,8 +21,11 @@ export class SaaSDashboardComponent implements OnInit, OnDestroy {
     revenueChartOptions: any;
 
     subscription: Subscription;
+    Stats$!:Observable<any>
 
-    constructor(public layoutService: LayoutService) { 
+    isEn = document.dir == 'ltr' ? true : false;
+
+    constructor(public layoutService: LayoutService , private _homeService:HomeService) {
         this.subscription = this.layoutService.configUpdate$.subscribe(config => {
             this.initCharts();
         });
@@ -34,6 +38,8 @@ export class SaaSDashboardComponent implements OnInit, OnDestroy {
             {name: 'Last Week', code: '0'},
             {name: 'This Week', code: '1'}
         ];
+        this._homeService.getStats();
+        this.Stats$ = this._homeService.Selector$('Stats');
     }
 
     initCharts() {
@@ -192,7 +198,7 @@ export class SaaSDashboardComponent implements OnInit, OnDestroy {
         if (this.selectedOverviewWeek.code === '1') {
             this.overviewChartData.datasets[0].data = dataSet2[parseInt('0')];
             this.overviewChartData.datasets[1].data = dataSet2[parseInt('1')];
-        } 
+        }
         else {
             this.overviewChartData.datasets[0].data = dataSet1[parseInt('0')];
             this.overviewChartData.datasets[1].data = dataSet1[parseInt('1')];

@@ -8,11 +8,21 @@
     <form [formGroup]="Form_Permissions">
         <div class="grid p-fluid mt-3">
             <div class="col-12 mb-2 lg:col-3 lg:mb-0">
-                <app-input-field
+               <!--  <app-input-field
                     [label]="'الصلاحية'"
                     formControlName="PermissionID"
                 >
-                </app-input-field>
+                </app-input-field> -->
+
+               <!--  [dropdownItems]="MediaType$ |async" -->
+                <app-select-field
+
+                    [optionValue]="'ID'"
+                    formControlName="MediaSectionID"
+                    [label]="'الصلاحية'"
+                >
+                </app-select-field>
+
             </div>
 
             <!--  [optionLabel]="'FullName'",
@@ -29,11 +39,6 @@
                     >
                     </app-select-field>
                 </ng-container>
-            </div>
-
-            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                <app-input-field label="علم" formControlName="Flag">
-                </app-input-field>
             </div>
 
             <div
@@ -86,8 +91,8 @@
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">الوصف</th>
-                    <th class="text-center">اسم الاب</th>
-                    <th class="text-center">التحقق</th>
+<!--                     <th class="text-center">اسم الاب</th>
+ -->                    <th class="text-center">التحقق</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item let-index="rowIndex">
@@ -96,7 +101,7 @@
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
                     <td>{{ item.Description }}</td>
-                    <td>{{ item.Parent }}</td>
+                  <!--   <td>{{ item.Parent }}</td> -->
                     <td>{{ item.Checked }}</td>
                 </tr>
             </ng-template>

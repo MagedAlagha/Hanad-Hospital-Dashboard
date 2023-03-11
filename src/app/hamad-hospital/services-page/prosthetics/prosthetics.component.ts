@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { map, Observable } from 'rxjs';
+import { map, Observable, filter, tap } from 'rxjs';
 import { ServicesPageService } from '../services-page.service';
 
 @Component({
-  selector: 'app-prosthetics',
-  templateUrl: './prosthetics.component.html',
-  styleUrls: ['./prosthetics.component.scss']
+    selector: 'app-prosthetics',
+    templateUrl: './prosthetics.component.html',
+    styleUrls: ['./prosthetics.component.scss'],
 })
 export class ProstheticsComponent {
     formprosthetics!: FormGroup<any>;
@@ -32,9 +32,20 @@ export class ProstheticsComponent {
     /* id:[''], */
 
     ngOnInit() {
-        console.log('test')
+        console.log('test');
         this.prosthetics$ = this._servicesPageService.Selector$('prosthetics');
-        this.prostheticsTypes$ = this._servicesPageService.Selector$('prostheticsTypes');
+        this.prostheticsTypes$ = this._servicesPageService
+            .Selector$('prostheticsTypes')
+            .pipe(
+                tap((value) => {
+                    console.log('value',value);
+                }),
+                map((prostheticsTypes) => {
+                    return prostheticsTypes.filter(
+                        (value: any) => value?.ParentID
+                    );
+                })
+            );
     }
 
     save() {
@@ -56,5 +67,4 @@ export class ProstheticsComponent {
             item
         );
     }
-
 }

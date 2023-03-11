@@ -22,7 +22,6 @@ export class PermissionsComponent {
         this.Form_Permissions = fb.group({
             PermissionID: [],
             ForUserID: [],
-            Flag: [],
         });
     }
     ngOnInit(): void {

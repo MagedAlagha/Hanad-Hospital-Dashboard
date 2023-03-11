@@ -56,7 +56,6 @@ export class ServicesCardsComponent {
                 HearingIconPath: this.fileSelected_03,
                 OutpatientClinicsIconPath: this.fileSelected_04,
             });
-            this.clear();
         }
     }
 

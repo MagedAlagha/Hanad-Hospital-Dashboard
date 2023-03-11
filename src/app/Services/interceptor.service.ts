@@ -149,6 +149,7 @@ export class InterceptorService implements HttpInterceptor {
                             });
                         }
                     } else if (err.status == 401) {
+                        this.auth.logout()
                         this.messageService.add({
                             severity: 'error',
                             summary: 'un Unauthorized',

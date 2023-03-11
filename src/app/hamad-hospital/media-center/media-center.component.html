@@ -37,7 +37,7 @@
             </div>
             <div class="col-12 mb-2 lg:col-6 lg:mb-0">
                 <app-text-area-field
-                    [rows]="2"
+                    [rows]="3"
                     [label]="'الوصف /عربي'"
                     formControlName="DescAr"
                 >
@@ -45,7 +45,7 @@
             </div>
             <div class="col-12 mb-2 lg:col-6 lg:mb-0">
                 <app-text-area-field
-                    [rows]="2"
+                    [rows]="3"
                     [label]="'وصف  /انجليزي'"
                     formControlName="DescEn"
                 >
@@ -53,21 +53,15 @@
             </div>
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-input-field
-                    label="ترتيب المقال / الفيديو"
+                    label="الترتيب"
                     formControlName="Sorting"
                 >
                 </app-input-field>
             </div>
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-select-field
-                    [dropdownItems]="[
-                        { Code: 1, Name: 'الأخبار' },
-                        { Code: 2, Name: 'معرض الصور' },
-                        { Code: 3, Name: 'معرض الفيديو' },
-                        { Code: 4, Name: 'المقالات الطبية' },
-                        { Code: 5, Name: 'قصص صحفية' },
-                        { Code: 6, Name: 'قصص رقمية' }
-                    ]"
+                    [dropdownItems]="MediaType$ |async"
+                    [optionValue]="'ID'"
                     formControlName="MediaSectionID"
                     [label]="'اختيار المركز الاعلامي'"
                 >
@@ -90,7 +84,7 @@
                 class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
                 style="margin-top: 2.9rem"
             >
-                <app-check-box label="الحالة" formControlName="IsActive">
+                <app-check-box label="فعال" formControlName="IsActive">
                 </app-check-box>
             </div>
 
@@ -133,7 +127,7 @@
     <ng-container *ngIf="MediaSectionsItems$ | async as data">
         <p-table
             styleClass="p-datatable-gridlines"
-            [rows]="10"
+            [rows]="7"
             [paginator]="true"
              [style.width]="'100%'"
             [value]="data"
@@ -159,13 +153,17 @@
                     <td>{{ item.TitleAr }}</td>
                     <td>{{ item.TitleEn }}</td>
                     <td *ngIf="item.MainServiceID === null"> - </td>
+                    <td *ngIf="item.MainServiceID === 1"> التأهيل الطبي </td>
+                    <td *ngIf="item.MainServiceID === 2"> الاطراف الصناعية </td>
+                    <td *ngIf="item.MainServiceID === 3"> السمع والتوازن </td>
+                    <td *ngIf="item.MainServiceID === 4"> العيادة الخارجية </td>
                     <td *ngIf="item.MediaSectionID === null"> - </td>
-                    <td *ngIf="item.MediaSectionID ===0"> الاخبار </td>
-                    <td *ngIf="item.MediaSectionID ===1"> معرض الصور</td>
-                    <td *ngIf="item.MediaSectionID ===2"> معرض الفيديو</td>
-                    <td *ngIf="item.MediaSectionID ===3"> المقالات الطبية</td>
-                    <td *ngIf="item.MediaSectionID ===4"> فقصص صحفية</td>
-                    <td *ngIf="item.MediaSectionID ===5"> فقصص رقمية</td>
+                    <td *ngIf="item.MediaSectionID === 1"> الاخبار </td>
+                    <td *ngIf="item.MediaSectionID === 2"> معرض الصور</td>
+                    <td *ngIf="item.MediaSectionID === 3"> معرض الفيديو</td>
+                    <td *ngIf="item.MediaSectionID === 4"> المقالات الطبية</td>
+                    <td *ngIf="item.MediaSectionID === 5"> فقصص صحفية</td>
+                    <td *ngIf="item.MediaSectionID === 6"> فقصص رقمية</td>
                     <td>{{ item.Sorting }}</td>
 
                     <td class="text-center">
@@ -202,17 +200,6 @@
             <ng-template pTemplate="loadingbody"> </ng-template>
         </p-table>
     </ng-container>
-
-
-
-   <!--  <p-tabView>
-        <p-tabPanel header=" الاخبار"> </p-tabPanel>
-        <p-tabPanel header=" معرض الصور"> </p-tabPanel>
-        <p-tabPanel header=" معرض الفيديو"> </p-tabPanel>
-        <p-tabPanel header=" المقالات الطبية"> </p-tabPanel>
-        <p-tabPanel header=" قصص صحفية"> </p-tabPanel>
-        <p-tabPanel header=" قصص رقمية"> </p-tabPanel>
-    </p-tabView> -->
 </div>
 
 

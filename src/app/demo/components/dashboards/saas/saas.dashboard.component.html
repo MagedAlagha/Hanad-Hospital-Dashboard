@@ -1,53 +1,71 @@
 <div class="grid">
-    <div class="col-12 lg:col-6 xl:col-3">
-        <div class="card p-0 overflow-hidden flex flex-column">
-            <div class="flex align-items-center p-3">
-                <i class="fa-solid fa-users text-5xl text-blue-500"></i>
-                <div class="ml-3">
+    <ng-container *ngIf="Stats$ | async as data">
+        <div class="col-12 lg:col-6 xl:col-3">
+            <div class="card p-0 overflow-hidden flex flex-column">
+                <div class="flex align-items-center p-3">
+                    <i class="fa-solid fa-users text-5xl text-blue-500"></i>
+                    <div class="ml-3">
+                        <span class="text-blue-500 block white-space-nowrap">{{
+                            isEn
+                              ? data[0]?.NameEn
+                              : data[0]?.NameAr
+                          }} </span>
+                        <span class="text-blue-500 block text-4xl font-bold">{{data[0]?.Count}}</span>
+                    </div>
+                </div>
+                <img [src]="'assets/demo/images/dashboard/users' + (colorScheme === 'light' ? '' : '-dark') + '.svg'" class="w-full" alt="users">
+            </div>
+        </div>
+        <div class="col-12 lg:col-6 xl:col-3">
+            <div class="card p-0 overflow-hidden flex flex-column">
+                <div class="flex align-items-center p-3">
+                    <i class="fa-solid fa-user-group text-5xl text-orange-500"></i>
+                    <div class="ml-3">
+                        <span class="text-orange-500 block white-space-nowrap">{{
+                            isEn
+                              ? data[1]?.NameEn
+                              : data[1]?.NameAr
+                          }} </span>
+                        <span class="text-orange-500 block text-4xl font-bold">{{data[1]?.Count}}</span>
+                    </div>
+                </div>
+                <img [src]="'assets/demo/images/dashboard/locations' + (colorScheme === 'light' ? '' : '-dark') + '.svg'" class="w-full" alt="locations">
+            </div>
+        </div>
+        <div class="col-12 lg:col-6 xl:col-3">
+            <div class="card h-full p-0 overflow-hidden flex flex-column">
+                <div class="flex align-items-center p-3">
+                    <i class="fa-solid fa-users-gear text-5xl text-purple-500"></i>
+                    <div class="ml-3">
+                        <span class="text-purple-500 block white-space-nowrap">{{
+                            isEn
+                              ? data[2]?.NameEn
+                              : data[2]?.NameAr
+                          }} </span>
+                        <span class="text-purple-500 block text-4xl font-bold">{{data[2]?.Count}}</span>
+                    </div>
+                </div>
+                <img [src]="'assets/demo/images/dashboard/interactions' + (colorScheme === 'light' ? '' : '-dark') + '.svg'" class="w-full mt-auto" alt="interactions">
+            </div>
+        </div>
+        <div class="col-12 lg:col-6 xl:col-3">
+            <div class="card p-0 overflow-hidden flex flex-column">
+                <div class="flex align-items-center p-3">
+                    <i class="fa-solid fa-chart-pie text-5xl text-green-500"></i>
+                    <div class="ml-3">
+                        <span class="text-green-500 block white-space-nowrap">{{
+                            isEn
+                              ? data[3]?.NameEn
+                              : data[3]?.NameAr
+                          }} </span>
+                        <span class="text-green-500 block text-4xl font-bold">{{data[3]?.Count}}</span>
+                    </div>
+                </div>
+                <img [src]="'assets/demo/images/dashboard/rate' + (colorScheme === 'light' ? '' : '-dark') + '.svg'" class="w-full" alt="conversion">
+            </div>
+        </div>
+    </ng-container>
 
-                    <span class="text-blue-500 block white-space-nowrap">طاقم العمل </span>
-                    <span class="text-blue-500 block text-4xl font-bold">3882</span>
-                </div>
-            </div>
-            <img [src]="'assets/demo/images/dashboard/users' + (colorScheme === 'light' ? '' : '-dark') + '.svg'" class="w-full" alt="users">
-        </div>
-    </div>
-    <div class="col-12 lg:col-6 xl:col-3">
-        <div class="card p-0 overflow-hidden flex flex-column">
-            <div class="flex align-items-center p-3">
-                <i class="fa-solid fa-user-group text-5xl text-orange-500"></i>
-                <div class="ml-3">
-                    <span class="text-orange-500 block white-space-nowrap">قصص النجاح</span>
-                    <span class="text-orange-500 block text-4xl font-bold">532</span>
-                </div>
-            </div>
-            <img [src]="'assets/demo/images/dashboard/locations' + (colorScheme === 'light' ? '' : '-dark') + '.svg'" class="w-full" alt="locations">
-        </div>
-    </div>
-    <div class="col-12 lg:col-6 xl:col-3">
-        <div class="card h-full p-0 overflow-hidden flex flex-column">
-            <div class="flex align-items-center p-3">
-                <i class="fa-solid fa-users-gear text-5xl text-purple-500"></i>
-                <div class="ml-3">
-                    <span class="text-purple-500 block white-space-nowrap">العمليات الجراحية</span>
-                    <span class="text-purple-500 block text-4xl font-bold">440</span>
-                </div>
-            </div>
-            <img [src]="'assets/demo/images/dashboard/interactions' + (colorScheme === 'light' ? '' : '-dark') + '.svg'" class="w-full mt-auto" alt="interactions">
-        </div>
-    </div>
-    <div class="col-12 lg:col-6 xl:col-3">
-        <div class="card p-0 overflow-hidden flex flex-column">
-            <div class="flex align-items-center p-3">
-                <i class="fa-solid fa-chart-pie text-5xl text-green-500"></i>
-                <div class="ml-3">
-                    <span class="text-green-500 block white-space-nowrap">مرضى المستشفى</span>
-                    <span class="text-green-500 block text-4xl font-bold">12.6</span>
-                </div>
-            </div>
-            <img [src]="'assets/demo/images/dashboard/rate' + (colorScheme === 'light' ? '' : '-dark') + '.svg'" class="w-full" alt="conversion">
-        </div>
-    </div>
 
     <!--  custom css -->
     <div class="col-12">
@@ -57,7 +75,7 @@
                 <div  class="col-12 md:col-6 xl:col-3">
                     <div class="p-3 border-1 surface-border flex align-items-center justify-content-between hover:surface-100 cursor-pointer border-round" routerLink="hamad-hospital/home" >
                         <div class="flex align-items-center">
-                            <i class="fa-solid fa-user-group text-2xl"></i>
+                            <i class="pi pi-home text-2xl"></i>
                             <span class="text-900 text-lg font-semibold pr-3">الصفحة الرئيسية</span>
                       </div>
                     </div>
@@ -65,7 +83,7 @@
                 <div  class="col-12 md:col-6 xl:col-3">
                     <div class="p-3 border-1 surface-border flex align-items-center justify-content-between hover:surface-100 cursor-pointer border-round" routerLink="hamad-hospital/services" >
                         <div class="flex align-items-center">
-                            <i class="fa-solid fa-users-gear text-2xl"></i>
+                            <i class="pi pi-slack text-2xl"></i>
                             <span class="text-900 text-lg font-semibold pr-3">خدمات المستشفى</span>
                       </div>
                     </div>
@@ -74,7 +92,39 @@
                     <div class="p-3 border-1 surface-border flex align-items-center justify-content-between hover:surface-100 cursor-pointer border-round"  routerLink="hamad-hospital/electronic-services">
                         <div class="flex align-items-center">
                             <i class="pi pi-th-large text-2xl"></i>
-                            <span class="text-900 text-lg font-semibold pr-3">الخدمات الالكترونية</span>
+                            <span class="text-900 text-lg font-semibold pr-3">الطلبات الواردة</span>
+                      </div>
+                    </div>
+                </div>
+                <div  class="col-12 md:col-6 xl:col-3">
+                    <div class="p-3 border-1 surface-border flex align-items-center justify-content-between hover:surface-100 cursor-pointer border-round"  routerLink="hamad-hospital/advertisements">
+                        <div class="flex align-items-center">
+                            <i class="pi pi-box text-2xl"></i>
+                            <span class="text-900 text-lg font-semibold pr-3">اعلانات التوظيف</span>
+                      </div>
+                    </div>
+                </div>
+                <div  class="col-12 md:col-6 xl:col-3">
+                    <div class="p-3 border-1 surface-border flex align-items-center justify-content-between hover:surface-100 cursor-pointer border-round"  routerLink="hamad-hospital/main-info">
+                        <div class="flex align-items-center">
+                            <i class="pi pi-box text-2xl"></i>
+                            <span class="text-900 text-lg font-semibold pr-3">معلومات الرئيسية</span>
+                      </div>
+                    </div>
+                </div>
+                <div  class="col-12 md:col-6 xl:col-3">
+                    <div class="p-3 border-1 surface-border flex align-items-center justify-content-between hover:surface-100 cursor-pointer border-round"  routerLink="hamad-hospital/about">
+                        <div class="flex align-items-center">
+                            <i class="pi pi-star text-2xl"></i>
+                            <span class="text-900 text-lg font-semibold pr-3">حول المستشفى</span>
+                      </div>
+                    </div>
+                </div>
+                <div  class="col-12 md:col-6 xl:col-3">
+                    <div class="p-3 border-1 surface-border flex align-items-center justify-content-between hover:surface-100 cursor-pointer border-round"  routerLink="hamad-hospital/media-center">
+                        <div class="flex align-items-center">
+                            <i class="pi pi-images text-2xl"></i>
+                            <span class="text-900 text-lg font-semibold pr-3">المركز الاعلامي</span>
                       </div>
                     </div>
                 </div>
@@ -281,8 +331,8 @@
             </ul>
             <button type="button" pButton pRipple class="w-full mt-3 " label="مشاهدة الكل" icon="pi pi-arrow-right" iconPos="right"></button>
         </div>
-    </div> -->
-     custom css -->
+    </div>
+
 
 
 

@@ -64,7 +64,6 @@ export class HomeComponent implements OnInit {
                 });
             }
 
-            this.clear();
         }
         console.log(this.formSlider.value, 'gegegegeg');
     }

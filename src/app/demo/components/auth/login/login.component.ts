@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
@@ -11,12 +12,17 @@ export class LoginComponent implements OnInit {
     constructor(
         private layoutService: LayoutService,
         fb: FormBuilder,
-        private auth: AuthService
+        private auth: AuthService,
+        private router: Router
     ) {
         this.loginForm = fb.group({
             Username: ['' , Validators.required],
             Password: ['', Validators.required],
         });
+
+        if(auth.isActive){
+            this.router.navigate(['/'])
+        }
     }
 
     get filledInput(): boolean {

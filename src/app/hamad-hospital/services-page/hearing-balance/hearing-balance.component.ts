@@ -47,6 +47,8 @@ export class HearingBalanceComponent {
     deleteItem(item: any) {
         this._servicesPageService.deleteprosthetics(item.ID);
     }
-
+/* setStyleForImg(){
+    debugger
+} */
 
 }

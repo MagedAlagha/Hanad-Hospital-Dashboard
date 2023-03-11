@@ -1,5 +1,5 @@
 <app-dialog-shared
-    [width]="'40vw'"
+    [width]="'60vw'"
     [dialogHeader]="'اضافة صور للاقسام '"
     (close)="closeDialog()"
 >
@@ -14,13 +14,81 @@
                     ></app-upload-files>
                 </div>
 
-                <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+                <div class="col-12 mb-2 lg:col-4 lg:mb-0">
                     <app-input-field label="الترتيب" formControlName="Sorting">
                     </app-input-field>
                 </div>
 
             </div>
         </form>
+
+<br>
+        <ng-container *ngIf="ImageSection$ | async as data">
+            <p-table
+                styleClass="p-datatable-gridlines"
+                [rows]="7"
+                [paginator]="true"
+                 [style.width]="'100%'"
+                [value]="data.data"
+
+            >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">الصورة</th>
+                        <th class="text-center">الترتيب</th>
+                        <th class="text-center">الاجراءات</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item let-index="rowIndex">
+                    <tr>
+                        <td>
+                            <span class="reorder-row-icon">{{ index + 1 }}</span>
+                        </td>
+                        <td>
+                              <span>
+                            <p-image
+                                [src]="Avatar + item?.ImagePath"
+                                alt="Image"
+                                width="45px"
+                                style="height: 45px; object-fit: cover;"
+                                [preview]="true"
+                            ></p-image>
+                     </span>
+                    </td>
+                        <td>{{ item.Sorting }}</td>
+
+                        <td class="text-center">
+                            <app-icon-shared
+                                [Icon]="'pi pi-pencil'"
+                                [classColor]="'var(--blue-400)'"
+                                [pTooltipCustom]="'تعديل '"
+                                (action)="edit(item)"
+                            ></app-icon-shared>
+
+                            <app-icon-shared
+                                [Icon]="'pi pi-trash'"
+                                [classColor]="'var(--red-400)'"
+                                [pTooltipCustom]="'حذف'"
+                                (action)="deleteItem(item)"
+                            ></app-icon-shared>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="footer"> </ng-template>
+                <ng-template pTemplate="loadingbody"> </ng-template>
+            </p-table>
+        </ng-container>
+
+
+
+
+
 
     </div>
     <div class="footerDialog">

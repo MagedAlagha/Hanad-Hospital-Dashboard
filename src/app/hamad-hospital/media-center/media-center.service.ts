@@ -15,6 +15,7 @@ export class MediaCenterService {
     store = new BehaviorSubject<jobFunctionalModel>({
         Stats: { data: [], loading: false },
         MediaSectionsItems:undefined,
+        MediaType:undefined,
         ImageSection: { data: [], loading: false },
         addPhotosDialog: { isOpen: false, data: '' },
     });
@@ -49,6 +50,17 @@ export class MediaCenterService {
         };
         this.updateStore(dialog);
     };
+
+    /*  *******  Start MediaType - API ******* */
+
+    getMediaType() {
+        this.getFormApi(
+            'MediaSections/MediaTypesSelect/MediaType',
+            'MediaType'
+        );
+    }
+
+
 
     /*  *******  Start MediaSectionsItems - API ******* */
     saveMediaSectionsItems(data: any) {
@@ -85,16 +97,13 @@ export class MediaCenterService {
                 'MediaSectionsItemsImages/MediaSectionsItemsImagesSave',
                 data
             )
-            .subscribe((value) => {
-                this.getImageSection();
-            });
     }
   /*   MediaSectionsItemID: 1 */
-    getImageSection() {
+    getImageSection(ID?:any) {
         this.getFormApi(
             'MediaSectionsItemsImages/MediaSectionsItemsImagesSearch',
             'ImageSection',
-            {  },
+            { MediaSectionsItemID:ID },
             {
                 isLoading: true,
             }
@@ -108,9 +117,7 @@ export class MediaCenterService {
                     ID: ID,
                 }
             )
-            .subscribe((value) => {
-                this.getImageSection();
-            });
+
     }
 
     getFormApi(
@@ -131,6 +138,7 @@ export class MediaCenterService {
 export interface jobFunctionalModel {
     Stats?: { data: any; loading: boolean };
     MediaSectionsItems?: any;
+    MediaType?: any;
     ImageSection?: { data: any; loading: boolean };
     addPhotosDialog?: { isOpen: false; data: any };
 }

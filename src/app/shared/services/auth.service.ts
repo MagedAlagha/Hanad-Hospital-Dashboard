@@ -30,8 +30,9 @@ export class AuthService implements OnDestroy {
             .pipe(
                 tap((res: any) => {
                     console.log('CurrentUserCurrentUser', res);
-                    localStorage.setItem('CurrentUser', JSON.stringify(res));
+                    localStorage.setItem('CurrentUser', JSON.stringify(res?.user));
                     this.getUserData();
+                    console.log('login', this.isActive)
                     this.router.navigate(['/']);
                 }),
                 // catchError((error: any) => {

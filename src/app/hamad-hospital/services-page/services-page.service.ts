@@ -153,7 +153,7 @@ export class ServicesPageService {
             'ProstheticsTypes/ProstheticsTypesSearch',
             'prostheticsTypes',
             {},
-            { isLoading: true }
+            { isLoading: false }
         );
     }
 

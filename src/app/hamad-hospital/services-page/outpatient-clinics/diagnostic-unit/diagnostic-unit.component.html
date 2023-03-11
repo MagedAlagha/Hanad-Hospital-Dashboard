@@ -49,7 +49,7 @@
             class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
             style="margin-top: 2.9rem"
         >
-            <app-check-box label="الحالة" formControlName="IsActive">
+            <app-check-box label="فعال" formControlName="IsActive">
             </app-check-box>
         </div>
         <div
@@ -80,7 +80,7 @@
     <ng-container *ngIf="getOutpatientClinicsDepartments$ | async as data">
         <p-table
             styleClass="p-datatable-gridlines"
-            [rows]="10"
+            [rows]="5"
             [paginator]="true"
            [style.width]="'100%'"
             [value]="data.data"
@@ -91,7 +91,7 @@
                     <th class="text-center">#</th>
                     <th class="text-center">العنوان عربي</th>
                     <th class="text-center">العنوان انجليزي</th>
-                    <th class="text-center">الحالة</th>
+                    <th class="text-center">فعال</th>
                     <th class="text-center">الترتيب</th>
                     <th class="text-center">الاجراءات</th>
                 </tr>
@@ -141,19 +141,35 @@
 
 <form [formGroup]="formSections">
     <div class="grid p-fluid mt-3">
-        <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
             <app-input-field [label]="'الاسم  /عربي'" formControlName="NameAr">
             </app-input-field>
         </div>
-        <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
             <app-input-field
                 [label]="'الاسم  /انجليزي'"
                 formControlName="NameEn"
             >
             </app-input-field>
         </div>
+        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+            <app-text-area-field
+                [rows]="2"
+                [label]="'الوصف / عربي'"
+                formControlName="DescAr"
+            >
+            </app-text-area-field>
+        </div>
+        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+            <app-text-area-field
+                [rows]="2"
+                [label]="'الوصف / انجليزي'"
+                formControlName="DescEn"
+            >
+            </app-text-area-field>
+        </div>
         <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-            <app-input-field label="ترتيب الخدمة" formControlName="Sorting">
+            <app-input-field label="الترتيب " formControlName="Sorting">
             </app-input-field>
         </div>
          <div class="col-12 mb-2 lg:col-2 lg:mb-0">
@@ -175,7 +191,7 @@
             class="col-12 mb-2 lg:col-1 lg:mb-0 align-items-center justify-content-evenly"
             style="margin-top: 2.9rem"
         >
-            <app-check-box label="الحالة" formControlName="IsActive">
+            <app-check-box label="فعال" formControlName="IsActive">
             </app-check-box>
         </div>
         <div
@@ -207,7 +223,7 @@
     <ng-container *ngIf="OutpatientClinicsDepartmentsServices$ | async as data">
         <p-table
             styleClass="p-datatable-gridlines"
-            [rows]="10"
+            [rows]="5"
             [paginator]="true"
            [style.width]="'100%'"
             [value]="data.data"
@@ -218,7 +234,7 @@
                     <th class="text-center">#</th>
                     <th class="text-center">العنوان عربي</th>
                     <th class="text-center">العنوان انجليزي</th>
-                    <th class="text-center">الحالة</th>
+                    <th class="text-center">فعال</th>
                     <th class="text-center">الترتيب</th>
                     <th class="text-center">الاجراءات</th>
                 </tr>
