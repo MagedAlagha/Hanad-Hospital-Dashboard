@@ -1,13 +1,14 @@
 <p-tabView class="sum-tapView">
     <p-tabPanel header=" وحدة التشخيص / العربية">
-        <form [formGroup]="formHearingSectionAr">
+        <form [formGroup]="formHearingSectionAr" >
             <div class="grid p-fluid mt-1">
                 <div class="col-12 mb-2 lg:col-12 lg:mb-0">
                     <label for="">قم باضافة المحتوى باللغة العربية</label>
 
                     <p-editor
+                    class="p-editor"
                         dir="ltr"
-\                        formControlName="hearingSectionAr"
+                       formControlName="hearingSectionAr"
                         [style]="{ height: '320px' }"
                     >
                     </p-editor>
