@@ -153,47 +153,31 @@ export class ServicesPageService {
             'ProstheticsTypes/ProstheticsTypesSearch',
             'prostheticsTypes',
             {},
-            { isLoading: false }
+            { isLoading: true }
         );
     }
 
-    /*  ******* Save hearingSectionAr ******* */
-    saveHearingSectionAr(data: any) {
+
+    /*  ******* Save hearingSection ******* */
+    saveHearingSection(data: any) {
         return this._http
-            .updateData(
-                'Services/Services_HearingSectionAr_Update/HearingSectionAr',
-                data
-            )
-            .subscribe();
-    }
-    /*  ******* Save hearingSectionEn ******* */
-    saveHearingSectionEn(data: any) {
-        return this._http
-            .updateData(
+            .updateFormData(
                 'Services/Services_HearingSectionEn_Update/HearingSectionEn',
                 data
             )
             .subscribe();
     }
 
-    /*  ******* Save OutpatientClinicsSectionAr ******* */
-    saveOutpatientClinicsSectionAr(data: any) {
+    /*  ******* Save OutpatientClinicsSection ******* */
+    saveOutpatientClinicsSection(data: any) {
         return this._http
             .updateData(
-                'Services/Services_OutpatientClinicsSectionAr_Update/OutpatientClinicsSectionAr',
+                'Services/Services_OutpatientClinicsSection_Update/OutpatientClinicsSection',
                 data
             )
             .subscribe();
     }
-    /*  ******* Save OutpatientClinicsSectionEn ******* */
-    saveOutpatientClinicsSectionEn(data: any) {
-        return this._http
-            .updateData(
-                'Services/Services_OutpatientClinicsSectionEn_Update/OutpatientClinicsSectionEn',
-                data
-            )
-            .subscribe();
-    }
+
     /*  ******* First Section Department ******* */
     saveOutpatientClinicsDepartments(data: any) {
         return this._http

@@ -1,14 +1,28 @@
-<p-tabView class="sum-tapView">
-    <p-tabPanel header=" وحدة التشخيص / العربية">
-        <form [formGroup]="formHearingSectionAr" >
-            <div class="grid p-fluid mt-1">
-                <div class="col-12 mb-2 lg:col-12 lg:mb-0">
-                    <label for="">قم باضافة المحتوى باللغة العربية</label>
 
+        <form [formGroup]="formHearingSection" >
+            <div class="grid p-fluid mt-1">
+                <div class="col-12 mb-2 lg:col-8 lg:mb-0">
+                    <label for="">اضافة صورة</label>
+                    <app-upload-files
+                    (onSelectFiles)="fileSelected = $event"
+                    [showFilesUploaded]="true"
+                ></app-upload-files>
+                </div>
+                <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+                    <label for="">قم باضافة المحتوى باللغة العربية</label>
                     <p-editor
                     class="p-editor"
                         dir="ltr"
-                       formControlName="hearingSectionAr"
+                       formControlName="HearingSectionAr"
+                        [style]="{ height: '320px' }"
+                    >
+                    </p-editor>
+                </div>
+                <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+                    <label for="">قم باضافة المحتوى باللغة الانجليزية</label>
+                    <p-editor
+                        dir="ltr"
+                        formControlName="HearingSectionEn"
                         [style]="{ height: '320px' }"
                     >
                     </p-editor>
@@ -18,7 +32,7 @@
                     <div class="inline-flex align-items-center mt-3">
                         <app-button-component
                             [classColor]="'p-button-raised'"
-                            (action)="saveHearingSectionAr()"
+                            (action)="saveHearingSection()"
                             [Icon]="'pi pi-id-card'"
                             label="حفظ"
                             [isCustomLable]="true"
@@ -29,36 +43,3 @@
                 </div>
             </div>
         </form>
-    </p-tabPanel>
-    <p-tabPanel header="وحدة التشخيص / الانجليزية">
-            <form [formGroup]="formHearingSectionEn">
-                <div class="grid p-fluid mt-1">
-                    <div class="col-12 mb-2 lg:col-12 lg:mb-0">
-                        <label for="">قم باضافة المحتوى باللغة الانجليزية</label>
-                        <p-editor
-                            dir="ltr"
-                            formControlName="hearingSectionEn"
-                            [style]="{ height: '320px' }"
-                        >
-                        </p-editor>
-                    </div>
-
-                    <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-                        <div class="inline-flex align-items-center mt-3">
-                            <app-button-component
-                                [classColor]="'p-button-raised'"
-                                (action)="saveHearingSectionEn()"
-                                [Icon]="'pi pi-id-card'"
-                                label="حفظ"
-                                [isCustomLable]="true"
-                                [pTooltipCustom]="'حفظ'"
-                            >
-                            </app-button-component>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-    </p-tabPanel>
-</p-tabView>
-

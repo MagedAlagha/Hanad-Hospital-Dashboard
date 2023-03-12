@@ -35,8 +35,10 @@ export class MediaCenterComponent implements OnInit {
             DescAr: [''],
             DescEn: [''],
             MainServiceID: [''],
+            VideoPath: [''],
             IsActive: [''],
             Sorting: [''],
+
         });
     }
 
@@ -64,7 +66,6 @@ export class MediaCenterComponent implements OnInit {
                 this._mediaCenterService.saveMediaSectionsItems({
                     ...this.Form_MediaSectionsItems.value,
                     ImagePath: this.fileSelected,
-                    VideoPath: this.fileSelected2,
                 });
 
                 this.clear();
@@ -82,7 +83,6 @@ export class MediaCenterComponent implements OnInit {
                 this._mediaCenterService.saveMediaSectionsItems({
                     ...this.Form_MediaSectionsItems.value,
                     ImagePath: this.fileSelected,
-                    VideoPath: this.fileSelected2,
                     ID:this.ID
                 });
 

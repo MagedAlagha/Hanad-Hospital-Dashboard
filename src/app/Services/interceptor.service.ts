@@ -196,8 +196,8 @@ export class InterceptorService implements HttpInterceptor {
             return reqAfterClone;
         }
     }
-
-    message: any = this._translateService.instant('Shared.ARE_YOU_SURE');
+    /* Shared.ARE_YOU_SURE */
+    message: any = this._translateService.instant('هل انت متاكد من الحذف');
     confirm({
         message = this.message,
         header = 'Confirmation',

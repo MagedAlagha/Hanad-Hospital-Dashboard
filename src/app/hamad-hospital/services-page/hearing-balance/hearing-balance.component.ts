@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, ElementRef } from '@angular/core';
+import { AfterContentChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ServicesPageService } from '../services-page.service';
@@ -8,44 +8,38 @@ import { ServicesPageService } from '../services-page.service';
     templateUrl: './hearing-balance.component.html',
     styleUrls: ['./hearing-balance.component.scss'],
 })
-export class HearingBalanceComponent implements AfterContentChecked {
-    formHearingSectionAr!: FormGroup<any>;
-    formHearingSectionEn!: FormGroup<any>;
+export class HearingBalanceComponent implements OnInit {
+    formHearingSection!: FormGroup<any>;
     prosthetics$!: Observable<any>;
+    fileSelected: any;
+    @ViewChild('fileUpload') fileUpload: any;
+
 
     constructor(
         fb: FormBuilder,
         private _servicesPageService: ServicesPageService,
         private el: ElementRef
     ) {
-        this.formHearingSectionAr = fb.group({
-            hearingSectionAr: [null],
+        this.formHearingSection = fb.group({
+            HearingSectionAr: [null],
+            HearingSectionEn: [null],
         });
-        this.formHearingSectionEn = fb.group({
-            hearingSectionEn: [null],
-        });
-    }
-    ngAfterContentChecked(): void {
-        this.setStyleForImg();
     }
 
     ngOnInit() {
         this.prosthetics$ = this._servicesPageService.Selector$('prosthetics');
     }
 
-    saveHearingSectionEn() {
-        this._servicesPageService.saveHearingSectionEn(
-            this.formHearingSectionEn.value
+    saveHearingSection() {
+        this._servicesPageService.saveHearingSection(
+           {
+            ...this.formHearingSection.value ,
+            HearingSectionImagePath: this.fileSelected,
+           }
         );
-        this.formHearingSectionEn.reset();
+
     }
 
-    saveHearingSectionAr() {
-        this._servicesPageService.saveHearingSectionAr(
-            this.formHearingSectionAr.value
-        );
-        this.formHearingSectionAr.reset();
-    }
 
     clear() {}
     editItem(item: any) {
@@ -54,14 +48,5 @@ export class HearingBalanceComponent implements AfterContentChecked {
     deleteItem(item: any) {
         this._servicesPageService.deleteprosthetics(item.ID);
     }
-    setStyleForImg() {
-        let editor = this.el?.nativeElement?.querySelector('.p-editor-content');
-        let editorImg = editor?.querySelectorAll('img');
 
-        if (editorImg && editorImg[0]) {
-            editorImg.forEach((element:any) => {
-                element.style.width = '50%';
-            });
-        }
-    }
 }

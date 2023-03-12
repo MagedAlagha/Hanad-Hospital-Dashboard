@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, tap } from 'rxjs';
 import { ServicesPageService } from '../../services-page.service';
@@ -9,8 +9,7 @@ import { ServicesPageService } from '../../services-page.service';
     styleUrls: ['./diagnostic-unit.component.scss'],
 })
 export class DiagnosticUnitComponent {
-    formOutpatientClinicsSectionAr!: FormGroup<any>;
-    formOutpatientClinicsSectionEn!: FormGroup<any>;
+    formOutpatientClinicsSection!: FormGroup<any>;
     prosthetics$!: Observable<any>;
     getOutpatientClinicsDepartments$!: Observable<any>;
     OutpatientClinicsDepartmentsServices$!: Observable<any>;
@@ -20,7 +19,9 @@ export class DiagnosticUnitComponent {
     ID:any;
     Services_ID:any;
     isEn = document.dir == 'ltr' ? true : false;
+    fileSelected_2: any;
 
+    @ViewChild('fileUpload') fileUpload: any;
     constructor(
         fb: FormBuilder,
         private _servicesPageService: ServicesPageService
@@ -45,12 +46,11 @@ export class DiagnosticUnitComponent {
             IsActive: [],
             Sorting: [],
         })
-        this.formOutpatientClinicsSectionAr = fb.group({
-            outpatientClinicsSectionAr: [null],
+        this.formOutpatientClinicsSection = fb.group({
+            OutpatientClinicsSectionAr: [null],
+            OutpatientClinicsSectionEn: [null],
         });
-        this.formOutpatientClinicsSectionEn = fb.group({
-            outpatientClinicsSectionEn: [null],
-        });
+
     }
 
     ngOnInit() {
@@ -59,18 +59,13 @@ export class DiagnosticUnitComponent {
         this.OutpatientClinicsDepartmentsServices$ = this._servicesPageService.Selector$('OutpatientClinicsDepartmentsServices')
     }
 
-    saveOutpatientClinicsSectionAr() {
-        this._servicesPageService.saveOutpatientClinicsSectionAr(
-            this.formOutpatientClinicsSectionAr.value
+    saveOutpatientClinicsSection() {
+        this._servicesPageService.saveOutpatientClinicsSection(
+            {
+                ...this.formOutpatientClinicsSection.value ,
+                OutpatientClinicsSectionImagePath: this.fileSelected_2,
+            }
         );
-        this.formOutpatientClinicsSectionAr.reset();
-    }
-
-    saveOutpatientClinicsSectionEn() {
-        this._servicesPageService.saveOutpatientClinicsSectionEn(
-            this.formOutpatientClinicsSectionEn.value
-        );
-        this.formOutpatientClinicsSectionEn.reset();
     }
 
     saveFormOutpatient() {

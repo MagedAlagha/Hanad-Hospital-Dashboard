@@ -7,20 +7,14 @@
     <hr />
     <form [formGroup]="Form_MediaSectionsItems">
         <div class="grid p-fluid mt-3">
-            <div class="col-12 mb-2 lg:col-1 lg:mb-0">
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <label for="">اضافة صورة للمقال</label>
                 <app-upload-files
                     (onSelectFiles)="fileSelected = $event"
                     [showFilesUploaded]="true"
                 ></app-upload-files>
             </div>
-            <div class="col-12 mb-2 lg:col-1 lg:mb-0">
-                <label for="">اضافة فيديو للمقال</label>
-                <app-upload-files
-                    (onSelectFiles)="fileSelected2 = $event"
-                    [showFilesUploaded]="true"
-                ></app-upload-files>
-            </div>
+
             <div class="col-12 mb-2 lg:col-5 lg:mb-0">
                 <app-input-field
                     [label]="'العنوان/عربي'"
@@ -60,8 +54,14 @@
             </div>
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-select-field
-                    [dropdownItems]="MediaType$ |async"
-                    [optionValue]="'ID'"
+                    [dropdownItems]="[
+                    { Code: 1, Name: 'الاخبار' },
+                    { Code: 2, Name: 'معرض الصور' },
+                    { Code: 3, Name: 'معرض الفيديو' },
+                    { Code: 4, Name: 'المقالات الطبية' },
+                    { Code: 5, Name: 'قصص صحفية' },
+                    { Code: 6, Name: 'قصص رقمية' }
+                ]"
                     formControlName="MediaSectionID"
                     [label]="'اختيار المركز الاعلامي'"
                 >
@@ -80,9 +80,23 @@
                 >
                 </app-select-field>
             </div>
+            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                <!--  <label for="">اضافة فيديو للمقال</label>
+                 <app-upload-files
+                     (onSelectFiles)="fileSelected2 = $event"
+                     [showFilesUploaded]="true"
+                 ></app-upload-files> -->
+
+                 <app-input-field
+                 [label]="'اضافة لينك الفيديو / يوتيوب'"
+                 formControlName="VideoPath"
+             >
+             </app-input-field>
+
+             </div>
             <div
                 class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
-                style="margin-top: 2.9rem"
+                style="margin-top:2.9rem"
             >
                 <app-check-box label="فعال" formControlName="IsActive">
                 </app-check-box>
@@ -90,7 +104,7 @@
 
             <div
                 class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
-                style="margin-top: 2.5rem"
+                style="margin-top: 1.5rem"
             >
                 <div class="inline-flex align-items-center">
                     <app-button-component
@@ -162,8 +176,8 @@
                     <td *ngIf="item.MediaSectionID === 2"> معرض الصور</td>
                     <td *ngIf="item.MediaSectionID === 3"> معرض الفيديو</td>
                     <td *ngIf="item.MediaSectionID === 4"> المقالات الطبية</td>
-                    <td *ngIf="item.MediaSectionID === 5"> فقصص صحفية</td>
-                    <td *ngIf="item.MediaSectionID === 6"> فقصص رقمية</td>
+                    <td *ngIf="item.MediaSectionID === 5"> قصص صحفية</td>
+                    <td *ngIf="item.MediaSectionID === 6"> قصص رقمية</td>
                     <td>{{ item.Sorting }}</td>
 
                     <td class="text-center">

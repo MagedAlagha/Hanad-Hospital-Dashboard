@@ -276,64 +276,66 @@
     </ng-container>
 </form>
 
+<br />
+<div class="flex flex-column md:flex-row mb-3">
+    <div class="text-900 text-xl font-bold mb-3 md:mb-0">خدمة الصيدلة</div>
+</div>
 <hr />
-<br />
-<br />
-
 <div class="grid p-fluid mt-3">
-    <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-        <form [formGroup]="formOutpatientClinicsSectionAr">
 
-                <label for="">وحدة التشخيص / العربية</label>
+    <form [formGroup]="formOutpatientClinicsSection" >
+        <div class="grid p-fluid mt-1">
+            <div class="col-12 mb-2 lg:col-8 lg:mb-0">
+                <label for="">اضافة صورة</label>
+                <app-upload-files
+                (onSelectFiles)="fileSelected_2 = $event"
+                [showFilesUploaded]="true"
+            ></app-upload-files>
+            </div>
+            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+                <label for="">قم باضافة المحتوى باللغة العربية</label>
                 <p-editor
+                class="p-editor"
                     dir="ltr"
-                    formControlName="outpatientClinicsSectionAr"
+                   formControlName="OutpatientClinicsSectionAr"
                     [style]="{ height: '320px' }"
                 >
                 </p-editor>
-
-
-            <div class="inline-flex align-items-center mt-3">
-                <app-button-component
-                    [classColor]="'p-button-raised'"
-                    (action)="saveOutpatientClinicsSectionAr()"
-                    [Icon]="'pi pi-id-card'"
-                    label="حفظ"
-                    [isCustomLable]="true"
-                    [pTooltipCustom]="'حفظ'"
-                >
-                </app-button-component>
             </div>
-        </form>
-    </div>
-    <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-        <form [formGroup]="formOutpatientClinicsSectionEn">
-
-            <label for="">وحدة التشخيص / الانجليزية</label>
-            <p-editor
-                dir="ltr"
-                formControlName="outpatientClinicsSectionEn"
-                [style]="{ height: '320px' }"
-            >
-            </p-editor>
-
-            <div class="inline-flex align-items-center mt-3">
-                <app-button-component
-                    [classColor]="'p-button-raised'"
-                    (action)="saveOutpatientClinicsSectionEn()"
-                    [Icon]="'pi pi-id-card'"
-                    label="حفظ"
-                    [isCustomLable]="true"
-                    [pTooltipCustom]="'حفظ'"
+            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+                <label for="">قم باضافة المحتوى باللغة الانجليزية</label>
+                <p-editor
+                    dir="ltr"
+                    formControlName="OutpatientClinicsSectionEn"
+                    [style]="{ height: '320px' }"
                 >
-                </app-button-component>
+                </p-editor>
             </div>
-        </form>
-    </div>
+
+            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+                <div class="inline-flex align-items-center mt-3">
+                    <app-button-component
+                        [classColor]="'p-button-raised'"
+                        (action)="saveOutpatientClinicsSection()"
+                        [Icon]="'pi pi-id-card'"
+                        label="حفظ"
+                        [isCustomLable]="true"
+                        [pTooltipCustom]="'حفظ'"
+                    >
+                    </app-button-component>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+
+</div>
 
     <div
         class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
         style="margin-top: 2.5rem"
     ></div>
-</div>
+
 <br />

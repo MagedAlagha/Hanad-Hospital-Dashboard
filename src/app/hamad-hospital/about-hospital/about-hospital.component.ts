@@ -39,7 +39,6 @@ export class AboutHospitalComponent implements OnInit {
         this._aboutHospitalService.saveAboutHospital(
             this.Form_AboutHospital.value
         );
-        this.clear()
     }
     clear() {
         this.Form_AboutHospital.reset();
