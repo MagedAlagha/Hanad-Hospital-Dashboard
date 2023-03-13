@@ -7,6 +7,20 @@
     <hr />
     <form [formGroup]="Form_Permissions">
         <div class="grid p-fluid mt-3">
+
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <ng-container *ngIf="users$ | async as data">
+                    <app-select-field
+                    (onSelectionChange)="onChange($event)"
+                        [dropdownItems]="data.data"
+                        [optionLabel]="'FullName'"
+                        [optionValue]="'ID'"
+                        formControlName="ForUserID"
+                        [label]="'اختيار المستخدم'"
+                    >
+                    </app-select-field>
+                </ng-container>
+            </div>
             <div class="col-12 mb-2 lg:col-3 lg:mb-0">
 
                 <ng-container *ngIf="Permissions$ | async as data">
@@ -22,21 +36,6 @@
 
             </div>
 
-            <!--  [optionLabel]="'FullName'",
-            [optionValue]="'ID'", -->
-            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                <ng-container *ngIf="users$ | async as data">
-                    <app-select-field
-                    (onSelectionChange)="onChange($event)"
-                        [dropdownItems]="data.data"
-                        [optionLabel]="'FullName'"
-                        [optionValue]="'ID'"
-                        formControlName="ForUserID"
-                        [label]="'اختيار المستخدم'"
-                    >
-                    </app-select-field>
-                </ng-container>
-            </div>
 
             <div
                 class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
@@ -99,7 +98,7 @@
                     </td>
                     <td>{{ item.Description }}</td>
                   <!--   <td>{{ item.Parent }}</td> -->
-                    <td>{{ item.Checked }}</td>
+                    <td>{{ item.Checked?'فعال':'غير فعال' }}</td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">
