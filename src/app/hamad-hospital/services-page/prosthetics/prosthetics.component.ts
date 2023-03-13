@@ -12,6 +12,7 @@ export class ProstheticsComponent {
     formprosthetics!: FormGroup<any>;
     prosthetics$!: Observable<any>;
     prostheticsTypes$!: Observable<any>;
+    ProstheticsTypeselect$!: Observable<any>;
     isEn = document.dir == 'ltr' ? true : false;
     constructor(
         fb: FormBuilder,
@@ -36,6 +37,18 @@ export class ProstheticsComponent {
         this.prosthetics$ = this._servicesPageService.Selector$('prosthetics');
         this.prostheticsTypes$ = this._servicesPageService
             .Selector$('prostheticsTypes')
+            .pipe(
+                tap((value) => {
+                    console.log('value',value);
+                }),
+                map((prostheticsTypes) => {
+                    return prostheticsTypes.filter(
+                        (value: any) => value?.ParentID
+                    );
+                })
+            );
+        this.ProstheticsTypeselect$ = this._servicesPageService
+            .Selector$('ProstheticsTypeselect')
             .pipe(
                 tap((value) => {
                     console.log('value',value);

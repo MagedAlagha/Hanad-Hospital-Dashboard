@@ -20,6 +20,7 @@ export class ServicesPageComponent implements OnInit {
         this._servicesPageService.getMedicalRehabilitationServices();
         this._servicesPageService.getprosthetics();
         this._servicesPageService.getProstheticsTypes();
+        this._servicesPageService.getProstheticsTypeselect();
         this._servicesPageService.getOutpatientClinicsDepartments();
         this._servicesPageService.getOutpatientClinicsDepartmentsServices();
         this._servicesPageService.getServices();

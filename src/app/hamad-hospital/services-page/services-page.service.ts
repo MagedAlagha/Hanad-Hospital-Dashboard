@@ -21,6 +21,7 @@ export class ServicesPageService {
         MedicalRehabilitationServices: { data: [], loading: false },
         prosthetics: { data: [], loading: false },
         prostheticsTypes: { data: [], loading: false },
+        ProstheticsTypeselect: { data: [], loading: false },
         OutpatientClinicsDepartments: { data: [], loading: false },
         OutpatientClinicsDepartmentsServices: { data: [], loading: false },
         Services: { data: [], loading: false },
@@ -154,6 +155,14 @@ export class ServicesPageService {
             'prostheticsTypes',
             {},
             { isLoading: true }
+        );
+    }
+    getProstheticsTypeselect() {
+        this.getFormApi(
+            'ProstheticsTypes/ProstheticsTypesSearch',
+            'ProstheticsTypeselect',
+            {},
+            { isLoading: false }
         );
     }
 
@@ -291,6 +300,7 @@ export interface jobFunctionalModel {
     MedicalRehabilitationServices?: { data: any; loading: boolean };
     prosthetics?: { data: any; loading: boolean };
     prostheticsTypes?: { data: any; loading: boolean };
+    ProstheticsTypeselect?: { data: any; loading: boolean };
     OutpatientClinicsDepartments?: { data: any; loading: boolean };
     OutpatientClinicsDepartmentsServices?: { data: any; loading: boolean };
     Services?: { data: any; loading: boolean };
