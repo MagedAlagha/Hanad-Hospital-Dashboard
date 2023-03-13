@@ -43,7 +43,7 @@ export class HearingBalanceComponent implements OnInit {
 
     clear() {}
     editItem(item: any) {
-        window.scroll(0, 0);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     deleteItem(item: any) {
         this._servicesPageService.deleteprosthetics(item.ID);

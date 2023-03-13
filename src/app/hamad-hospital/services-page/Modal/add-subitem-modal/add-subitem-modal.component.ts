@@ -51,6 +51,7 @@ export class AddSubitemModalComponent {
     }
     editItem(item: any) {
         this.formSubItemTypes.patchValue(item);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     deleteItem(item: any) {
         this._servicesPageService.deleteProstheticsTypes(item.ID);

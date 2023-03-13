@@ -171,7 +171,7 @@ export class ServicesPageService {
     saveHearingSection(data: any) {
         return this._http
             .updateFormData(
-                'Services/Services_HearingSectionEn_Update/HearingSectionEn',
+                'Services/Services_HearingSection_Update/HearingSection',
                 data
             )
             .subscribe();
@@ -180,7 +180,7 @@ export class ServicesPageService {
     /*  ******* Save OutpatientClinicsSection ******* */
     saveOutpatientClinicsSection(data: any) {
         return this._http
-            .updateData(
+            .updateFormData(
                 'Services/Services_OutpatientClinicsSection_Update/OutpatientClinicsSection',
                 data
             )

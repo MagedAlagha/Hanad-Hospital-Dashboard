@@ -29,17 +29,18 @@ export class PermissionsComponent {
         this.Permissions$ = this._permissionsService.Selector$('Permissions');
         this.users$ = this._usersService.Selector$('Users').pipe(
             tap((val: any) => {
-                this.Form_Permissions.get('ForUserID')?.setValue(
+               /*  this.Form_Permissions.get('ForUserID')?.setValue(
                     val?.data[0]?.ID
-                );
-                console.log('fwwfwf');
+                ); */
+
             })
         );
     }
 
     onChange(event: any) {
-        console.log('fwwfwf', event);
+        console.log('fwwfwf', event.ID);
         this._permissionsService.getPermissions(event.ID);
+        this.ForUserID  = event.ID
     }
 
     save() {

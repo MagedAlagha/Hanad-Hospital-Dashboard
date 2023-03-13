@@ -70,6 +70,7 @@ export class MainInfoComponent implements OnInit {
 
     editItem(item?: any) {
         this.formStats.patchValue(item);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     deleteItem(item?: any) {
         this._mainInfoService.deleteStats(item.ID);

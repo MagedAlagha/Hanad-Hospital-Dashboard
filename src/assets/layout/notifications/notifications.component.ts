@@ -27,7 +27,7 @@ export class NotificationsComponent implements OnInit {
                 source_id: 14,
                 created_time: '2023-02-18T01:00:00.787',
                 text: '  اضافة مقالة طبية',
-                message :'انقر على الاشعار لتقييم المشروع' ,
+                message :'تمت الاضافة بنجاح' ,
                 is_read: false,
             },
             {
@@ -36,7 +36,7 @@ export class NotificationsComponent implements OnInit {
                 source_id: 14,
                 created_time: '2023-02-18T01:00:00.787',
                 text: '  هذا النص يمكن ان يستبدل',
-                message :'انقر على الاشعار لتقييم المشروع' ,
+                message :'تمت الاضافة بنجاح' ,
                 is_read: false,
             },
             {
@@ -45,7 +45,7 @@ export class NotificationsComponent implements OnInit {
                 source_id: 14,
                 created_time: '2023-02-18T01:00:00.787',
                 text: 'عنوان الاشعار  ',
-                message :'انقر على الاشعار لتقييم المشروع' ,
+                message :'تمت الاضافة بنجاح' ,
                 is_read: true,
             },
             {
@@ -54,7 +54,7 @@ export class NotificationsComponent implements OnInit {
                 source_id: 14,
                 created_time: '2023-02-18T01:00:00.787',
                 text: ' تمت اضافة خبر جديد',
-                message :'انقر على الاشعار لتقييم المشروع' ,
+                message :'تمت الاضافة بنجاح' ,
                 is_read: true,
             },
         ]);

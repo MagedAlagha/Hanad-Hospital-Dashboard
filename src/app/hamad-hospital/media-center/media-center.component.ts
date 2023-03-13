@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
@@ -26,7 +26,8 @@ export class MediaCenterComponent implements OnInit {
         private _mediaCenterService: MediaCenterService,
         private fb: FormBuilder,
         private messageService: MessageService,
-        private _translateService: TranslateService
+        private _translateService: TranslateService,
+        private renderer: Renderer2
     ) {
         this.Form_MediaSectionsItems = fb.group({
             MediaSectionID: [''],
@@ -99,6 +100,7 @@ export class MediaCenterComponent implements OnInit {
     edit(item: any) {
         this.Form_MediaSectionsItems.patchValue(item);
         this.ID = item.ID;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     deleteItem(item: any) {
         this._mediaCenterService.deleteMediaSectionsItems(item.ID);

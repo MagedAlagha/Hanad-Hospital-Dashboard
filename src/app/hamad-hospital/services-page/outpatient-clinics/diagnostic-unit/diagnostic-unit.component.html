@@ -288,10 +288,12 @@
             <div class="col-12 mb-2 lg:col-8 lg:mb-0">
                 <label for="">اضافة صورة</label>
                 <app-upload-files
-                (onSelectFiles)="fileSelected_2 = $event"
-                [showFilesUploaded]="true"
-            ></app-upload-files>
+                    (onSelectFiles)="fileSelected_2 = $event"
+                    [showFilesUploaded]="true"
+                ></app-upload-files>
             </div>
+
+
             <div class="col-12 mb-2 lg:col-6 lg:mb-0">
                 <label for="">قم باضافة المحتوى باللغة العربية</label>
                 <p-editor

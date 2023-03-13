@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
     editItem(item: any) {
         this.formSlider.patchValue(item);
         this.ID = item.ID;
-        window.scroll(0, 0);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
 
     }
     deleteItem(item: any) {

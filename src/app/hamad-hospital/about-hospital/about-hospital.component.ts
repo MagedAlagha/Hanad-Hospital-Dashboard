@@ -46,6 +46,7 @@ export class AboutHospitalComponent implements OnInit {
 
     editItem(item?: any) {
         this.Form_AboutHospital.patchValue(item);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     deleteItem(item?: any) {
         this._aboutHospitalService.deleteAboutHospital(item.ID);

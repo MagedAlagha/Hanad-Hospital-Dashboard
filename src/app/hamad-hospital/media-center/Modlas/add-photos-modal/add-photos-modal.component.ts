@@ -66,5 +66,6 @@ export class AddPhotosModalComponent implements OnInit {
     edit(item: any) {
         this.Form_ImageSection.patchValue(item);
         this.ID = item.ID;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }

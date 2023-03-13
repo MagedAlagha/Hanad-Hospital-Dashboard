@@ -69,7 +69,8 @@ export class DiagnosticUnitComponent {
     }
 
     saveFormOutpatient() {
-       if(!this.ID){
+        console.log("this.fileSelected" , this.fileSelected_2) ;
+       /* if(!this.ID){
         this._servicesPageService.saveOutpatientClinicsDepartments({
             ...this.formOutpatient.value,
             IconPath: this.fileSelected,
@@ -80,13 +81,14 @@ export class DiagnosticUnitComponent {
             IconPath: this.fileSelected,
             ID:this.ID
         });
-       }
+       } */
     }
     clearFormOutpatient() {
     this.formOutpatient.reset();
     }
     editItem(item: any) {
       this.formOutpatient.patchValue(item);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     deleteItem(item: any) {
         this._servicesPageService.deleteOutpatientClinicsDepartments(item.ID)

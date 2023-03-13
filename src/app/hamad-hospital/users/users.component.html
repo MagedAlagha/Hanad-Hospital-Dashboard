@@ -89,6 +89,7 @@
                     <th class="text-center">كلمة المرور</th>
                     <th class="text-center">فعال</th>
                     <th class="text-center">ادمن</th>
+                  <!--   <th class="text-center">الاجراء</th> -->
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item let-index="rowIndex">
@@ -101,6 +102,14 @@
                     <td>{{ item.Password }}</td>
                     <td>{{ item.Active?' فعال':' غير فعال' }}</td>
                     <td>{{ item.IsSuperAdmin?' ادمن':' مستخدم ' }}</td>
+                    <!-- <td class="text-center">
+                        <app-icon-shared
+                            [Icon]="'pi pi-pencil'"
+                            [classColor]="'var(--blue-400)'"
+                            [pTooltipCustom]="'تعديل '"
+                            (action)="editItem(item)"
+                        ></app-icon-shared>
+                    </td> -->
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">

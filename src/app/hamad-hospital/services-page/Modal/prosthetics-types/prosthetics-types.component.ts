@@ -56,6 +56,7 @@ export class ProstheticsTypesComponent {
     editItem(item: any) {
         this.formprostheticsTypes.patchValue(item);
         this.ID = item.ID;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     deleteItem(item: any) {
         this._servicesPageService.deleteProstheticsTypes(item.ID);

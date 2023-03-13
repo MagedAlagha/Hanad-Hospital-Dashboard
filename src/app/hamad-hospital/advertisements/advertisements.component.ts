@@ -53,7 +53,7 @@ export class AdvertisementsComponent implements OnInit {
     editItem(items?: any) {
         this.formAdvertisements.patchValue(items);
         this.ID = items.ID;
-        window.scroll(0, 0);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     deleteItem(items?: any) {
         this._advertisementsService.deleteAdvertisements(items.ID);

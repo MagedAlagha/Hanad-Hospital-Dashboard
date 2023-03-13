@@ -38,7 +38,7 @@ export class MedicalRehabilitationFeaturesComponent {
     }
     editItem(item: any) {
         this.formServicesPage.patchValue(item);
-        window.scroll(0, 0);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     deleteItem(item: any) {
         this._servicesPageService.deleteMedicalRehabilitationFeatures(item.ID);
