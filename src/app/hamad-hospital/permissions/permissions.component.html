@@ -8,20 +8,17 @@
     <form [formGroup]="Form_Permissions">
         <div class="grid p-fluid mt-3">
             <div class="col-12 mb-2 lg:col-3 lg:mb-0">
-               <!--  <app-input-field
-                    [label]="'الصلاحية'"
-                    formControlName="PermissionID"
-                >
-                </app-input-field> -->
 
-               <!--  [dropdownItems]="MediaType$ |async" -->
-                <app-select-field
-
-                    [optionValue]="'ID'"
-                    formControlName="MediaSectionID"
-                    [label]="'الصلاحية'"
-                >
-                </app-select-field>
+                <ng-container *ngIf="Permissions$ | async as data">
+                    <app-select-field
+                        [dropdownItems]="data.data"
+                        [optionLabel]="'Description'"
+                        [optionValue]="'ID'"
+                        formControlName="PermissionID"
+                        [label]="'الصلاحية'"
+                    >
+                    </app-select-field>
+                </ng-container>
 
             </div>
 
