@@ -10,28 +10,24 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CheckBoxComponent } from 'src/app/shared/Module-shared/check-box/check-box.component';
 import { SelectFieldComponent } from 'src/app/shared/Module-shared/select-field/select-field.component';
 
-
-
 @NgModule({
-  declarations: [
-    PermissionsComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-        {
-            path: '',
-            component: PermissionsComponent,
-        },
-
-    ]),
-    TableModule,
-    ButtonComponentComponent,
-    InputFieldComponent,
-    IconSharedComponent,
-    ReactiveFormsModule,
-    CheckBoxComponent,
-    SelectFieldComponent
- ]
+    declarations: [PermissionsComponent],
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: PermissionsComponent,
+            },
+        ]),
+        TableModule,
+        ButtonComponentComponent,
+        InputFieldComponent,
+        IconSharedComponent,
+        ReactiveFormsModule,
+        CheckBoxComponent,
+        SelectFieldComponent,
+        ReactiveFormsModule,
+    ],
 })
-export class PermissionsModule { }
+export class PermissionsModule {}

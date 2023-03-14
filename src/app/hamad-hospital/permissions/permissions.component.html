@@ -7,11 +7,10 @@
     <hr />
     <form [formGroup]="Form_Permissions">
         <div class="grid p-fluid mt-3">
-
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <ng-container *ngIf="users$ | async as data">
                     <app-select-field
-                    (onSelectionChange)="onChange($event)"
+                        (onSelectionChange)="onChange($event)"
                         [dropdownItems]="data.data"
                         [optionLabel]="'FullName'"
                         [optionValue]="'ID'"
@@ -22,7 +21,6 @@
                 </ng-container>
             </div>
             <div class="col-12 mb-2 lg:col-3 lg:mb-0">
-
                 <ng-container *ngIf="Permissions$ | async as data">
                     <app-select-field
                         [dropdownItems]="data.data"
@@ -33,9 +31,7 @@
                     >
                     </app-select-field>
                 </ng-container>
-
             </div>
-
 
             <div
                 class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
@@ -79,15 +75,17 @@
             [rows]="10"
             [paginator]="true"
             [style.width]="'100%'"
-            [ngStyle]=""
-            [value]="data.data"
+            [value]="Permissions"
             [loading]="data.loading"
         >
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">الوصف</th>
-                    <th class="text-center ckeck-all"> <app-check-box label="تحديد الكل" class="flex justify-content-center" > </app-check-box></th>
+                    <th class="text-center ckeck-all">
+                        <app-check-box class="flex justify-content-center">
+                        </app-check-box>
+                    </th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item let-index="rowIndex">
@@ -96,9 +94,13 @@
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
                     <td>{{ item.Description }}</td>
-                    <td  >
-                    <app-check-box class="flex justify-content-center"  > </app-check-box>
-                   </td>
+                    <td>
+                        <app-check-box
+                            class="flex justify-content-center"
+                            [(ngModel)]="item?.Checked"
+                        >
+                        </app-check-box>
+                    </td>
                     <!-- <td>{{ item.Checked?'فعال':'غير فعال' }}</td> -->
                 </tr>
             </ng-template>
