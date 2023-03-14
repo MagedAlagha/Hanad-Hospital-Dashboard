@@ -87,8 +87,7 @@
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">الوصف</th>
-<!--                     <th class="text-center">اسم الاب</th>
- -->                    <th class="text-center">التحقق</th>
+                    <th class="text-center ckeck-all"> <app-check-box label="تحديد الكل" class="flex justify-content-center" > </app-check-box></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item let-index="rowIndex">
@@ -97,8 +96,10 @@
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
                     <td>{{ item.Description }}</td>
-                  <!--   <td>{{ item.Parent }}</td> -->
-                    <td>{{ item.Checked?'فعال':'غير فعال' }}</td>
+                    <td  >
+                    <app-check-box class="flex justify-content-center"  > </app-check-box>
+                   </td>
+                    <!-- <td>{{ item.Checked?'فعال':'غير فعال' }}</td> -->
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">

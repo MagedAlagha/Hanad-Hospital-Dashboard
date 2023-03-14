@@ -39,7 +39,6 @@ export class MediaCenterComponent implements OnInit {
             VideoPath: [''],
             IsActive: [''],
             Sorting: [''],
-
         });
     }
 
