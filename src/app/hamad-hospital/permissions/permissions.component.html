@@ -20,18 +20,6 @@
                     </app-select-field>
                 </ng-container>
             </div>
-            <div class="col-12 mb-2 lg:col-3 lg:mb-0">
-                <ng-container *ngIf="Permissions$ | async as data">
-                    <app-select-field
-                        [dropdownItems]="data.data"
-                        [optionLabel]="'Description'"
-                        [optionValue]="'ID'"
-                        formControlName="PermissionID"
-                        [label]="'الصلاحية'"
-                    >
-                    </app-select-field>
-                </ng-container>
-            </div>
 
             <div
                 class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
@@ -82,9 +70,8 @@
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">الوصف</th>
-                    <th class="text-center ckeck-all">
-                        <app-check-box class="flex justify-content-center">
-                        </app-check-box>
+                    <th class="text-center">
+                        التحقق
                     </th>
                 </tr>
             </ng-template>
@@ -97,7 +84,7 @@
                     <td>
                         <app-check-box
                             class="flex justify-content-center"
-                            [(ngModel)]="item?.Checked"
+                            [(ngModel)]="item.Checked"
                         >
                         </app-check-box>
                     </td>

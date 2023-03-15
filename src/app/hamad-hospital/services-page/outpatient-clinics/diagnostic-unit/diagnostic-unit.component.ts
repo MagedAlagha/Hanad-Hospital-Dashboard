@@ -70,7 +70,7 @@ export class DiagnosticUnitComponent {
 
     saveFormOutpatient() {
         console.log("this.fileSelected" , this.fileSelected_2) ;
-       /* if(!this.ID){
+        if(!this.ID){
         this._servicesPageService.saveOutpatientClinicsDepartments({
             ...this.formOutpatient.value,
             IconPath: this.fileSelected,
@@ -81,8 +81,14 @@ export class DiagnosticUnitComponent {
             IconPath: this.fileSelected,
             ID:this.ID
         });
-       } */
+       }
+       this.clear();
     }
+
+    clear(){
+this.formOutpatient.reset()
+    }
+
     clearFormOutpatient() {
     this.formOutpatient.reset();
     }

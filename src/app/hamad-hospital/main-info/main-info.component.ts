@@ -39,7 +39,7 @@ export class MainInfoComponent implements OnInit {
             NameAr: [],
             NameEn: [],
             Count: [],
-            IsActive: [],
+            IsActive: [false],
             Sorting: [],
         });
     }

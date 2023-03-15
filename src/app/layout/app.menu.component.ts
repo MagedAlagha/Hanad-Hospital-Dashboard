@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { PermissionsService } from '../hamad-hospital/permissions/permissions.service';
 import { LayoutService } from './service/app.layout.service';
 
 @Component({
@@ -9,9 +10,13 @@ import { LayoutService } from './service/app.layout.service';
 export class AppMenuComponent implements OnInit {
     model: any[] = [];
 
-    constructor(public layoutService: LayoutService) {}
+    constructor(public layoutService: LayoutService  , private _permissionsService:PermissionsService) {}
 
     ngOnInit() {
+        var user = JSON.parse(localStorage.getItem('CurrentUser')!);
+        console.log(user);
+       /*  this._permissionsService.getPermissions(1) */
+
         this.model = [
             {
                 label: 'الإحصائيات',
@@ -85,7 +90,7 @@ export class AppMenuComponent implements OnInit {
                         ],
                     },
                     {
-                        label: 'معلومات رئيسية',
+                        label: 'اعدادات الموقع',
                         icon: 'pi pi-box',
                         routerLink: [
                             '/hamad-hospital/main-info',
