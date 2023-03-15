@@ -181,12 +181,17 @@
                     <td>{{ item.Sorting }}</td>
 
                     <td class="text-center">
-                        <app-icon-shared
+                        <ng-container *ngIf="item.MediaSectionID === 2 || item.MediaSectionID === 6 ; else ff ">
+                            <app-icon-shared
                             [Icon]="'pi pi-plus'"
                             [classColor]="'var(--blue-400)'"
                             [pTooltipCustom]="'اضافة صور للقسم'"
                             (action)="addPhotosDialog(item)"
                         ></app-icon-shared>
+                        </ng-container>
+                        <ng-template #ff >
+                            -
+                        </ng-template>
                     </td>
                     <td class="text-center">
                         <app-icon-shared

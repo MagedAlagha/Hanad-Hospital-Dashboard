@@ -68,11 +68,6 @@ export class AddPhotosModalComponent implements OnInit {
             this.clearImageSection();
 
         }
-
-
-
-
-
     }
     clearImageSection() {
         this.Form_ImageSection.reset();
