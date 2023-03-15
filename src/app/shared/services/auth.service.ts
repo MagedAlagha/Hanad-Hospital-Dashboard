@@ -7,6 +7,7 @@ import { map, catchError, finalize, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { NotificationsService } from './notifications.service';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
     providedIn: 'root',
@@ -17,11 +18,11 @@ export class AuthService implements OnDestroy {
     constructor(
         private router: Router,
         private http: HttpClient,
-        private MenuService: MenuService
+        private messageService: MessageService
     ) {}
 
     login(infoLogin: any) {
-        console.log('infoLogin',infoLogin)
+        console.log('infoLogin', infoLogin);
         return this.http
             .post(this.baseUrl, {
                 UserName: infoLogin.Username,
@@ -29,11 +30,21 @@ export class AuthService implements OnDestroy {
             })
             .pipe(
                 tap((res: any) => {
-                    console.log('CurrentUserCurrentUser', res);
-                    localStorage.setItem('CurrentUser', JSON.stringify(res?.user));
-                    this.getUserData();
-                    console.log('login', this.isActive)
-                    this.router.navigate(['/']);
+                    if (res?.rv > 0) {
+                        localStorage.setItem(
+                            'CurrentUser',
+                            JSON.stringify(res?.user)
+                        );
+                        this.getUserData();
+                        console.log('login', this.isActive);
+                        this.router.navigate(['/']);
+                    } else {
+                        this.messageService.add({
+                            severity: 'error',
+                            summary: ' Message',
+                            detail: 'معلومات تسجيل الدخول غير صحيحى',
+                        });
+                    }
                 }),
                 // catchError((error: any) => {
                 //     return of();
@@ -56,8 +67,13 @@ export class AuthService implements OnDestroy {
         this.router.navigate(['/auth/login']);
     }
     get isActive() {
-        var user = JSON.parse(localStorage.getItem('CurrentUser')!);
-        return !!user?.token;
+        if (localStorage.getItem('CurrentUser')!='undefined') {
+            console.log(localStorage.getItem('CurrentUser'));
+            var user = JSON.parse(localStorage.getItem('CurrentUser')!);
+            return !!user?.token;
+        } else {
+            return false;
+        }
     }
     get user() {
         return JSON.parse(localStorage.getItem('CurrentUser')!);

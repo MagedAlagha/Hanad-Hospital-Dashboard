@@ -1,12 +1,13 @@
+import { HttpService } from 'src/app/shared/services/http.service';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { MenuChangeEvent } from './api/menuchangeevent';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class MenuService {
-
+    constructor(private http: HttpService) {}
     private menuSource = new Subject<MenuChangeEvent>();
     private resetSource = new Subject();
 
@@ -20,4 +21,22 @@ export class MenuService {
     reset() {
         this.resetSource.next(true);
     }
+    permissions = new BehaviorSubject<any>([]);
+    permissions$ = this.permissions.asObservable();
+
+    /* ********************** Permissions ************************** */
+    /*  .subscribe((value) => {
+        this.getPermissions();
+    }) */
+
+    getPermissionsForUser(ID: any) {
+        this.http
+            .getData('Users/Permissions', {
+                ForUserID: ID,
+            })
+            .subscribe((value) => {
+                this.permissions.next(value);
+            });
+    }
+    /* ******************************************************* */
 }

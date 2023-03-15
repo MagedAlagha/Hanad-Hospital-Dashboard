@@ -10,7 +10,4 @@ import { HttpHRService } from '../shared/services/httpHR.service';
     providedIn: 'root',
 })
 export class HamadHospitalService {
-    constructor() {}
-
-
 }
