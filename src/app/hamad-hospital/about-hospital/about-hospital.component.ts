@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { AboutHospitalService } from './about-hospital.service';
 
@@ -17,16 +19,18 @@ export class AboutHospitalComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private _aboutHospitalService: AboutHospitalService
+        private _aboutHospitalService: AboutHospitalService ,
+        private messageService: MessageService,
+        private _translateService: TranslateService
     ) {
         this.Form_AboutHospital = fb.group({
             ID: [],
-            NameAr: [''],
-            NameEn: [''],
-            DescAr: [''],
-            DescEn: [''],
-            IsActive: [],
-            Sorting: [],
+            NameAr: ['' , Validators.required],
+            NameEn: ['' , Validators.required],
+            DescAr: ['' , Validators.required],
+            DescEn: ['' , Validators.required],
+            IsActive: [false],
+            Sorting: [ , Validators.required],
         });
     }
     ngOnInit(): void {
@@ -36,9 +40,19 @@ export class AboutHospitalComponent implements OnInit {
             this.showMessageDialog$ =  this._aboutHospitalService.Selector$('showMessageDialog')
     }
     save() {
-        this._aboutHospitalService.saveAboutHospital(
-            this.Form_AboutHospital.value
-        );
+        if (this.Form_AboutHospital.invalid) {
+            this.messageService.add({
+                severity: 'error',
+                detail: this._translateService.instant(
+                    'الحقول مطلوبة'
+                ),
+            });
+        } else{
+            this._aboutHospitalService.saveAboutHospital(
+                this.Form_AboutHospital.value
+            );
+            this.clear();
+        }
     }
     clear() {
         this.Form_AboutHospital.reset();

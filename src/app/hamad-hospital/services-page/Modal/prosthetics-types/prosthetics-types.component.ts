@@ -67,6 +67,7 @@ export class ProstheticsTypesComponent {
             'prostheticsTypesDialog',
             false
         );
+        this._servicesPageService.getProstheticsTypeselect();
     }
 
     addOrEdit(item?: any, ParentID?: any) {

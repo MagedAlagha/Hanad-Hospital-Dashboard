@@ -61,5 +61,6 @@ export class AddSubitemModalComponent {
             'addSubitemModalDialog',
             false
         );
+        this._servicesPageService.getProstheticsTypeselect();
     }
 }

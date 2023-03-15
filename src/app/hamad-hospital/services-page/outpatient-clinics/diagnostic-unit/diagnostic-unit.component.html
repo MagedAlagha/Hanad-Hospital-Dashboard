@@ -29,7 +29,7 @@
             <app-input-field label="ترتيب الخدمة" formControlName="Sorting">
             </app-input-field>
         </div>
-        <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+        <div class="col-12 mb-2 lg:col-5 lg:mb-0">
             <app-text-area-field
                 [rows]="3"
                 [label]="'الوصف  /عربي'"
@@ -37,7 +37,7 @@
             >
             </app-text-area-field>
         </div>
-        <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+        <div class="col-12 mb-2 lg:col-5 lg:mb-0">
             <app-text-area-field
                 [rows]="3"
                 [label]="'الوصف  /انجليزي'"
@@ -103,7 +103,7 @@
                     </td>
                     <td>{{ item.NameAr }}</td>
                     <td>{{ item.NameEn }}</td>
-                    <td>{{ item.IsActive }}</td>
+                    <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td>{{ item.Sorting }}</td>
                     <td class="text-center">
                         <app-icon-shared
@@ -234,6 +234,7 @@
                     <th class="text-center">#</th>
                     <th class="text-center">العنوان عربي</th>
                     <th class="text-center">العنوان انجليزي</th>
+                    <th class="text-center">القسم</th>
                     <th class="text-center">فعال</th>
                     <th class="text-center">الترتيب</th>
                     <th class="text-center">الاجراءات</th>
@@ -246,7 +247,8 @@
                     </td>
                     <td>{{ item.NameAr }}</td>
                     <td>{{ item.NameEn }}</td>
-                    <td>{{ item.IsActive }}</td>
+                    <td>{{ item.OutpatientClinicsDepartmentNameAr }}</td>
+                    <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td>{{ item.Sorting }}</td>
                     <td class="text-center">
                         <app-icon-shared

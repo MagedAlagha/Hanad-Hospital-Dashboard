@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { AdvertisementsService } from './advertisements.service';
 
@@ -14,18 +16,20 @@ export class AdvertisementsComponent implements OnInit {
     ID: any;
     constructor(
         private _advertisementsService: AdvertisementsService,
+        private messageService: MessageService,
+        private _translateService: TranslateService,
         fb: FormBuilder
     ) {
         this.formAdvertisements = fb.group({
             ID: [],
-            TitleAr: [],
-            TitleEn: [],
-            ButtonAdded: [],
-            ButtonTitleAr: [],
-            ButtonTitleEn: [],
-            ButtonLink: [],
-            IsActive: [false],
-            Sorting: [],
+            TitleAr: ['', Validators.required],
+            TitleEn: ['',],
+            ButtonAdded: ['',],
+            ButtonTitleAr: ['' ,Validators.required],
+            ButtonTitleEn: ['',],
+            ButtonLink: ['',Validators.required],
+            IsActive: [false ],
+            Sorting: ['', Validators.required],
         });
     }
 
@@ -34,16 +38,33 @@ export class AdvertisementsComponent implements OnInit {
         this.dataTable$ = this._advertisementsService.Selector$('dataTable');
     }
     save() {
-        if (!this.ID) {
-            this._advertisementsService.saveAdvertisements(
-                this.formAdvertisements.value
-            );
-        } else {
-            this._advertisementsService.saveAdvertisements({
-                ...this.formAdvertisements.value,
-                ID: this.ID,
+
+        if (this.formAdvertisements.invalid) {
+            this.messageService.add({
+                severity: 'error',
+                detail: this._translateService.instant(
+                    'الحقول مطلوبة'
+                ),
             });
+        } else{
+
+            if (!this.ID) {
+                this._advertisementsService.saveAdvertisements(
+                    this.formAdvertisements.value
+                );
+            } else {
+                this._advertisementsService.saveAdvertisements({
+                    ...this.formAdvertisements.value,
+                    ID: this.ID,
+                });
+            }
+
+            this.clear();
         }
+
+
+
+
     }
     clear() {
         this.formAdvertisements.reset();

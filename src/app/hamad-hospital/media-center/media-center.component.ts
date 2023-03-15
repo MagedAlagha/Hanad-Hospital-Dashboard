@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { map, Observable, tap } from 'rxjs';
@@ -30,15 +30,15 @@ export class MediaCenterComponent implements OnInit {
         private renderer: Renderer2
     ) {
         this.Form_MediaSectionsItems = fb.group({
-            MediaSectionID: [''],
-            TitleAr: [''],
-            TitleEn: [''],
-            DescAr: [''],
-            DescEn: [''],
-            MainServiceID: [''],
+            MediaSectionID: ['' , Validators.required],
+            TitleAr: ['', Validators.required],
+            TitleEn: ['', Validators.required],
+            DescAr: ['', Validators.required],
+            DescEn: ['', Validators.required],
+            MainServiceID: ['', Validators.required],
             VideoPath: [''],
-            IsActive: [''],
-            Sorting: [''],
+            IsActive: [false],
+            Sorting: ['', Validators.required],
         });
     }
 
@@ -59,7 +59,7 @@ export class MediaCenterComponent implements OnInit {
                 this.messageService.add({
                     severity: 'error',
                     detail: this._translateService.instant(
-                        'Shared.THERE_ARE_REQUIRED_FIELDS'
+                        'الحقول مطلوبة'
                     ),
                 });
             } else {
@@ -76,7 +76,7 @@ export class MediaCenterComponent implements OnInit {
                 this.messageService.add({
                     severity: 'error',
                     detail: this._translateService.instant(
-                        'Shared.THERE_ARE_REQUIRED_FIELDS'
+                        'الحقول مطلوبة'
                     ),
                 });
             } else {
@@ -94,7 +94,9 @@ export class MediaCenterComponent implements OnInit {
     }
 
     openDialog(item: any) {}
-    clear() {}
+    clear() {
+    this.Form_MediaSectionsItems.reset();
+    }
 
     edit(item: any) {
         this.Form_MediaSectionsItems.patchValue(item);

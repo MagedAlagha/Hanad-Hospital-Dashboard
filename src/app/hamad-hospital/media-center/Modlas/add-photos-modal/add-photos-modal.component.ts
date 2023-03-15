@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { MediaCenterService } from '../../media-center.service';
@@ -20,10 +22,12 @@ export class AddPhotosModalComponent implements OnInit {
     itmsID:any;
     constructor(
         private _mediaCenterService: MediaCenterService,
-        private fb: FormBuilder
+        private fb: FormBuilder ,
+        private messageService: MessageService,
+        private _translateService: TranslateService
     ) {
         this.Form_ImageSection = fb.group({
-            Sorting: [],
+            Sorting: ['' , Validators.required],
         });
     }
 
@@ -36,20 +40,38 @@ export class AddPhotosModalComponent implements OnInit {
         }
     }
     saveImageSection() {
-        if(!this.ID){
-            this._mediaCenterService.saveImageSection({
-                ...this.Form_ImageSection.value,
-                ImagePath: this.fileSelected,
-                MediaSectionsItemID: this.data.ID,
-            }).subscribe((value)=> this._mediaCenterService.getImageSection(this.itmsID));
-        }else{
-            this._mediaCenterService.saveImageSection({
-                ...this.Form_ImageSection.value,
-                ID:this.ID,
-                ImagePath: this.fileSelected,
-                MediaSectionsItemID: this.data.ID,
-            }).subscribe((value)=> this._mediaCenterService.getImageSection(this.itmsID));
+
+
+        if (this.Form_ImageSection.invalid) {
+            this.messageService.add({
+                severity: 'error',
+                detail: this._translateService.instant(
+                    'الحقول مطلوبة'
+                ),
+            });
+        } else{
+            if(!this.ID){
+                this._mediaCenterService.saveImageSection({
+                    ...this.Form_ImageSection.value,
+                    ImagePath: this.fileSelected,
+                    MediaSectionsItemID: this.data.ID,
+                }).subscribe((value)=> this._mediaCenterService.getImageSection(this.itmsID));
+            }else{
+                this._mediaCenterService.saveImageSection({
+                    ...this.Form_ImageSection.value,
+                    ID:this.ID,
+                    ImagePath: this.fileSelected,
+                    MediaSectionsItemID: this.data.ID,
+                }).subscribe((value)=> this._mediaCenterService.getImageSection(this.itmsID));
+            }
+
+            this.clearImageSection();
+
         }
+
+
+
+
 
     }
     clearImageSection() {

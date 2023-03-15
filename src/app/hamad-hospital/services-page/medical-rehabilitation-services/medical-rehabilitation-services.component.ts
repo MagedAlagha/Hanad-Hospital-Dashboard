@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { ServicesPageService } from '../services-page.service';
 
@@ -13,16 +15,18 @@ export class MedicalRehabilitationServicesComponent {
     MedicalRehabilitationServices$!: Observable<any>;
     constructor(
         fb: FormBuilder,
-        private _servicesPageService: ServicesPageService
+        private _servicesPageService: ServicesPageService ,
+        private messageService: MessageService,
+        private _translateService: TranslateService
     ) {
         this.formMedicalRehabilitationServices = fb.group({
             ID: [null],
-            NameAr: [null],
+            NameAr: [null , Validators.required],
             NameEn: [null],
-            DescAr: [null],
+            DescAr: [null, Validators.required],
             DescEn: [null],
-            IsActive: [null],
-            Sorting: [null],
+            IsActive: [null , Validators.required],
+            Sorting: [null , Validators.required],
         });
     }
 
@@ -31,7 +35,18 @@ export class MedicalRehabilitationServicesComponent {
     }
 
     save() {
-        this._servicesPageService.saveMedicalRehabilitationServices(this.formMedicalRehabilitationServices.value);
+
+        if (this.formMedicalRehabilitationServices.invalid) {
+            this.messageService.add({
+                severity: 'error',
+                detail: this._translateService.instant(
+                    'الحقول مطلوبة'
+                ),
+            });
+        } else{
+            this._servicesPageService.saveMedicalRehabilitationServices(this.formMedicalRehabilitationServices.value);
+            this.clear();
+        }
     }
 
     clear() {

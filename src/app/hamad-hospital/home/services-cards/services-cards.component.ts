@@ -44,7 +44,7 @@ export class ServicesCardsComponent {
             this.messageService.add({
                 severity: 'error',
                 detail: this._translateService.instant(
-                    'Shared.THERE_ARE_REQUIRED_FIELDS'
+                    'يوجد حقول مطلوبة'
                 ),
             });
         } else {

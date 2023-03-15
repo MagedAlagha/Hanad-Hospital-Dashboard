@@ -32,7 +32,7 @@
         </div>
         <div class="col-12 mb-2 lg:col-6 lg:mb-0">
             <label for="">محتوى القسم / عربي</label>
-            <p-editor formControlName="DescAr" [style]="{'height':'320px'}">
+            <p-editor dir="ltr" formControlName="DescAr" [style]="{'height':'320px'}">
             </p-editor>
         </div>
         <div class="col-12 mb-2 lg:col-6 lg:mb-0">
@@ -81,6 +81,7 @@
          [style.width]="'100%'"
         [value]="data.data"
         [loading]="data.loading"
+
     >
         <ng-template pTemplate="header">
             <tr>
@@ -100,7 +101,7 @@
                 </td>
                 <td>{{ item.NameAr }}</td>
                 <td>{{ item.NameEn }}</td>
-                <td>{{ item.IsActive }}</td>
+                <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                 <td>{{ item.Sorting }}</td>
                 <td class="text-center">
                     <app-icon-shared

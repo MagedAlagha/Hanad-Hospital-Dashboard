@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
@@ -27,11 +27,11 @@ export class HomeComponent implements OnInit {
     ) {
         this.formSlider = fb.group({
             ID: [],
-            Image: [null],
-            TitleAr: [null],
-            TitleEn: [null],
-            Sorting: [null],
-            IsActive: [false],
+            Image: [null , Validators.required],
+            TitleAr: [null , Validators.required],
+            TitleEn: [null , Validators.required],
+            Sorting: [null , Validators.required],
+            IsActive: [false , Validators.required],
         });
     }
 
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
             this.messageService.add({
                 severity: 'error',
                 detail: this._translateService.instant(
-                    'Shared.THERE_ARE_REQUIRED_FIELDS'
+                    'الحقول مطلوبة'
                 ),
             });
         } else {
@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
                     ID:this.ID
                 });
             }
-
+         this.clear()
         }
         console.log(this.formSlider.value, 'gegegegeg');
     }
