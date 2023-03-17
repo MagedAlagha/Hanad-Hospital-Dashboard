@@ -10,6 +10,16 @@
         <p-tabView>
             <p-tabPanel header=" المواعيد">
                 <ng-container *ngIf="PublicServices$ | async as data">
+                    <div class="flex justify-content-end mb-2">
+                        <app-button-component
+                        [classColor]="'purple-500 '"
+                        [Icon]="'pi pi-id-card'"
+                        label="طباعة"
+                        [isCustomLable]="true"
+                        [pTooltipCustom]="'طباعة البيانات'"
+                    >
+                    </app-button-component>
+                    </div>
                     <p-table
                         styleClass="p-datatable-gridlines"
                         [rows]="10"
@@ -17,6 +27,10 @@
                          [style.width]="'100%'"
                         [value]="data.data"
                         [loading]="data.loading"
+                        [rowHover]="true"
+                        styleClass="p-datatable-gridlines" [paginator]="true"
+                        [globalFilterFields]="['FullName','Email','PhoneNumber','Address','Appointment', 'DepartmentID']"
+                        responsiveLayout="scroll"
                     >
                         <ng-template pTemplate="header">
                             <tr>
@@ -68,6 +82,16 @@
             </p-tabPanel>
             <p-tabPanel header="الاقتراحات والشكاوي">
                 <ng-container *ngIf="Suggestion$  | async as data">
+                    <div class="flex justify-content-end mb-2">
+                        <app-button-component
+                        [classColor]="'purple-500 '"
+                        [Icon]="'pi pi-id-card'"
+                        label="طباعة"
+                        [isCustomLable]="true"
+                        [pTooltipCustom]="'طباعة البيانات'"
+                    >
+                    </app-button-component>
+                    </div>
                     <p-table
                         styleClass="p-datatable-gridlines"
                         [rows]="10"
@@ -117,6 +141,16 @@
             </p-tabPanel>
             <p-tabPanel header="تقييم أداء">
                 <ng-container *ngIf="Rating$  | async as data">
+                    <div class="flex justify-content-end mb-2">
+                        <app-button-component
+                        [classColor]="'purple-500 '"
+                        [Icon]="'pi pi-id-card'"
+                        label="طباعة"
+                        [isCustomLable]="true"
+                        [pTooltipCustom]="'طباعة البيانات'"
+                    >
+                    </app-button-component>
+                    </div>
                     <p-table
                         styleClass="p-datatable-gridlines"
                         [rows]="10"
@@ -159,6 +193,16 @@
             </p-tabPanel>
             <p-tabPanel header="الزائريين">
                 <ng-container *ngIf="Visitors$  | async as data">
+                    <div class="flex justify-content-end mb-2">
+                        <app-button-component
+                        [classColor]="'purple-500 '"
+                        [Icon]="'pi pi-id-card'"
+                        label="طباعة"
+                        [isCustomLable]="true"
+                        [pTooltipCustom]="'طباعة البيانات'"
+                    >
+                    </app-button-component>
+                    </div>
                     <p-table
                         styleClass="p-datatable-gridlines"
                         [rows]="10"
@@ -216,6 +260,16 @@
             </p-tabPanel>
             <p-tabPanel header="طلبات التغطية الصحفية">
                 <ng-container *ngIf="PressCoverageRequest$  | async as data">
+                    <div class="flex justify-content-end mb-2">
+                        <app-button-component
+                        [classColor]="'purple-500 '"
+                        [Icon]="'pi pi-id-card'"
+                        label="طباعة"
+                        [isCustomLable]="true"
+                        [pTooltipCustom]="'طباعة البيانات'"
+                    >
+                    </app-button-component>
+                    </div>
                     <p-table
                         styleClass="p-datatable-gridlines"
                         [rows]="10"
@@ -265,6 +319,16 @@
             </p-tabPanel>
             <p-tabPanel header="طلبات الزيارة">
                 <ng-container *ngIf="VisitRequest$  | async as data">
+                    <div class="flex justify-content-end mb-2">
+                        <app-button-component
+                        [classColor]="'purple-500 '"
+                        [Icon]="'pi pi-id-card'"
+                        label="طباعة"
+                        [isCustomLable]="true"
+                        [pTooltipCustom]="'طباعة البيانات'"
+                    >
+                    </app-button-component>
+                    </div>
                     <p-table
                         styleClass="p-datatable-gridlines"
                         [rows]="10"
