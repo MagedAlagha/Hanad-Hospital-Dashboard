@@ -30,15 +30,16 @@ export class MediaCenterComponent implements OnInit {
         private renderer: Renderer2
     ) {
         this.Form_MediaSectionsItems = fb.group({
-            MediaSectionID: ['' , Validators.required],
-            TitleAr: ['', Validators.required],
-            TitleEn: ['', Validators.required],
-            DescAr: ['', Validators.required],
-            DescEn: ['', Validators.required],
-            MainServiceID: ['', Validators.required],
+            MediaSectionID: ['' ],
+            TitleAr: [''],
+            TitleEn: [''],
+            DescAr: [''],
+            DescEn: [''],
+            MainServiceID: [''],
             VideoPath: [''],
             IsActive: [false],
-            Sorting: ['', Validators.required],
+            ShowHome: [false],
+            Sorting: [''],
         });
     }
 

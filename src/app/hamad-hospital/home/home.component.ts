@@ -27,11 +27,11 @@ export class HomeComponent implements OnInit {
     ) {
         this.formSlider = fb.group({
             ID: [],
-            Image: [null , Validators.required],
-            TitleAr: [null , Validators.required],
-            TitleEn: [null , Validators.required],
-            Sorting: [null , Validators.required],
-            IsActive: [false , Validators.required],
+            Image: [null],
+            TitleAr: [null],
+            TitleEn: [null],
+            Sorting: [null],
+            IsActive: [false],
         });
     }
 
