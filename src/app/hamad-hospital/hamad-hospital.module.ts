@@ -86,6 +86,14 @@ import { HamadHospitalComponent } from './hamad-hospital.component';
                             './permissions/permissions.module'
                         ).then((m) => m.PermissionsModule),
                 },
+                {
+                    path: 'codes',
+                    data: { breadcrumb: 'ثوابت النظام' },
+                    loadChildren: () =>
+                        import(
+                            './codes/codes.module'
+                        ).then((m) => m.CodesModule),
+                },
 
             ],
         },

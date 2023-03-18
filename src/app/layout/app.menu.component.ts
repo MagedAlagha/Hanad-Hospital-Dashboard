@@ -58,6 +58,13 @@ export class AppMenuComponent implements OnInit {
                             icon: 'pi pi-cog',
                             routerLink: ['/hamad-hospital/permissions'],
                         },
+                        {
+                            id: '8',
+
+                            label: 'ثوابت النظام',
+                            icon: 'pi pi-code',
+                            routerLink: ['/hamad-hospital/codes'],
+                        },
                     ],
                 },
                 {

@@ -8,6 +8,14 @@
     <p-tabView>
         <p-tabPanel header="التأهيل الطبي">
             <div class="grid p-fluid mt-3">
+                <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                    <label for="">اضافة صورة للقسم</label>
+                    <app-upload-files
+                    (onSelectFiles)="fileSelected_bg1 = $event"
+                    [showFilesUploaded]="true"
+                ></app-upload-files>
+                <hr>
+                </div>
                 <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                     <label for="">اضافة ايقونة</label>
                     <app-upload-files
@@ -35,6 +43,14 @@
         </p-tabPanel>
         <p-tabPanel header="الأطراف الصناعية">
             <div class="grid p-fluid mt-3">
+                <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                    <label for="">اضافة صورة للقسم</label>
+                    <app-upload-files
+                    (onSelectFiles)="fileSelected_bg2 = $event"
+                    [showFilesUploaded]="true"
+                ></app-upload-files>
+                <hr>
+                </div>
                 <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                     <app-upload-files
                     (onSelectFiles)="fileSelected_02 = $event"
@@ -61,6 +77,14 @@
         </p-tabPanel>
         <p-tabPanel header="السموع والتوازن">
             <div class="grid p-fluid mt-3">
+                <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                    <label for="">اضافة صورة للقسم</label>
+                    <app-upload-files
+                    (onSelectFiles)="fileSelected_bg3 = $event"
+                    [showFilesUploaded]="true"
+                ></app-upload-files>
+                <hr>
+                </div>
                 <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                     <app-upload-files
                     (onSelectFiles)="fileSelected_03 = $event"
@@ -87,6 +111,14 @@
         </p-tabPanel>
         <p-tabPanel header="العيادات الخارجية">
             <div class="grid p-fluid mt-3">
+                <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                    <label for="">اضافة صورة للقسم</label>
+                    <app-upload-files
+                    (onSelectFiles)="fileSelected_bg4 = $event"
+                    [showFilesUploaded]="true"
+                ></app-upload-files>
+                <hr>
+                </div>
                 <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                     <app-upload-files
                     (onSelectFiles)="fileSelected_04 = $event"
@@ -106,6 +138,40 @@
                     [rows]="3"
                         [label]="'العيادات الخارجية /انجليزي'"
                         formControlName="OutpatientClinicsDescEn"
+                    >
+                    </app-text-area-field>
+                </div>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="خدمات طبية مساندة">
+            <div class="grid p-fluid mt-3">
+                <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                    <label for="">اضافة صورة للقسم</label>
+                    <app-upload-files
+                    (onSelectFiles)="fileSelected_bg5 = $event"
+                    [showFilesUploaded]="true"
+                ></app-upload-files>
+                <hr>
+                </div>
+                <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                    <app-upload-files
+                    (onSelectFiles)="fileSelected_05 = $event"
+                    [showFilesUploaded]="true"
+                ></app-upload-files>
+                </div>
+                <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                    <app-text-area-field
+                    [rows]="3"
+                        [label]="'العيادات الخارجية /عربي'"
+                        formControlName="SupportiveMedicalDescAr"
+                    >
+                    </app-text-area-field>
+                </div>
+                <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                    <app-text-area-field
+                    [rows]="3"
+                        [label]="'العيادات الخارجية /انجليزي'"
+                        formControlName="SupportiveMedicalDescEn"
                     >
                     </app-text-area-field>
                 </div>

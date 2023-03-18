@@ -60,7 +60,8 @@
                     { Code: 3, Name: 'معرض الفيديو' },
                     { Code: 4, Name: 'المقالات الطبية' },
                     { Code: 5, Name: 'قصص صحفية' },
-                    { Code: 6, Name: 'قصص رقمية' }
+                    { Code: 6, Name: 'قصص رقمية' },
+                    { Code: 7, Name: 'منوعات' }
                 ]"
                     formControlName="MediaSectionID"
                     [label]="'اختيار المركز الاعلامي'"
@@ -185,10 +186,11 @@
                     <td *ngIf="item.MediaSectionID === 4"> المقالات الطبية</td>
                     <td *ngIf="item.MediaSectionID === 5"> قصص صحفية</td>
                     <td *ngIf="item.MediaSectionID === 6"> قصص رقمية</td>
+                    <td *ngIf="item.MediaSectionID === 7"> منوعات</td>
                     <td>{{ item.Sorting }}</td>
 
                     <td class="text-center">
-                        <ng-container *ngIf="item.MediaSectionID === 2 || item.MediaSectionID === 6 ; else ff ">
+                        <ng-container *ngIf="item.MediaSectionID === 2 || item.MediaSectionID === 6 || item.MediaSectionID === 7 ; else ff ">
                             <app-icon-shared
                             [Icon]="'pi pi-plus'"
                             [classColor]="'var(--blue-400)'"

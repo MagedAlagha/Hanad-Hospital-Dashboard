@@ -15,6 +15,12 @@ export class ServicesCardsComponent {
     fileSelected_02: any;
     fileSelected_03: any;
     fileSelected_04: any;
+    fileSelected_05: any;
+    fileSelected_bg1: any;
+    fileSelected_bg2: any;
+    fileSelected_bg3: any;
+    fileSelected_bg4: any;
+    fileSelected_bg5: any;
     @ViewChild('fileUpload') fileUpload: any;
     constructor(
         private fb: FormBuilder,
@@ -32,6 +38,9 @@ export class ServicesCardsComponent {
             HearingIconPath: [null],
             HearingDescAr: [null],
             HearingDescEn: [null],
+            SupportiveMedicalBackgroundPath: [null],
+            SupportiveMedicalDescAr: [null],
+            SupportiveMedicalDescEn: [null],
             OutpatientClinicsIconPath: [null],
             OutpatientClinicsDescAr: [null],
             OutpatientClinicsDescEn: [null],
@@ -55,6 +64,12 @@ export class ServicesCardsComponent {
                 ProstheticsIconPath: this.fileSelected_02,
                 HearingIconPath: this.fileSelected_03,
                 OutpatientClinicsIconPath: this.fileSelected_04,
+                MedicalRehabilitationBackgroundPath: this.fileSelected_bg1,
+                ProstheticsBackgroundPath: this.fileSelected_bg2,
+                HearingBackgroundPath: this.fileSelected_bg3,
+                OutpatientClinicsBackgroundPath: this.fileSelected_bg4,
+                SupportiveMedicalIconPath: this.fileSelected_05,
+                SupportiveMedicalBackgroundPath: this.fileSelected_bg5,
             });
         }
     }

@@ -23,7 +23,9 @@ export class ServicesPageService {
         prostheticsTypes: { data: [], loading: false },
         ProstheticsTypeselect: { data: [], loading: false },
         OutpatientClinicsDepartments: { data: [], loading: false },
+        HearingDepartemt: { data: [], loading: false },
         OutpatientClinicsDepartmentsServices: { data: [], loading: false },
+        SupportiveMedicalDepartments: { data: [], loading: false },
         Services: { data: [], loading: false },
         prostheticsTypesDialog: { isOpen: false, data: '' },
         addSubitemModalDialog: { isOpen: false, data: '' },
@@ -219,6 +221,70 @@ export class ServicesPageService {
                 this.getOutpatientClinicsDepartments();
             });
     }
+    /*  *************** First Hearing Departemt *************** */
+    saveHearingDepartemt(data: any) {
+        return this._http
+            .saveFormData(
+                'HearingDepartments/HearingDepartmentsSave',
+                data
+            )
+            .subscribe((value) => {
+                this.getHearingDepartemt();
+            });
+    }
+    getHearingDepartemt() {
+        this.getFormApi(
+            'HearingDepartments/HearingDepartmentsSearch',
+            'HearingDepartemt',
+            {},
+            { isLoading: true }
+        );
+    }
+
+    deleteHearingDepartemt(ID: any) {
+        return this._http
+            .deleteData(
+                'HearingDepartments/HearingDepartmentsDelete',
+                {
+                    ID: ID,
+                }
+            )
+            .subscribe((value) => {
+                this.getHearingDepartemt();
+            });
+    }
+    /*  *************** First SupportiveMedicalDepartments Departemt *************** */
+    saveSupportiveMedicalDepartments(data: any) {
+        return this._http
+            .saveFormData(
+                'SupportiveMedicalDepartments/SupportiveMedicalDepartmentsSave',
+                data
+            )
+            .subscribe((value) => {
+                this.getSupportiveMedicalDepartments();
+            });
+    }
+    getSupportiveMedicalDepartments() {
+        this.getFormApi(
+            'SupportiveMedicalDepartments/SupportiveMedicalDepartmentsSearch',
+            'SupportiveMedicalDepartments',
+            {},
+            { isLoading: true }
+        );
+    }
+
+    deleteSupportiveMedicalDepartments(ID: any) {
+        return this._http
+            .deleteData(
+                'SupportiveMedicalDepartments/SupportiveMedicalDepartmentsDelete',
+                {
+                    ID: ID,
+                }
+            )
+            .subscribe((value) => {
+                this.getSupportiveMedicalDepartments();
+            });
+    }
 
     /*  ******* First  another Sections  ******* */
     saveOutpatientClinicsDepartmentsServices(data: any) {
@@ -302,6 +368,8 @@ export interface jobFunctionalModel {
     prostheticsTypes?: { data: any; loading: boolean };
     ProstheticsTypeselect?: { data: any; loading: boolean };
     OutpatientClinicsDepartments?: { data: any; loading: boolean };
+    HearingDepartemt?: { data: any; loading: boolean };
+    SupportiveMedicalDepartments?: { data: any; loading: boolean };
     OutpatientClinicsDepartmentsServices?: { data: any; loading: boolean };
     Services?: { data: any; loading: boolean };
     prostheticsTypesDialog?: { isOpen: false; data: any };

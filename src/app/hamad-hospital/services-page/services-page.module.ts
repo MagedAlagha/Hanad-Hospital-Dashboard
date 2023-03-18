@@ -24,6 +24,7 @@ import { DiagnosticUnitComponent } from './outpatient-clinics/diagnostic-unit/di
 import { TreeComponent } from 'src/app/shared/Module-shared/tree/tree.component';
 import { AddSubitemModalComponent } from './Modal/add-subitem-modal/add-subitem-modal.component';
 import { EditorModule } from 'primeng/editor';
+import { SupportiveComponent } from './supportive/supportive.component';
 
 
 
@@ -37,6 +38,7 @@ import { EditorModule } from 'primeng/editor';
     ProstheticsTypesComponent,
     DiagnosticUnitComponent,
     AddSubitemModalComponent,
+    SupportiveComponent,
   ],
   imports: [
     CommonModule,

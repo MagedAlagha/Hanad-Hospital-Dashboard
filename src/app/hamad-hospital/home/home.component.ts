@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
     fileSelected: any;
     sliderData$!: Observable<any>;
     ID: any;
+
     Avatar=environment.FileUrl
     @ViewChild('fileUpload') fileUpload: any;
     constructor(
@@ -30,6 +31,7 @@ export class HomeComponent implements OnInit {
             Image: [null],
             TitleAr: [null],
             TitleEn: [null],
+            Link: [null],
             Sorting: [null],
             IsActive: [false],
         });
@@ -72,7 +74,6 @@ export class HomeComponent implements OnInit {
         this.formSlider.patchValue(item);
         this.ID = item.ID;
         window.scrollTo({ top: 0, behavior: 'smooth' });
-
     }
     deleteItem(item: any) {
         this._homeService.deleteSlider(item.ID);

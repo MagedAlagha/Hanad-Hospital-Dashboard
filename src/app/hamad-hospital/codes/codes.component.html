@@ -1,57 +1,31 @@
 <div class="card">
-    <div
-        class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3"
-    >
+    <div class="flex flex-column md:flex-row mb-3">
         <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
-            الصفحة الرئيسية - السلايدر
+            ثوابت النظام
         </div>
     </div>
     <hr />
-    <br />
-
-    <form [formGroup]="formSlider">
-        <div class="grid p-fluid">
-            <div class="col-12 mb-2 lg:col-12 lg:mb-0">
-                <label for="">اضافة صورة للسلايدر</label>
-                <app-upload-files
-                    (onSelectFiles)="fileSelected = $event"
-                    [showFilesUploaded]="true"
-                ></app-upload-files>
-            </div>
-            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-                <app-input-field
-                    label="العنوان بالعربي"
-                    formControlName="TitleAr"
-                >
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-                <app-input-field
-                    label="العنوان بالانجليزي"
-                    formControlName="TitleEn"
-                >
-                </app-input-field>
-            </div>
-            <div class="col-12 mb-2 lg:col-3 lg:mb-0">
-                <app-input-field
-                    label="لينك الانتقال"
-                    formControlName="Link"
-                >
-                </app-input-field>
+    <form [formGroup]="Form_Codes">
+        <div class="grid p-fluid mt-3">
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <ng-container *ngIf="codesParent$ | async as data">
+                    <app-select-field
+                        (onSelectionChange)="onChange($event)"
+                        [dropdownItems]="data.data"
+                        [optionLabel]="'Name'"
+                        [optionValue]="'Code'"
+                        formControlName="Parent"
+                        [label]="'اختيار قائمة'"
+                    >
+                    </app-select-field>
+                </ng-container>
             </div>
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-input-field
-                    label="ترتيب السلايدر"
-                    formControlName="Sorting"
+                    [label]="'اضافة قيمة '"
+                    formControlName="Name"
                 >
                 </app-input-field>
-            </div>
-            <div
-                class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
-                style="margin-top: 2.9rem"
-            >
-                <app-check-box label="فعال" formControlName="IsActive">
-                </app-check-box>
             </div>
 
             <div
@@ -80,9 +54,17 @@
             </div>
         </div>
     </form>
+</div>
 
-    <br />
-    <ng-container *ngIf="sliderData$ | async as data">
+<div class="card electronic-services">
+    <div class="flex flex-column md:flex-row mb-3">
+        <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
+            ثوابت النظام
+        </div>
+    </div>
+    <hr />
+
+    <ng-container *ngIf="codes$ | async as data">
         <p-table
             styleClass="p-datatable-gridlines"
             [rows]="10"
@@ -94,12 +76,13 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
-                    <th class="text-center">العنوان عربي</th>
-                    <th class="text-center">العنوان انجليزي</th>
-                    <th class="text-center">فعال</th>
-                    <th class="text-center">الترتيب</th>
-                    <th class="text-center">الصورة</th>
-                    <th class="text-center">الاجراءات</th>
+                    <th class="text-center">الاسم</th>
+                    <th class="text-center">
+                        التحقق
+                    </th>
+                    <th class="text-center">
+                        الاجراءات
+                    </th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item let-index="rowIndex">
@@ -107,22 +90,9 @@
                     <td>
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
-                    <td>{{ item.TitleAr }}</td>
-                    <td>{{ item.TitleEn }}</td>
-                    <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
-                    <td>{{ item.Sorting }}</td>
-                    <td>
-                        <!-- {{Avatar + item?.ImagePath}} -->
-                        <span>
-                            <p-image
-                                [src]="Avatar + item?.ImagePath"
-                                alt="Image"
-                                width="40px"
-                                [preview]="true"
-                            ></p-image>
-                     </span>
-                    </td>
-                    <td class="text-center">
+                    <td>{{ item.Name }}</td>
+                    <td>{{ item.Parent }}</td>
+                    <td class="text-center d-flex " >
                         <app-icon-shared
                             [Icon]="'pi pi-pencil'"
                             [classColor]="'var(--blue-400)'"
@@ -137,6 +107,7 @@
                             (action)="deleteItem(item)"
                         ></app-icon-shared>
                     </td>
+
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">
@@ -149,5 +120,3 @@
         </p-table>
     </ng-container>
 </div>
-
-<app-services-cards></app-services-cards>

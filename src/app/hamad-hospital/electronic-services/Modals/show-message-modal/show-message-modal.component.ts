@@ -9,6 +9,7 @@ import { ElectronicServicesService } from '../../electronic-services.service';
 })
 export class ShowMessageModalComponent  implements OnInit{
 data:any;
+noData:any;
 constructor(private _electronicServicesService:ElectronicServicesService){
 
 }
@@ -18,6 +19,9 @@ ngOnInit(): void {
  this.data  = this._electronicServicesService.dataStore.showMessageDialog?.data;
 if(this.data){
     console.log(this.data , "data data")
+    if(this.data.TextMessage ===''){
+        this.noData = 'لا توجد رسالة'
+    }
 }
 }
     closeDialog() {

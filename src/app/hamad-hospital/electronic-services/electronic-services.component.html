@@ -13,7 +13,7 @@
                     <div class="flex justify-content-end mb-2">
                         <app-button-component
                         [classColor]="'purple-500 '"
-                        [Icon]="'pi pi-id-card'"
+                        [Icon]="'pi pi-print'"
                         label="طباعة"
                         [isCustomLable]="true"
                         [pTooltipCustom]="'طباعة البيانات'"
@@ -36,6 +36,7 @@
                             <tr>
                                 <th class="text-center">#</th>
                                 <th class="text-center">الاسم كامل</th>
+                                <th class="text-center">رقم الهوية</th>
                                 <th class="text-center">الايميل</th>
                                 <th class="text-center">الموبايل</th>
                                 <th class="text-center">العنوان بالكامل</th>
@@ -50,6 +51,7 @@
                                     <span class="reorder-row-icon">{{ index + 1 }}</span>
                                 </td>
                                 <td>{{ item.FullName }}</td>
+                                <td>{{ item.IdentityNumber }}</td>
                                 <td>{{ item.Email }}</td>
                                 <td>{{ item.PhoneNumber }}</td>
                                 <td>{{ item.Address }}</td>
@@ -85,7 +87,7 @@
                     <div class="flex justify-content-end mb-2">
                         <app-button-component
                         [classColor]="'purple-500 '"
-                        [Icon]="'pi pi-id-card'"
+                        [Icon]="'pi pi-print'"
                         label="طباعة"
                         [isCustomLable]="true"
                         [pTooltipCustom]="'طباعة البيانات'"
@@ -104,6 +106,8 @@
                             <tr>
                                 <th class="text-center">#</th>
                                 <th class="text-center">الاسم كامل</th>
+                                <th class="text-center">رقم الهوية</th>
+
                                 <th class="text-center">الايميل</th>
                                 <th class="text-center">الموبايل</th>
                                 <th class="text-center">العنوان بالكامل</th>
@@ -116,6 +120,7 @@
                                     <span class="reorder-row-icon">{{ index + 1 }}</span>
                                 </td>
                                 <td>{{ item.FullName }}</td>
+                                <td>{{ item.IdentityNumber }}</td>
                                 <td>{{ item.Email }}</td>
                                 <td>{{ item.PhoneNumber }}</td>
                                 <td>{{ item.Address }}</td>
@@ -144,7 +149,7 @@
                     <div class="flex justify-content-end mb-2">
                         <app-button-component
                         [classColor]="'purple-500 '"
-                        [Icon]="'pi pi-id-card'"
+                        [Icon]="'pi pi-print'"
                         label="طباعة"
                         [isCustomLable]="true"
                         [pTooltipCustom]="'طباعة البيانات'"
@@ -196,7 +201,7 @@
                     <div class="flex justify-content-end mb-2">
                         <app-button-component
                         [classColor]="'purple-500 '"
-                        [Icon]="'pi pi-id-card'"
+                        [Icon]="'pi pi-print'"
                         label="طباعة"
                         [isCustomLable]="true"
                         [pTooltipCustom]="'طباعة البيانات'"
@@ -322,7 +327,7 @@
                     <div class="flex justify-content-end mb-2">
                         <app-button-component
                         [classColor]="'purple-500 '"
-                        [Icon]="'pi pi-id-card'"
+                        [Icon]="'pi pi-print'"
                         label="طباعة"
                         [isCustomLable]="true"
                         [pTooltipCustom]="'طباعة البيانات'"
