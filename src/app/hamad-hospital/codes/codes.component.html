@@ -33,7 +33,7 @@
                 style="margin-top: 2.5rem"
             >
                 <div class="inline-flex align-items-center">
-                  <!--   <app-button-component
+                     <app-button-component
                         [classColor]="'p-button-raised'"
                         (action)="save()"
                         [Icon]="'pi pi-id-card'"
@@ -41,7 +41,7 @@
                         [isCustomLable]="true"
                         [pTooltipCustom]="'حفظ'"
                     >
-                    </app-button-component> -->
+                    </app-button-component>
                     <app-button-component
                         label="مسح الحقول"
                         class="pr-2"
@@ -77,9 +77,9 @@
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">الاسم</th>
-                    <th class="text-center">
+                  <!--   <th class="text-center">
                         التحقق
-                    </th>
+                    </th> -->
                     <th class="text-center">
                         الاجراءات
                     </th>
@@ -91,14 +91,14 @@
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
                     <td>{{ item.Name }}</td>
-                    <td>{{ item.Parent }}</td>
+                  <!--   <td>{{ item.Parent }}</td> -->
                     <td class="text-center d-flex " >
-                        <app-icon-shared
+                       <!--  <app-icon-shared
                             [Icon]="'pi pi-pencil'"
                             [classColor]="'var(--blue-400)'"
                             [pTooltipCustom]="'تعديل البيانات'"
                             (action)="editItem(item)"
-                        ></app-icon-shared>
+                        ></app-icon-shared> -->
 
                         <app-icon-shared
                             [Icon]="'pi pi-trash'"
