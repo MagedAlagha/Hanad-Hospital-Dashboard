@@ -1,3 +1,4 @@
+import { saveAs } from 'file-saver';
 import { tap, map } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -5,8 +6,7 @@ import { AuthService } from './auth.service';
 import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 import { concat, forkJoin, Observable, merge } from 'rxjs';
-// import * as XLSX from 'xlsx';
-// import { saveAs } from 'file-saver';
+import * as XLSX from 'xlsx';
 @Injectable({ providedIn: 'root' })
 export class HttpService {
     private readonly baseUrl: string = environment.baseUrl;
@@ -78,24 +78,23 @@ export class HttpService {
         const EXCEL_TYPE =
             'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
         const EXCEL_EXTENSION = '.xlsx';
-        //     const workSheet = XLSX.utils.json_to_sheet(data);
-        //     const workBook = {
-        //         Sheets: {
-        //             testingSheet: workSheet,
-        //         },
-        //         SheetNames: ['testingSheet'],
-        //     };
-        //     const excelBuffer = XLSX.write(workBook, {
-        //         bookType: 'xlsx',
-        //         type: 'array',
-        //     });
-        //     const blobData = new Blob([excelBuffer], {
-        //         type: EXCEL_TYPE,
-        //     });
-        //     saveAs(blobData, Name);
-        // }
-        // getCodes(PageName: string) {
-        //     return this.getData('constant', { ScreenName: PageName });
+        const workSheet = XLSX.utils.json_to_sheet(data);
+        const workBook = {
+            Sheets: {
+                testingSheet: workSheet,
+            },
+            SheetNames: ['testingSheet'],
+        };
+        const excelBuffer = XLSX.write(workBook, {
+            bookType: 'xlsx',
+            type: 'array',
+        });
+        const blobData = new Blob([excelBuffer], {
+            type: EXCEL_TYPE,
+        });
+        saveAs(blobData, Name);
+
+
     }
     saveData(route: string, body: any) {
         return this.http.post(this.baseUrl + route, this.convartData(body));

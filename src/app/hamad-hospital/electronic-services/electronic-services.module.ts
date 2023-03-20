@@ -15,7 +15,7 @@ import { TextAreaFieldComponent } from 'src/app/shared/Module-shared/text-area-f
 import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/upload-files.component';
 import { ShowMessageModalComponent } from './Modals/show-message-modal/show-message-modal.component';
 import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-shared/dialog-shared.component';
-
+import { NgxPrintModule } from 'ngx-print';
 
 
 @NgModule({
@@ -43,7 +43,8 @@ import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-share
     FileUploadModule,
     UploadFilesComponent,
     TabViewModule,
-    DialogSharedComponent
+    DialogSharedComponent,
+    NgxPrintModule
   ]
 })
 export class ElectronicServicesModule { }

@@ -103,7 +103,93 @@ export class ElectronicServicesService {
             { isLoading: true }
         );
     }
-
+    excel(){
+        let data: any[] = [];
+        this.dataStore.PublicServices?.data.forEach((item: any, index: any) => {
+            data.push({
+                ['#']: index,
+                ['الاسم كامل']:item.FullName,
+                ['رقم الهوية']: item.IdentityNumber,
+                ['الايميل']: item.Email,
+                ['الموبايل']: item.PhoneNumber,
+                ['العنوان']:item.Address,
+                ['الموعد']:item.Appointment,
+                ['الموضوع']:item.TextMessage
+            });
+        });
+        this._http.downloadExcel(data, 'المواعيد');
+    }
+    excel_2(){
+        let data: any[] = [];
+        this.dataStore.Suggestion?.data.forEach((item: any, index: any) => {
+            data.push({
+                ['#']: index,
+                ['الاسم كامل']:item.FullName,
+                ['رقم الهوية']: item.IdentityNumber,
+                ['الايميل']: item.Email,
+                ['الموبايل']: item.PhoneNumber,
+                ['العنوان']:item.Address,
+                ['الموضوع']:item.TextMessage
+            });
+        });
+        this._http.downloadExcel(data, 'الاقتراحات');
+    }
+    excel_3(){
+        let data: any[] = [];
+        this.dataStore.Rating?.data.forEach((item: any, index: any) => {
+            data.push({
+                ['#']: index,
+                ['الاسم كامل']:item.FullName,
+                ['الايميل']: item.Email,
+                ['الموبايل']: item.PhoneNumber,
+                ['العنوان']:item.Address,
+                ['التقييم']:item.HospitalRating
+            });
+        });
+        this._http.downloadExcel(data, 'التقييم');
+    }
+    excel_4(){
+        let data: any[] = [];
+        this.dataStore.Visitors?.data.forEach((item: any, index: any) => {
+            data.push({
+                ['#']: index,
+                ['الاسم كامل']:item.FullName,
+                ['الايميل']: item.Email,
+                ['الموبايل']: item.PhoneNumber,
+                ['العنوان']:item.Address,
+                ['الموضوع']:item.TextMessage
+            });
+        });
+        this._http.downloadExcel(data, 'الزائريين');
+    }
+    excel_5(){
+        let data: any[] = [];
+        this.dataStore.PressCoverageRequest?.data.forEach((item: any, index: any) => {
+            data.push({
+                ['#']: index,
+                ['الاسم كامل']:item.FullName,
+                ['الايميل']: item.Email,
+                ['الموبايل']: item.PhoneNumber,
+                ['العنوان']:item.Address,
+                ['الموضوع']:item.TextMessage
+            });
+        });
+        this._http.downloadExcel(data, 'طلب تغطية صحفية');
+    }
+    excel_6(){
+        let data: any[] = [];
+        this.dataStore.VisitRequest?.data.forEach((item: any, index: any) => {
+            data.push({
+                ['#']: index,
+                ['الاسم كامل']:item.FullName,
+                ['الايميل']: item.Email,
+                ['الموبايل']: item.PhoneNumber,
+                ['العنوان']:item.Address,
+                ['الموضوع']:item.TextMessage
+            });
+        });
+        this._http.downloadExcel(data, 'طلب زيارة');
+    }
     getFormApi(
         api: string,
         selector: selectorsType,

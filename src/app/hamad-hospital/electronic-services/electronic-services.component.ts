@@ -40,6 +40,24 @@ export class ElectronicServicesComponent implements OnInit {
     editItem(item:any){
 
     }
+    excel(){
+        this._electronicServicesService.excel()
+    }
+    excel_2(){
+        this._electronicServicesService.excel_2()
+    }
+    excel_3(){
+        this._electronicServicesService.excel_3()
+    }
+    excel_4(){
+        this._electronicServicesService.excel_4()
+    }
+    excel_5(){
+        this._electronicServicesService.excel_5()
+    }
+    excel_6(){
+        this._electronicServicesService.excel_6()
+    }
 
     openDialog(item?: any){
         this._electronicServicesService.displayDialogs(

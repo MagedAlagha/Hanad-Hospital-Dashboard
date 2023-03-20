@@ -74,7 +74,8 @@
                         { Code: 1, Name: 'التأهيل الطبي' },
                         { Code: 2, Name: 'الاطراف الصناعية' },
                         { Code: 3, Name: 'السمع والتوازن' },
-                        { Code: 4, Name: 'العيادة الخارجية' }
+                        { Code: 4, Name: 'العيادة الخارجية' },
+                        { Code: 5, Name: 'خدمات طبية مساندة' }
                     ]"
                     formControlName="MainServiceID"
                     [label]="'اختيار القسم الرئيسي'"
@@ -158,11 +159,11 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
-                    <th class="text-center">الاسم عربي</th>
-                    <th class="text-center">الاسم انجليزي</th>
+                    <th class="text-center">العنوان</th>
                     <th class="text-center">القسم الرئيسي</th>
-                    <th class="text-center">المركز الاجتماعي</th>
+                    <th class="text-center">المركز الاعلامي</th>
                     <th class="text-center">الترتيب</th>
+                    <th class="text-center">الصورة</th>
                     <th class="text-center">صور القسم</th>
                     <th class="text-center">الاجراءات</th>
                 </tr>
@@ -172,13 +173,14 @@
                     <td>
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
-                    <td>{{ item.TitleAr }}</td>
-                    <td>{{ item.TitleEn }}</td>
+                    <td>{{ isEn ? item?.TitleEn : (item?.TitleAr | slice : 0 : 40) }}</td>
+
                     <td *ngIf="item.MainServiceID === null"> - </td>
                     <td *ngIf="item.MainServiceID === 1"> التأهيل الطبي </td>
                     <td *ngIf="item.MainServiceID === 2"> الاطراف الصناعية </td>
                     <td *ngIf="item.MainServiceID === 3"> السمع والتوازن </td>
                     <td *ngIf="item.MainServiceID === 4"> العيادة الخارجية </td>
+                    <td *ngIf="item.MainServiceID === 5"> خدمات طبية مساندة </td>
                     <td *ngIf="item.MediaSectionID === null"> - </td>
                     <td *ngIf="item.MediaSectionID === 1"> الاخبار </td>
                     <td *ngIf="item.MediaSectionID === 2"> معرض الصور</td>
@@ -188,6 +190,14 @@
                     <td *ngIf="item.MediaSectionID === 6"> قصص رقمية</td>
                     <td *ngIf="item.MediaSectionID === 7"> منوعات</td>
                     <td>{{ item.Sorting }}</td>
+                    <td> <span>
+                        <p-image
+                            [src]="Avatar + item?.ImagePath"
+                            alt="Image"
+                            width="40px"
+                            [preview]="true"
+                        ></p-image>
+                 </span></td>
 
                     <td class="text-center">
                         <ng-container *ngIf="item.MediaSectionID === 2 || item.MediaSectionID === 6 || item.MediaSectionID === 7 ; else ff ">

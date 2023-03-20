@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { map, Observable, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { MediaCenterService } from './media-center.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class MediaCenterComponent implements OnInit {
     itemShow:any;
     ID:any;
     @ViewChild('fileUpload') fileUpload: any;
-
+    Avatar=environment.FileUrl;
+    isEn = document.dir == 'ltr' ? true : false;
     constructor(
         private _mediaCenterService: MediaCenterService,
         private fb: FormBuilder,
