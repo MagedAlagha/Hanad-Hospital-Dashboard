@@ -16,6 +16,7 @@ import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/
 import { ShowMessageModalComponent } from './Modals/show-message-modal/show-message-modal.component';
 import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-shared/dialog-shared.component';
 import { NgxPrintModule } from 'ngx-print';
+import { SearchFieldComponent } from 'src/app/shared/Module-shared/search-field/search-field.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { NgxPrintModule } from 'ngx-print';
     UploadFilesComponent,
     TabViewModule,
     DialogSharedComponent,
-    NgxPrintModule
+    NgxPrintModule,
+    SearchFieldComponent
   ]
 })
 export class ElectronicServicesModule { }

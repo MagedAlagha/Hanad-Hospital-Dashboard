@@ -20,11 +20,14 @@ export class HomeComponent implements OnInit {
 
     Avatar=environment.FileUrl
     @ViewChild('fileUpload') fileUpload: any;
+    imgResultBeforeCompression: string = '';
+    imgResultAfterCompression: string = '';
+
     constructor(
         fb: FormBuilder,
         private _homeService: HomeService,
         private messageService: MessageService,
-        private _translateService: TranslateService
+        private _translateService: TranslateService ,
     ) {
         this.formSlider = fb.group({
             ID: [],
@@ -41,6 +44,8 @@ export class HomeComponent implements OnInit {
         this._homeService.getSliderData();
         this.sliderData$ = this._homeService.Selector$('sliderData');
     }
+
+
 
     save() {
         console.log('fileUpload', this.fileUpload);

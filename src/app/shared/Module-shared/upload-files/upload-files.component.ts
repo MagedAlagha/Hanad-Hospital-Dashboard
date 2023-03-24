@@ -14,6 +14,7 @@ import {
 import { FileUploadModule } from 'primeng/fileupload';
 import { UploadFilesService } from './upload-files.service';
 import { Observable, forkJoin } from 'rxjs';
+import { NgxImageCompressService } from 'ngx-image-compress';
 @Component({
     standalone: true,
     imports: [
@@ -24,6 +25,7 @@ import { Observable, forkJoin } from 'rxjs';
         TooltipModule,
         FileUploadModule,
     ],
+    providers: [NgxImageCompressService],
     selector: 'app-upload-files',
     templateUrl: './upload-files.component.html',
     styleUrls: ['./upload-files.component.scss'],
@@ -40,11 +42,18 @@ export class UploadFilesComponent implements OnInit {
     @Output() onSelectFiles = new EventEmitter<any>();
     @Output() afterAutoSave = new EventEmitter<any>();
     uploadedFiles: any[] = [];
-    constructor(private _uploadFileService: UploadFilesService) {}
+    compressedImage:any;
+    constructor(
+        private _uploadFileService: UploadFilesService,
+        private imageCompress: NgxImageCompressService
+    ) {}
 
     ngOnInit() {}
-
+    event($event:any){
+console.log('$event' , $event.target.files)
+    }
     onSelect(event: any) {
+        console.log('event',event)
         if (this.multiple) {
             this.uploadedFiles = [...this.uploadedFiles, ...event.currentFiles];
             this.onSelectFiles.emit(this.uploadedFiles);
@@ -69,6 +78,48 @@ export class UploadFilesComponent implements OnInit {
                 });
             }
         }
-        this.fileUpload.clear();
+        /* this.fileUpload.clear(); */
     }
+    imgResultBeforeCompression: any;
+    compressFile() {
+        this.imageCompress.uploadFile().then(({ image, orientation ,fileName}) => {
+            console.log('orientation',orientation)
+            this.imgResultBeforeCompression = image;
+            this.imageCompress
+                .compressFile(image, orientation, 50, 50) // 50% ratio, 50% quality
+                .then((compressedImage) => {
+                  this.compressedImage = compressedImage
+                    let file = this.base64ToFile(compressedImage, fileName);
+                    this.onSelect({
+                        currentFiles: [file],
+                    });
+                });
+        });
+    }
+
+    base64ToFile(data: any, filename: any) {
+        const arr = data.split(',');
+        const mime = arr[0].match(/:(.*?);/)[1];
+        const bstr = atob(arr[1]);
+        let n = bstr.length;
+        let u8arr = new Uint8Array(n);
+
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+
+        return new File([u8arr], filename, { type: mime });
+    }
+    /* dataURItoBlob(dataURI: any) {
+        console.log('dataURI',dataURI);
+
+        const byteString = window.atob(dataURI);
+        const arrayBuffer = new ArrayBuffer(byteString.length);
+        const int8Array = new Uint8Array(arrayBuffer);
+        for (let i = 0; i < byteString.length; i++) {
+            int8Array[i] = byteString.charCodeAt(i);
+        }
+        const blob = new Blob([int8Array], { type: 'image/png' });
+        return blob;
+    } */
 }

@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ElectronicServicesService } from './electronic-services.service';
+import { Table } from 'primeng/table';
 
 @Component({
     selector: 'app-electronic-services',
@@ -58,7 +59,12 @@ export class ElectronicServicesComponent implements OnInit {
     excel_6(){
         this._electronicServicesService.excel_6()
     }
-
+    onGlobalFilter(table: Table, event: Event) {
+        table.filterGlobal(
+            (event.target as HTMLInputElement).value,
+            'contains'
+        );
+    }
     openDialog(item?: any){
         this._electronicServicesService.displayDialogs(
             'showMessageDialog',

@@ -15,6 +15,7 @@ import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/
 import { ServicesCardsComponent } from './services-cards/services-cards.component';
 import { TabViewModule } from 'primeng/tabview';
 import { ImageModule } from 'primeng/image';
+import { NgxImageCompressService } from 'ngx-image-compress';
 
 @NgModule({
     declarations: [HomeComponent, ServicesCardsComponent],
@@ -38,6 +39,9 @@ import { ImageModule } from 'primeng/image';
         UploadFilesComponent,
         TabViewModule,
         ImageModule,
+
     ],
+    providers: [NgxImageCompressService],
 })
 export class HomeModule {}
+

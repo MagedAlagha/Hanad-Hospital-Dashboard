@@ -1,13 +1,7 @@
-<p-fileUpload
-    #fileUpload
-    (onSelect)="onSelect($event)"
-    [multiple]="multiple"
-    mode="basic"
-    [chooseLabel]="'ملف'"
-    [uploadIcon]="'pi pi-upload'"
->
-</p-fileUpload>
 
+
+<p class="btn_upload_img" (click)="compressFile()">انقر للرفع</p>
+<!-- <img [src]="compressedImage" alt="" srcset=""> -->
 <ng-container *ngIf="showFilesUploaded"
     ><div *ngFor="let item of uploadedFiles" class="m-2">
         {{ item.name }}

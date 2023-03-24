@@ -10,40 +10,13 @@
         <p-tabView>
             <p-tabPanel header=" المواعيد">
                 <ng-container *ngIf="PublicServices$ | async as data">
-                    <div class="flex justify-content-end mb-2">
-                        <app-button-component
-                        [classColor]="'purple-500 '"
-                        [Icon]="'pi pi-print'"
-                        label="تصدير اكسل"
-                        [isCustomLable]="true"
-                        [pTooltipCustom]="'تصدير اكسل'"
-                        (click)="excel()"
-                    >
-                    </app-button-component>
-                        <app-button-component
-                        [classColor]="'purple-500 '"
-                        [Icon]="'pi pi-print'"
-                        label="طباعة"
-                        [isCustomLable]="true"
-                        [pTooltipCustom]="'طباعة البيانات'"
-                        (click)="printButton.click()"
-                    >
-                    </app-button-component>
-                    <button
-                    [hidden]="true"
-                    #printButton
-                    [useExistingCss]="true"
-                    printSectionId="my-table-pdf"
-                    ngxPrint
-                  >
-                    print
-                  </button>
-                    </div>
+
                     <p-table
                     dir="rtl"
                         styleClass="p-datatable-gridlines"
                         [rows]="10"
                         [paginator]="true"
+                        #dt1
                          [style.width]="'100%'"
                         [value]="data.data"
                         [loading]="data.loading"
@@ -51,7 +24,57 @@
                         styleClass="p-datatable-gridlines" [paginator]="true"
                         [globalFilterFields]="['FullName','Email','PhoneNumber','Address','Appointment', 'DepartmentID']"
                         responsiveLayout="scroll"
+                        [filterDelay]="0"
                     >
+                    <ng-template pTemplate="caption">
+                        <div
+                            class="grid flex justify-content-between align-items-center"
+                            style="margin: 0"
+                        >
+                            <div class="lg:md-3">
+                                <app-search-field
+                                    #filter
+                                    (input)="onGlobalFilter(dt1, $event)"
+                                    pInputText
+                                    type="text"
+                                    placeholder="Search"
+                                    class="w-full"
+                                ></app-search-field>
+                            </div>
+                            <div class="lg:md-3">
+                                <div class="flex justify-content-end mb-2">
+                                    <app-button-component
+                                    [classColor]="'purple-500 '"
+                                    [Icon]="'pi pi-print'"
+                                    label="تصدير اكسل"
+                                    [isCustomLable]="true"
+                                    [pTooltipCustom]="'تصدير اكسل'"
+                                    (click)="excel()"
+                                >
+                                </app-button-component>
+                                    <app-button-component
+                                    [classColor]="'purple-500 '"
+                                    [Icon]="'pi pi-print'"
+                                    label="طباعة"
+                                    [isCustomLable]="true"
+                                    [pTooltipCustom]="'طباعة البيانات'"
+                                    (click)="printButton.click()"
+                                >
+                                </app-button-component>
+                                <button
+                                [hidden]="true"
+                                #printButton
+                                [useExistingCss]="true"
+                                printSectionId="my-table-pdf"
+                                ngxPrint
+                              >
+                                print
+                              </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
                         <ng-template pTemplate="header">
                             <tr>
                                 <th class="text-center">#</th>
