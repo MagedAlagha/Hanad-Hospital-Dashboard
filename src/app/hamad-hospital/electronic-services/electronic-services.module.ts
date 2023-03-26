@@ -17,6 +17,8 @@ import { ShowMessageModalComponent } from './Modals/show-message-modal/show-mess
 import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-shared/dialog-shared.component';
 import { NgxPrintModule } from 'ngx-print';
 import { SearchFieldComponent } from 'src/app/shared/Module-shared/search-field/search-field.component';
+import { CalendarAppComponent } from 'src/app/demo/components/apps/calendar/calendar.app.component';
+import { CalenderFeildComponent } from 'src/app/shared/Module-shared/calender-feild/calender-feild.component';
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { SearchFieldComponent } from 'src/app/shared/Module-shared/search-field/
     TabViewModule,
     DialogSharedComponent,
     NgxPrintModule,
-    SearchFieldComponent
+    SearchFieldComponent,
+    CalenderFeildComponent
   ]
 })
 export class ElectronicServicesModule { }

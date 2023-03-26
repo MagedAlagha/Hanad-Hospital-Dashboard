@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ElectronicServicesService } from './electronic-services.service';
 import { Table } from 'primeng/table';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'app-electronic-services',
@@ -16,7 +17,17 @@ export class ElectronicServicesComponent implements OnInit {
     PressCoverageRequest$!:Observable<any>;
     VisitRequest$!:Observable<any>;
     showMessageDialog$!:Observable<any>;
-    constructor(private _electronicServicesService:ElectronicServicesService) {}
+    Form_search!:FormGroup<any>;
+    constructor(private _electronicServicesService:ElectronicServicesService , private fb:FormBuilder) {
+        this.Form_search = fb.group({
+            FullName: [''],
+            Address: [''],
+            IdentityNumber: [''],
+            FromAppointment: [''],
+            ToAppointment: [''],
+            DepartmentID: [''],
+          });
+    }
 
     ngOnInit(): void {
 
@@ -35,11 +46,20 @@ export class ElectronicServicesComponent implements OnInit {
         this.showMessageDialog$ = this._electronicServicesService.Selector$('showMessageDialog')
     }
 
-    deleteItem(item:any){
-
+    saveFormSerch(){
+       console.log( "this.Form_search.value " , this.Form_search.value);
+       this._electronicServicesService.getBeneficiaries(this.Form_search.value)
+       this._electronicServicesService.getSuggestion(this.Form_search.value)
+       this._electronicServicesService.getRating(this.Form_search.value)
+       this._electronicServicesService.getVisitors(this.Form_search.value)
+       this._electronicServicesService.getPressCoverageRequest(this.Form_search.value)
+       this._electronicServicesService.getVisitRequest(this.Form_search.value)
     }
-    editItem(item:any){
-
+    clearFormSerch(){
+      this.Form_search.reset();
+    }
+    onChange(items:any){
+console.log('fefefgegeg' , items)
     }
     excel(){
         this._electronicServicesService.excel()

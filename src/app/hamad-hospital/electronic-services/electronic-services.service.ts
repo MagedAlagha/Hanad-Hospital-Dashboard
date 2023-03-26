@@ -55,51 +55,51 @@ export class ElectronicServicesService {
     };
 
     /*  */
-    getBeneficiaries() {
+    getBeneficiaries(body?:any) {
         this.getFormApi(
             'PublicServices/PublicServicesSearch',
             'PublicServices',
-            { ServiceID: 1 },
+            { ServiceID: 1 , ...body },
             { isLoading: true }
         );
     }
-    getSuggestion() {
+    getSuggestion(body?:any) {
         this.getFormApi(
             'PublicServices/PublicServicesSearch',
             'Suggestion',
-            { ServiceID: 2 },
+            { ServiceID: 2, ...body },
             { isLoading: true }
         );
     }
-    getRating() {
+    getRating(body?:any) {
         this.getFormApi(
             'PublicServices/PublicServicesSearch',
             'Rating',
-            { ServiceID: 3 },
+            { ServiceID: 3, ...body },
             { isLoading: true }
         );
     }
-    getVisitors() {
+    getVisitors(body?:any) {
         this.getFormApi(
             'PublicServices/PublicServicesSearch',
             'Visitors',
-            { ServiceID: 4 },
+            { ServiceID: 4 , ...body},
             { isLoading: true }
         );
     }
-    getPressCoverageRequest() {
+    getPressCoverageRequest(body?:any) {
         this.getFormApi(
             'PublicServices/PublicServicesSearch',
             'PressCoverageRequest',
-            { ServiceID: 5 },
+            { ServiceID: 5 , ...body},
             { isLoading: true }
         );
     }
-    getVisitRequest() {
+    getVisitRequest(body?:any) {
         this.getFormApi(
             'PublicServices/PublicServicesSearch',
             'VisitRequest',
-            { ServiceID: 6 },
+            { ServiceID: 6 , ...body},
             { isLoading: true }
         );
     }

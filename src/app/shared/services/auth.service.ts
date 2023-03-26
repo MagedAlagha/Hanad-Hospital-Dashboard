@@ -35,14 +35,19 @@ export class AuthService implements OnDestroy {
                             'CurrentUser',
                             JSON.stringify(res?.user)
                         );
+                        localStorage.setItem(
+                            'UserID',
+                            JSON.stringify(res?.rv)
+                        );
                         this.getUserData();
                         console.log('login', this.isActive);
+                        console.log('rv', res?.rv);
                         this.router.navigate(['/']);
                     } else {
                         this.messageService.add({
                             severity: 'error',
                             summary: ' Message',
-                            detail: 'معلومات تسجيل الدخول غير صحيحى',
+                            detail: 'معلومات تسجيل الدخول غير صحيحة',
                         });
                     }
                 }),

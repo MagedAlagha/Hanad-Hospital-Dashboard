@@ -50,12 +50,23 @@ export class CodesComponent {
     }
 
     save() {
-        this._codesService
+        if(!this.ID){
+            this._codesService
             .saveCodes({
                 ...this.Form_Codes.value,
                 Eng: this.Form_Codes.get('Name')?.value,
             })
             .subscribe((value) => this._codesService.getCodes(this.ParentD));
+        }else{
+            this._codesService
+            .saveCodes({
+                ...this.Form_Codes.value,
+                Eng: this.Form_Codes.get('Name')?.value,
+                ID:this.ID
+            })
+            .subscribe((value) => this._codesService.getCodes(this.ParentD));
+        }
+
     }
     clear() {
         this.Form_Codes.reset();

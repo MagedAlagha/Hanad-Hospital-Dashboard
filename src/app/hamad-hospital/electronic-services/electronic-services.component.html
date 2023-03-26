@@ -6,11 +6,88 @@
     </div>
     </div>
     <hr />
-    <br />
-        <p-tabView>
-            <p-tabPanel header=" المواعيد">
-                <ng-container *ngIf="PublicServices$ | async as data">
+    <br />  <!-- (onChange)="onChange($event)" -->
+        <p-tabView >
 
+            <form [formGroup]="Form_search">
+                <div class="grid p-fluid mt-3">
+
+                    <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                        <app-input-field [label]="'الاسم'" formControlName="FullName">
+                        </app-input-field>
+                    </div>
+                    <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                        <app-input-field
+                            [label]="'رقم الهوية'"
+                            formControlName="IdentityNumber"
+                        >
+                        </app-input-field>
+                    </div>
+                    <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                        <app-input-field label="العنوان" formControlName="Address">
+                        </app-input-field>
+                    </div>
+                    <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                        <app-input-field label="القسم" formControlName="DepartmentID">
+                        </app-input-field>
+                    </div>
+                    <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                        <app-calender-feild label="الموعد / من" formControlName="FromAppointment">
+                        </app-calender-feild>
+                    </div>
+                    <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                        <app-calender-feild label="الموعد / الى" formControlName="ToAppointment">
+                        </app-calender-feild>
+                    </div>
+
+                    <div class="col-12 mb-2 lg:col-3 lg:mb-0 align-items-center justify-content-evenly">
+                        <div class="inline-flex align-items-center">
+                            <app-button-component
+                                [classColor]="'p-button-raised'"
+                                (action)="saveFormSerch()"
+                                [Icon]="'pi pi-id-card'"
+                                label="بحث"
+                                [isCustomLable]="true"
+                                [pTooltipCustom]="'بحث متقدم'"
+                            >
+                            </app-button-component>
+                            <app-button-component
+                                label="مسح الحقول"
+                                class="pr-2"
+                                (action)="clearFormSerch()"
+                                [classColor]="'p-button-raised p-button-secondary '"
+                                [pTooltipCustom]="'مسح الحقول '"
+                                [Icon]="'pi pi-eraser'"
+                            ></app-button-component>
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+            </form>
+            <p-tabPanel header=" المواعيد" >
+                <ng-container *ngIf="PublicServices$ | async as data">
+                    <div class="flex justify-content-end mb-2">
+                        <app-button-component
+                        [classColor]="'purple-500 '"
+                        [Icon]="'pi pi-print'"
+                        label="تصدير اكسل"
+                        [isCustomLable]="true"
+                        [pTooltipCustom]="'تصدير اكسل'"
+                        (click)="excel()"
+                    >
+                    </app-button-component>
+                    </div>
+                      <!-- <div class="lg:md-3">
+                                <app-search-field
+                                    #filter
+                                    (input)="onGlobalFilter(dt1, $event)"
+                                    pInputText
+                                    type="text"
+                                    placeholder="Search"
+                                    class="w-full"
+                                ></app-search-field>
+                            </div> -->
                     <p-table
                     dir="rtl"
                         styleClass="p-datatable-gridlines"
@@ -26,55 +103,7 @@
                         responsiveLayout="scroll"
                         [filterDelay]="0"
                     >
-                    <ng-template pTemplate="caption">
-                        <div
-                            class="grid flex justify-content-between align-items-center"
-                            style="margin: 0"
-                        >
-                            <div class="lg:md-3">
-                                <app-search-field
-                                    #filter
-                                    (input)="onGlobalFilter(dt1, $event)"
-                                    pInputText
-                                    type="text"
-                                    placeholder="Search"
-                                    class="w-full"
-                                ></app-search-field>
-                            </div>
-                            <div class="lg:md-3">
-                                <div class="flex justify-content-end mb-2">
-                                    <app-button-component
-                                    [classColor]="'purple-500 '"
-                                    [Icon]="'pi pi-print'"
-                                    label="تصدير اكسل"
-                                    [isCustomLable]="true"
-                                    [pTooltipCustom]="'تصدير اكسل'"
-                                    (click)="excel()"
-                                >
-                                </app-button-component>
-                                    <app-button-component
-                                    [classColor]="'purple-500 '"
-                                    [Icon]="'pi pi-print'"
-                                    label="طباعة"
-                                    [isCustomLable]="true"
-                                    [pTooltipCustom]="'طباعة البيانات'"
-                                    (click)="printButton.click()"
-                                >
-                                </app-button-component>
-                                <button
-                                [hidden]="true"
-                                #printButton
-                                [useExistingCss]="true"
-                                printSectionId="my-table-pdf"
-                                ngxPrint
-                              >
-                                print
-                              </button>
-                                </div>
-                            </div>
 
-                        </div>
-                    </ng-template>
                         <ng-template pTemplate="header">
                             <tr>
                                 <th class="text-center">#</th>
@@ -210,7 +239,7 @@
                         (click)="excel_2()"
                     >
                     </app-button-component>
-                    <app-button-component
+                  <!--   <app-button-component
                     [classColor]="'purple-500 '"
                     [Icon]="'pi pi-print'"
                     label="طباعة"
@@ -218,7 +247,7 @@
                     [pTooltipCustom]="'طباعة البيانات'"
                     (click)="printButton2.click()"
                 >
-                </app-button-component>
+                </app-button-component> -->
                 <button
                 [hidden]="true"
                 #printButton2
@@ -351,7 +380,7 @@
                         (click)="excel_3()"
                     >
                     </app-button-component>
-                    <app-button-component
+                    <!-- <app-button-component
                     [classColor]="'purple-500 '"
                     [Icon]="'pi pi-print'"
                     label="طباعة"
@@ -359,7 +388,7 @@
                     [pTooltipCustom]="'طباعة البيانات'"
                     (click)="printButton3.click()"
                 >
-                </app-button-component>
+                </app-button-component> -->
                 <button
                 [hidden]="true"
                 #printButton3
@@ -472,7 +501,7 @@
                         (click)="excel_4()"
                     >
                     </app-button-component>
-                    <app-button-component
+                    <!-- <app-button-component
                     [classColor]="'purple-500 '"
                     [Icon]="'pi pi-print'"
                     label="طباعة"
@@ -480,7 +509,7 @@
                     [pTooltipCustom]="'طباعة البيانات'"
                     (click)="printButton4.click()"
                 >
-                </app-button-component>
+                </app-button-component> -->
                 <button
                 [hidden]="true"
                 #printButton4
@@ -621,7 +650,7 @@
                         (click)="excel_5()"
                     >
                     </app-button-component>
-                    <app-button-component
+                   <!--  <app-button-component
                     [classColor]="'purple-500 '"
                     [Icon]="'pi pi-print'"
                     label="طباعة"
@@ -629,7 +658,7 @@
                     [pTooltipCustom]="'طباعة البيانات'"
                     (click)="printButton5.click()"
                 >
-                </app-button-component>
+                </app-button-component> -->
                 <button
                 [hidden]="true"
                 #printButton5
@@ -755,7 +784,7 @@
                         (click)="excel_6()"
                     >
                     </app-button-component>
-                    <app-button-component
+                    <!-- <app-button-component
                     [classColor]="'purple-500 '"
                     [Icon]="'pi pi-print'"
                     label="طباعة"
@@ -763,7 +792,7 @@
                     [pTooltipCustom]="'طباعة البيانات'"
                     (click)="printButton.click()"
                 >
-                </app-button-component>
+                </app-button-component> -->
                 <button
                 [hidden]="true"
                 #printButton

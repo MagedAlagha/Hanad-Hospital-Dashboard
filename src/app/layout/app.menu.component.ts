@@ -18,8 +18,10 @@ export class AppMenuComponent implements OnInit {
 
     ngOnInit() {
         var user = JSON.parse(localStorage.getItem('CurrentUser')!);
-        console.log(user);
-        this._menuService.getPermissionsForUser(1);
+        var UserID = JSON.parse(localStorage.getItem('UserID')!);
+        console.log("user" , user);
+        console.log("UserID" , UserID);
+        this._menuService.getPermissionsForUser(UserID);
         this._menuService.permissions$.subscribe((permissions) => {
             this.model = [
                 {
