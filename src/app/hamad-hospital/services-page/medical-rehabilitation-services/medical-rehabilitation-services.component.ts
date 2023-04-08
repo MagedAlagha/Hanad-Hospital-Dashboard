@@ -22,9 +22,9 @@ export class MedicalRehabilitationServicesComponent {
         this.formMedicalRehabilitationServices = fb.group({
             ID: [null],
             NameAr: [null , Validators.required],
-            NameEn: [null],
+            NameEn: ['نص'],
             DescAr: [null, Validators.required],
-            DescEn: [null],
+            DescEn: ['نص'],
             IsActive: [null , Validators.required],
             Sorting: [null , Validators.required],
         });

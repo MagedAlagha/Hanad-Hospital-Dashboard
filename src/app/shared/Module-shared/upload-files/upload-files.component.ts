@@ -86,7 +86,7 @@ console.log('$event' , $event.target.files)
             console.log('orientation',orientation)
             this.imgResultBeforeCompression = image;
             this.imageCompress
-                .compressFile(image, orientation, 50, 50) // 50% ratio, 50% quality
+                .compressFile(image, orientation, 50, 90) // 50% ratio, 50% quality
                 .then((compressedImage) => {
                   this.compressedImage = compressedImage
                     let file = this.base64ToFile(compressedImage, fileName);

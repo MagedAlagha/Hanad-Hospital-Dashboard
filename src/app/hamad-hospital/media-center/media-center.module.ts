@@ -17,6 +17,7 @@ import { ImageModule } from 'primeng/image';
 import { NewsComponent } from './news/news.component';
 import { AddPhotosModalComponent } from './Modlas/add-photos-modal/add-photos-modal.component';
 import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-shared/dialog-shared.component';
+import { EditorModule } from 'primeng/editor';
 
 
 
@@ -47,7 +48,8 @@ import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-share
     SelectFieldComponent,
     TabViewModule,
     ImageModule,
-    DialogSharedComponent
+    DialogSharedComponent ,
+    EditorModule
   ]
 })
 export class MediaCenterModule { }

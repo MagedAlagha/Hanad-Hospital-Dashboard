@@ -7,7 +7,7 @@
     <hr />
     <form [formGroup]="formAdvertisements">
         <div class="grid p-fluid mt-3">
-            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+            <div class="col-12 mb-2 lg:col-12 lg:mb-0">
                 <app-text-area-field
                     [rows]="2"
                     [label]="'وصف الاعلان /عربي'"
@@ -15,14 +15,14 @@
                 >
                 </app-text-area-field>
             </div>
-            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+            <!-- <div class="col-12 mb-2 lg:col-6 lg:mb-0">
                 <app-text-area-field
                     [rows]="2"
                     [label]="'وصف الاعلان /عربي'"
                     formControlName="TitleEn"
                 >
                 </app-text-area-field>
-            </div>
+            </div> -->
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-input-field
                     [label]="'اسم الزر  /عربي'"
@@ -30,13 +30,13 @@
                 >
                 </app-input-field>
             </div>
-            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+           <!--  <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-input-field
                     [label]="'اسم الزر  /انجليزي'"
                     formControlName="ButtonTitleEn"
                 >
                 </app-input-field>
-            </div>
+            </div> -->
             <div class="col-12 mb-2 lg:col-3 lg:mb-0">
                 <app-input-field
                     [label]="'لينك الاعلان '"
@@ -111,9 +111,9 @@
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">الوصف عربي</th>
-                    <th class="text-center">الوصف انجليزي</th>
+                    <!-- <th class="text-center">الوصف انجليزي</th> -->
                     <th class="text-center">لينك التقديم</th>
-                    <th class="text-center">فعال</th>
+                    <th class="text-center">الحالة</th>
                     <th class="text-center">الترتيب</th>
                     <th class="text-center">الاجراءات</th>
                 </tr>
@@ -124,7 +124,7 @@
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
                     <td>{{ item.TitleAr }}</td>
-                    <td>{{ item.TitleEn }}</td>
+                    <!-- <td>{{ item.TitleEn }}</td> -->
                     <td>{{ item.ButtonLink }}</td>
                     <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td>{{ item.Sorting }}</td>

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map, Observable, filter, tap } from 'rxjs';
 import { ServicesPageService } from '../services-page.service';
+import { MessageService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-prosthetics',
@@ -16,17 +18,19 @@ export class ProstheticsComponent {
     isEn = document.dir == 'ltr' ? true : false;
     constructor(
         fb: FormBuilder,
-        private _servicesPageService: ServicesPageService
+        private _servicesPageService: ServicesPageService ,
+        private messageService: MessageService,
+        private _translateService: TranslateService
     ) {
         this.formprosthetics = fb.group({
             ID: [null],
-            ProstheticsTypeID: [null],
-            NameAr: [null],
-            NameEn: [null],
-            AgeAr: [null],
-            AgeEn: [null],
-            IsActive: [null],
-            Sorting: [null],
+            ProstheticsTypeID: [null , Validators.required],
+            NameAr: [null , Validators.required],
+            NameEn: ['نص'],
+            AgeAr: [null , Validators.required],
+            AgeEn: ['نص'],
+            IsActive: [false],
+            Sorting: [null , Validators.required],
         });
     }
 
@@ -62,9 +66,25 @@ export class ProstheticsComponent {
     }
 
     save() {
-        this._servicesPageService.saveprosthetics(this.formprosthetics.value);
+
+        if (this.formprosthetics.invalid) {
+            this.messageService.add({
+                severity: 'error',
+                detail: this._translateService.instant(
+                    'الحقول مطلوبة'
+                ),
+            });
+        } else{
+            this._servicesPageService.saveprosthetics(this.formprosthetics.value);
+            this.clear()
+        }
+
+
     }
-    clear() {}
+    clear() {
+        this.formprosthetics.reset();
+        this.formprosthetics.get('IsActive')?.patchValue(false)
+    }
     editItem(item: any) {
         this.formprosthetics.patchValue(item);
         window.scrollTo({ top: 0, behavior: 'smooth' });

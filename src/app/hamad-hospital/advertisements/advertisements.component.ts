@@ -23,10 +23,10 @@ export class AdvertisementsComponent implements OnInit {
         this.formAdvertisements = fb.group({
             ID: [],
             TitleAr: ['', Validators.required],
-            TitleEn: ['',],
+            TitleEn: ['نص'],
             ButtonAdded: ['',],
             ButtonTitleAr: ['' ,Validators.required],
-            ButtonTitleEn: ['',],
+            ButtonTitleEn: ['نص'],
             ButtonLink: ['',Validators.required],
             IsActive: [false ],
             Sorting: ['', Validators.required],

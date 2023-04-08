@@ -22,8 +22,8 @@ export class MedicalRehabilitationFeaturesComponent {
         this.formServicesPage = fb.group({
             ID: [null],
             NameAr: [null , Validators.required],
-            NameEn: [null , Validators.required],
-            IsActive: [null , Validators.required],
+            NameEn: ['نص'],
+            IsActive: [false],
             Sorting: [null , Validators.required],
         });
     }
@@ -49,6 +49,7 @@ export class MedicalRehabilitationFeaturesComponent {
     }
     clear() {
         this.formServicesPage.reset();
+        this.formServicesPage.get('IsActive')?.patchValue(false)
     }
     editItem(item: any) {
         this.formServicesPage.patchValue(item);

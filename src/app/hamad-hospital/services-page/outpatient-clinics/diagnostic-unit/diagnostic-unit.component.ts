@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { ServicesPageService } from '../../services-page.service';
 
 @Component({
@@ -9,7 +9,6 @@ import { ServicesPageService } from '../../services-page.service';
     styleUrls: ['./diagnostic-unit.component.scss'],
 })
 export class DiagnosticUnitComponent {
-    formOutpatientClinicsSection!: FormGroup<any>;
     prosthetics$!: Observable<any>;
     getOutpatientClinicsDepartments$!: Observable<any>;
     OutpatientClinicsDepartmentsServices$!: Observable<any>;
@@ -30,42 +29,46 @@ export class DiagnosticUnitComponent {
             ID: [],
             IconPath: [],
             NameAr: [],
-            NameEn: [],
-            DescAr: [],
-            DescEn: [],
+            NameEn: ['نص'],
+            DescAr: ['نص'],
+            DescEn: ['نص'],
             IsActive: [],
             Sorting: [],
+            TypeID: [4],
         });
         this.formSections = fb.group({
             ID: [],
             NameAr: [],
-            NameEn: [],
+            NameEn: ['نص'],
             DescAr: [],
-            DescEn: [],
+            DescEn: ['نص'],
             OutpatientClinicsDepartmentID: [],
             IsActive: [],
             Sorting: [],
+            TypeID: [4],
         })
-        this.formOutpatientClinicsSection = fb.group({
-            OutpatientClinicsSectionAr: [null],
-            OutpatientClinicsSectionEn: [null],
-        });
+
 
     }
 
     ngOnInit() {
         this.prosthetics$ = this._servicesPageService.Selector$('prosthetics');
-        this.getOutpatientClinicsDepartments$ = this._servicesPageService.Selector$('OutpatientClinicsDepartments');
-        this.OutpatientClinicsDepartmentsServices$ = this._servicesPageService.Selector$('OutpatientClinicsDepartmentsServices')
-    }
+        this.getOutpatientClinicsDepartments$ = this._servicesPageService.Selector$('OutpatientClinicsDepartments').pipe(
+            map((val) => {
+              return val?.data?.filter((item: any) => {
+                return item.TypeID == 4;
+              });
+            })
+          );
 
-    saveOutpatientClinicsSection() {
-        this._servicesPageService.saveOutpatientClinicsSection(
-            {
-                ...this.formOutpatientClinicsSection.value ,
-                OutpatientClinicsSectionImagePath: this.fileSelected_2,
-            }
-        );
+          this.OutpatientClinicsDepartmentsServices$ = this._servicesPageService.Selector$('OutpatientClinicsDepartmentsServices').pipe(
+            map((val) => {
+              return val?.data?.filter((item: any) => {
+                return item.TypeID == 4;
+              });
+            })
+          );
+
     }
 
     saveFormOutpatient() {
@@ -73,12 +76,10 @@ export class DiagnosticUnitComponent {
         if(!this.ID){
         this._servicesPageService.saveOutpatientClinicsDepartments({
             ...this.formOutpatient.value,
-            IconPath: this.fileSelected,
         });
        }else{
         this._servicesPageService.saveOutpatientClinicsDepartments({
             ...this.formOutpatient.value,
-            IconPath: this.fileSelected,
             ID:this.ID
         });
        }

@@ -26,13 +26,13 @@
             <app-input-field [label]="'الاسم /عربي'" formControlName="NameAr">
             </app-input-field>
         </div>
-        <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+       <!--  <div class="col-12 mb-2 lg:col-5 lg:mb-0">
             <app-input-field
                 [label]="'الاسم /انجليزي'"
                 formControlName="NameEn"
             >
             </app-input-field>
-        </div>
+        </div> -->
         <div class="col-12 mb-2 lg:col-2 lg:mb-0">
             <app-input-field
                 [label]="'العمر / العربية'"
@@ -40,13 +40,13 @@
             >
             </app-input-field>
         </div>
-        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+       <!--  <div class="col-12 mb-2 lg:col-2 lg:mb-0">
             <app-input-field
                 [label]="'العمر / الانجليزية'"
                 formControlName="AgeEn"
             >
             </app-input-field>
-        </div>
+        </div> -->
         <div class="col-12 mb-2 lg:col-2 lg:mb-0">
             <app-input-field label="الترتيب" formControlName="Sorting">
             </app-input-field>
@@ -110,10 +110,10 @@
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">العنوان عربي</th>
-                    <th class="text-center">العنوان انجليزي</th>
+                    <!-- <th class="text-center">العنوان انجليزي</th> -->
                     <th class="text-center">العمر عربي</th>
-                    <th class="text-center">العمر العمر انجليزي</th>
-                    <th class="text-center">فعال</th>
+                    <!-- <th class="text-center">العمر العمر انجليزي</th> -->
+                    <th class="text-center">الحالة</th>
                     <th class="text-center">الترتيب</th>
                     <th class="text-center">الاجراءات</th>
                 </tr>
@@ -124,9 +124,9 @@
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
                     <td>{{ item.NameAr }}</td>
-                    <td>{{ item.NameEn }}</td>
+                    <!-- <td>{{ item.NameEn }}</td> -->
                     <td>{{ item.AgeAr }}</td>
-                    <td>{{ item.AgeEn }}</td>
+                    <!-- <td>{{ item.AgeEn }}</td> -->
                     <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td>{{ item.Sorting }}</td>
                     <td class="text-center">

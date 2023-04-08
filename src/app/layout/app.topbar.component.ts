@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../shared/services/auth.service';
 import { LayoutService } from './service/app.layout.service';
@@ -7,7 +7,7 @@ import { LayoutService } from './service/app.layout.service';
     selector: 'app-topbar',
     templateUrl: './app.topbar.component.html',
 })
-export class AppTopBarComponent {
+export class AppTopBarComponent implements OnInit {
     menu: MenuItem[] = [];
 
     @ViewChild('searchinput') searchInput!: ElementRef;
@@ -15,9 +15,13 @@ export class AppTopBarComponent {
     @ViewChild('menubutton') menuButton!: ElementRef;
 
     searchActive: boolean = false;
-
+    user:any;
     constructor(public layoutService: LayoutService ,  private auth: AuthService) {}
+    ngOnInit() {
 
+        this.user = JSON.parse(localStorage.getItem('CurrentUser')!);
+        console.log("user 9999" , this.user.fullName);
+    }
     onMenuButtonClick() {
         this.layoutService.onMenuToggle();
     }

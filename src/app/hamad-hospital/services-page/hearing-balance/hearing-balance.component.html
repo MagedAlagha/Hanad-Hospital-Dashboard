@@ -1,181 +1,279 @@
+<div class="flex flex-column md:flex-row mb-3">
+    <div class="text-900 text-xl font-bold mb-3 md:mb-0">
+        الاقسام الرئيسية
+    </div>
+</div>
+<hr />
 
-        <div class="flex flex-column md:flex-row mb-3">
-            <div class="text-900 text-xl font-bold mb-3 md:mb-0">
-                الاقسام الرئيسية
+<form [formGroup]="formOutpatient">
+    <div class="grid p-fluid mt-3">
+     <!--    <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <label for="">اضافة ايقونة</label>
+            <app-upload-files
+                (onSelectFiles)="fileSelected = $event"
+                [showFilesUploaded]="true"
+            ></app-upload-files>
+        </div> -->
+        <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+            <app-input-field [label]="'الاسم  /عربي'" formControlName="NameAr">
+            </app-input-field>
+        </div>
+        <!-- <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+            <app-input-field
+                [label]="'الاسم  /انجليزي'"
+                formControlName="NameEn"
+            >
+            </app-input-field>
+        </div> -->
+        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <app-input-field label="ترتيب القسم" formControlName="Sorting">
+            </app-input-field>
+        </div>
+        <div
+            class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
+            style="margin-top: 2.9rem"
+        >
+            <app-check-box label="فعال" formControlName="IsActive">
+            </app-check-box>
+        </div>
+            <!-- <div
+                class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
+                style="margin-top: 2.9rem"
+            >
+            <app-select-field
+            [dropdownItems]="[
+            { Code: 3, Name: 'معرض الفيديو' },
+            { Code: 4, Name: 'المقالات الطبية' },
+            { Code: 5, Name: 'قصص صحفية' },
+        ]"
+            formControlName="TypeID"
+            [label]="'اختيار المركز الاعلامي'"
+        >
+        </app-select-field>
+            </div> -->
+        <div
+            class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
+        >
+            <div class="inline-flex align-items-center">
+                <app-button-component
+                    [classColor]="'p-button-raised'"
+                    (action)="saveFormOutpatient()"
+                    [Icon]="'pi pi-id-card'"
+                    label="حفظ"
+                    [isCustomLable]="true"
+                    [pTooltipCustom]="'حفظ'"
+                >
+                </app-button-component>
+                <app-button-component
+                    label="مسح الحقول"
+                    class="pr-2"
+                    (action)="clearFormOutpatient()"
+                    [classColor]="'p-button-raised p-button-secondary '"
+                    [pTooltipCustom]="'مسح الحقول '"
+                    [Icon]="'pi pi-eraser'"
+                ></app-button-component>
             </div>
         </div>
-        <hr />
+    </div>
+    <br />
+    <ng-container *ngIf="getOutpatientClinicsDepartments$ | async as data">
+        <p-table
+            styleClass="p-datatable-gridlines"
+            [rows]="5"
+            [paginator]="true"
+           [style.width]="'100%'"
+            [value]="data"
+            [loading]="data.loading"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">العنوان عربي</th>
+                    <!-- <th class="text-center">العنوان انجليزي</th> -->
+                    <th class="text-center">الحالة</th>
+                    <th class="text-center">الترتيب</th>
+                    <th class="text-center">الاجراءات</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item let-index="rowIndex">
+                <tr>
+                    <td>
+                        <span class="reorder-row-icon">{{ index + 1 }}</span>
+                    </td>
+                    <td>{{ item.NameAr }}</td>
+                    <td>{{ item.NameEn }}</td>
+                    <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
+                    <td>{{ item.Sorting }}</td>
+                    <td class="text-center">
+                        <app-icon-shared
+                            [Icon]="'pi pi-pencil'"
+                            [classColor]="'var(--blue-400)'"
+                            [pTooltipCustom]="'تعديل البيانات'"
+                            (action)="editItem(item)"
+                        ></app-icon-shared>
 
-        <form [formGroup]="formHearingDepartemt">
-            <div class="grid p-fluid mt-3">
-                <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                    <label for="">اضافة ايقونة</label>
-                    <app-upload-files
-                        (onSelectFiles)="fileSelected_2 = $event"
-                        [showFilesUploaded]="true"
-                    ></app-upload-files>
-                </div>
-                <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                    <app-input-field [label]="'الاسم  /عربي'" formControlName="NameAr">
-                    </app-input-field>
-                </div>
-                <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                    <app-input-field
-                        [label]="'الاسم  /انجليزي'"
-                        formControlName="NameEn"
-                    >
-                    </app-input-field>
-                </div>
-                <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                    <app-input-field label="ترتيب الخدمة" formControlName="Sorting">
-                    </app-input-field>
-                </div>
-                <div class="col-12 mb-2 lg:col-5 lg:mb-0">
-                    <app-text-area-field
-                        [rows]="3"
-                        [label]="'الوصف  /عربي'"
-                        formControlName="DescAr"
-                    >
-                    </app-text-area-field>
-                </div>
-                <div class="col-12 mb-2 lg:col-5 lg:mb-0">
-                    <app-text-area-field
-                        [rows]="3"
-                        [label]="'الوصف  /انجليزي'"
-                        formControlName="DescEn"
-                    >
-                    </app-text-area-field>
-                </div>
-                <div
-                    class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
-                    style="margin-top: 2.9rem"
-                >
-                    <app-check-box label="فعال" formControlName="IsActive">
-                    </app-check-box>
-                </div>
-                <div
-                    class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
-                >
-                    <div class="inline-flex align-items-center">
-                        <app-button-component
-                            [classColor]="'p-button-raised'"
-                            (action)="saveformHearingDepartemt()"
-                            [Icon]="'pi pi-id-card'"
-                            label="حفظ"
-                            [isCustomLable]="true"
-                            [pTooltipCustom]="'حفظ'"
-                        >
-                        </app-button-component>
-                        <app-button-component
-                            label="مسح الحقول"
-                            class="pr-2"
-                            (action)="clearformHearingDepartemt()"
-                            [classColor]="'p-button-raised p-button-secondary '"
-                            [pTooltipCustom]="'مسح الحقول '"
-                            [Icon]="'pi pi-eraser'"
-                        ></app-button-component>
-                    </div>
-                </div>
-            </div>
-            <br />
-            <ng-container *ngIf="HearingDepartemt$ | async as data">
-                <p-table
-                    styleClass="p-datatable-gridlines"
-                    [rows]="5"
-                    [paginator]="true"
-                   [style.width]="'100%'"
-                    [value]="data.data"
-                    [loading]="data.loading"
-                >
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th class="text-center">#</th>
-                            <th class="text-center">العنوان عربي</th>
-                            <th class="text-center">العنوان انجليزي</th>
-                            <th class="text-center">فعال</th>
-                            <th class="text-center">الترتيب</th>
-                            <th class="text-center">الاجراءات</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-item let-index="rowIndex">
-                        <tr>
-                            <td>
-                                <span class="reorder-row-icon">{{ index + 1 }}</span>
-                            </td>
-                            <td>{{ item.NameAr }}</td>
-                            <td>{{ item.NameEn }}</td>
-                            <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
-                            <td>{{ item.Sorting }}</td>
-                            <td class="text-center">
-                                <app-icon-shared
-                                    [Icon]="'pi pi-pencil'"
-                                    [classColor]="'var(--blue-400)'"
-                                    [pTooltipCustom]="'تعديل البيانات'"
-                                    (action)="editItem(item)"
-                                ></app-icon-shared>
+                        <app-icon-shared
+                            [Icon]="'pi pi-trash'"
+                            [classColor]="'var(--red-400)'"
+                            [pTooltipCustom]="'حذف'"
+                            (action)="deleteItem(item)"
+                        ></app-icon-shared>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="footer"> </ng-template>
+            <ng-template pTemplate="loadingbody"> </ng-template>
+        </p-table>
+    </ng-container>
+</form>
 
-                                <app-icon-shared
-                                    [Icon]="'pi pi-trash'"
-                                    [classColor]="'var(--red-400)'"
-                                    [pTooltipCustom]="'حذف'"
-                                    (action)="deleteItem(item)"
-                                ></app-icon-shared>
-                            </td>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="emptymessage">
-                        <tr>
-                            <td class="text-center" colspan="6">لا يوجد بيانات</td>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="footer"> </ng-template>
-                    <ng-template pTemplate="loadingbody"> </ng-template>
-                </p-table>
+<br />
+<div class="flex flex-column md:flex-row mb-3">
+    <div class="text-900 text-xl font-bold mb-3 md:mb-0">العيادات</div>
+</div>
+<hr />
+
+<form [formGroup]="formSections">
+    <div class="grid p-fluid mt-3">
+        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+            <app-input-field [label]="'الاسم  /عربي'" formControlName="NameAr">
+            </app-input-field>
+        </div>
+       <!--  <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+            <app-input-field
+                [label]="'الاسم  /انجليزي'"
+                formControlName="NameEn"
+            >
+            </app-input-field>
+        </div> -->
+        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+            <app-text-area-field
+                [rows]="2"
+                [label]="'الوصف / عربي'"
+                formControlName="DescAr"
+            >
+            </app-text-area-field>
+        </div>
+        <!-- <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+            <app-text-area-field
+                [rows]="2"
+                [label]="'الوصف / انجليزي'"
+                formControlName="DescEn"
+            >
+            </app-text-area-field>
+        </div> -->
+        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <app-input-field label="الترتيب " formControlName="Sorting">
+            </app-input-field>
+        </div>
+         <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <ng-container *ngIf="getOutpatientClinicsDepartments$ | async as data">
+                <app-select-field
+                [dropdownItems]="data"
+                [optionLabel]="isEn?'NameEn':'NameAr'"
+                [optionValue]="'ID'"
+                formControlName="OutpatientClinicsDepartmentID"
+                [label]="'اختيار القسم'"
+
+            >
+            </app-select-field>
             </ng-container>
-        </form>
-        <br>
-        <hr>
-        <form [formGroup]="formHearingSection" >
-            <div class="grid p-fluid mt-1">
-                <div class="col-12 mb-2 lg:col-8 lg:mb-0">
-                    <label for="">اضافة صورة</label>
-                    <app-upload-files
-                    (onSelectFiles)="fileSelected = $event"
-                    [showFilesUploaded]="true"
-                ></app-upload-files>
-                </div>
-                <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-                    <label for="">قم باضافة المحتوى باللغة العربية</label>
-                    <p-editor
-                    class="p-editor"
-                        dir="ltr"
-                       formControlName="HearingSectionAr"
-                        [style]="{ height: '320px' }"
-                    >
-                    </p-editor>
-                </div>
-                <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-                    <label for="">قم باضافة المحتوى باللغة الانجليزية</label>
-                    <p-editor
-                        dir="ltr"
-                        formControlName="HearingSectionEn"
-                        [style]="{ height: '320px' }"
-                    >
-                    </p-editor>
-                </div>
 
-                <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-                    <div class="inline-flex align-items-center mt-3">
-                        <app-button-component
-                            [classColor]="'p-button-raised'"
-                            (action)="saveHearingSection()"
-                            [Icon]="'pi pi-id-card'"
-                            label="حفظ"
-                            [isCustomLable]="true"
-                            [pTooltipCustom]="'حفظ'"
-                        >
-                        </app-button-component>
-                    </div>
-                </div>
+        </div>
+
+        <div
+            class="col-12 mb-2 lg:col-1 lg:mb-0 align-items-center justify-content-evenly"
+            style="margin-top: 2.9rem"
+        >
+            <app-check-box label="فعال" formControlName="IsActive">
+            </app-check-box>
+        </div>
+        <div
+            class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
+            style="margin-top: 2.5rem"
+        >
+            <div class="inline-flex align-items-center">
+                <app-button-component
+                    [classColor]="'p-button-raised'"
+                    (action)="saveFormSections()"
+                    [Icon]="'pi pi-id-card'"
+                    label="حفظ"
+                    [isCustomLable]="true"
+                    [pTooltipCustom]="'حفظ'"
+                >
+                </app-button-component>
+                <app-button-component
+                    label="مسح الحقول"
+                    class="pr-2"
+                    (action)="clearFormSections()"
+                    [classColor]="'p-button-raised p-button-secondary '"
+                    [pTooltipCustom]="'مسح الحقول '"
+                    [Icon]="'pi pi-eraser'"
+                ></app-button-component>
             </div>
-        </form>
+        </div>
+    </div>
+    <br />
+    <ng-container *ngIf="OutpatientClinicsDepartmentsServices$ | async as data">
+        <p-table
+            styleClass="p-datatable-gridlines"
+            [rows]="5"
+            [paginator]="true"
+           [style.width]="'100%'"
+            [value]="data"
+            [loading]="data.loading"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">العنوان عربي</th>
+                    <!-- <th class="text-center">العنوان انجليزي</th> -->
+                    <th class="text-center">القسم</th>
+                    <th class="text-center">الحالة</th>
+                    <th class="text-center">الترتيب</th>
+                    <th class="text-center">الاجراءات</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item let-index="rowIndex">
+                <tr>
+                    <td>
+                        <span class="reorder-row-icon">{{ index + 1 }}</span>
+                    </td>
+                    <td>{{ item.NameAr }}</td>
+                    <!-- <td>{{ item.NameEn }}</td> -->
+                    <td>{{ item.OutpatientClinicsDepartmentNameAr }}</td>
+                    <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
+                    <td>{{ item.Sorting }}</td>
+                    <td class="text-center">
+                        <app-icon-shared
+                            [Icon]="'pi pi-pencil'"
+                            [classColor]="'var(--blue-400)'"
+                            [pTooltipCustom]="'تعديل البيانات'"
+                            (action)="editServices(item)"
+                        ></app-icon-shared>
+
+                        <app-icon-shared
+                            [Icon]="'pi pi-trash'"
+                            [classColor]="'var(--red-400)'"
+                            [pTooltipCustom]="'حذف'"
+                            (action)="deleteServices(item)"
+                        ></app-icon-shared>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="footer"> </ng-template>
+            <ng-template pTemplate="loadingbody"> </ng-template>
+        </p-table>
+    </ng-container>
+</form>
+

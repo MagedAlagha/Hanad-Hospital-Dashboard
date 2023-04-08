@@ -8,20 +8,22 @@
 
 <form [formGroup]="formServicesPage">
     <div class="grid p-fluid mt-3">
-        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-            <app-input-field
+        <div class="col-12 mb-2 lg:col-8 lg:mb-0">
+            <app-text-area-field
+            [rows]="3"
                 [label]="'خدمة التاهيل الطبي /عربي'"
                 formControlName="NameAr"
             >
-            </app-input-field>
+            </app-text-area-field>
         </div>
-        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-            <app-input-field
+       <!--  <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+            <app-text-area-field
+            [rows]="3"
                 [label]="'خدمة التاهيل الطبي /انجليزي'"
                 formControlName="NameEn"
             >
-            </app-input-field>
-        </div>
+            </app-text-area-field>
+        </div> -->
 
         <div class="col-12 mb-2 lg:col-2 lg:mb-0">
             <app-input-field
@@ -74,8 +76,8 @@
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">العنوان عربي</th>
-                    <th class="text-center">العنوان انجليزي</th>
-                    <th class="text-center">فعال</th>
+                   <!--  <th class="text-center">العنوان انجليزي</th> -->
+                    <th class="text-center">الحالة</th>
                     <th class="text-center">الترتيب</th>
                     <th class="text-center">الاجراءات</th>
                 </tr>
@@ -86,7 +88,7 @@
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
                     <td>{{ item.NameAr }}</td>
-                    <td>{{ item.NameEn }}</td>
+                    <!-- <td>{{ item.NameEn }}</td> -->
                     <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td>{{ item.Sorting }}</td>
                     <td class="text-center">

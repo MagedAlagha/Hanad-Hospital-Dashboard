@@ -15,36 +15,34 @@
                 ></app-upload-files>
             </div>
 
-            <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+            <div class="col-12 mb-2 lg:col-10 lg:mb-0">
                 <app-input-field
                     [label]="'العنوان/عربي'"
                     formControlName="TitleAr"
                 >
                 </app-input-field>
             </div>
-            <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+          <!--   <div class="col-12 mb-2 lg:col-5 lg:mb-0">
                 <app-input-field
                     [label]="'العنوان  /انجليزي'"
                     formControlName="TitleEn"
                 >
                 </app-input-field>
+            </div> -->
+            <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+            <label for="">الوصف  /عربي</label>
+            <div class="DescAr">
+                <p-editor dir="rtl" formControlName="DescAr" [style]="{'height':'420px'}">
+                </p-editor>
             </div>
-            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-                <app-text-area-field
-                    [rows]="3"
-                    [label]="'الوصف /عربي'"
-                    formControlName="DescAr"
-                >
-                </app-text-area-field>
+
             </div>
-            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-                <app-text-area-field
-                    [rows]="3"
-                    [label]="'وصف  /انجليزي'"
-                    formControlName="DescEn"
-                >
-                </app-text-area-field>
-            </div>
+          <!--   <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+
+                <label for="">وصف  /انجليزي</label>
+                <p-editor dir="ltr" formControlName="DescEn" [style]="{'height':'420px'}">
+                </p-editor>
+            </div> -->
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-input-field
                     label="الترتيب"

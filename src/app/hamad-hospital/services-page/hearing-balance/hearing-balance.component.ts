@@ -5,9 +5,11 @@ import {
     OnInit,
     ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { map, Observable, tap } from 'rxjs';
 import { ServicesPageService } from '../services-page.service';
+import { MessageService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-hearing-balance',
@@ -15,65 +17,122 @@ import { ServicesPageService } from '../services-page.service';
     styleUrls: ['./hearing-balance.component.scss'],
 })
 export class HearingBalanceComponent implements OnInit {
-    formHearingSection!: FormGroup<any>;
-    formHearingDepartemt!: FormGroup<any>;
     prosthetics$!: Observable<any>;
-    HearingDepartemt$!: Observable<any>;
-    fileSelected_2: any;
+    getOutpatientClinicsDepartments$!: Observable<any>;
+    OutpatientClinicsDepartmentsServices$!: Observable<any>;
+    formOutpatient!: FormGroup;
+    formSections!: FormGroup;
     fileSelected: any;
-    @ViewChild('fileUpload') fileUpload: any;
+    ID:any;
+    Services_ID:any;
+    isEn = document.dir == 'ltr' ? true : false;
+    fileSelected_2: any;
 
+    @ViewChild('fileUpload') fileUpload: any;
     constructor(
         fb: FormBuilder,
-        private _servicesPageService: ServicesPageService,
-        private el: ElementRef
+        private _servicesPageService: ServicesPageService ,
+        private messageService: MessageService,
+        private _translateService: TranslateService
     ) {
-        this.formHearingDepartemt = fb.group({
+        this.formOutpatient = fb.group({
             ID: [],
             IconPath: [],
-            NameAr: [],
+            NameAr: [null , Validators.required],
             NameEn: [],
-            DescAr: [],
-            DescEn: [],
-            IsActive: [],
+            DescAr: ['نص'],
+            DescEn: ['نص'],
+            IsActive: [false],
             Sorting: [],
+            TypeID: [3],
         });
-        this.formHearingSection = fb.group({
-            HearingSectionAr: [null],
-            HearingSectionEn: [null],
-        });
+        this.formSections = fb.group({
+            ID: [],
+            NameAr: [null , Validators.required],
+            NameEn: ['نص'],
+            DescAr: [null , Validators.required],
+            DescEn: ['نص'],
+            OutpatientClinicsDepartmentID: [],
+            IsActive: [false],
+            Sorting: [],
+            TypeID: [3],
+        })
     }
 
     ngOnInit() {
         this.prosthetics$ = this._servicesPageService.Selector$('prosthetics');
-        this.HearingDepartemt$ =
-            this._servicesPageService.Selector$('HearingDepartemt');
-    }
+        this.getOutpatientClinicsDepartments$ = this._servicesPageService.Selector$('OutpatientClinicsDepartments').pipe(
+            map((val) => {
+              return val?.data?.filter((item: any) => {
+                return item.TypeID == 3;
+              });
+            })
+          );
 
-    saveformHearingDepartemt() {
-        this._servicesPageService.saveHearingDepartemt({
-            ...this.formHearingDepartemt.value,
-            IconPath: this.fileSelected_2,
+
+        this.OutpatientClinicsDepartmentsServices$ = this._servicesPageService.Selector$('OutpatientClinicsDepartmentsServices').pipe(
+            map((val) => {
+              return val?.data?.filter((item: any) => {
+                return item.TypeID == 3;
+              });
+            })
+          );
+        }
+
+    saveFormOutpatient() {
+        console.log("this.fileSelected" , this.fileSelected_2) ;
+        if(!this.ID){
+        this._servicesPageService.saveOutpatientClinicsDepartments({
+            ...this.formOutpatient.value,
         });
-    }
-    clearformHearingDepartemt() {
-        this.formHearingDepartemt.reset();
-    }
-
-    saveHearingSection() {
-        this._servicesPageService.saveHearingSection({
-            ...this.formHearingSection.value,
-            HearingSectionImagePath: this.fileSelected,
+       }else{
+        this._servicesPageService.saveOutpatientClinicsDepartments({
+            ...this.formOutpatient.value,
+            ID:this.ID
         });
+       }
+       this.clear();
     }
 
-    clear() {}
+    clear(){
+      this.formOutpatient.reset()
+    }
+
+    clearFormOutpatient() {
+    this.formOutpatient.reset();
+    }
     editItem(item: any) {
-        this.formHearingDepartemt.patchValue(item);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      this.formOutpatient.patchValue(item);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    deleteItem(item: any) {
+        this._servicesPageService.deleteOutpatientClinicsDepartments(item.ID)
     }
 
-    deleteItem(item: any) {
-        this._servicesPageService.deleteHearingDepartemt(item.ID);
+    saveFormSections(){
+        console.log(this.formSections.value);
+        if(!this.Services_ID){
+            this._servicesPageService.saveOutpatientClinicsDepartmentsServices(this.formSections.value);
+
+        }else{
+            this._servicesPageService.saveOutpatientClinicsDepartmentsServices({
+                ...this.formSections.value ,
+                ID:this.Services_ID
+            });
+
+        }
     }
+    clearFormSections(){
+this.formSections.reset();
+    }
+
+
+    editServices(item: any){
+    this.formSections.patchValue(item);
+
+    }
+    deleteServices(item: any){
+      this._servicesPageService.deleteOutpatientClinicsDepartmentsServices(item.ID);
+    }
+
 }

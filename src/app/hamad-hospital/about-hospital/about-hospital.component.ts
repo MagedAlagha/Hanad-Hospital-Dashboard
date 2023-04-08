@@ -26,9 +26,9 @@ export class AboutHospitalComponent implements OnInit {
         this.Form_AboutHospital = fb.group({
             ID: [],
             NameAr: ['' , Validators.required],
-            NameEn: ['' , Validators.required],
+            NameEn: ['نص'],
             DescAr: ['' , Validators.required],
-            DescEn: ['' , Validators.required],
+            DescEn: ['نص'],
             IsActive: [false],
             Sorting: [ , Validators.required],
         });
@@ -56,6 +56,7 @@ export class AboutHospitalComponent implements OnInit {
     }
     clear() {
         this.Form_AboutHospital.reset();
+        this.Form_AboutHospital.get('IsActive')?.patchValue(false)
     }
 
     editItem(item?: any) {

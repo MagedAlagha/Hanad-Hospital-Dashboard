@@ -34,9 +34,9 @@ export class MediaCenterComponent implements OnInit {
         this.Form_MediaSectionsItems = fb.group({
             MediaSectionID: ['' ],
             TitleAr: [''],
-            TitleEn: [''],
+            TitleEn: ['نص'],
             DescAr: [''],
-            DescEn: [''],
+            DescEn: ['نص'],
             MainServiceID: [''],
             VideoPath: [''],
             IsActive: [false],
@@ -53,7 +53,12 @@ export class MediaCenterComponent implements OnInit {
             this._mediaCenterService.Selector$('MediaSectionsItems');
         this.addPhotosDialog$ =
             this._mediaCenterService.Selector$('addPhotosDialog');
-            this.MediaType$ = this._mediaCenterService.Selector$('MediaType')
+            this.MediaType$ = this._mediaCenterService.Selector$('MediaType');
+
+            this.Form_MediaSectionsItems.get("MediaSectionID")?.valueChanges.subscribe(x => {
+                console.log('firstname value changed')
+                console.log(x)
+             })
     }
 
     save() {
@@ -99,12 +104,15 @@ export class MediaCenterComponent implements OnInit {
     openDialog(item: any) {}
     clear() {
     this.Form_MediaSectionsItems.reset();
+    this.Form_MediaSectionsItems.get('IsActive')?.patchValue(false)
+
     }
 
     edit(item: any) {
         this.Form_MediaSectionsItems.patchValue(item);
         this.ID = item.ID;
         window.scrollTo({ top: 0, behavior: 'smooth' });
+
     }
     deleteItem(item: any) {
         this._mediaCenterService.deleteMediaSectionsItems(item.ID);

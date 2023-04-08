@@ -21,9 +21,9 @@ export class MainInfoComponent implements OnInit {
         private _translateService: TranslateService) {
         this.formMainInfo = fb.group({
             HospitalNameAr: ['',Validators.required],
-            HospitalNamEn: ['',Validators.required],
+            HospitalNamEn: ['نص'],
             AboutAr: ['',Validators.required],
-            AboutEn: ['',Validators.required],
+            AboutEn: ['نص'],
             FacebookLink: ['',Validators.required],
             YoutubeLink: ['',Validators.required],
             InstagramLink: ['',Validators.required],
@@ -31,7 +31,7 @@ export class MainInfoComponent implements OnInit {
             WhatsAppLink: ['',Validators.required],
             SocialMediaTag: ['',Validators.required],
             LocationAr: ['',Validators.required],
-            LocationEn: ['',Validators.required],
+            LocationEn: ['نص'],
             Mobile: ['',Validators.required],
             Phone: ['',Validators.required],
             Email: ['',Validators.required],
@@ -40,8 +40,8 @@ export class MainInfoComponent implements OnInit {
         this.formStats = fb.group({
             ID: ['',Validators.required],
             NameAr: ['',Validators.required],
-            NameEn: ['',Validators.required],
-            Count: ['',Validators.required],
+            NameEn: ['نص'],
+            Count: ['نص'],
             IsActive: [false],
             Sorting: ['',Validators.required],
         });

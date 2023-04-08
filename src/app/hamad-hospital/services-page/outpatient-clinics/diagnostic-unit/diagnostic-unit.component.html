@@ -1,49 +1,33 @@
 <div class="flex flex-column md:flex-row mb-3">
     <div class="text-900 text-xl font-bold mb-3 md:mb-0">
-        أقسام العيادات الخارجية - القسم الرئيسي
+        الاقسام الرئيسية
     </div>
 </div>
 <hr />
 
 <form [formGroup]="formOutpatient">
     <div class="grid p-fluid mt-3">
-        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+     <!--    <div class="col-12 mb-2 lg:col-2 lg:mb-0">
             <label for="">اضافة ايقونة</label>
             <app-upload-files
                 (onSelectFiles)="fileSelected = $event"
                 [showFilesUploaded]="true"
             ></app-upload-files>
-        </div>
+        </div> -->
         <div class="col-12 mb-2 lg:col-4 lg:mb-0">
             <app-input-field [label]="'الاسم  /عربي'" formControlName="NameAr">
             </app-input-field>
         </div>
-        <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+       <!--  <div class="col-12 mb-2 lg:col-4 lg:mb-0">
             <app-input-field
                 [label]="'الاسم  /انجليزي'"
                 formControlName="NameEn"
             >
             </app-input-field>
-        </div>
+        </div> -->
         <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-            <app-input-field label="ترتيب الخدمة" formControlName="Sorting">
+            <app-input-field label="ترتيب القسم" formControlName="Sorting">
             </app-input-field>
-        </div>
-        <div class="col-12 mb-2 lg:col-5 lg:mb-0">
-            <app-text-area-field
-                [rows]="3"
-                [label]="'الوصف  /عربي'"
-                formControlName="DescAr"
-            >
-            </app-text-area-field>
-        </div>
-        <div class="col-12 mb-2 lg:col-5 lg:mb-0">
-            <app-text-area-field
-                [rows]="3"
-                [label]="'الوصف  /انجليزي'"
-                formControlName="DescEn"
-            >
-            </app-text-area-field>
         </div>
         <div
             class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
@@ -52,6 +36,21 @@
             <app-check-box label="فعال" formControlName="IsActive">
             </app-check-box>
         </div>
+            <!-- <div
+                class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
+                style="margin-top: 2.9rem"
+            >
+            <app-select-field
+            [dropdownItems]="[
+            { Code: 3, Name: 'معرض الفيديو' },
+            { Code: 4, Name: 'المقالات الطبية' },
+            { Code: 5, Name: 'قصص صحفية' },
+        ]"
+            formControlName="TypeID"
+            [label]="'اختيار المركز الاعلامي'"
+        >
+        </app-select-field>
+            </div> -->
         <div
             class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
         >
@@ -83,15 +82,15 @@
             [rows]="5"
             [paginator]="true"
            [style.width]="'100%'"
-            [value]="data.data"
+            [value]="data"
             [loading]="data.loading"
         >
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">العنوان عربي</th>
-                    <th class="text-center">العنوان انجليزي</th>
-                    <th class="text-center">فعال</th>
+                    <!-- <th class="text-center">العنوان انجليزي</th> -->
+                    <th class="text-center">الحالة</th>
                     <th class="text-center">الترتيب</th>
                     <th class="text-center">الاجراءات</th>
                 </tr>
@@ -102,7 +101,7 @@
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
                     <td>{{ item.NameAr }}</td>
-                    <td>{{ item.NameEn }}</td>
+                    <!-- <td>{{ item.NameEn }}</td> -->
                     <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td>{{ item.Sorting }}</td>
                     <td class="text-center">
@@ -135,7 +134,7 @@
 
 <br />
 <div class="flex flex-column md:flex-row mb-3">
-    <div class="text-900 text-xl font-bold mb-3 md:mb-0">قسم العيادات</div>
+    <div class="text-900 text-xl font-bold mb-3 md:mb-0">العيادات</div>
 </div>
 <hr />
 
@@ -145,13 +144,13 @@
             <app-input-field [label]="'الاسم  /عربي'" formControlName="NameAr">
             </app-input-field>
         </div>
-        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+       <!--  <div class="col-12 mb-2 lg:col-6 lg:mb-0">
             <app-input-field
                 [label]="'الاسم  /انجليزي'"
                 formControlName="NameEn"
             >
             </app-input-field>
-        </div>
+        </div> -->
         <div class="col-12 mb-2 lg:col-6 lg:mb-0">
             <app-text-area-field
                 [rows]="2"
@@ -160,14 +159,14 @@
             >
             </app-text-area-field>
         </div>
-        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+       <!--  <div class="col-12 mb-2 lg:col-6 lg:mb-0">
             <app-text-area-field
                 [rows]="2"
                 [label]="'الوصف / انجليزي'"
                 formControlName="DescEn"
             >
             </app-text-area-field>
-        </div>
+        </div> -->
         <div class="col-12 mb-2 lg:col-2 lg:mb-0">
             <app-input-field label="الترتيب " formControlName="Sorting">
             </app-input-field>
@@ -175,7 +174,7 @@
          <div class="col-12 mb-2 lg:col-2 lg:mb-0">
             <ng-container *ngIf="getOutpatientClinicsDepartments$ | async as data">
                 <app-select-field
-                [dropdownItems]="data.data"
+                [dropdownItems]="data"
                 [optionLabel]="isEn?'NameEn':'NameAr'"
                 [optionValue]="'ID'"
                 formControlName="OutpatientClinicsDepartmentID"
@@ -226,16 +225,16 @@
             [rows]="5"
             [paginator]="true"
            [style.width]="'100%'"
-            [value]="data.data"
+            [value]="data"
             [loading]="data.loading"
         >
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">العنوان عربي</th>
-                    <th class="text-center">العنوان انجليزي</th>
+                    <!-- <th class="text-center">العنوان انجليزي</th> -->
                     <th class="text-center">القسم</th>
-                    <th class="text-center">فعال</th>
+                    <th class="text-center">الحالة</th>
                     <th class="text-center">الترتيب</th>
                     <th class="text-center">الاجراءات</th>
                 </tr>
@@ -246,7 +245,7 @@
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
                     <td>{{ item.NameAr }}</td>
-                    <td>{{ item.NameEn }}</td>
+                    <!-- <td>{{ item.NameEn }}</td> -->
                     <td>{{ item.OutpatientClinicsDepartmentNameAr }}</td>
                     <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td>{{ item.Sorting }}</td>
@@ -278,7 +277,7 @@
     </ng-container>
 </form>
 
-<br />
+<!-- <br />
 <div class="flex flex-column md:flex-row mb-3">
     <div class="text-900 text-xl font-bold mb-3 md:mb-0">خدمة الصيدلة</div>
 </div>
@@ -331,15 +330,7 @@
             </div>
         </div>
     </form>
-
-
-
-
 </div>
+ -->
 
-    <div
-        class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
-        style="margin-top: 2.5rem"
-    ></div>
 
-<br />

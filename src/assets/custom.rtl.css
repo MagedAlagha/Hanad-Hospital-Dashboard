@@ -430,3 +430,15 @@ ul.p-treenode-children > p-treenode.p-element::before {
  }
 
 
+.DescAr .ql-editor li:not(.ql-direction-rtl)::before {
+    margin-left: 0em !important;
+}
+
+.DescAr .p-editor-container .p-editor-content .ql-editor{
+    text-align: right !important;
+}
+.DescAr p img {
+    object-fit: cover;
+    width: 100%;
+    border-radius: 8px;
+}
