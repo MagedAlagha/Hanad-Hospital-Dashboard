@@ -1,7 +1,6 @@
 <div class="flex flex-column md:flex-row mb-3">
     <div class="text-900 text-xl font-bold mb-3 md:mb-0">
         خدمات التاهيل الطبي
-
     </div>
 </div>
 <hr />
@@ -9,21 +8,28 @@
 <form [formGroup]="formServicesPage">
     <div class="grid p-fluid mt-3">
         <div class="col-12 mb-2 lg:col-8 lg:mb-0">
-            <app-text-area-field
+         <app-text-area-field
             [rows]="3"
                 [label]="'خدمة التاهيل الطبي /عربي'"
                 formControlName="NameAr"
             >
             </app-text-area-field>
+            <label >خدمة التاهيل الطبي /عربي</label>
+            <div class="DescAr">
+                <p-editor dir="rtl" formControlName="NameAr" [style]="{'height':'450px'}">
+                </p-editor>
+            </div>
+
+
         </div>
-       <!--  <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+       <div class="col-12 mb-2 lg:col-6 lg:mb-0">
             <app-text-area-field
             [rows]="3"
                 [label]="'خدمة التاهيل الطبي /انجليزي'"
                 formControlName="NameEn"
             >
             </app-text-area-field>
-        </div> -->
+        </div>
 
         <div class="col-12 mb-2 lg:col-2 lg:mb-0">
             <app-input-field
@@ -76,7 +82,7 @@
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">العنوان عربي</th>
-                   <!--  <th class="text-center">العنوان انجليزي</th> -->
+                    <th class="text-center">العنوان انجليزي</th>
                     <th class="text-center">الحالة</th>
                     <th class="text-center">الترتيب</th>
                     <th class="text-center">الاجراءات</th>

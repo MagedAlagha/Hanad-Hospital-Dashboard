@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
             ID: [],
             Image: [null],
             TitleAr: [null],
-            TitleEn: [null],
+            TitleEn: ['نص'],
             Link: [null],
             Sorting: [null],
             IsActive: [false],

@@ -25,16 +25,16 @@
                 >
                 </app-input-field>
             </div>
-            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+            <!-- <div class="col-12 mb-2 lg:col-6 lg:mb-0">
                 <app-input-field
                     label="العنوان بالانجليزي"
                     formControlName="TitleEn"
                 >
                 </app-input-field>
-            </div>
+            </div> -->
             <div class="col-12 mb-2 lg:col-3 lg:mb-0">
                 <app-input-field
-                    label="معرف الخبر  (ID) | لينك الانتقال"
+                    label="لينك الانتقال"
                     formControlName="Link"
                 >
                 </app-input-field>
@@ -95,7 +95,7 @@
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">العنوان عربي</th>
-                    <th class="text-center">العنوان انجليزي</th>
+                    <!-- <th class="text-center">العنوان انجليزي</th> -->
                     <th class="text-center">الحالة</th>
                     <th class="text-center">الترتيب</th>
                     <th class="text-center">الصورة</th>
@@ -108,7 +108,7 @@
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
                     <td>{{ item.TitleAr }}</td>
-                    <td>{{ item.TitleEn }}</td>
+                    <!-- <td>{{ item.TitleEn }}</td> -->
                     <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td>{{ item.Sorting }}</td>
                     <td>

@@ -33,6 +33,7 @@ export class MediaCenterComponent implements OnInit {
     ) {
         this.Form_MediaSectionsItems = fb.group({
             MediaSectionID: ['' ],
+            SubTitleAr: [''],
             TitleAr: [''],
             TitleEn: ['نص'],
             DescAr: [''],

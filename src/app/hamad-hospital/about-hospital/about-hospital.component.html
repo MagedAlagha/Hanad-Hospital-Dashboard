@@ -9,7 +9,7 @@
     <div class="grid p-fluid mt-3">
         <div class="col-12 mb-2 lg:col-3 lg:mb-0">
             <app-input-field
-            [label]="'اسم القسم  /انجليزي'"
+            [label]="'اسم القسم  /عربي'"
             formControlName="NameAr">
         </app-input-field>
         </div>
@@ -32,8 +32,12 @@
         </div>
         <div class="col-12 mb-2 lg:col-12 lg:mb-0">
             <label for="">محتوى القسم / عربي</label>
-            <p-editor dir="ltr" formControlName="DescAr" [style]="{'height':'320px'}">
-            </p-editor>
+            <div class="DescAr">
+                <p-editor dir="rtl" formControlName="DescAr" [style]="{'height':'480px'}">
+                </p-editor>
+            </div>
+            <!-- <p-editor dir="ltr" formControlName="DescAr" [style]="{'height':'420px'}">
+            </p-editor> -->
         </div>
        <!--  <div class="col-12 mb-2 lg:col-6 lg:mb-0">
             <label for="">محتوى القسم / انجليزي</label>

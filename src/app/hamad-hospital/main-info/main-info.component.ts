@@ -20,28 +20,28 @@ export class MainInfoComponent implements OnInit {
     constructor(private _mainInfoService: MainInfoService, fb: FormBuilder  , private messageService: MessageService,
         private _translateService: TranslateService) {
         this.formMainInfo = fb.group({
-            HospitalNameAr: ['',Validators.required],
+            HospitalNameAr: ['نص'],
             HospitalNamEn: ['نص'],
-            AboutAr: ['',Validators.required],
+            AboutAr: [''],
             AboutEn: ['نص'],
-            FacebookLink: ['',Validators.required],
-            YoutubeLink: ['',Validators.required],
-            InstagramLink: ['',Validators.required],
-            TwitterLink: ['',Validators.required],
-            WhatsAppLink: ['',Validators.required],
-            SocialMediaTag: ['',Validators.required],
-            LocationAr: ['',Validators.required],
+            FacebookLink: [''],
+            YoutubeLink: [''],
+            InstagramLink: [''],
+            TwitterLink: [''],
+            WhatsAppLink: [''],
+            SocialMediaTag: [''],
+            LocationAr: [''],
             LocationEn: ['نص'],
-            Mobile: ['',Validators.required],
-            Phone: ['',Validators.required],
-            Email: ['',Validators.required],
-            LogoImagePath: ['',Validators.required],
+            Mobile: [''],
+            Phone: [''],
+            Email: [''],
+            LogoImagePath: [''],
         });
         this.formStats = fb.group({
-            ID: ['',Validators.required],
+            ID: [''],
             NameAr: ['',Validators.required],
             NameEn: ['نص'],
-            Count: ['نص'],
+            Count: [''],
             IsActive: [false],
             Sorting: ['',Validators.required],
         });
@@ -67,7 +67,6 @@ export class MainInfoComponent implements OnInit {
                 ...this.formMainInfo.value,
                 LogoImagePath: this.fileSelected,
             });
-            this.clear();
         }
 
 

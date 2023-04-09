@@ -14,7 +14,7 @@ export class MediaCenterService {
     ) {}
     store = new BehaviorSubject<jobFunctionalModel>({
         Stats: { data: [], loading: false },
-        MediaSectionsItems:undefined,
+        MediaSectionsItems:{ data: [], loading: false },
         MediaType:undefined,
         ImageSection: { data: [], loading: false },
         addPhotosDialog: { isOpen: false, data: '' },
@@ -83,6 +83,7 @@ export class MediaCenterService {
         this.getFormApi(
             'MediaSectionsItems/MediaSectionsItemsSearch',
             'MediaSectionsItems',
+           {} ,
             {
                 isLoading: true,
             }
@@ -137,7 +138,7 @@ export class MediaCenterService {
 }
 export interface jobFunctionalModel {
     Stats?: { data: any; loading: boolean };
-    MediaSectionsItems?: any;
+    MediaSectionsItems?: { data: any; loading: boolean };
     MediaType?: any;
     ImageSection?: { data: any; loading: boolean };
     addPhotosDialog?: { isOpen: false; data: any };

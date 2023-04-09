@@ -23,7 +23,7 @@ export class MedicalRehabilitationServicesComponent {
             ID: [null],
             NameAr: [null , Validators.required],
             NameEn: ['نص'],
-            DescAr: [null, Validators.required],
+            DescAr: ['', Validators.required],
             DescEn: ['نص'],
             IsActive: [null , Validators.required],
             Sorting: [null , Validators.required],

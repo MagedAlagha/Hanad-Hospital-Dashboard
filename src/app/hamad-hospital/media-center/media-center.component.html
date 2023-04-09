@@ -8,20 +8,33 @@
     <form [formGroup]="Form_MediaSectionsItems">
         <div class="grid p-fluid mt-3">
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                <label for="">اضافة صورة للمقال</label>
+                <label for="">اضافة صورة للمقال  (مطلوب)</label>
                 <app-upload-files
                     (onSelectFiles)="fileSelected = $event"
                     [showFilesUploaded]="true"
                 ></app-upload-files>
             </div>
 
-            <div class="col-12 mb-2 lg:col-10 lg:mb-0">
-                <app-input-field
-                    [label]="'العنوان/عربي'"
-                    formControlName="TitleAr"
-                >
-                </app-input-field>
+            <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                <app-text-area-field
+                [rows]="3"
+                [label]="'العنوان/عربي (مطلوب)'"
+                formControlName="TitleAr"
+            >
+            </app-text-area-field>
+
             </div>
+            <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+
+                <app-text-area-field
+                [rows]="3"
+                [label]="'عنوان الخبر الفرعي'"
+                formControlName="SubTitleAr"
+            >
+            </app-text-area-field>
+            </div>
+
+
           <!--   <div class="col-12 mb-2 lg:col-5 lg:mb-0">
                 <app-input-field
                     [label]="'العنوان  /انجليزي'"
@@ -62,7 +75,7 @@
                     { Code: 7, Name: 'منوعات' }
                 ]"
                     formControlName="MediaSectionID"
-                    [label]="'اختيار المركز الاعلامي'"
+                    [label]="'اختيار المركز الاعلامي (مطلوب)'"
                 >
                 </app-select-field>
             </div>
@@ -73,7 +86,7 @@
                         { Code: 2, Name: 'الاطراف الصناعية' },
                         { Code: 3, Name: 'السمع والتوازن' },
                         { Code: 4, Name: 'العيادة الخارجية' },
-                        { Code: 5, Name: 'خدمات طبية مساندة' }
+                        { Code: 5, Name: 'خدمات طبية مساندة' },
                     ]"
                     formControlName="MainServiceID"
                     [label]="'اختيار القسم الرئيسي'"
@@ -148,10 +161,11 @@
     <ng-container *ngIf="MediaSectionsItems$ | async as data">
         <p-table
             styleClass="p-datatable-gridlines"
-            [rows]="7"
+            [rows]="20"
             [paginator]="true"
              [style.width]="'100%'"
-            [value]="data"
+            [value]="data.data"
+            [loading]="data.loading"
 
         >
             <ng-template pTemplate="header">

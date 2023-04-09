@@ -31,19 +31,19 @@ export class ServicesCardsComponent {
         this.formServices = fb.group({
             MedicalRehabilitationIconPath: [null],
             MedicalRehabilitationDescAr: [null],
-            MedicalRehabilitationDescEn: [null],
+            MedicalRehabilitationDescEn:  ['نص'],
             ProstheticsIconPath: [null],
             ProstheticsDescAr: [null],
-            ProstheticsDescEn: [null],
+            ProstheticsDescEn: ['نص'],
             HearingIconPath: [null],
             HearingDescAr: [null],
-            HearingDescEn: [null],
+            HearingDescEn:  ['نص'],
             SupportiveMedicalBackgroundPath: [null],
             SupportiveMedicalDescAr: [null],
-            SupportiveMedicalDescEn: [null],
+            SupportiveMedicalDescEn:  ['نص'],
             OutpatientClinicsIconPath: [null],
             OutpatientClinicsDescAr: [null],
-            OutpatientClinicsDescEn: [null],
+            OutpatientClinicsDescEn:  ['نص'],
         });
     }
 
