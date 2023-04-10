@@ -76,5 +76,10 @@ export class ServicesCardsComponent {
 
     clear() {
         this.formServices.reset();
+        this.formServices.get('MedicalRehabilitationDescEn')?.patchValue('نص')
+        this.formServices.get('ProstheticsDescEn')?.patchValue('نص')
+        this.formServices.get('HearingDescEn')?.patchValue('نص')
+        this.formServices.get('SupportiveMedicalDescEn')?.patchValue('نص')
+        this.formServices.get('OutpatientClinicsDescEn')?.patchValue('نص')
     }
 }

@@ -106,6 +106,8 @@ export class MediaCenterComponent implements OnInit {
     clear() {
     this.Form_MediaSectionsItems.reset();
     this.Form_MediaSectionsItems.get('IsActive')?.patchValue(false)
+    this.Form_MediaSectionsItems.get('DescEn')?.patchValue('نص')
+    this.Form_MediaSectionsItems.get('TitleEn')?.patchValue('نص')
 
     }
 

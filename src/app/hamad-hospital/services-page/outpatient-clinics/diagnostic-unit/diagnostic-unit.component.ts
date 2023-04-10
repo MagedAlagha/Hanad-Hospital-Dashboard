@@ -87,7 +87,10 @@ export class DiagnosticUnitComponent {
     }
 
     clear(){
-this.formOutpatient.reset()
+    this.formOutpatient.reset();
+    this.formOutpatient.get('NameEn')?.patchValue('نص')
+    this.formOutpatient.get('DescAr')?.patchValue('نص')
+    this.formOutpatient.get('DescEn')?.patchValue('نص')
     }
 
     clearFormOutpatient() {

@@ -29,7 +29,7 @@ export class SupportiveComponent {
             ID: [],
             IconPath: [],
             NameAr: [],
-            NameEn: [],
+            NameEn:['نص'],
             DescAr: ['نص'],
             DescEn: ['نص'],
             IsActive: [],
@@ -39,9 +39,9 @@ export class SupportiveComponent {
         this.formSections = fb.group({
             ID: [],
             NameAr: [],
-            NameEn: [],
+            NameEn: ['نص'],
             DescAr: [],
-            DescEn: [],
+            DescEn:['نص'],
             OutpatientClinicsDepartmentID: [],
             IsActive: [],
             Sorting: [],
@@ -88,7 +88,10 @@ export class SupportiveComponent {
     }
 
     clear(){
-     this.formOutpatient.reset()
+     this.formOutpatient.reset();
+     this.formOutpatient.get('NameEn')?.patchValue('نص')
+     this.formOutpatient.get('DescAr')?.patchValue('نص')
+     this.formOutpatient.get('DescEn')?.patchValue('نص')
     }
 
     clearFormOutpatient() {

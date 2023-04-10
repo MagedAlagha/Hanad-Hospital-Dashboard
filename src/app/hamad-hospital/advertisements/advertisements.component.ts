@@ -69,6 +69,9 @@ export class AdvertisementsComponent implements OnInit {
     clear() {
         this.formAdvertisements.reset();
         this.ID = 0;
+        this.formAdvertisements.get('IsActive')?.patchValue(false)
+        this.formAdvertisements.get('TitleEn')?.patchValue('نص')
+        this.formAdvertisements.get('ButtonTitleEn')?.patchValue('نص')
     }
 
     editItem(items?: any) {

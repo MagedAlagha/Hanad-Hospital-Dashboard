@@ -51,10 +51,11 @@ export class MedicalRehabilitationServicesComponent {
 
     clear() {
         this.formMedicalRehabilitationServices.reset();
+        this.formMedicalRehabilitationServices.get('NameEn')?.patchValue('نص')
+        this.formMedicalRehabilitationServices.get('DescEn')?.patchValue('نص')
     }
     editItem(item: any) {
         this.formMedicalRehabilitationServices.patchValue(item);
-
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     deleteItem(item: any) {

@@ -67,7 +67,7 @@
                 <app-button-component
                     label="مسح الحقول"
                     class="pr-2"
-                    (action)="clearFormOutpatient()"
+                    (action)="clear()"
                     [classColor]="'p-button-raised p-button-secondary '"
                     [pTooltipCustom]="'مسح الحقول '"
                     [Icon]="'pi pi-eraser'"
@@ -101,7 +101,6 @@
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
                     <td>{{ item.NameAr }}</td>
-                    <td>{{ item.NameEn }}</td>
                     <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td>{{ item.Sorting }}</td>
                     <td class="text-center">

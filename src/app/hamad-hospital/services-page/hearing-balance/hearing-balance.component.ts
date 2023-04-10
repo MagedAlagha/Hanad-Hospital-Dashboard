@@ -39,7 +39,7 @@ export class HearingBalanceComponent implements OnInit {
             ID: [],
             IconPath: [],
             NameAr: [null , Validators.required],
-            NameEn: [],
+            NameEn: ['نص'],
             DescAr: ['نص'],
             DescEn: ['نص'],
             IsActive: [false],
@@ -96,11 +96,14 @@ export class HearingBalanceComponent implements OnInit {
 
     clear(){
       this.formOutpatient.reset()
+      this.formOutpatient.get('TypeID')?.patchValue(3);
+      this.formOutpatient.get('IsActive')?.patchValue(false);
+      this.formOutpatient.get('NameEn')?.patchValue('نص');
+      this.formOutpatient.get('DescEn')?.patchValue('نص');
+      this.formOutpatient.get('DescAr')?.patchValue('نص');
     }
 
-    clearFormOutpatient() {
-    this.formOutpatient.reset();
-    }
+
     editItem(item: any) {
       this.formOutpatient.patchValue(item);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -123,7 +126,12 @@ export class HearingBalanceComponent implements OnInit {
         }
     }
     clearFormSections(){
-this.formSections.reset();
+    this.formSections.reset();
+    this.formSections.get('TypeID')?.patchValue(3);
+    this.formSections.get('IsActive')?.patchValue(false);
+    this.formSections.get('NameEn')?.patchValue('نص');
+    this.formSections.get('DescEn')?.patchValue('نص');
+    this.formSections.get('DescAr')?.patchValue('نص');
     }
 
 

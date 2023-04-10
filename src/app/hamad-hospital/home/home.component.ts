@@ -31,12 +31,14 @@ export class HomeComponent implements OnInit {
     ) {
         this.formSlider = fb.group({
             ID: [],
-            Image: [null],
-            TitleAr: [null],
+            Image: ['' ],
+            TitleAr: ['' , Validators.required],
             TitleEn: ['نص'],
-            Link: [null],
-            Sorting: [null],
+            Link: [''],
+            Sorting: [''],
             IsActive: [false],
+             ShowTitle: [false],
+            /* ShowLink: [false], */
         });
     }
 
@@ -45,15 +47,13 @@ export class HomeComponent implements OnInit {
         this.sliderData$ = this._homeService.Selector$('sliderData');
     }
 
-
-
     save() {
         console.log('fileUpload', this.fileUpload);
         if (this.formSlider.invalid) {
             this.messageService.add({
                 severity: 'error',
                 detail: this._translateService.instant(
-                    'الحقول مطلوبة'
+                    'يوجد حقول مطلوبة'
                 ),
             });
         } else {
@@ -63,22 +63,25 @@ export class HomeComponent implements OnInit {
                     ...this.formSlider.value,
                     Image: this.fileSelected,
                 });
+                this.clear()
             } else {
                 this._homeService.saveData({
                     ...this.formSlider.value,
                     Image: this.fileSelected,
-                    ID:this.ID
+                   /*  ID:this.ID */
                 });
+                this.clear()
             }
-         this.clear()
+
         }
         console.log(this.formSlider.value, 'gegegegeg');
     }
 
     editItem(item: any) {
         this.formSlider.patchValue(item);
-        this.ID = item.ID;
+        /* this.ID = item.ID; */
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        console.log(item , "itemitemitem")
     }
     deleteItem(item: any) {
         this._homeService.deleteSlider(item.ID);
@@ -86,5 +89,9 @@ export class HomeComponent implements OnInit {
     }
     clear() {
         this.formSlider.reset();
+        this.formSlider.get('TitleEn')?.patchValue('نص')
+        this.formSlider.get('IsActive')?.patchValue(false)
+        this.formSlider.get('ShowTitle')?.patchValue(false)
+
     }
 }
