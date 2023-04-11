@@ -56,25 +56,12 @@ export class MediaCenterComponent implements OnInit {
             this.MediaSectionsItems$ =
             this._mediaCenterService.Selector$('MediaSectionsItems');
           this._mediaCenterService.Selector$('MediaSectionsItems').pipe(map((value) => {
-            return value?.data?.filter((item: any) => {
-                if(item?.MainServiceID === 1){
-                   this.MainService?.push("الاطراف الصناعية")
+            return value?.data?.map((item: any) => {
+                return{
+                    ...item,
+                    MainServiceName:this.MainServiceName(item?.MainServiceID)
                 }
-                if(item?.MainServiceID === 2){
-                   this.MainService?.push("الاطراف الصناعية")
-                }
-                if(item?.MainServiceID === 3){
-                   this.MainService?.push("لسمع والتوازن")
-                }
-                if(item?.MainServiceID === 4){
-                   this.MainService?.push("العيادة الخارجية")
-                }
-                if(item?.MainServiceID === 5){
-                   this.MainService?.push("خدمات طبية مساندة")
-                }
-                if(item?.MainServiceID === 6){
-                   this.MainService?.push("غير مصنف")
-                }
+
             });
           }),
          );
@@ -149,4 +136,26 @@ export class MediaCenterComponent implements OnInit {
             'contains'
         );
     }
+    MainServiceName(id:any){
+        if(id=== 1){
+          return "الاطراف الصناعية"
+         }
+         if(id=== 2){
+          return  "الاطراف الصناعية"
+         }
+         if(id=== 3){
+           return "لسمع والتوازن"
+         }
+         if(id=== 4){
+           return "العيادة الخارجية"
+         }
+         if(id=== 5){
+           return "خدمات طبية مساندة"
+         }
+         if(id=== 6){
+           return "غير مصنف"
+         }
+         return ''
+    }
+
 }
