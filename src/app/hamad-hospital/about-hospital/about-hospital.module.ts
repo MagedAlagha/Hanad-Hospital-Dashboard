@@ -28,6 +28,7 @@ import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-share
             component: AboutHospitalComponent,
         },
 
+
     ]),
     TableModule,
     ButtonComponentComponent,

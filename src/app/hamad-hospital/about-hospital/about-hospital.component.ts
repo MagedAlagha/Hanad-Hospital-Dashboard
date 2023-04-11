@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
@@ -21,7 +21,8 @@ export class AboutHospitalComponent implements OnInit {
         private fb: FormBuilder,
         private _aboutHospitalService: AboutHospitalService ,
         private messageService: MessageService,
-        private _translateService: TranslateService
+        private _translateService: TranslateService ,
+        private renderer: Renderer2
     ) {
         this.Form_AboutHospital = fb.group({
             ID: [],
@@ -61,7 +62,10 @@ export class AboutHospitalComponent implements OnInit {
 
     editItem(item?: any) {
         this.Form_AboutHospital.patchValue(item);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo(0, 0);
+        console.log(window.scrollTo(0, 0));
+
+
     }
     deleteItem(item?: any) {
         this._aboutHospitalService.deleteAboutHospital(item.ID);

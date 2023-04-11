@@ -60,7 +60,14 @@ export class MediaCenterComponent implements OnInit {
                     ...item,
                     MainServiceName:this.MainServiceName(item?.MainServiceID)
                 }
-
+            })}
+          }),
+          map((value) => {
+            return{...value,data: value?.data?.map((item: any) => {
+                return{
+                    ...item,
+                    MediaSectionName:this.MediaSectionName(item?.MainServiceID)
+                }
             })}
           }),
          );
@@ -144,7 +151,7 @@ export class MediaCenterComponent implements OnInit {
           return  "الاطراف الصناعية"
          }
          if(id=== 3){
-           return "لسمع والتوازن"
+           return "السمع والتوازن"
          }
          if(id=== 4){
            return "العيادة الخارجية"
@@ -154,6 +161,31 @@ export class MediaCenterComponent implements OnInit {
          }
          if(id=== 6){
            return "غير مصنف"
+         }
+         return ''
+    }
+    MediaSectionName(id:any){
+        console.log('id',id)
+        if(id=== 1){
+          return "الاخبار"
+         }
+         if(id=== 2){
+          return  "معرض الصور"
+         }
+         if(id=== 3){
+           return "معرض الفيديو"
+         }
+         if(id=== 4){
+           return "المقالات الطبية"
+         }
+         if(id=== 5){
+           return "قصص صحفية"
+         }
+         if(id=== 6){
+           return "قصص رقمية"
+         }
+         if(id=== 7){
+           return "منوعات"
          }
          return ''
     }
