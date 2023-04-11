@@ -25,6 +25,8 @@ export class MediaCenterComponent implements OnInit {
     @ViewChild('fileUpload') fileUpload: any;
     Avatar=environment.FileUrl;
     isEn = document.dir == 'ltr' ? true : false;
+    MainService?:any[];
+    MediaSection?:any[];
     constructor(
         private _mediaCenterService: MediaCenterService,
         private fb: FormBuilder,
@@ -51,12 +53,35 @@ export class MediaCenterComponent implements OnInit {
         this._mediaCenterService.getImageSection();
         this._mediaCenterService.getMediaType();
         this._mediaCenterService.getMediaSectionsItems();
-        this.MediaSectionsItems$ =
+            this.MediaSectionsItems$ =
             this._mediaCenterService.Selector$('MediaSectionsItems');
+          this._mediaCenterService.Selector$('MediaSectionsItems').pipe(map((value) => {
+            return value?.data?.filter((item: any) => {
+                if(item?.MainServiceID === 1){
+                   this.MainService?.push("الاطراف الصناعية")
+                }
+                if(item?.MainServiceID === 2){
+                   this.MainService?.push("الاطراف الصناعية")
+                }
+                if(item?.MainServiceID === 3){
+                   this.MainService?.push("لسمع والتوازن")
+                }
+                if(item?.MainServiceID === 4){
+                   this.MainService?.push("العيادة الخارجية")
+                }
+                if(item?.MainServiceID === 5){
+                   this.MainService?.push("خدمات طبية مساندة")
+                }
+                if(item?.MainServiceID === 6){
+                   this.MainService?.push("غير مصنف")
+                }
+            });
+          }),
+         );
+
         this.addPhotosDialog$ =
             this._mediaCenterService.Selector$('addPhotosDialog');
             this.MediaType$ = this._mediaCenterService.Selector$('MediaType');
-
             this.Form_MediaSectionsItems.get("MediaSectionID")?.valueChanges.subscribe(x => {
                 console.log('firstname value changed')
                 console.log(x)
@@ -101,14 +126,12 @@ export class MediaCenterComponent implements OnInit {
     this.Form_MediaSectionsItems.get('IsActive')?.patchValue(false)
     this.Form_MediaSectionsItems.get('DescEn')?.patchValue('نص')
     this.Form_MediaSectionsItems.get('TitleEn')?.patchValue('نص')
-
     }
 
     edit(item: any) {
         this.Form_MediaSectionsItems.patchValue(item);
         this.ID = item.ID;
         window.scrollTo({ top: 0, behavior: 'smooth' });
-
     }
     deleteItem(item: any) {
         this._mediaCenterService.deleteMediaSectionsItems(item.ID);
