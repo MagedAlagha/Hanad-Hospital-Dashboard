@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api';
 import { map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { MediaCenterService } from './media-center.service';
+import { Table } from 'primeng/table';
 
 @Component({
     selector: 'app-media-center',
@@ -96,6 +97,7 @@ export class MediaCenterComponent implements OnInit {
     openDialog(item: any) {}
     clear() {
     this.Form_MediaSectionsItems.reset();
+    this.Form_MediaSectionsItems.reset();
     this.Form_MediaSectionsItems.get('IsActive')?.patchValue(false)
     this.Form_MediaSectionsItems.get('DescEn')?.patchValue('نص')
     this.Form_MediaSectionsItems.get('TitleEn')?.patchValue('نص')
@@ -116,5 +118,12 @@ export class MediaCenterComponent implements OnInit {
         this._mediaCenterService.displayDialogs('addPhotosDialog', true, item);
         this.itemShow = item.ID;
         this._mediaCenterService.getImageSection(item.ID);
+    }
+
+    onGlobalFilter(table: Table, event: Event) {
+        table.filterGlobal(
+            (event.target as HTMLInputElement).value,
+            'contains'
+        );
     }
 }

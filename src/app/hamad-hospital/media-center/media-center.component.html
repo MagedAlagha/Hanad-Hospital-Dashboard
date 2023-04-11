@@ -161,8 +161,30 @@
              [style.width]="'100%'"
             [value]="data.data"
             [loading]="data.loading"
+            #dt1
+            [paginator]="true"
+            [globalFilterFields]="[
+            'TitleAr',
+            'MainServiceID',
+            'MediaSectionID',
+        ]"
 
         >
+
+        <ng-template pTemplate="caption">
+            <div class="grid">
+                <div class="col-12  lg:col-5 serch-input  ">
+                    <app-search-field
+                        #filter
+                        (input)="onGlobalFilter(dt1, $event)"
+                        pInputText
+                        type="text"
+                        placeholder="البحث"
+                        class="w-full"
+                    ></app-search-field>
+                </div>
+            </div>
+        </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
@@ -188,6 +210,7 @@
                     <td *ngIf="item.MainServiceID === 3"> السمع والتوازن </td>
                     <td *ngIf="item.MainServiceID === 4"> العيادة الخارجية </td>
                     <td *ngIf="item.MainServiceID === 5"> خدمات طبية مساندة </td>
+                    <td *ngIf="item.MainServiceID === 6"> غير مصنف </td>
                     <td *ngIf="item.MediaSectionID === null"> - </td>
                     <td *ngIf="item.MediaSectionID === 1"> الاخبار </td>
                     <td *ngIf="item.MediaSectionID === 2"> معرض الصور</td>

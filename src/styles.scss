@@ -186,7 +186,7 @@ html {
 
 
  .scrollbar::-webkit-scrollbar {
-    width: 4px;               /* width of the entire scrollbar */
+    width: 4px; /* width of the entire scrollbar */
   }
 
 
@@ -202,3 +202,6 @@ html {
     margin-bottom: 0;
 }
 
+.serch-input .p-input-icon-left, .p-input-icon-right{
+    width: 100%;
+}
