@@ -7,14 +7,7 @@
 
 <form [formGroup]="formOutpatient">
     <div class="grid p-fluid mt-3">
-     <!--    <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-            <label for="">اضافة ايقونة</label>
-            <app-upload-files
-                (onSelectFiles)="fileSelected = $event"
-                [showFilesUploaded]="true"
-            ></app-upload-files>
-        </div> -->
-        <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+        <div class="col-12 mb-2 lg:col-5 lg:mb-0">
             <app-input-field [label]="'الاسم  /عربي'" formControlName="NameAr">
             </app-input-field>
         </div>
@@ -36,23 +29,9 @@
             <app-check-box label="فعال" formControlName="IsActive">
             </app-check-box>
         </div>
-            <!-- <div
-                class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
-                style="margin-top: 2.9rem"
-            >
-            <app-select-field
-            [dropdownItems]="[
-            { Code: 3, Name: 'معرض الفيديو' },
-            { Code: 4, Name: 'المقالات الطبية' },
-            { Code: 5, Name: 'قصص صحفية' },
-        ]"
-            formControlName="TypeID"
-            [label]="'اختيار المركز الاعلامي'"
-        >
-        </app-select-field>
-            </div> -->
+
         <div
-            class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
+            class="col-12 mb-2 lg:col-3 lg:mb-0 align-items-center justify-content-evenly" style="margin-top: 2.2rem"
         >
             <div class="inline-flex align-items-center">
                 <app-button-component
@@ -177,12 +156,9 @@
                 [optionLabel]="isEn?'NameEn':'NameAr'"
                 [optionValue]="'ID'"
                 formControlName="OutpatientClinicsDepartmentID"
-                [label]="'اختيار القسم'"
-
-            >
+                [label]="'اختيار القسم'">
             </app-select-field>
             </ng-container>
-
         </div>
 
         <div

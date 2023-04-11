@@ -25,8 +25,8 @@ export class MedicalRehabilitationServicesComponent {
             NameEn: ['نص'],
             DescAr: ['', Validators.required],
             DescEn: ['نص'],
-            IsActive: [null , Validators.required],
-            Sorting: [null , Validators.required],
+            IsActive: [false ],
+            Sorting: [null],
         });
     }
 
@@ -51,6 +51,7 @@ export class MedicalRehabilitationServicesComponent {
 
     clear() {
         this.formMedicalRehabilitationServices.reset();
+        this.formMedicalRehabilitationServices.get('IsActive')?.patchValue(false)
         this.formMedicalRehabilitationServices.get('NameEn')?.patchValue('نص')
         this.formMedicalRehabilitationServices.get('DescEn')?.patchValue('نص')
     }

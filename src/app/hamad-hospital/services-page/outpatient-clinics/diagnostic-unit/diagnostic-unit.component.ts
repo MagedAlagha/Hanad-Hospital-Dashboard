@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map, Observable, tap } from 'rxjs';
 import { ServicesPageService } from '../../services-page.service';
 
@@ -32,18 +32,18 @@ export class DiagnosticUnitComponent {
             NameEn: ['نص'],
             DescAr: ['نص'],
             DescEn: ['نص'],
-            IsActive: [],
+            IsActive: [false],
             Sorting: [],
             TypeID: [4],
         });
         this.formSections = fb.group({
             ID: [],
-            NameAr: [],
+            NameAr: [null , Validators.required],
             NameEn: ['نص'],
-            DescAr: [],
+            DescAr: [null , Validators.required],
             DescEn: ['نص'],
-            OutpatientClinicsDepartmentID: [],
-            IsActive: [],
+            OutpatientClinicsDepartmentID: [Validators.required],
+            IsActive: [false],
             Sorting: [],
             TypeID: [4],
         })
@@ -88,6 +88,8 @@ export class DiagnosticUnitComponent {
 
     clear(){
     this.formOutpatient.reset();
+    this.formOutpatient.get('TypeID')?.patchValue(4);
+    this.formOutpatient.get('IsActive')?.patchValue(false);
     this.formOutpatient.get('NameEn')?.patchValue('نص')
     this.formOutpatient.get('DescAr')?.patchValue('نص')
     this.formOutpatient.get('DescEn')?.patchValue('نص')
@@ -101,7 +103,7 @@ export class DiagnosticUnitComponent {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     deleteItem(item: any) {
-        this._servicesPageService.deleteOutpatientClinicsDepartments(item.ID)
+        this._servicesPageService.deleteOutpatientClinicsDepartments(item.ID);
     }
 
     saveFormSections(){
@@ -118,7 +120,12 @@ export class DiagnosticUnitComponent {
         }
     }
     clearFormSections(){
-this.formSections.reset();
+    this.formSections.reset();
+    this.formSections.get('TypeID')?.patchValue(4);
+    this.formSections.get('IsActive')?.patchValue(false);
+    this.formSections.get('NameEn')?.patchValue('نص');
+    this.formSections.get('DescEn')?.patchValue('نص');
+    this.formSections.get('DescAr')?.patchValue('نص');
     }
 
 

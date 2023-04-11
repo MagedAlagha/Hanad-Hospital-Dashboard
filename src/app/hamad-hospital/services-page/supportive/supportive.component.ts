@@ -32,7 +32,7 @@ export class SupportiveComponent {
             NameEn:['نص'],
             DescAr: ['نص'],
             DescEn: ['نص'],
-            IsActive: [],
+            IsActive: [false],
             Sorting: [],
             TypeID: [5],
         });
@@ -43,7 +43,7 @@ export class SupportiveComponent {
             DescAr: [],
             DescEn:['نص'],
             OutpatientClinicsDepartmentID: [],
-            IsActive: [],
+            IsActive: [false],
             Sorting: [],
             TypeID: [5],
         })
@@ -89,9 +89,11 @@ export class SupportiveComponent {
 
     clear(){
      this.formOutpatient.reset();
-     this.formOutpatient.get('NameEn')?.patchValue('نص')
-     this.formOutpatient.get('DescAr')?.patchValue('نص')
-     this.formOutpatient.get('DescEn')?.patchValue('نص')
+     this.formOutpatient.get('TypeID')?.patchValue(5);
+        this.formOutpatient.get('IsActive')?.patchValue(false);
+        this.formOutpatient.get('NameEn')?.patchValue('نص')
+        this.formOutpatient.get('DescAr')?.patchValue('نص')
+        this.formOutpatient.get('DescEn')?.patchValue('نص')
     }
 
     clearFormOutpatient() {
@@ -120,6 +122,11 @@ export class SupportiveComponent {
     }
     clearFormSections(){
 this.formSections.reset();
+this.formSections.get('TypeID')?.patchValue(5);
+    this.formSections.get('IsActive')?.patchValue(false);
+    this.formSections.get('NameEn')?.patchValue('نص');
+    this.formSections.get('DescEn')?.patchValue('نص');
+    this.formSections.get('DescAr')?.patchValue('نص');
     }
 
 

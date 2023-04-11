@@ -48,11 +48,11 @@ export class HearingBalanceComponent implements OnInit {
         });
         this.formSections = fb.group({
             ID: [],
-            NameAr: [null , Validators.required],
+            NameAr: [null, Validators.required],
             NameEn: ['نص'],
             DescAr: [null , Validators.required],
             DescEn: ['نص'],
-            OutpatientClinicsDepartmentID: [],
+            OutpatientClinicsDepartmentID: [null ,Validators.required],
             IsActive: [false],
             Sorting: [],
             TypeID: [3],
@@ -80,7 +80,16 @@ export class HearingBalanceComponent implements OnInit {
         }
 
     saveFormOutpatient() {
-        console.log("this.fileSelected" , this.fileSelected_2) ;
+
+        if (this.formOutpatient.invalid) {
+            this.messageService.add({
+                severity: 'error',
+                detail: this._translateService.instant(
+                    ' يوجد حقول مطلوبة '
+                ),
+            });
+        } else{
+            console.log("this.fileSelected" , this.fileSelected_2) ;
         if(!this.ID){
         this._servicesPageService.saveOutpatientClinicsDepartments({
             ...this.formOutpatient.value,
@@ -92,6 +101,7 @@ export class HearingBalanceComponent implements OnInit {
         });
        }
        this.clear();
+        }
     }
 
     clear(){
@@ -113,17 +123,29 @@ export class HearingBalanceComponent implements OnInit {
     }
 
     saveFormSections(){
-        console.log(this.formSections.value);
-        if(!this.Services_ID){
-            this._servicesPageService.saveOutpatientClinicsDepartmentsServices(this.formSections.value);
-
-        }else{
-            this._servicesPageService.saveOutpatientClinicsDepartmentsServices({
-                ...this.formSections.value ,
-                ID:this.Services_ID
+        if (this.formSections.invalid) {
+            this.messageService.add({
+                severity: 'error',
+                detail: this._translateService.instant(
+                    ' يوجد حقول مطلوبة '
+                ),
             });
+        } else{
+
+            console.log(this.formSections.value);
+            if(!this.Services_ID){
+                this._servicesPageService.saveOutpatientClinicsDepartmentsServices(this.formSections.value);
+
+            }else{
+                this._servicesPageService.saveOutpatientClinicsDepartmentsServices({
+                    ...this.formSections.value ,
+                    ID:this.Services_ID
+                });
+
+            }
 
         }
+
     }
     clearFormSections(){
     this.formSections.reset();

@@ -24,7 +24,7 @@ export class MedicalRehabilitationFeaturesComponent {
             NameAr: [null , Validators.required],
             NameEn: ['نص'],
             IsActive: [false],
-            Sorting: [null , Validators.required],
+            Sorting: [null],
         });
     }
 
