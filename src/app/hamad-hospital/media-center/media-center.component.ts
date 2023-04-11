@@ -81,22 +81,13 @@ export class MediaCenterComponent implements OnInit {
             }
         }else{
 
-            if (this.Form_MediaSectionsItems.invalid) {
-                this.messageService.add({
-                    severity: 'error',
-                    detail: this._translateService.instant(
-                        'الحقول مطلوبة'
-                    ),
-                });
-            } else {
-                this._mediaCenterService.saveMediaSectionsItems({
-                    ...this.Form_MediaSectionsItems.value,
-                    ImagePath: this.fileSelected,
-                    ID:this.ID
-                });
+            this._mediaCenterService.saveMediaSectionsItems({
+                ...this.Form_MediaSectionsItems.value,
+                ImagePath: this.fileSelected,
+                ID:this.ID
+            });
 
-                this.clear();
-            }
+            this.clear();
 
         }
 
