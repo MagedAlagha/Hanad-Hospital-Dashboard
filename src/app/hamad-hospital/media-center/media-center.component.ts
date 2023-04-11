@@ -55,7 +55,7 @@ export class MediaCenterComponent implements OnInit {
         this._mediaCenterService.getMediaSectionsItems();
             this.MediaSectionsItems$ =
             this._mediaCenterService.Selector$('MediaSectionsItems');
-          this._mediaCenterService.Selector$('MediaSectionsItems').pipe(map((value) => {
+            this.MediaSectionsItems$ = this._mediaCenterService.Selector$('MediaSectionsItems').pipe(map((value) => {
             return value?.data?.map((item: any) => {
                 return{
                     ...item,
