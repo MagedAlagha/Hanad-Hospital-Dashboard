@@ -56,13 +56,13 @@ export class MediaCenterComponent implements OnInit {
             this.MediaSectionsItems$ =
             this._mediaCenterService.Selector$('MediaSectionsItems');
           this._mediaCenterService.Selector$('MediaSectionsItems').pipe(map((value) => {
-            return value?.data?.map((item: any) => {
+            return{...value,data: value?.data?.map((item: any) => {
                 return{
                     ...item,
                     MainServiceName:this.MainServiceName(item?.MainServiceID)
                 }
 
-            });
+            })}
           }),
          );
 
