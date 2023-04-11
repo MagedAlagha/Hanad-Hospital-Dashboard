@@ -53,9 +53,8 @@ export class MediaCenterComponent implements OnInit {
         this._mediaCenterService.getImageSection();
         this._mediaCenterService.getMediaType();
         this._mediaCenterService.getMediaSectionsItems();
-            this.MediaSectionsItems$ =
-            this._mediaCenterService.Selector$('MediaSectionsItems');
-          this._mediaCenterService.Selector$('MediaSectionsItems').pipe(map((value) => {
+
+        this.MediaSectionsItems$ =   this._mediaCenterService.Selector$('MediaSectionsItems').pipe(map((value) => {
             return{...value,data: value?.data?.map((item: any) => {
                 return{
                     ...item,
@@ -137,6 +136,7 @@ export class MediaCenterComponent implements OnInit {
         );
     }
     MainServiceName(id:any){
+        console.log('id',id)
         if(id=== 1){
           return "الاطراف الصناعية"
          }
