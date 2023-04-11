@@ -1,7 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { ServicesPageService } from '../services-page.service';
+import { MessageService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-supportive',
@@ -23,12 +25,14 @@ export class SupportiveComponent {
     @ViewChild('fileUpload') fileUpload: any;
     constructor(
         fb: FormBuilder,
-        private _servicesPageService: ServicesPageService
+        private _servicesPageService: ServicesPageService ,
+        private messageService: MessageService,
+        private _translateService: TranslateService
     ) {
         this.formOutpatient = fb.group({
             ID: [],
             IconPath: [],
-            NameAr: [],
+            NameAr: ['' , Validators.required],
             NameEn:['نص'],
             DescAr: ['نص'],
             DescEn: ['نص'],
@@ -38,11 +42,11 @@ export class SupportiveComponent {
         });
         this.formSections = fb.group({
             ID: [],
-            NameAr: [],
+            NameAr: ['' , Validators.required],
             NameEn: ['نص'],
-            DescAr: [],
+            DescAr: ['' , Validators.required],
             DescEn:['نص'],
-            OutpatientClinicsDepartmentID: [],
+            OutpatientClinicsDepartmentID: [null , Validators.required],
             IsActive: [false],
             Sorting: [],
             TypeID: [5],
@@ -73,7 +77,18 @@ export class SupportiveComponent {
 
 
     saveFormOutpatient() {
-        console.log("this.fileSelected" , this.fileSelected_2) ;
+
+
+
+        if (this.formOutpatient.invalid) {
+            this.messageService.add({
+                severity: 'error',
+                detail: this._translateService.instant(
+                    ' يوجد حقول مطلوبة '
+                ),
+            });
+        } else{
+            console.log("this.fileSelected" , this.fileSelected_2) ;
         if(!this.ID){
         this._servicesPageService.saveOutpatientClinicsDepartments({
             ...this.formOutpatient.value,
@@ -85,6 +100,8 @@ export class SupportiveComponent {
         });
        }
        this.clear();
+        }
+
     }
 
     clear(){
@@ -108,17 +125,27 @@ export class SupportiveComponent {
     }
 
     saveFormSections(){
-        console.log(this.formSections.value);
-        if(!this.Services_ID){
-            this._servicesPageService.saveOutpatientClinicsDepartmentsServices(this.formSections.value);
-
-        }else{
-            this._servicesPageService.saveOutpatientClinicsDepartmentsServices({
-                ...this.formSections.value ,
-                ID:this.Services_ID
+        if (this.formSections.invalid) {
+            this.messageService.add({
+                severity: 'error',
+                detail: this._translateService.instant(
+                    ' يوجد حقول مطلوبة '
+                ),
             });
+        } else{
 
+            console.log(this.formSections.value);
+            if(!this.Services_ID){
+                this._servicesPageService.saveOutpatientClinicsDepartmentsServices(this.formSections.value);
+
+            }else{
+                this._servicesPageService.saveOutpatientClinicsDepartmentsServices({
+                    ...this.formSections.value ,
+                    ID:this.Services_ID
+                });
+            }
         }
+
     }
     clearFormSections(){
 this.formSections.reset();
