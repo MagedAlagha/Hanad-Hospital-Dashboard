@@ -78,12 +78,12 @@ export class ProstheticsComponent {
             this._servicesPageService.saveprosthetics(this.formprosthetics.value);
             this.clear()
         }
-
-
     }
     clear() {
         this.formprosthetics.reset();
-        this.formprosthetics.get('IsActive')?.patchValue(false)
+        this.formprosthetics.get('IsActive')?.patchValue(false);
+        this.formprosthetics.get('AgeEn')?.patchValue('نص');
+        this.formprosthetics.get('NameEn')?.patchValue('نص');
     }
     editItem(item: any) {
         this.formprosthetics.patchValue(item);

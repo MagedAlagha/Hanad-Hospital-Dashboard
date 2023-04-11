@@ -14,7 +14,6 @@ import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/
 import { SelectFieldComponent } from 'src/app/shared/Module-shared/select-field/select-field.component';
 import { TabViewModule } from 'primeng/tabview';
 import { ImageModule } from 'primeng/image';
-import { NewsComponent } from './news/news.component';
 import { AddPhotosModalComponent } from './Modlas/add-photos-modal/add-photos-modal.component';
 import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-shared/dialog-shared.component';
 import { EditorModule } from 'primeng/editor';
@@ -24,7 +23,6 @@ import { EditorModule } from 'primeng/editor';
 @NgModule({
   declarations: [
     MediaCenterComponent,
-    NewsComponent,
     AddPhotosModalComponent
   ],
   imports: [

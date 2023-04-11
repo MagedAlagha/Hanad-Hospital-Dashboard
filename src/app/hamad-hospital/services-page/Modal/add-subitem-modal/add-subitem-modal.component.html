@@ -7,20 +7,20 @@
         <ng-container>
             <form [formGroup]="formSubItemTypes">
                 <div class="grid p-fluid mt-3">
-                    <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                    <div class="col-12 mb-2 lg:col-5 lg:mb-0">
                         <app-input-field
                             [label]="'الاسم /عربي'"
                             formControlName="NameAr"
                         >
                         </app-input-field>
                     </div>
-                    <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                    <!-- <div class="col-12 mb-2 lg:col-4 lg:mb-0">
                         <app-input-field
                             [label]="'الاسم /انجليزي'"
                             formControlName="NameEn"
                         >
                         </app-input-field>
-                    </div>
+                    </div> -->
                     <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                         <app-input-field
                             label="ترتيب الطرف"
@@ -52,7 +52,7 @@
                             <tr>
                                 <th class="text-center">#</th>
                                 <th class="text-center">الاسم عربي</th>
-                                <th class="text-center">الاسم انجليزي</th>
+                                <!-- <th class="text-center">الاسم انجليزي</th> -->
                                 <th class="text-center">الحالة</th>
                                 <th class="text-center">الترتيب</th>
                                 <th class="text-center">الاجراءات</th>
@@ -70,7 +70,7 @@
                                     }}</span>
                                 </td>
                                 <td>{{ item.NameAr }}</td>
-                                <td>{{ item.NameEn }}</td>
+                                <!-- <td>{{ item.NameEn }}</td> -->
                                 <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                                 <td>{{ item.Sorting }}</td>
                                 <td class="text-center">

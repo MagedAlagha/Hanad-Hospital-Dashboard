@@ -29,20 +29,20 @@ export class ServicesCardsComponent {
         private _translateService: TranslateService
     ) {
         this.formServices = fb.group({
-            MedicalRehabilitationIconPath: [null],
-            MedicalRehabilitationDescAr: [null],
+            MedicalRehabilitationIconPath: [],
+            MedicalRehabilitationDescAr: [],
             MedicalRehabilitationDescEn:  ['نص'],
-            ProstheticsIconPath: [null],
-            ProstheticsDescAr: [null],
+            ProstheticsIconPath: [],
+            ProstheticsDescAr: [],
             ProstheticsDescEn: ['نص'],
-            HearingIconPath: [null],
-            HearingDescAr: [null],
+            HearingIconPath: [],
+            HearingDescAr: [],
             HearingDescEn:  ['نص'],
-            SupportiveMedicalBackgroundPath: [null],
-            SupportiveMedicalDescAr: [null],
+            SupportiveMedicalBackgroundPath: [],
+            SupportiveMedicalDescAr: [],
             SupportiveMedicalDescEn:  ['نص'],
-            OutpatientClinicsIconPath: [null],
-            OutpatientClinicsDescAr: [null],
+            OutpatientClinicsIconPath: [],
+            OutpatientClinicsDescAr: [],
             OutpatientClinicsDescEn:  ['نص'],
         });
     }

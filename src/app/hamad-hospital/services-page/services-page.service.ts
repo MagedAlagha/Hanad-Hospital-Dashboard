@@ -119,7 +119,7 @@ export class ServicesPageService {
     }
     deleteprosthetics(ID: any) {
         return this._http
-            .deleteData(' Prosthetics/ProstheticsDelete', {
+            .deleteData('Prosthetics/ProstheticsDelete', {
                 ID: ID,
             })
             .subscribe((value) => {

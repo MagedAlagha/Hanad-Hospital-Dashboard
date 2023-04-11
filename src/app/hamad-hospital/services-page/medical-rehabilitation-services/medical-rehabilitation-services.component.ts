@@ -40,7 +40,7 @@ export class MedicalRehabilitationServicesComponent {
             this.messageService.add({
                 severity: 'error',
                 detail: this._translateService.instant(
-                    'الحقول مطلوبة'
+                    ' يوجد حقول مطلوبة '
                 ),
             });
         } else{

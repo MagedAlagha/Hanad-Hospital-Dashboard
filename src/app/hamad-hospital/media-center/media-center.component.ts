@@ -32,9 +32,9 @@ export class MediaCenterComponent implements OnInit {
         private renderer: Renderer2
     ) {
         this.Form_MediaSectionsItems = fb.group({
-            MediaSectionID: ['' ],
+            MediaSectionID: ['', Validators.required ],
             SubTitleAr: [''],
-            TitleAr: [''],
+            TitleAr: ['' , Validators.required],
             TitleEn: ['نص'],
             DescAr: [''],
             DescEn: ['نص'],
@@ -68,7 +68,7 @@ export class MediaCenterComponent implements OnInit {
                 this.messageService.add({
                     severity: 'error',
                     detail: this._translateService.instant(
-                        'الحقول مطلوبة'
+                        ' يوجد حقول مطلوبة '
                     ),
                 });
             } else {

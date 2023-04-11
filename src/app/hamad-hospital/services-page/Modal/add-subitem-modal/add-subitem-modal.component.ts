@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ServicesPageService } from '../../services-page.service';
+import { MessageService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-add-subitem-modal',
@@ -13,12 +15,14 @@ export class AddSubitemModalComponent {
     prostheticsTypes$!: Observable<any>;
     constructor(
         fb: FormBuilder,
-        private _servicesPageService: ServicesPageService
+        private _servicesPageService: ServicesPageService ,
+        private messageService: MessageService,
+        private _translateService: TranslateService
     ) {
         this.formSubItemTypes = fb.group({
             ID: [''],
-            NameAr: [''],
-            NameEn: [''],
+            NameAr: ['' , Validators.required],
+            NameEn: ['نص'],
             IsActive: [false],
             Sorting: [''],
             ParentID: [''],
@@ -38,16 +42,28 @@ export class AddSubitemModalComponent {
         }
     }
     save() {
-        this._servicesPageService
+        if (this.formSubItemTypes.invalid) {
+            this.messageService.add({
+                severity: 'error',
+                detail: this._translateService.instant(
+                    ' يوجد حقول مطلوبة '
+                ),
+            });
+        } else{
+            this._servicesPageService
             .saveProstheticsTypes({
                 ...this.formSubItemTypes.value,
             })
             .subscribe((value) => {
                 this.formSubItemTypes.reset();
             });
+        }
+
     }
     clear() {
         this.formSubItemTypes.reset();
+        this.formSubItemTypes.get('IsActive')?.patchValue(false);
+        this.formSubItemTypes.get('NameEn')?.patchValue('نص');
     }
     editItem(item: any) {
         this.formSubItemTypes.patchValue(item);

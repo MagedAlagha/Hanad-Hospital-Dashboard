@@ -2,7 +2,7 @@
     class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3"
 >
     <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
-        الاطراف الصناعية
+       بس الاطراف الصناعية
     </div>
     <div class="inline-flex align-items-center">
         <span class="p-input-icon-left flex-auto mr-2">
@@ -34,6 +34,18 @@
             </app-input-field>
         </div> -->
         <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <ng-container *ngIf="ProstheticsTypeselect$ | async as data">
+                <app-select-field
+                    [dropdownItems]="data"
+                    [optionLabel]="isEn ? 'NameEn' : 'NameAr'"
+                    [optionValue]="'ID'"
+                    formControlName="ProstheticsTypeID"
+                    [label]="'اختيار نوع الطرف'"
+                >
+                </app-select-field>
+            </ng-container>
+        </div>
+        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
             <app-input-field
                 [label]="'العمر / العربية'"
                 formControlName="AgeAr"
@@ -51,18 +63,7 @@
             <app-input-field label="الترتيب" formControlName="Sorting">
             </app-input-field>
         </div>
-        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-            <ng-container *ngIf="ProstheticsTypeselect$ | async as data">
-                <app-select-field
-                    [dropdownItems]="data"
-                    [optionLabel]="isEn ? 'NameEn' : 'NameAr'"
-                    [optionValue]="'ID'"
-                    formControlName="ProstheticsTypeID"
-                    [label]="'اختيار نوع الطرف'"
-                >
-                </app-select-field>
-            </ng-container>
-        </div>
+
         <div
             class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
             style="margin-top: 2.9rem"
