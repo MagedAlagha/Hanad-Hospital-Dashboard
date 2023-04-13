@@ -27,7 +27,7 @@ export class AddPhotosModalComponent implements OnInit {
         private _translateService: TranslateService
     ) {
         this.Form_ImageSection = fb.group({
-            Sorting: ['' , Validators.required],
+            Sorting: ['' ],
         });
     }
 
@@ -71,6 +71,7 @@ export class AddPhotosModalComponent implements OnInit {
     }
     clearImageSection() {
         this.Form_ImageSection.reset();
+        this.ID = null;
     }
 
     closeDialog() {

@@ -111,6 +111,7 @@ export class HearingBalanceComponent implements OnInit {
       this.formOutpatient.get('NameEn')?.patchValue('نص');
       this.formOutpatient.get('DescEn')?.patchValue('نص');
       this.formOutpatient.get('DescAr')?.patchValue('نص');
+      this.ID = null;
     }
 
 

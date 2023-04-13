@@ -17,6 +17,13 @@ $gutter: 1rem; //for primeflex grid system
 @import "assets/demo/styles/flags/flags.css";
 @import "assets/demo/styles/badges.scss";
 @import "assets/demo/styles/code.scss";
+
+html {
+    scroll-behavior: smooth;
+  }
+
+
+
 label {
     display: inline-block;
     margin-bottom: 0.5rem;
@@ -204,4 +211,8 @@ html {
 
 .serch-input .p-input-icon-left, .p-input-icon-right{
     width: 100%;
+}
+
+ .p-paginator .p-dropdown .p-dropdown-label{
+    padding-right: 0.75rem;
 }

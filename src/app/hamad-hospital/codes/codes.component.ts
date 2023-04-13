@@ -70,6 +70,7 @@ export class CodesComponent {
     }
     clear() {
         this.Form_Codes.reset();
+        this.ID = null;
     }
 
     editItem(item: any) {

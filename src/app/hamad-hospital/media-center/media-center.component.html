@@ -56,6 +56,27 @@
                 <p-editor dir="ltr" formControlName="DescEn" [style]="{'height':'420px'}">
                 </p-editor>
             </div> -->
+            <div class="col-12 mb-2 lg:col-1 lg:mb-0">
+                <app-check-box label="الأخبار"></app-check-box>
+            </div>
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <app-check-box label="معرض الصور"></app-check-box>
+            </div>
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <app-check-box label="معرض الفيديو"></app-check-box>
+            </div>
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <app-check-box label="المقالات الطبية"></app-check-box>
+            </div>
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <app-check-box label="قصص صحفية"></app-check-box>
+            </div>
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <app-check-box label="قصص رقمية"></app-check-box>
+            </div>
+            <div class="col-12 mb-2 lg:col-1 lg:mb-0">
+                <app-check-box label="منوعات"></app-check-box>
+            </div>
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-input-field
                     label="الترتيب"
@@ -63,7 +84,7 @@
                 >
                 </app-input-field>
             </div>
-            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <!-- <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-select-field
                     [dropdownItems]="[
                     { Code: 1, Name: 'الاخبار' },
@@ -78,7 +99,8 @@
                     [label]="' المركز الاعلامي (مطلوب)'"
                 >
                 </app-select-field>
-            </div>
+            </div> -->
+
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-select-field
                     [dropdownItems]="[
@@ -94,7 +116,7 @@
                 >
                 </app-select-field>
             </div>
-            <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
                  <app-input-field
                  [label]="'اضافة لينك الفيديو / يوتيوب'"
                  formControlName="VideoPath"
@@ -109,6 +131,13 @@
                 <app-check-box label="فعال" formControlName="IsActive">
                 </app-check-box>
             </div>
+            <div
+            class="col-12 mb-2 lg:col-1 lg:mb-0 align-items-center justify-content-evenly"
+            style="margin-top:2.9rem"
+        >
+            <app-check-box label=" منوعات" formControlName="ShowVarious">
+            </app-check-box>
+        </div>
             <div
                 class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
                 style="margin-top:2.9rem"
@@ -156,13 +185,13 @@
     <ng-container *ngIf="MediaSectionsItems$ | async as data">
         <p-table
             styleClass="p-datatable-gridlines"
-            [rows]="20"
+            [rows]="8"
             [paginator]="true"
              [style.width]="'100%'"
             [value]="data.data"
             [loading]="data.loading"
             #dt1
-            [paginator]="true"
+            [rowsPerPageOptions]="[10, 25, 50]"
             [globalFilterFields]="[
             'TitleAr',
             'MainServiceName',
@@ -187,8 +216,8 @@
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">العنوان</th>
-                    <th class="text-center">القسم الرئيسي</th>
                     <th class="text-center">المركز الاعلامي</th>
+                    <th class="text-center">القسم الرئيسي</th>
                     <th class="text-center">الترتيب</th>
                     <th class="text-center">الصورة</th>
                     <th class="text-center">صور القسم</th>
@@ -202,8 +231,8 @@
                     </td>
                     <td>{{ isEn ? item?.TitleEn : (item?.TitleAr | slice : 0 : 40) }}</td>
 
-                    <td > {{item?.MainServiceName}} </td>
                     <td > {{item?.MediaSectionName}} </td>
+                    <td > {{item?.MainServiceName}} </td>
 
                     <td>{{ item.Sorting }}</td>
                     <td> <span>
@@ -216,14 +245,14 @@
                  </span></td>
 
                     <td class="text-center">
-                        <ng-container *ngIf="item.MediaSectionID === 2 || item.MediaSectionID === 6 || item.MediaSectionID === 7 ; else ff ">
+                         <ng-container *ngIf="item.MediaSectionID === 2 || item.MediaSectionID === 6 || item.MediaSectionID === 7 ; else ff ">
                             <app-icon-shared
                             [Icon]="'pi pi-plus'"
                             [classColor]="'var(--blue-400)'"
                             [pTooltipCustom]="'اضافة صور للقسم'"
                             (action)="addPhotosDialog(item)"
                         ></app-icon-shared>
-                        </ng-container>
+                    </ng-container>
                         <ng-template #ff >
                             -
                         </ng-template>

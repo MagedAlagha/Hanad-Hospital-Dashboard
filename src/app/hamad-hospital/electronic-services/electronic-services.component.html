@@ -102,6 +102,7 @@
                         [globalFilterFields]="['FullName','Email','PhoneNumber','Address','Appointment', 'DepartmentID']"
                         responsiveLayout="scroll"
                         [filterDelay]="0"
+                        [rowsPerPageOptions]="[10, 25, 50]"
                     >
 
                         <ng-template pTemplate="header">
@@ -171,6 +172,7 @@
                 styleClass="p-datatable-gridlines" [paginator]="true"
                 [globalFilterFields]="['FullName','Email','PhoneNumber','Address','Appointment', 'DepartmentID']"
                 responsiveLayout="scroll"
+                [rowsPerPageOptions]="[10, 25, 50]"
             >
                 <ng-template pTemplate="header">
                     <tr>
@@ -265,6 +267,7 @@
                          [style.width]="'100%'"
                         [value]="data.data"
                         [loading]="data.loading"
+                        [rowsPerPageOptions]="[10, 25, 50]"
                     >
                         <ng-template pTemplate="header">
                             <tr>
@@ -406,6 +409,7 @@
                          [style.width]="'100%'"
                         [value]="data.data"
                         [loading]="data.loading"
+                        [rowsPerPageOptions]="[10, 25, 50]"
                     >
                         <ng-template pTemplate="header">
                             <tr>
@@ -453,6 +457,7 @@
                                 [style.width]="'100%'"
                                [value]="data.data"
                                [loading]="data.loading"
+                               [rowsPerPageOptions]="[10, 25, 50]"
                            >
                                <ng-template pTemplate="header">
                                    <tr>
@@ -588,6 +593,7 @@
                                 [style.width]="'100%'"
                                [value]="data.data"
                                [loading]="data.loading"
+                               [rowsPerPageOptions]="[10, 25, 50]"
                            >
                                <ng-template pTemplate="header">
                                    <tr>
@@ -728,6 +734,7 @@
                                 [style.width]="'100%'"
                                [value]="data.data"
                                [loading]="data.loading"
+                               [rowsPerPageOptions]="[10, 25, 50]"
                            >
                                <ng-template pTemplate="header">
                                    <tr>
@@ -810,6 +817,7 @@
                          [style.width]="'100%'"
                         [value]="data.data"
                         [loading]="data.loading"
+                        [rowsPerPageOptions]="[10, 25, 50]"
                     >
                         <ng-template pTemplate="header">
                             <tr>

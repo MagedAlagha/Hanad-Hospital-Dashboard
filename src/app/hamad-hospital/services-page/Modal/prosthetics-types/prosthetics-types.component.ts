@@ -52,6 +52,7 @@ export class ProstheticsTypesComponent {
     }
     clear() {
         this.formprostheticsTypes.reset();
+        this.ID = null;
     }
     editItem(item: any) {
         this.formprostheticsTypes.patchValue(item);

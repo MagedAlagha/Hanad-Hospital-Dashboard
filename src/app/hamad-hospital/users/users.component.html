@@ -70,7 +70,6 @@
         </div>
     </div>
     <hr />
-
     <ng-container *ngIf="users$ | async as data">
         <p-table
             styleClass="p-datatable-gridlines"
@@ -79,7 +78,7 @@
              [style.width]="'100%'"
             [value]="data.data"
             [loading]="data.loading"
-
+            [rowsPerPageOptions]="[10, 25, 50]"
         >
             <ng-template pTemplate="header">
                 <tr>

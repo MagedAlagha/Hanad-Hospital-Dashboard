@@ -92,6 +92,6 @@ export class HomeComponent implements OnInit {
         this.formSlider.get('TitleEn')?.patchValue('نص')
         this.formSlider.get('IsActive')?.patchValue(false)
         this.formSlider.get('ShowTitle')?.patchValue(false)
-
+        this.ID = null;
     }
 }

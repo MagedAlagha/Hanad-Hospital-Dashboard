@@ -45,6 +45,7 @@ export class MediaCenterComponent implements OnInit {
             VideoPath: [''],
             IsActive: [false],
             ShowHome: [false],
+            ShowVarious: [false],
             Sorting: [''],
         });
     }
@@ -66,7 +67,7 @@ export class MediaCenterComponent implements OnInit {
             return{...value,data: value?.data?.map((item: any) => {
                 return{
                     ...item,
-                    MediaSectionName:this.MediaSectionName(item?.MainServiceID)
+                    MediaSectionName:this.MediaSectionName(item?.MediaSectionID)
                 }
             })}
           }),
@@ -75,10 +76,7 @@ export class MediaCenterComponent implements OnInit {
         this.addPhotosDialog$ =
             this._mediaCenterService.Selector$('addPhotosDialog');
             this.MediaType$ = this._mediaCenterService.Selector$('MediaType');
-            this.Form_MediaSectionsItems.get("MediaSectionID")?.valueChanges.subscribe(x => {
-                console.log('firstname value changed')
-                console.log(x)
-             })
+
     }
 
     save() {
@@ -117,8 +115,11 @@ export class MediaCenterComponent implements OnInit {
     this.Form_MediaSectionsItems.reset();
     this.Form_MediaSectionsItems.reset();
     this.Form_MediaSectionsItems.get('IsActive')?.patchValue(false)
+    this.Form_MediaSectionsItems.get('ShowHome')?.patchValue(false)
+    this.Form_MediaSectionsItems.get('ShowVarious')?.patchValue(false)
     this.Form_MediaSectionsItems.get('DescEn')?.patchValue('نص')
-    this.Form_MediaSectionsItems.get('TitleEn')?.patchValue('نص')
+    this.Form_MediaSectionsItems.get('TitleEn')?.patchValue('نص');
+    this.ID = null
     }
 
     edit(item: any) {
@@ -142,28 +143,7 @@ export class MediaCenterComponent implements OnInit {
             'contains'
         );
     }
-    MainServiceName(id:any){
-        console.log('id',id)
-        if(id=== 1){
-          return "الاطراف الصناعية"
-         }
-         if(id=== 2){
-          return  "الاطراف الصناعية"
-         }
-         if(id=== 3){
-           return "السمع والتوازن"
-         }
-         if(id=== 4){
-           return "العيادة الخارجية"
-         }
-         if(id=== 5){
-           return "خدمات طبية مساندة"
-         }
-         if(id=== 6){
-           return "غير مصنف"
-         }
-         return ''
-    }
+
     MediaSectionName(id:any){
         console.log('id',id)
         if(id=== 1){
@@ -189,5 +169,30 @@ export class MediaCenterComponent implements OnInit {
          }
          return ''
     }
+
+
+    MainServiceName(id:any){
+        console.log('id',id)
+        if(id=== 1){
+          return "التأهيل الطبي"
+         }
+         if(id=== 2){
+          return  "الاطراف الصناعية"
+         }
+         if(id=== 3){
+           return "السمع والتوازن"
+         }
+         if(id=== 4){
+           return "العيادة الخارجية"
+         }
+         if(id=== 5){
+           return "خدمات طبية مساندة"
+         }
+         if(id=== 6){
+           return "غير مصنف"
+         }
+         return ''
+    }
+
 
 }

@@ -108,10 +108,12 @@ export class DiagnosticUnitComponent {
     this.formOutpatient.get('NameEn')?.patchValue('نص')
     this.formOutpatient.get('DescAr')?.patchValue('نص')
     this.formOutpatient.get('DescEn')?.patchValue('نص')
+    this.ID = null;
     }
 
     clearFormOutpatient() {
     this.formOutpatient.reset();
+    this.ID = null;
     }
     editItem(item: any) {
       this.formOutpatient.patchValue(item);
