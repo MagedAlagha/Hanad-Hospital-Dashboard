@@ -1,3 +1,4 @@
+import { MultiSelectFieldComponent } from './../../shared/Module-shared/multi-select-field/multi-select-field.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MediaCenterComponent } from './media-center.component';
@@ -7,7 +8,7 @@ import { ButtonComponentComponent } from 'src/app/shared/Module-shared/button-co
 import { InputFieldComponent } from 'src/app/shared/Module-shared/input-field/input-field.component';
 import { IconSharedComponent } from 'src/app/shared/Module-shared/icon-shared/icon-shared.component';
 import { TextAreaFieldComponent } from 'src/app/shared/Module-shared/text-area-field/text-area-field.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckBoxComponent } from 'src/app/shared/Module-shared/check-box/check-box.component';
 import { FileUploadModule } from 'primeng/fileupload';
 import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/upload-files.component';
@@ -19,37 +20,33 @@ import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-share
 import { EditorModule } from 'primeng/editor';
 import { SearchFieldComponent } from 'src/app/shared/Module-shared/search-field/search-field.component';
 
-
-
 @NgModule({
-  declarations: [
-    MediaCenterComponent,
-    AddPhotosModalComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-        {
-            path: '',
-            component: MediaCenterComponent,
-        },
-
-    ]),
-    TableModule,
-    ButtonComponentComponent,
-    InputFieldComponent,
-    IconSharedComponent,
-    TextAreaFieldComponent ,
-    ReactiveFormsModule,
-    CheckBoxComponent,
-    FileUploadModule,
-    UploadFilesComponent,
-    SelectFieldComponent,
-    TabViewModule,
-    ImageModule,
-    DialogSharedComponent ,
-    EditorModule ,
-    SearchFieldComponent
-  ]
+    declarations: [MediaCenterComponent, AddPhotosModalComponent],
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: MediaCenterComponent,
+            },
+        ]),
+        TableModule,
+        ButtonComponentComponent,
+        InputFieldComponent,
+        IconSharedComponent,
+        TextAreaFieldComponent,
+        ReactiveFormsModule,
+        CheckBoxComponent,
+        FileUploadModule,
+        UploadFilesComponent,
+        SelectFieldComponent,
+        TabViewModule,
+        ImageModule,
+        DialogSharedComponent,
+        EditorModule,
+        SearchFieldComponent,
+        FormsModule,
+        MultiSelectFieldComponent,
+    ],
 })
-export class MediaCenterModule { }
+export class MediaCenterModule {}

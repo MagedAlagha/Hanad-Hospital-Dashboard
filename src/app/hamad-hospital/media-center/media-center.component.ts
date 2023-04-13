@@ -20,13 +20,22 @@ export class MediaCenterComponent implements OnInit {
     addPhotosDialog$!: Observable<any>;
     MediaSectionsItems$!: Observable<any>;
     MediaType$!: Observable<any>;
-    itemShow:any;
-    ID:any;
+    itemShow: any;
+    ID: any;
     @ViewChild('fileUpload') fileUpload: any;
-    Avatar=environment.FileUrl;
+    Avatar = environment.FileUrl;
     isEn = document.dir == 'ltr' ? true : false;
-    MainService?:any[];
-    MediaSection?:any[];
+    MainService?: any[];
+    MediaSection?: any[];
+    listSections = [
+        { Code: 1, Name: 'الاخبار', value: false },
+        { Code: 2, Name: 'معرض الصور', value: false },
+        { Code: 3, Name: 'معرض الفيديو', value: false },
+        { Code: 4, Name: 'المقالات الطبية', value: false },
+        { Code: 5, Name: 'قصص صحفية', value: false },
+        { Code: 6, Name: 'قصص رقمية', value: false },
+        { Code: 7, Name: 'منوعات', value: false },
+    ];
     constructor(
         private _mediaCenterService: MediaCenterService,
         private fb: FormBuilder,
@@ -35,9 +44,9 @@ export class MediaCenterComponent implements OnInit {
         private renderer: Renderer2
     ) {
         this.Form_MediaSectionsItems = fb.group({
-            MediaSectionID: ['', Validators.required ],
+            MediaSectionID: ['', Validators.required],
             SubTitleAr: [''],
-            TitleAr: ['' , Validators.required],
+            TitleAr: ['', Validators.required],
             TitleEn: ['نص'],
             DescAr: [''],
             DescEn: ['نص'],
@@ -55,32 +64,44 @@ export class MediaCenterComponent implements OnInit {
         this._mediaCenterService.getMediaType();
         this._mediaCenterService.getMediaSectionsItems();
 
-        this.MediaSectionsItems$ =   this._mediaCenterService.Selector$('MediaSectionsItems').pipe(map((value) => {
-            return{...value,data: value?.data?.map((item: any) => {
-                return{
-                    ...item,
-                    MainServiceName:this.MainServiceName(item?.MainServiceID)
-                }
-            })}
-          }),
-          map((value) => {
-            return{...value,data: value?.data?.map((item: any) => {
-                return{
-                    ...item,
-                    MediaSectionName:this.MediaSectionName(item?.MediaSectionID)
-                }
-            })}
-          }),
-         );
+        this.MediaSectionsItems$ = this._mediaCenterService
+            .Selector$('MediaSectionsItems')
+            .pipe(
+                map((value) => {
+                    return {
+                        ...value,
+                        data: value?.data?.map((item: any) => {
+                            return {
+                                ...item,
+                                MainServiceName: this.MainServiceName(
+                                    item?.MainServiceID
+                                ),
+                            };
+                        }),
+                    };
+                }),
+                map((value) => {
+                    return {
+                        ...value,
+                        data: value?.data?.map((item: any) => {
+                            return {
+                                ...item,
+                                MediaSectionName: this.MediaSectionName(
+                                    item?.MediaSectionID
+                                ),
+                            };
+                        }),
+                    };
+                })
+            );
 
         this.addPhotosDialog$ =
             this._mediaCenterService.Selector$('addPhotosDialog');
-            this.MediaType$ = this._mediaCenterService.Selector$('MediaType');
-
+        this.MediaType$ = this._mediaCenterService.Selector$('MediaType');
     }
 
     save() {
-        if(!this.ID){
+        if (!this.ID) {
             if (this.Form_MediaSectionsItems.invalid) {
                 this.messageService.add({
                     severity: 'error',
@@ -92,39 +113,39 @@ export class MediaCenterComponent implements OnInit {
                 this._mediaCenterService.saveMediaSectionsItems({
                     ...this.Form_MediaSectionsItems.value,
                     ImagePath: this.fileSelected,
+
                 });
 
                 this.clear();
             }
-        }else{
-
+        } else {
             this._mediaCenterService.saveMediaSectionsItems({
                 ...this.Form_MediaSectionsItems.value,
                 ImagePath: this.fileSelected,
-                ID:this.ID
+                ID: this.ID,
             });
 
             this.clear();
-
         }
-
     }
 
     openDialog(item: any) {}
     clear() {
-    this.Form_MediaSectionsItems.reset();
-    this.Form_MediaSectionsItems.reset();
-    this.Form_MediaSectionsItems.get('IsActive')?.patchValue(false)
-    this.Form_MediaSectionsItems.get('ShowHome')?.patchValue(false)
-    this.Form_MediaSectionsItems.get('ShowVarious')?.patchValue(false)
-    this.Form_MediaSectionsItems.get('DescEn')?.patchValue('نص')
-    this.Form_MediaSectionsItems.get('TitleEn')?.patchValue('نص');
-    this.ID = null
+        this.Form_MediaSectionsItems.reset();
+        this.Form_MediaSectionsItems.reset();
+        this.Form_MediaSectionsItems.get('IsActive')?.patchValue(false);
+        this.Form_MediaSectionsItems.get('ShowHome')?.patchValue(false);
+        this.Form_MediaSectionsItems.get('ShowVarious')?.patchValue(false);
+        this.Form_MediaSectionsItems.get('DescEn')?.patchValue('نص');
+        this.Form_MediaSectionsItems.get('TitleEn')?.patchValue('نص');
+        this.ID = null;
+
     }
 
     edit(item: any) {
         this.Form_MediaSectionsItems.patchValue(item);
         this.ID = item.ID;
+
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     deleteItem(item: any) {
@@ -144,55 +165,52 @@ export class MediaCenterComponent implements OnInit {
         );
     }
 
-    MediaSectionName(id:any){
-        console.log('id',id)
-        if(id=== 1){
-          return "الاخبار"
-         }
-         if(id=== 2){
-          return  "معرض الصور"
-         }
-         if(id=== 3){
-           return "معرض الفيديو"
-         }
-         if(id=== 4){
-           return "المقالات الطبية"
-         }
-         if(id=== 5){
-           return "قصص صحفية"
-         }
-         if(id=== 6){
-           return "قصص رقمية"
-         }
-         if(id=== 7){
-           return "منوعات"
-         }
-         return ''
+    MediaSectionName(id: any) {
+        let arr = [];
+        if (id?.includes(1)) {
+            arr.push('الاخبار');
+        }
+        if (id?.includes(2)) {
+            arr.push('معرض الصور');
+        }
+        if (id?.includes(3)) {
+            arr.push('معرض الفيديو');
+        }
+        if (id?.includes(4)) {
+            arr.push('المقالات الطبية');
+        }
+        if (id?.includes(5)) {
+            arr.push('قصص صحفية');
+        }
+        if (id?.includes(6)) {
+            arr.push('قصص رقمية');
+        }
+        if (id?.includes(7)) {
+            arr.push('منوعات');
+        }
+        return arr.join(',');
     }
 
-
-    MainServiceName(id:any){
-        console.log('id',id)
-        if(id=== 1){
-          return "التأهيل الطبي"
-         }
-         if(id=== 2){
-          return  "الاطراف الصناعية"
-         }
-         if(id=== 3){
-           return "السمع والتوازن"
-         }
-         if(id=== 4){
-           return "العيادة الخارجية"
-         }
-         if(id=== 5){
-           return "خدمات طبية مساندة"
-         }
-         if(id=== 6){
-           return "غير مصنف"
-         }
-         return ''
+    MainServiceName(id: any) {
+        console.log(1);
+        if (id == 1) {
+            return 'التأهيل الطبي';
+        }
+        if (id == 2) {
+            return 'الاطراف الصناعية';
+        }
+        if (id == 3) {
+            return 'السمع والتوازن';
+        }
+        if (id == 4) {
+            return 'العيادة الخارجية';
+        }
+        if (id == 5) {
+            return 'خدمات طبية مساندة';
+        }
+        if (id == 6) {
+            return 'غير مصنف';
+        }
+        return '';
     }
-
-
 }

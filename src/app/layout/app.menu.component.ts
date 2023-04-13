@@ -96,7 +96,7 @@ export class AppMenuComponent implements OnInit {
                         {
                             id: '2',
 
-                            label: ' خدمات المستفى',
+                            label: ' خدمات المستشفى',
                             icon: 'pi pi-slack',
                             routerLink: ['/hamad-hospital/services'],
                         },
