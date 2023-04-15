@@ -72,8 +72,7 @@ export class AuthService implements OnDestroy {
         this.router.navigate(['/auth/login']);
     }
     get isActive() {
-        if (localStorage.getItem('CurrentUser')!='undefined') {
-            console.log(localStorage.getItem('CurrentUser'));
+        if (localStorage.getItem('CurrentUser')&&localStorage.getItem('CurrentUser')!='undefined'&&localStorage.getItem('CurrentUser')!='null') {
             var user = JSON.parse(localStorage.getItem('CurrentUser')!);
             return !!user?.token;
         } else {

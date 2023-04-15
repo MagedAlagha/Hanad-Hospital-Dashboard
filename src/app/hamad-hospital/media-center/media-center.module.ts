@@ -19,6 +19,7 @@ import { AddPhotosModalComponent } from './Modlas/add-photos-modal/add-photos-mo
 import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-shared/dialog-shared.component';
 import { EditorModule } from 'primeng/editor';
 import { SearchFieldComponent } from 'src/app/shared/Module-shared/search-field/search-field.component';
+import { IsImagePipe } from 'src/app/shared/pipes/is-image.pipe';
 
 @NgModule({
     declarations: [MediaCenterComponent, AddPhotosModalComponent],
@@ -46,7 +47,7 @@ import { SearchFieldComponent } from 'src/app/shared/Module-shared/search-field/
         EditorModule,
         SearchFieldComponent,
         FormsModule,
-        MultiSelectFieldComponent,
+        MultiSelectFieldComponent,IsImagePipe
     ],
 })
 export class MediaCenterModule {}

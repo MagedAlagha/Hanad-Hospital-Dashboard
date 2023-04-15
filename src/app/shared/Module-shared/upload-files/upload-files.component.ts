@@ -42,18 +42,18 @@ export class UploadFilesComponent implements OnInit {
     @Output() onSelectFiles = new EventEmitter<any>();
     @Output() afterAutoSave = new EventEmitter<any>();
     uploadedFiles: any[] = [];
-    compressedImage:any;
+    compressedImage: any;
     constructor(
         private _uploadFileService: UploadFilesService,
         private imageCompress: NgxImageCompressService
     ) {}
 
     ngOnInit() {}
-    event($event:any){
-console.log('$event' , $event.target.files)
+    event($event: any) {
+        console.log('$event', $event.target.files);
     }
     onSelect(event: any) {
-        console.log('event',event)
+        console.log('event', event);
         if (this.multiple) {
             this.uploadedFiles = [...this.uploadedFiles, ...event.currentFiles];
             this.onSelectFiles.emit(this.uploadedFiles);
@@ -81,20 +81,55 @@ console.log('$event' , $event.target.files)
         /* this.fileUpload.clear(); */
     }
     imgResultBeforeCompression: any;
-    compressFile() {
-        this.imageCompress.uploadFile().then(({ image, orientation ,fileName}) => {
-            console.log('orientation',orientation)
-            this.imgResultBeforeCompression = image;
-            this.imageCompress
-                .compressFile(image, orientation, 50, 93) // 50% ratio, 50% quality
-                .then((compressedImage) => {
-                  this.compressedImage = compressedImage
-                    let file = this.base64ToFile(compressedImage, fileName);
-                    this.onSelect({
-                        currentFiles: [file],
-                    });
-                });
+    compressFile(files: any) {
+        let arrTypesImg: any = [
+            'apng',
+            'avif',
+            'gif',
+            'jpg',
+            'jpeg',
+            'jfif',
+            'pjpeg',
+            'pjp',
+            'png',
+            'svg',
+            'webp',
+        ];
+        let AllFiles: any = [...files?.target.files];
+        let Images: any = [];
+        let filesPdf: any = [];
+        AllFiles.forEach((file: File) => {
+            if (arrTypesImg.includes(file.type)) {
+                Images.push(file);
+            } else {
+                filesPdf.push(file);
+            }
         });
+        this.convertFileToBase64(Images).then((value: any) => {
+            console.log('value', value);
+            let Files: any = [];
+            value.forEach((item: any, index: any) => {
+                this.imgResultBeforeCompression = item?.image;
+                this.imageCompress
+                    .compressFile(item?.image, item?.orientation, 50, 93)
+                    .then((compressedImage) => {
+                        this.compressedImage = compressedImage;
+                        let file = this.base64ToFile(
+                            compressedImage,
+                            item?.fileName
+                        );
+                        Files.push(file);
+                    })
+                    .then(() => {
+                        if (index + 1 == value?.length) {
+                            this.onSelect({
+                                currentFiles: Files,
+                            });
+                        }
+                    });
+            });
+        });
+        this.onSelect({ currentFiles: filesPdf });
     }
 
     base64ToFile(data: any, filename: any) {
@@ -122,4 +157,26 @@ console.log('$event' , $event.target.files)
         const blob = new Blob([int8Array], { type: 'image/png' });
         return blob;
     } */
+    convertFileToBase64(files: File[]): Promise<any> {
+        console.log('files', files);
+        return new Promise<any>((resolve, reject) => {
+            let result: any = [];
+            files.forEach((file: File, index) => {
+                const reader: any = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    // const base64String = reader.result.toString().split(',')[1];
+                    result.push({
+                        image: reader.result,
+                        orientation: -1,
+                        fileName: file.name,
+                    });
+                    if (index + 1 == files?.length) {
+                        console.log('result', result);
+                        resolve(result);
+                    }
+                };
+            });
+        });
+    }
 }
