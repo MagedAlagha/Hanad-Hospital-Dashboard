@@ -28,10 +28,10 @@ export class MediaCenterComponent implements OnInit {
     MainService?: any[];
     MediaSection?: any[];
     listSections = [
-        { Code: 1, Name: 'الاخبار', value: false },
+        { Code: 1, Name: 'الأخبار', value: false },
         { Code: 2, Name: 'معرض الصور', value: false },
         { Code: 3, Name: 'معرض الفيديو', value: false },
-        { Code: 4, Name: 'المقالات الطبية', value: false },
+        { Code: 4, Name: 'تثقيف صحي وتوعية', value: false },
         { Code: 5, Name: 'قصص صحفية', value: false },
         { Code: 6, Name: 'قصص رقمية', value: false },
         { Code: 7, Name: 'منوعات', value: false },
@@ -168,7 +168,7 @@ export class MediaCenterComponent implements OnInit {
     MediaSectionName(id: any) {
         let arr = [];
         if (id?.includes(1)) {
-            arr.push('الاخبار');
+            arr.push('الأخبار');
         }
         if (id?.includes(2)) {
             arr.push('معرض الصور');
@@ -177,7 +177,7 @@ export class MediaCenterComponent implements OnInit {
             arr.push('معرض الفيديو');
         }
         if (id?.includes(4)) {
-            arr.push('المقالات الطبية');
+            arr.push('تثقيف صحي وتوعية');
         }
         if (id?.includes(5)) {
             arr.push('قصص صحفية');

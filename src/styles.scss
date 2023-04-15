@@ -121,8 +121,9 @@ html {
 }
 
 .p-calendar,
-.p-dropdown {
-    height: 36px;
+.p-dropdown ,
+.p-multiselect {
+    height: 41px;
 }
 .p-dropdown {
     align-items: center;
@@ -215,4 +216,15 @@ html {
 
  .p-paginator .p-dropdown .p-dropdown-label{
     padding-right: 0.75rem;
+}
+
+ .p-multiselect-panel .p-multiselect-items .p-multiselect-item .p-checkbox , .p-multiselect-panel .p-multiselect-header .p-checkbox {
+    margin-right: unset;
+    margin-left: 0.5rem !important;
+}
+.p-multiselect-panel .p-multiselect-header .p-multiselect-close {
+    margin-left: unset;
+    margin-right: 0.5rem !important;
+
+
 }

@@ -62,7 +62,7 @@
                 <app-input-field label="الترتيب" formControlName="Sorting">
                 </app-input-field>
             </div>
-            <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+            <div class="col-12 mb-2 lg:col-3 lg:mb-0 multi-select">
                 <app-multi-select-field
                     [dropdownItems]="listSections"
                     formControlName="MediaSectionID"
@@ -86,7 +86,7 @@
                 >
                 </app-select-field>
             </div>
-            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+            <div class="col-12 mb-2 lg:col-5 lg:mb-0">
                 <app-input-field
                     [label]="'اضافة لينك الفيديو / يوتيوب'"
                     formControlName="VideoPath"
@@ -231,13 +231,14 @@
                                 else ff
                             "
                         >
-                            <app-icon-shared
-                                [Icon]="'pi pi-plus'"
-                                [classColor]="'var(--blue-400)'"
-                                [pTooltipCustom]="'اضافة صور للقسم'"
-                                (action)="addPhotosDialog(item)"
-                            ></app-icon-shared>
+
                         </ng-container>
+                        <app-icon-shared
+                        [Icon]="'pi pi-plus'"
+                        [classColor]="'var(--blue-400)'"
+                        [pTooltipCustom]="'اضافة صور للقسم'"
+                        (action)="addPhotosDialog(item)"
+                    ></app-icon-shared>
                         <ng-template #ff> - </ng-template>
                     </td>
                     <td class="text-center">
