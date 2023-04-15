@@ -118,25 +118,15 @@
 
 <form [formGroup]="formSections">
     <div class="grid p-fluid mt-3">
-        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-            <app-input-field [label]="'الاسم  /عربي'" formControlName="NameAr">
-            </app-input-field>
+        <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+            <label>الوصف</label>
+            <div class="DescAr">
+                <p-editor dir="rtl" formControlName="DescAr" [style]="{'height':'450px'}">
+                </p-editor>
+            </div>
+
         </div>
-       <!--  <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-            <app-input-field
-                [label]="'الاسم  /انجليزي'"
-                formControlName="NameEn"
-            >
-            </app-input-field>
-        </div> -->
-        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-            <app-text-area-field
-                [rows]="2"
-                [label]="'الوصف / عربي'"
-                formControlName="DescAr"
-            >
-            </app-text-area-field>
-        </div>
+
         <!-- <div class="col-12 mb-2 lg:col-6 lg:mb-0">
             <app-text-area-field
                 [rows]="2"
@@ -168,6 +158,7 @@
             <app-check-box label="فعال" formControlName="IsActive">
             </app-check-box>
         </div>
+
         <div
             class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
             style="margin-top: 2.5rem"
@@ -216,11 +207,11 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item let-index="rowIndex">
-                <tr>
+                <tr class="editor-html">
                     <td>
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
-                    <td>{{ item.NameAr }}</td>
+                    <td [innerHTML]="item.DescAr| slice:0:100"></td>
                     <!-- <td>{{ item.NameEn }}</td> -->
                     <td>{{ item.OutpatientClinicsDepartmentNameAr }}</td>
                     <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>

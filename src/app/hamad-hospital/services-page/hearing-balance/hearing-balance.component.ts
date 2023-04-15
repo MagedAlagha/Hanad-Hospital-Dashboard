@@ -48,7 +48,7 @@ export class HearingBalanceComponent implements OnInit {
         });
         this.formSections = fb.group({
             ID: [],
-            NameAr: [null, Validators.required],
+            NameAr: ['نص'],
             NameEn: ['نص'],
             DescAr: [null , Validators.required],
             DescEn: ['نص'],
@@ -108,6 +108,7 @@ export class HearingBalanceComponent implements OnInit {
       this.formOutpatient.reset()
       this.formOutpatient.get('TypeID')?.patchValue(3);
       this.formOutpatient.get('IsActive')?.patchValue(false);
+      this.formOutpatient.get('NameAr')?.patchValue('نص');
       this.formOutpatient.get('NameEn')?.patchValue('نص');
       this.formOutpatient.get('DescEn')?.patchValue('نص');
       this.formOutpatient.get('DescAr')?.patchValue('نص');
