@@ -9,6 +9,7 @@
                 <div class="col-12 mb-2 lg:col-3 lg:mb-0">
                     <label for="">اضافة صورة</label>
                     <app-upload-files
+                        [multiple]="true"
                         (onSelectFiles)="fileSelected = $event"
                         [showFilesUploaded]="true"
                     ></app-upload-files>
@@ -18,20 +19,18 @@
                     <app-input-field label="الترتيب" formControlName="Sorting">
                     </app-input-field>
                 </div>
-
             </div>
         </form>
 
-<br>
+        <br />
         <ng-container *ngIf="ImageSection$ | async as data">
             <p-table
                 styleClass="p-datatable-gridlines"
                 [rows]="7"
                 [paginator]="true"
-                 [style.width]="'100%'"
+                [style.width]="'100%'"
                 [value]="data.data"
                 [rowsPerPageOptions]="[10, 25, 50]"
-
             >
                 <ng-template pTemplate="header">
                     <tr>
@@ -44,19 +43,32 @@
                 <ng-template pTemplate="body" let-item let-index="rowIndex">
                     <tr>
                         <td>
-                            <span class="reorder-row-icon">{{ index + 1 }}</span>
+                            <span class="reorder-row-icon">{{
+                                index + 1
+                            }}</span>
                         </td>
                         <td>
-                              <span>
-                            <p-image
-                                [src]="Avatar + item?.ImagePath"
-                                alt="Image"
-                                width="45px"
-                                style="height: 45px; object-fit: cover;"
-                                [preview]="true"
-                            ></p-image>
-                     </span>
-                    </td>
+                            <span *ngIf="item?.ImagePath | isImage">
+                                <p-image
+                                    [src]="Avatar + item?.ImagePath"
+                                    alt="Image"
+                                    width="45px"
+                                    style="height: 45px; object-fit: cover"
+                                    [preview]="true"
+                                ></p-image>
+                            </span>
+                            <span *ngIf="!(item?.ImagePath | isImage)">
+                                <a
+                                    class="d-block"
+                                    [href]="Avatar + item?.ImagePath"
+                                    target="_blank"
+                                >
+                                    {{
+                                        item?.ImagePath
+                                    }}</a
+                                >
+                            </span>
+                        </td>
                         <td>{{ item.Sorting }}</td>
 
                         <td class="text-center">
@@ -85,30 +97,24 @@
                 <ng-template pTemplate="loadingbody"> </ng-template>
             </p-table>
         </ng-container>
-
-
-
-
-
-
     </div>
     <div class="footerDialog">
-    <app-button-component
-    [classColor]="'p-button-raised'"
-    (action)="saveImageSection()"
-    [Icon]="'pi pi-id-card'"
-    label="حفظ"
-    [isCustomLable]="true"
-    [pTooltipCustom]="'حفظ'"
->
-</app-button-component>
-<app-button-component
-    label="مسح الحقول"
-    class="pr-2"
-    (action)="clearImageSection()"
-    [classColor]="'p-button-raised p-button-secondary '"
-    [pTooltipCustom]="'مسح الحقول '"
-    [Icon]="'pi pi-eraser'"
-></app-button-component>
+        <app-button-component
+            [classColor]="'p-button-raised'"
+            (action)="saveImageSection()"
+            [Icon]="'pi pi-id-card'"
+            label="حفظ"
+            [isCustomLable]="true"
+            [pTooltipCustom]="'حفظ'"
+        >
+        </app-button-component>
+        <app-button-component
+            label="مسح الحقول"
+            class="pr-2"
+            (action)="clearImageSection()"
+            [classColor]="'p-button-raised p-button-secondary '"
+            [pTooltipCustom]="'مسح الحقول '"
+            [Icon]="'pi pi-eraser'"
+        ></app-button-component>
     </div>
 </app-dialog-shared>

@@ -17,17 +17,17 @@ export class AddPhotosModalComponent implements OnInit {
     ImageSection$!: Observable<any>;
     data: any;
     @ViewChild('fileUpload') fileUpload: any;
-    Avatar=environment.FileUrl;
-    ID:any;
-    itmsID:any;
+    Avatar = environment.FileUrl;
+    ID: any;
+    itmsID: any;
     constructor(
         private _mediaCenterService: MediaCenterService,
-        private fb: FormBuilder ,
+        private fb: FormBuilder,
         private messageService: MessageService,
         private _translateService: TranslateService
     ) {
         this.Form_ImageSection = fb.group({
-            Sorting: ['' ],
+            Sorting: [''],
         });
     }
 
@@ -35,38 +35,28 @@ export class AddPhotosModalComponent implements OnInit {
         this.ImageSection$ = this._mediaCenterService.Selector$('ImageSection');
         this.data = this._mediaCenterService.dataStore.addPhotosDialog?.data;
         if (this.data) {
-          /*   this.Form_ImageSection.patchValue(this.data); */
-          this.itmsID = this.data.ID;
+            /*   this.Form_ImageSection.patchValue(this.data); */
+            this.itmsID = this.data.ID;
         }
     }
     saveImageSection() {
-
-
         if (this.Form_ImageSection.invalid) {
             this.messageService.add({
                 severity: 'error',
-                detail: this._translateService.instant(
-                    'الحقول مطلوبة'
-                ),
+                detail: this._translateService.instant('الحقول مطلوبة'),
             });
-        } else{
-            if(!this.ID){
-                this._mediaCenterService.saveImageSection({
+        } else {
+            this._mediaCenterService
+                .saveImageSection({
                     ...this.Form_ImageSection.value,
                     ImagePath: this.fileSelected,
                     MediaSectionsItemID: this.data.ID,
-                }).subscribe((value)=> this._mediaCenterService.getImageSection(this.itmsID));
-            }else{
-                this._mediaCenterService.saveImageSection({
-                    ...this.Form_ImageSection.value,
-                    ID:this.ID,
-                    ImagePath: this.fileSelected,
-                    MediaSectionsItemID: this.data.ID,
-                }).subscribe((value)=> this._mediaCenterService.getImageSection(this.itmsID));
-            }
+                })
+                .subscribe((value) =>
+                    this._mediaCenterService.getImageSection(this.itmsID)
+                );
 
             this.clearImageSection();
-
         }
     }
     clearImageSection() {
@@ -79,7 +69,11 @@ export class AddPhotosModalComponent implements OnInit {
     }
 
     deleteItem(item: any) {
-        this._mediaCenterService.deleteImageSection(item.ID).subscribe(value=> this._mediaCenterService.getImageSection(this.itmsID));
+        this._mediaCenterService
+            .deleteImageSection(item.ID)
+            .subscribe((value) =>
+                this._mediaCenterService.getImageSection(this.itmsID)
+            );
     }
     edit(item: any) {
         this.Form_ImageSection.patchValue(item);

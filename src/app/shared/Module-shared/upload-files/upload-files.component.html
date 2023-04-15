@@ -1,6 +1,6 @@
-
-<p class="btn_upload_img" (click)="compressFile()">انقر للرفع</p>
+<p class="btn_upload_img" (click)="file.click()">انقر للرفع</p>
 <!-- <img [src]="compressedImage" alt="" srcset=""> -->
+<input type="file" #file  hidden multiple (change)="compressFile($event)" />
 <ng-container *ngIf="showFilesUploaded"
     ><div *ngFor="let item of uploadedFiles" class="m-2">
         {{ item.name }}
