@@ -108,16 +108,16 @@
                 </app-check-box>
             </div>
             <div
-                class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
+                class="col-12 mb-2 lg:col-3 lg:mb-0 align-items-center justify-content-evenly"
                 style="margin-top: 2.9rem"
             >
-                <app-check-box label="قصص ملهمة" formControlName="ShowHome">
+                <app-check-box label="قصص ملهمة (معرض فيديو - قصص صحفية)" formControlName="ShowHome">
                 </app-check-box>
             </div>
 
             <div
-                class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
-                style="margin-top: 1rem"
+                class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-end justify-content-evenly"
+                style="margin-top: 1.4rem"
             >
                 <div class="inline-flex align-items-center">
                     <app-button-component
@@ -230,22 +230,23 @@
                     </td>
 
                     <td class="text-center">
-                        <ng-container
+                        <!-- <ng-container
                             *ngIf="
-                                item.MediaSectionID === 2 ||
-                                    item.MediaSectionID === 6 ||
-                                    item.MediaSectionID === 7;
+                                item.MediaSectionID === '1'||
+                                    item.MediaSectionID === '2' ||
+                                    item.MediaSectionID === '5'||
+                                    item.MediaSectionID === '6';
                                 else ff
                             "
                         >
-
-                        </ng-container>
+                    </ng-container> -->
                         <app-icon-shared
                         [Icon]="'pi pi-plus'"
                         [classColor]="'var(--blue-400)'"
                         [pTooltipCustom]="'اضافة صور للقسم'"
                         (action)="addPhotosDialog(item)"
                     ></app-icon-shared>
+
                         <ng-template #ff> - </ng-template>
                     </td>
                     <td class="text-center">
