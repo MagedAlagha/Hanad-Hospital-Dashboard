@@ -35,6 +35,7 @@ export class MediaCenterComponent implements OnInit {
         { Code: 5, Name: 'قصص صحفية', value: false },
         { Code: 6, Name: 'قصص رقمية', value: false },
         { Code: 7, Name: 'منوعات', value: false },
+        { Code: 8, Name: 'النشرة الإخبارية', value: false },
     ];
     constructor(
         private _mediaCenterService: MediaCenterService,
@@ -186,6 +187,9 @@ export class MediaCenterComponent implements OnInit {
         }
         if (id?.includes(7)) {
             arr.push('منوعات');
+        }
+        if (id?.includes(8)) {
+            arr.push('النشرة الإخبارية');
         }
         return arr.join(',');
     }

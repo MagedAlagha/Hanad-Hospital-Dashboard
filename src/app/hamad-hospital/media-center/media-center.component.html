@@ -194,6 +194,7 @@
                     <th pSortableColumn="TitleAr" class="text-center">العنوان <p-sortIcon ></p-sortIcon></th>
                     <th pSortableColumn="MediaSectionName" class="text-center">المركز الاعلامي <p-sortIcon ></p-sortIcon></th>
                     <th pSortableColumn="MainServiceName" class="text-center">القسم الرئيسي <p-sortIcon ></p-sortIcon></th>
+                    <th pSortableColumn="CreatedDate" class="text-center">تاريخ النشر <p-sortIcon ></p-sortIcon></th>
                     <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
                     <th class="text-center">الصورة</th>
                     <th class="text-center">صور القسم</th>
@@ -212,9 +213,9 @@
                                 : (item?.TitleAr | slice : 0 : 40)
                         }}
                     </td>
-
                     <td>{{ item?.MediaSectionName }}</td>
                     <td>{{ item?.MainServiceName }}</td>
+                    <td>{{ item?.CreatedDate | date }}</td>
 
                     <td>{{ item.Sorting }}</td>
                     <td>
