@@ -162,33 +162,39 @@
             [loading]="data.loading"
             #dt1
             [rowsPerPageOptions]="[10, 25, 50]"
-            [globalFilterFields]="[
-                'TitleAr',
-                'MainServiceName',
-                'MediaSectionName'
-            ]"
+            sortMode="multiple"
         >
+      <!--   [globalFilterFields]="[
+        'TitleAr',
+        'MainServiceName',
+        'MediaSectionName'
+    ]" -->
             <ng-template pTemplate="caption">
-                <div class="grid">
-                    <div class="col-12 lg:col-5 serch-input">
-                        <app-search-field
-                            #filter
-                            (input)="onGlobalFilter(dt1, $event)"
-                            pInputText
-                            type="text"
-                            placeholder="البحث"
-                            class="w-full"
-                        ></app-search-field>
+                 <div class="grid">
+                    <div class="col-12 lg:col-6 serch-input">
+                        <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'TitleAr', 'contains')"
+                        [value]="$any(dt1.filters['TitleAr'])?.value" placeholder="بحث العنوان" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
+                    </div>
+                    <div class="col-12 lg:col-3 serch-input">
+                        <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'MediaSectionName', 'contains')"
+                        [value]="$any(dt1.filters['MediaSectionName'])?.value" placeholder="بحث المركز الاعلامي" class=" w-full  p-column-filter p-inputtext p-component p-element p-inputtext-sm">
+                    </div>
+                    <div class="col-12 lg:col-3 serch-input">
+                        <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'MainServiceName', 'contains')"
+                        [value]="$any(dt1.filters['MainServiceName'])?.value" placeholder="بحث القسم الرئيسي" class=" w-full  p-column-filter p-inputtext p-component p-element p-inputtext-sm">
                     </div>
                 </div>
+                <tr>
+            </tr>
+
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
-                    <th class="text-center">العنوان</th>
-                    <th class="text-center">المركز الاعلامي</th>
-                    <th class="text-center">القسم الرئيسي</th>
-                    <th class="text-center">الترتيب</th>
+                    <th pSortableColumn="TitleAr" class="text-center">العنوان <p-sortIcon ></p-sortIcon></th>
+                    <th pSortableColumn="MediaSectionName" class="text-center">المركز الاعلامي <p-sortIcon ></p-sortIcon></th>
+                    <th pSortableColumn="MainServiceName" class="text-center">القسم الرئيسي <p-sortIcon ></p-sortIcon></th>
+                    <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
                     <th class="text-center">الصورة</th>
                     <th class="text-center">صور القسم</th>
                     <th class="text-center">الاجراءات</th>

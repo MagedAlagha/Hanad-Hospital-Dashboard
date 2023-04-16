@@ -139,7 +139,6 @@ export class MediaCenterComponent implements OnInit {
         this.Form_MediaSectionsItems.get('DescEn')?.patchValue('نص');
         this.Form_MediaSectionsItems.get('TitleEn')?.patchValue('نص');
         this.ID = null;
-
     }
 
     edit(item: any) {
