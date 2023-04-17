@@ -115,7 +115,7 @@ export class MedicalRehabilitationServicesComponent implements OnInit {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     deleteItem(item: any) {
-        this._servicesPageService.deleteOutpatientClinicsDepartments(item.ID)
+        this._servicesPageService.deleteOutpatientClinicsDepartments(item.ID);
     }
 
     saveFormSections(){

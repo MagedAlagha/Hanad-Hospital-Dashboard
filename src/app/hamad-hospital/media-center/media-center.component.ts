@@ -1,5 +1,11 @@
+import { filter } from 'rxjs/operators';
 import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    Validators,
+} from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { map, Observable, tap } from 'rxjs';
@@ -13,6 +19,8 @@ import { Table } from 'primeng/table';
     styleUrls: ['./media-center.component.scss'],
 })
 export class MediaCenterComponent implements OnInit {
+    MainServiceID = new FormControl();
+    MediaSectionID = new FormControl();
     Form_MediaSectionsItems!: FormGroup;
     fileSelected: any;
     fileSelected2: any;
@@ -27,6 +35,8 @@ export class MediaCenterComponent implements OnInit {
     isEn = document.dir == 'ltr' ? true : false;
     MainService?: any[];
     MediaSection?: any[];
+    MediaSectionsItems: any;
+    MediaSectionsItemsWithoutFilter:any
     listSections = [
         { Code: 1, Name: 'الأخبار', value: false },
         { Code: 2, Name: 'معرض الصور', value: false },
@@ -93,8 +103,12 @@ export class MediaCenterComponent implements OnInit {
                             };
                         }),
                     };
-                }) ,
-
+                }),
+                tap((value: any) => {
+                    console.log('valueeee', value);
+                    this.MediaSectionsItemsWithoutFilter= value?.data;
+                    this.MediaSectionsItems = value?.data;
+                })
             );
 
         this.addPhotosDialog$ =
@@ -115,7 +129,6 @@ export class MediaCenterComponent implements OnInit {
                 this._mediaCenterService.saveMediaSectionsItems({
                     ...this.Form_MediaSectionsItems.value,
                     ImagePath: this.fileSelected,
-
                 });
 
                 this.clear();
@@ -216,5 +229,17 @@ export class MediaCenterComponent implements OnInit {
             return 'غير مصنف';
         }
         return '';
+    }
+    filterbySection(data: any) {
+        this.MainServiceID.reset();
+        this.MediaSectionsItems = this.MediaSectionsItemsWithoutFilter.filter(
+            (value: any) => value?.MediaSectionID == data?.Code
+        );
+    }
+    filterbyServices(data: any) {
+        this.MediaSectionID.reset();
+        this.MediaSectionsItems = this.MediaSectionsItemsWithoutFilter.filter(
+            (value: any) => value?.MainServiceID == data?.Code
+        );
     }
 }

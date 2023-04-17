@@ -110,7 +110,10 @@
                 class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
                 style="margin-top: 3rem"
             >
-                <app-check-box label="قصص ملهمة (معرض فيديو - قصص صحفية)" formControlName="ShowHome">
+                <app-check-box
+                    label="قصص ملهمة (معرض فيديو - قصص صحفية)"
+                    formControlName="ShowHome"
+                >
                 </app-check-box>
             </div>
 
@@ -140,7 +143,6 @@
             </div>
         </div>
     </form>
-
 </div>
 
 <div class="card electronic-services">
@@ -157,67 +159,87 @@
             [rows]="8"
             [paginator]="true"
             [style.width]="'100%'"
-            [value]="data.data"
+            [value]="MediaSectionsItems"
             [loading]="data.loading"
             #dt1
             [rowsPerPageOptions]="[10, 25, 50]"
             sortMode="multiple"
         >
-      <!--   [globalFilterFields]="[
+            <!--   [globalFilterFields]="[
         'TitleAr',
         'MainServiceName',
         'MediaSectionName'
     ]" -->
             <ng-template pTemplate="caption">
-                 <div class="grid" style="place-items: end;">
+                <div class="grid" style="place-items: end">
                     <div class="col-12 lg:col-4 serch-input">
-                        <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'TitleAr', 'contains')"
-                        [value]="$any(dt1.filters['TitleAr'])?.value" placeholder="بحث العنوان" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
+                        <input
+                            pInputText
+                            type="text"
+                            (input)="
+                                dt1.filter(
+                                    $any($event.target)?.value,
+                                    'TitleAr',
+                                    'contains'
+                                )
+                            "
+                            [value]="$any(dt1.filters['TitleAr'])?.value"
+                            placeholder="بحث العنوان"
+                            class="w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm"
+                        />
                     </div>
                     <div class="col-12 lg:col-4 serch-input">
                         <app-select-field
-                        [dropdownItems]="listSections"
-                        formControlName="MainServiceID"
-                        placeholder="المركز الاعلامي"
-                    >
-                    </app-select-field>
+                            [dropdownItems]="listSections"
+                            [formControl]="MediaSectionID"
+                            placeholder="المركز الاعلامي"
+                            (onSelectionChange)="filterbySection($event)"
+                        >
+                        </app-select-field>
 
                         <!-- <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'MediaSectionName', 'contains')"
                         [value]="$any(dt1.filters['MediaSectionName'])?.value" placeholder="بحث المركز الاعلامي" class=" w-full  p-column-filter p-inputtext p-component p-element p-inputtext-sm"> -->
                     </div>
                     <div class="col-12 lg:col-4 serch-input">
-
                         <app-select-field
-                        [dropdownItems]="[
-                            { Code: 1, Name: 'التأهيل الطبي' },
-                            { Code: 2, Name: 'الاطراف الصناعية' },
-                            { Code: 3, Name: 'السمع والتوازن' },
-                            { Code: 4, Name: 'العيادة الخارجية' },
-                            { Code: 5, Name: 'خدمات طبية مساندة' },
-                            { Code: 6, Name: 'غير مصنف' }
-                        ]"
-                        formControlName="MainServiceID"
-                        placeholder="القسم الرئيسي"
-                    >
-                    </app-select-field>
-
-
+                            [dropdownItems]="[
+                                { Code: 1, Name: 'التأهيل الطبي' },
+                                { Code: 2, Name: 'الاطراف الصناعية' },
+                                { Code: 3, Name: 'السمع والتوازن' },
+                                { Code: 4, Name: 'العيادة الخارجية' },
+                                { Code: 5, Name: 'خدمات طبية مساندة' },
+                                { Code: 6, Name: 'غير مصنف' }
+                            ]"
+                            (onSelectionChange)="filterbyServices($event)"
+                            [formControl]="MainServiceID"
+                            placeholder="القسم الرئيسي"
+                        >
+                        </app-select-field>
 
                         <!-- <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'MainServiceName', 'contains')"
                         [value]="$any(dt1.filters['MainServiceName'])?.value" placeholder="بحث القسم الرئيسي" class=" w-full  p-column-filter p-inputtext p-component p-element p-inputtext-sm"> -->
                     </div>
                 </div>
-                <tr>
-            </tr>
+                <tr></tr>
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
-                    <th pSortableColumn="TitleAr" class="text-center">العنوان <p-sortIcon ></p-sortIcon></th>
-                    <th pSortableColumn="MediaSectionName" class="text-center">المركز الاعلامي <p-sortIcon ></p-sortIcon></th>
-                    <th pSortableColumn="MainServiceName" class="text-center">القسم الرئيسي <p-sortIcon ></p-sortIcon></th>
-                    <th pSortableColumn="CreatedDate" class="text-center">تاريخ النشر <p-sortIcon ></p-sortIcon></th>
-                    <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
+                    <th pSortableColumn="TitleAr" class="text-center">
+                        العنوان <p-sortIcon></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="MediaSectionName" class="text-center">
+                        المركز الاعلامي <p-sortIcon></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="MainServiceName" class="text-center">
+                        القسم الرئيسي <p-sortIcon></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="CreatedDate" class="text-center">
+                        تاريخ النشر <p-sortIcon></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="Sorting" class="text-center">
+                        الترتيب <p-sortIcon></p-sortIcon>
+                    </th>
                     <th class="text-center">الصورة</th>
                     <th class="text-center">صور القسم</th>
                     <th class="text-center">الاجراءات</th>
@@ -263,11 +285,11 @@
                         >
                     </ng-container> -->
                         <app-icon-shared
-                        [Icon]="'pi pi-plus'"
-                        [classColor]="'var(--blue-400)'"
-                        [pTooltipCustom]="'اضافة صور للقسم'"
-                        (action)="addPhotosDialog(item)"
-                    ></app-icon-shared>
+                            [Icon]="'pi pi-plus'"
+                            [classColor]="'var(--blue-400)'"
+                            [pTooltipCustom]="'اضافة صور للقسم'"
+                            (action)="addPhotosDialog(item)"
+                        ></app-icon-shared>
 
                         <ng-template #ff> - </ng-template>
                     </td>
