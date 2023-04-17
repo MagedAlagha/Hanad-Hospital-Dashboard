@@ -169,18 +169,42 @@
         'MediaSectionName'
     ]" -->
             <ng-template pTemplate="caption">
-                 <div class="grid">
+                 <div class="grid" style="place-items: end;">
                     <div class="col-12 lg:col-4 serch-input">
                         <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'TitleAr', 'contains')"
                         [value]="$any(dt1.filters['TitleAr'])?.value" placeholder="بحث العنوان" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
                     </div>
                     <div class="col-12 lg:col-4 serch-input">
-                        <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'MediaSectionName', 'contains')"
-                        [value]="$any(dt1.filters['MediaSectionName'])?.value" placeholder="بحث المركز الاعلامي" class=" w-full  p-column-filter p-inputtext p-component p-element p-inputtext-sm">
+                        <app-select-field
+                        [dropdownItems]="listSections"
+                        formControlName="MainServiceID"
+                        placeholder="المركز الاعلامي"
+                    >
+                    </app-select-field>
+
+                        <!-- <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'MediaSectionName', 'contains')"
+                        [value]="$any(dt1.filters['MediaSectionName'])?.value" placeholder="بحث المركز الاعلامي" class=" w-full  p-column-filter p-inputtext p-component p-element p-inputtext-sm"> -->
                     </div>
                     <div class="col-12 lg:col-4 serch-input">
-                        <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'MainServiceName', 'contains')"
-                        [value]="$any(dt1.filters['MainServiceName'])?.value" placeholder="بحث القسم الرئيسي" class=" w-full  p-column-filter p-inputtext p-component p-element p-inputtext-sm">
+
+                        <app-select-field
+                        [dropdownItems]="[
+                            { Code: 1, Name: 'التأهيل الطبي' },
+                            { Code: 2, Name: 'الاطراف الصناعية' },
+                            { Code: 3, Name: 'السمع والتوازن' },
+                            { Code: 4, Name: 'العيادة الخارجية' },
+                            { Code: 5, Name: 'خدمات طبية مساندة' },
+                            { Code: 6, Name: 'غير مصنف' }
+                        ]"
+                        formControlName="MainServiceID"
+                        placeholder="القسم الرئيسي"
+                    >
+                    </app-select-field>
+
+
+
+                        <!-- <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'MainServiceName', 'contains')"
+                        [value]="$any(dt1.filters['MainServiceName'])?.value" placeholder="بحث القسم الرئيسي" class=" w-full  p-column-filter p-inputtext p-component p-element p-inputtext-sm"> -->
                     </div>
                 </div>
                 <tr>
