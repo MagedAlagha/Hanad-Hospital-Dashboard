@@ -42,7 +42,7 @@ export class DiagnosticUnitComponent {
         });
         this.formSections = fb.group({
             ID: [],
-            NameAr: [null , Validators.required],
+            NameAr: ['نص'],
             NameEn: ['نص'],
             DescAr: [null , Validators.required],
             DescEn: ['نص'],
@@ -105,6 +105,7 @@ export class DiagnosticUnitComponent {
     this.formOutpatient.reset();
     this.formOutpatient.get('TypeID')?.patchValue(4);
     this.formOutpatient.get('IsActive')?.patchValue(false);
+    this.formOutpatient.get('NameAr')?.patchValue('نص');
     this.formOutpatient.get('NameEn')?.patchValue('نص')
     this.formOutpatient.get('DescAr')?.patchValue('نص')
     this.formOutpatient.get('DescEn')?.patchValue('نص')
@@ -144,7 +145,7 @@ export class DiagnosticUnitComponent {
                 });
 
             }
-
+            this.clearFormSections();
         }
 
 

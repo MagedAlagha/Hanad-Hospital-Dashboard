@@ -7,18 +7,11 @@
 
 <form [formGroup]="formOutpatient">
     <div class="grid p-fluid mt-3">
-     <!--    <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-            <label for="">اضافة ايقونة</label>
-            <app-upload-files
-                (onSelectFiles)="fileSelected = $event"
-                [showFilesUploaded]="true"
-            ></app-upload-files>
-        </div> -->
         <div class="col-12 mb-2 lg:col-5 lg:mb-0">
             <app-input-field [label]="'الاسم  /عربي'" formControlName="NameAr">
             </app-input-field>
         </div>
-       <!--  <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+        <!-- <div class="col-12 mb-2 lg:col-4 lg:mb-0">
             <app-input-field
                 [label]="'الاسم  /انجليزي'"
                 formControlName="NameEn"
@@ -53,7 +46,7 @@
                 <app-button-component
                     label="مسح الحقول"
                     class="pr-2"
-                    (action)="clearFormOutpatient()"
+                    (action)="clear()"
                     [classColor]="'p-button-raised p-button-secondary '"
                     [pTooltipCustom]="'مسح الحقول '"
                     [Icon]="'pi pi-eraser'"
@@ -70,15 +63,30 @@
            [style.width]="'100%'"
             [value]="data"
             [loading]="data.loading"
-            [rowsPerPageOptions]="[10, 25, 50]"
+            #dt1
         >
+        <ng-template pTemplate="caption">
+            <div class="grid">
+               <div class="col-12 lg:col-6 serch-input">
+                   <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'NameAr', 'contains')"
+                   [value]="$any(dt1.filters['NameAr'])?.value" placeholder="بحث العنوان" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
+               </div>
+               <div class="col-12 lg:col-3 serch-input">
+                <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'Sorting', 'contains')"
+                [value]="$any(dt1.filters['Sorting'])?.value" placeholder="بحث الترتيب" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
+            </div>
+
+           </div>
+           <tr>
+       </tr>
+       </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
-                    <th class="text-center">العنوان عربي</th>
+                    <th pSortableColumn="NameAr" class="text-center">العنوان <p-sortIcon ></p-sortIcon></th>
                     <!-- <th class="text-center">العنوان انجليزي</th> -->
+                    <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
                     <th class="text-center">الحالة</th>
-                    <th class="text-center">الترتيب</th>
                     <th class="text-center">الاجراءات</th>
                 </tr>
             </ng-template>
@@ -88,7 +96,6 @@
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
                     <td>{{ item.NameAr }}</td>
-                    <!-- <td>{{ item.NameEn }}</td> -->
                     <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td>{{ item.Sorting }}</td>
                     <td class="text-center">
@@ -127,25 +134,8 @@
 
 <form [formGroup]="formSections">
     <div class="grid p-fluid mt-3">
-        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-            <app-input-field [label]="'الاسم  /عربي'" formControlName="NameAr">
-            </app-input-field>
-        </div>
-        <!-- <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-            <app-input-field
-                [label]="'الاسم  /انجليزي'"
-                formControlName="NameEn"
-            >
-            </app-input-field>
-        </div> -->
-        <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-            <app-text-area-field
-                [rows]="2"
-                [label]="'الوصف / عربي'"
-                formControlName="DescAr"
-            >
-            </app-text-area-field>
-        </div>
+
+
         <!-- <div class="col-12 mb-2 lg:col-6 lg:mb-0">
             <app-text-area-field
                 [rows]="2"
@@ -165,12 +155,9 @@
                 [optionLabel]="isEn?'NameEn':'NameAr'"
                 [optionValue]="'ID'"
                 formControlName="OutpatientClinicsDepartmentID"
-                [label]="'اختيار القسم'"
-
-            >
+                [label]="'اختيار القسم'">
             </app-select-field>
             </ng-container>
-
         </div>
 
         <div
@@ -180,6 +167,7 @@
             <app-check-box label="فعال" formControlName="IsActive">
             </app-check-box>
         </div>
+
         <div
             class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
             style="margin-top: 2.5rem"
@@ -204,6 +192,18 @@
                 ></app-button-component>
             </div>
         </div>
+
+        <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+            <label>الوصف</label>
+            <div class="DescAr">
+                <p-editor dir="rtl" formControlName="DescAr" [style]="{'height':'450px'}">
+                </p-editor>
+            </div>
+
+        </div>
+
+
+
     </div>
     <br />
     <ng-container *ngIf="OutpatientClinicsDepartmentsServices$ | async as data">
@@ -215,28 +215,47 @@
             [value]="data"
             [loading]="data.loading"
             [rowsPerPageOptions]="[10, 25, 50]"
+            #dt1
         >
+        <ng-template pTemplate="caption">
+            <div class="grid">
+               <div class="col-12 lg:col-6 serch-input">
+                   <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'DescAr', 'contains')"
+                   [value]="$any(dt1.filters['DescAr'])?.value" placeholder="بحث العنوان" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
+               </div>
+               <div class="col-12 lg:col-3 serch-input">
+                   <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'OutpatientClinicsDepartmentNameAr', 'contains')"
+                   [value]="$any(dt1.filters['OutpatientClinicsDepartmentNameAr'])?.value" placeholder="بحث القسم" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
+               </div>
+               <div class="col-12 lg:col-3 serch-input">
+                   <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'Sorting', 'contains')"
+                   [value]="$any(dt1.filters['Sorting'])?.value" placeholder="بحث الترتيب" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
+               </div>
+
+           </div>
+           <tr>
+       </tr>
+       </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
-                    <th class="text-center">العنوان عربي</th>
-                    <!-- <th class="text-center">العنوان انجليزي</th> -->
-                    <th class="text-center">القسم</th>
+                    <th pSortableColumn="DescAr" class="text-center">الوصف <p-sortIcon ></p-sortIcon></th>
+                    <th pSortableColumn="OutpatientClinicsDepartmentNameAr" class="text-center">القسم <p-sortIcon ></p-sortIcon></th>
+                    <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
                     <th class="text-center">الحالة</th>
-                    <th class="text-center">الترتيب</th>
                     <th class="text-center">الاجراءات</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item let-index="rowIndex">
-                <tr>
+                <tr class="editor-html">
                     <td>
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
-                    <td>{{ item.NameAr }}</td>
+                    <td [innerHTML]="item.DescAr| slice:0:100"></td>
                     <!-- <td>{{ item.NameEn }}</td> -->
                     <td>{{ item.OutpatientClinicsDepartmentNameAr }}</td>
-                    <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td>{{ item.Sorting }}</td>
+                    <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td class="text-center">
                         <app-icon-shared
                             [Icon]="'pi pi-pencil'"

@@ -97,13 +97,25 @@
             [paginator]="true"
             [style.width]="'100%'"
             [value]="data.data"
+            #dt1
             [loading]="data.loading"
             [rowsPerPageOptions]="[10, 25, 50]"
         >
+        <ng-template pTemplate="caption">
+            <div class="grid">
+               <div class="col-12 lg:col-6 serch-input">
+                   <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'TitleAr', 'contains')"
+                   [value]="$any(dt1.filters['TitleAr'])?.value" placeholder="بحث العنوان" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
+               </div>
+
+           </div>
+           <tr>
+       </tr>
+       </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
-                    <th class="text-center">العنوان عربي</th>
+                    <th pSortableColumn="TitleAr" class="text-center">العنوان <p-sortIcon ></p-sortIcon></th>
                     <!-- <th class="text-center">العنوان انجليزي</th> -->
                     <th class="text-center">الحالة</th>
                     <th class="text-center">ظهور العنوان</th>

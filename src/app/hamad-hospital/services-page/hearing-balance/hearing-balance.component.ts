@@ -145,7 +145,7 @@ export class HearingBalanceComponent implements OnInit {
                 });
 
             }
-
+            this.clearFormSections();
         }
 
     }

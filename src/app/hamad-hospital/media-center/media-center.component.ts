@@ -93,7 +93,8 @@ export class MediaCenterComponent implements OnInit {
                             };
                         }),
                     };
-                })
+                }) ,
+
             );
 
         this.addPhotosDialog$ =

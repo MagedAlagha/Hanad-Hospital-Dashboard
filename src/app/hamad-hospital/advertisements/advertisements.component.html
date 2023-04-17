@@ -107,15 +107,32 @@
             [value]="data.data"
             [loading]="data.loading"
             [rowsPerPageOptions]="[10, 25, 50]"
+            #dt1
         >
+          <ng-template pTemplate="caption">
+            <div class="grid">
+                <div class="col-12 lg:col-6 serch-input">
+                    <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'TitleAr', 'contains')"
+                    [value]="$any(dt1.filters['TitleAr'])?.value" placeholder="بحث الوصف" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
+                </div>
+               <div class="col-12 lg:col-3 serch-input">
+                   <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'Sorting', 'contains')"
+                   [value]="$any(dt1.filters['Sorting'])?.value" placeholder="بحث الترتيب" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
+               </div>
+
+           </div>
+           <tr>
+       </tr>
+       </ng-template>
+
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
-                    <th class="text-center">الوصف عربي</th>
+                    <th pSortableColumn="TitleAr" class="text-center">الوصف <p-sortIcon ></p-sortIcon></th>
                     <!-- <th class="text-center">الوصف انجليزي</th> -->
                     <th class="text-center">لينك التقديم</th>
+                    <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
                     <th class="text-center">الحالة</th>
-                    <th class="text-center">الترتيب</th>
                     <th class="text-center">الاجراءات</th>
                 </tr>
             </ng-template>
@@ -127,8 +144,8 @@
                     <td>{{ item.TitleAr }}</td>
                     <!-- <td>{{ item.TitleEn }}</td> -->
                     <td>{{ item.ButtonLink }}</td>
-                    <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td>{{ item.Sorting }}</td>
+                    <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td class="text-center d-flex " >
                         <app-icon-shared
                             [Icon]="'pi pi-pencil'"
