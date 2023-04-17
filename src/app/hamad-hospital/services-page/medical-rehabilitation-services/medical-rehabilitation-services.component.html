@@ -85,6 +85,7 @@
                     <th class="text-center">#</th>
                     <th pSortableColumn="NameAr" class="text-center">العنوان <p-sortIcon ></p-sortIcon></th>
                     <!-- <th class="text-center">العنوان انجليزي</th> -->
+                    <th pSortableColumn="CreatedDate" class="text-center">تاريخ النشر <p-sortIcon></p-sortIcon></th>
                     <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
                     <th class="text-center">الحالة</th>
                     <th class="text-center">الاجراءات</th>
@@ -96,8 +97,9 @@
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
                     <td>{{ item.NameAr }}</td>
-                    <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
+                    <td>{{ item.CreatedDate  | date}}</td>
                     <td>{{ item.Sorting }}</td>
+                    <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td class="text-center">
                         <app-icon-shared
                             [Icon]="'pi pi-pencil'"
@@ -241,6 +243,8 @@
                     <th class="text-center">#</th>
                     <th pSortableColumn="DescAr" class="text-center">الوصف <p-sortIcon ></p-sortIcon></th>
                     <th pSortableColumn="OutpatientClinicsDepartmentNameAr" class="text-center">القسم <p-sortIcon ></p-sortIcon></th>
+                    <th pSortableColumn="CreatedDate" class="text-center">تاريخ النشر <p-sortIcon></p-sortIcon></th>
+
                     <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
                     <th class="text-center">الحالة</th>
                     <th class="text-center">الاجراءات</th>
@@ -251,8 +255,9 @@
                     <td>
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
-                    <td [innerHTML]="item.DescAr| slice:0:100"></td>
+                    <td [width]="'30%'" [innerHTML]="item.DescAr"></td>
                     <!-- <td>{{ item.NameEn }}</td> -->
+                    <td>{{ item.CreatedDate  | date}}</td>
                     <td>{{ item.OutpatientClinicsDepartmentNameAr }}</td>
                     <td>{{ item.Sorting }}</td>
                     <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>

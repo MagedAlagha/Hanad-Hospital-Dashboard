@@ -136,6 +136,7 @@
                     <!-- <th class="text-center">العنوان انجليزي</th> -->
                     <th pSortableColumn="AgeAr" class="text-center">العمر <p-sortIcon ></p-sortIcon></th>
                     <!-- <th class="text-center">العمر العمر انجليزي</th> -->
+                    <th pSortableColumn="CreatedDate" class="text-center">تاريخ النشر <p-sortIcon></p-sortIcon></th>
                     <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
                     <th class="text-center">الحالة</th>
                     <th class="text-center">الاجراءات</th>
@@ -149,6 +150,7 @@
                     <td>{{ item.NameAr }}</td>
                     <!-- <td>{{ item.NameEn }}</td> -->
                     <td>{{ item.AgeAr }}</td>
+                    <td>{{ item.CreatedDate  | date}}</td>
                     <!-- <td>{{ item.AgeEn }}</td> -->
                     <td>{{ item.Sorting }}</td>
                     <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>

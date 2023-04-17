@@ -100,6 +100,7 @@
             #dt1
             [loading]="data.loading"
             [rowsPerPageOptions]="[10, 25, 50]"
+            sortMode="multiple"
         >
         <ng-template pTemplate="caption">
             <div class="grid">
@@ -117,6 +118,7 @@
                     <th class="text-center">#</th>
                     <th pSortableColumn="TitleAr" class="text-center">العنوان <p-sortIcon ></p-sortIcon></th>
                     <!-- <th class="text-center">العنوان انجليزي</th> -->
+                    <th pSortableColumn="CreatedDate" class="text-center">تاريخ النشر <p-sortIcon></p-sortIcon></th>
                     <th class="text-center">الحالة</th>
                     <th class="text-center">ظهور العنوان</th>
                     <th class="text-center">الترتيب</th>
@@ -129,8 +131,8 @@
                     <td>
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
-                    <td>{{ item.TitleAr }}</td>
-                    <!-- <td>{{ item.TitleEn }}</td> -->
+                    <td [width]="'30%'">{{ item.TitleAr }}</td>
+                    <td>{{ item.CreatedDate  | date}}</td>
                     <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td>{{ item.ShowTitle?'ظاهر':'مخفي' }}</td>
                     <td>{{ item.Sorting }}</td>
