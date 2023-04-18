@@ -65,12 +65,12 @@ export class ProstheticsComponent {
             .pipe(
                 tap((value) => {
                     console.log('value1011010101', value);
-                })
-                // map((prostheticsTypes) => {
-                //     return prostheticsTypes.filter(
-                //         (value: any) => value?.ParentID != null
-                //     );
-                // })
+                }),
+              map((prostheticsTypes) => {
+                     return prostheticsTypes.filter(
+                         (value: any) => value?.ParentID != null
+                    );
+               })
             );
     }
 

@@ -74,12 +74,12 @@
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-select-field
                     [dropdownItems]="[
+                        { Code: 6, Name: 'غير مصنف' },
                         { Code: 1, Name: 'التأهيل الطبي' },
                         { Code: 2, Name: 'الاطراف الصناعية' },
                         { Code: 3, Name: 'السمع والتوازن' },
                         { Code: 4, Name: 'العيادة الخارجية' },
                         { Code: 5, Name: 'خدمات طبية مساندة' },
-                        { Code: 6, Name: 'غير مصنف' }
                     ]"
                     formControlName="MainServiceID"
                     [label]="' القسم الرئيسي'"
