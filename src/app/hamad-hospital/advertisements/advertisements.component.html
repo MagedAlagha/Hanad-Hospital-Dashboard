@@ -131,6 +131,9 @@
                     <th pSortableColumn="TitleAr" class="text-center">الوصف <p-sortIcon ></p-sortIcon></th>
                     <!-- <th class="text-center">الوصف انجليزي</th> -->
                     <th class="text-center">لينك التقديم</th>
+                    <th pSortableColumn="CreatedDate" class="text-center">
+                        تاريخ النشر <p-sortIcon></p-sortIcon>
+                    </th>
                     <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
                     <th class="text-center">الحالة</th>
                     <th class="text-center">الاجراءات</th>
@@ -143,7 +146,9 @@
                     </td>
                     <td>{{ item.TitleAr }}</td>
                     <!-- <td>{{ item.TitleEn }}</td> -->
-                    <td>{{ item.ButtonLink }}</td>
+                    <td> <a [href]="item.ButtonLink" target="_blank">  {{ item.ButtonLink }}</a> </td>
+                    <td>{{ item?.CreatedDate | date }}</td>
+
                     <td>{{ item.Sorting }}</td>
                     <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td class="text-center d-flex " >
