@@ -106,7 +106,6 @@ export class UploadFilesComponent implements OnInit {
             }
         });
         this.convertFileToBase64(Images).then((value: any) => {
-            console.log('value', value);
             let Files: any = [];
             value.forEach((item: any, index: any) => {
                 this.imgResultBeforeCompression = item?.image;
@@ -177,6 +176,14 @@ export class UploadFilesComponent implements OnInit {
                     }
                 };
             });
+        });
+    }
+    clear() {
+        this.uploadedFiles = [];
+    }
+    takeNameReturnFilesSelected(names: any) {
+        names.forEach((name: any) => {
+            this.uploadedFiles.push({ name: name });
         });
     }
 }

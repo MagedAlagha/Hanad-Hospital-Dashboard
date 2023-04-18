@@ -10,6 +10,7 @@
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <label for="">اضافة صورة للمقال (مطلوب)</label>
                 <app-upload-files
+                    #fileUpload
                     (onSelectFiles)="fileSelected = $event"
                     [showFilesUploaded]="true"
                 ></app-upload-files>
@@ -225,10 +226,18 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
-                    <th [width]="'20%'" pSortableColumn="TitleAr" class="text-center">
+                    <th
+                        [width]="'20%'"
+                        pSortableColumn="TitleAr"
+                        class="text-center"
+                    >
                         العنوان <p-sortIcon></p-sortIcon>
                     </th>
-                    <th [width]="'15%'" pSortableColumn="MediaSectionName" class="text-center">
+                    <th
+                        [width]="'15%'"
+                        pSortableColumn="MediaSectionName"
+                        class="text-center"
+                    >
                         المركز الاعلامي <p-sortIcon></p-sortIcon>
                     </th>
                     <th pSortableColumn="MainServiceName" class="text-center">
