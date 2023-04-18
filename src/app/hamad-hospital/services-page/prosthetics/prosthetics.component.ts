@@ -18,19 +18,19 @@ export class ProstheticsComponent {
     isEn = document.dir == 'ltr' ? true : false;
     constructor(
         fb: FormBuilder,
-        private _servicesPageService: ServicesPageService ,
+        private _servicesPageService: ServicesPageService,
         private messageService: MessageService,
         private _translateService: TranslateService
     ) {
         this.formprosthetics = fb.group({
             ID: [null],
-            ProstheticsTypeID: [null , Validators.required],
-            NameAr: [null , Validators.required],
+            ProstheticsTypeID: [null, Validators.required],
+            NameAr: [null, Validators.required],
             NameEn: ['نص'],
-            AgeAr: [null , Validators.required],
+            AgeAr: [null, Validators.required],
             AgeEn: ['نص'],
             IsActive: [false],
-            Sorting: [null , Validators.required],
+            Sorting: [null, Validators.required],
         });
     }
 
@@ -38,17 +38,21 @@ export class ProstheticsComponent {
 
     ngOnInit() {
         console.log('test');
-        this.prosthetics$ = this._servicesPageService.Selector$('prosthetics').pipe(
-            tap((value) => {
-                console.log('value9999',value);
-            })
-
-        );;
+        this.prosthetics$ = this._servicesPageService
+            .Selector$('prosthetics')
+            .pipe(
+                map((prostheticsTypes) => {
+                    console.log('prostheticsTypes',prostheticsTypes)
+                    return prostheticsTypes.filter(
+                        (value: any) => value?.ParentID != null
+                    );
+                })
+            );
         this.prostheticsTypes$ = this._servicesPageService
             .Selector$('prostheticsTypes')
             .pipe(
                 tap((value) => {
-                    console.log('value',value);
+                    console.log('value', value);
                 }),
                 map((prostheticsTypes) => {
                     return prostheticsTypes.filter(
@@ -60,8 +64,8 @@ export class ProstheticsComponent {
             .Selector$('ProstheticsTypeselect')
             .pipe(
                 tap((value) => {
-                    console.log('value1011010101',value);
-                }),
+                    console.log('value1011010101', value);
+                })
                 // map((prostheticsTypes) => {
                 //     return prostheticsTypes.filter(
                 //         (value: any) => value?.ParentID != null
@@ -71,16 +75,15 @@ export class ProstheticsComponent {
     }
 
     save() {
-
         if (this.formprosthetics.invalid) {
             this.messageService.add({
                 severity: 'error',
-                detail: this._translateService.instant(
-                    'الحقول مطلوبة'
-                ),
+                detail: this._translateService.instant('الحقول مطلوبة'),
             });
-        } else{
-            this._servicesPageService.saveprosthetics(this.formprosthetics.value);
+        } else {
+            this._servicesPageService.saveprosthetics(
+                this.formprosthetics.value
+            );
             this.clear();
         }
     }
@@ -92,7 +95,7 @@ export class ProstheticsComponent {
     }
     editItem(item: any) {
         this.formprosthetics.patchValue(item);
-        window.scrollTo({ top: 2})
+        window.scrollTo({ top: 2 });
     }
     deleteItem(item: any) {
         this._servicesPageService.deleteprosthetics(item.ID);
