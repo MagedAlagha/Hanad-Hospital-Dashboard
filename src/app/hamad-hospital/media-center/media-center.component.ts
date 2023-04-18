@@ -12,6 +12,7 @@ import { map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { MediaCenterService } from './media-center.service';
 import { Table } from 'primeng/table';
+import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/upload-files.component';
 
 @Component({
     selector: 'app-media-center',
@@ -30,13 +31,13 @@ export class MediaCenterComponent implements OnInit {
     MediaType$!: Observable<any>;
     itemShow: any;
     ID: any;
-    @ViewChild('fileUpload') fileUpload: any;
+    @ViewChild('fileUpload') fileUpload!: UploadFilesComponent;
     Avatar = environment.FileUrl;
     isEn = document.dir == 'ltr' ? true : false;
     MainService?: any[];
     MediaSection?: any[];
     MediaSectionsItems: any;
-    MediaSectionsItemsWithoutFilter:any
+    MediaSectionsItemsWithoutFilter: any;
     listSections = [
         { Code: 1, Name: 'الأخبار', value: false },
         { Code: 2, Name: 'معرض الصور', value: false },
@@ -106,7 +107,7 @@ export class MediaCenterComponent implements OnInit {
                 }),
                 tap((value: any) => {
                     console.log('valueeee', value);
-                    this.MediaSectionsItemsWithoutFilter= value?.data;
+                    this.MediaSectionsItemsWithoutFilter = value?.data;
                     this.MediaSectionsItems = value?.data;
                 })
             );
@@ -154,10 +155,12 @@ export class MediaCenterComponent implements OnInit {
         this.Form_MediaSectionsItems.get('DescEn')?.patchValue('نص');
         this.Form_MediaSectionsItems.get('TitleEn')?.patchValue('نص');
         this.ID = null;
+        this.fileUpload.clear()
     }
 
     edit(item: any) {
         this.Form_MediaSectionsItems.patchValue(item);
+        this.fileUpload.takeNameReturnFilesSelected([item?.ImagePath?.split('/')?.pop()])
         this.ID = item.ID;
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
