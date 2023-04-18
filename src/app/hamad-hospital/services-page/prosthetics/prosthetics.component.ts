@@ -44,7 +44,7 @@ export class ProstheticsComponent {
                 map((prostheticsTypes) => {
                     console.log('prostheticsTypes',prostheticsTypes)
                     return prostheticsTypes.filter(
-                        (value: any) => value?.ParentID != null
+                        (value: any) => value?.ProstheticsTypeName != null
                     );
                 })
             );
