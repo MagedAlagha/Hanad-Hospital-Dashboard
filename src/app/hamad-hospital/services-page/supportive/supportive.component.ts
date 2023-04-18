@@ -151,12 +151,13 @@ export class SupportiveComponent {
 
     }
     clearFormSections(){
-this.formSections.reset();
-this.formSections.get('TypeID')?.patchValue(5);
+    this.formSections.reset();
+    this.formSections.get('TypeID')?.patchValue(5);
     this.formSections.get('IsActive')?.patchValue(false);
+    this.formSections.get('NameAr')?.patchValue('نص');
     this.formSections.get('NameEn')?.patchValue('نص');
     this.formSections.get('DescEn')?.patchValue('نص');
-    this.formSections.get('DescAr')?.patchValue('نص');
+    this.formSections.get('DescAr')?.patchValue('');
     }
 
 

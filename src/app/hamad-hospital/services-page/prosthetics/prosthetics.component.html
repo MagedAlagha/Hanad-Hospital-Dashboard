@@ -124,7 +124,6 @@
                    <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'Sorting', 'contains')"
                    [value]="$any(dt1.filters['Sorting'])?.value" placeholder="بحث الترتيب" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
                </div>
-
            </div>
            <tr>
        </tr>
@@ -133,6 +132,7 @@
                 <tr>
                     <th class="text-center">#</th>
                     <th pSortableColumn="NameAr" class="text-center">العنوان <p-sortIcon ></p-sortIcon></th>
+                    <th pSortableColumn="ProstheticsTypeName" class="text-center">التصنيف <p-sortIcon ></p-sortIcon></th>
                     <!-- <th class="text-center">العنوان انجليزي</th> -->
                     <th pSortableColumn="AgeAr" class="text-center">العمر <p-sortIcon ></p-sortIcon></th>
                     <!-- <th class="text-center">العمر العمر انجليزي</th> -->
@@ -148,6 +148,7 @@
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
                     <td>{{ item.NameAr }}</td>
+                    <td>{{ item.ProstheticsTypeName }}</td>
                     <!-- <td>{{ item.NameEn }}</td> -->
                     <td>{{ item.AgeAr }}</td>
                     <td>{{ item.CreatedDate  | date}}</td>

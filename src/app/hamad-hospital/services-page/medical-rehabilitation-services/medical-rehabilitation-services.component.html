@@ -201,11 +201,7 @@
                 <p-editor dir="rtl" formControlName="DescAr" [style]="{'height':'450px'}">
                 </p-editor>
             </div>
-
         </div>
-
-
-
     </div>
     <br />
     <ng-container *ngIf="OutpatientClinicsDepartmentsServices$ | async as data">
@@ -233,7 +229,6 @@
                    <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'Sorting', 'contains')"
                    [value]="$any(dt1.filters['Sorting'])?.value" placeholder="بحث الترتيب" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
                </div>
-
            </div>
            <tr>
        </tr>
@@ -255,10 +250,10 @@
                     <td>
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
-                    <td [width]="'30%'" [innerHTML]="item.DescAr"></td>
+                    <td [width]="'30%'" [innerHTML]="item.DescAr | slice : 0 : 100"></td>
                     <!-- <td>{{ item.NameEn }}</td> -->
-                    <td>{{ item.CreatedDate  | date}}</td>
                     <td>{{ item.OutpatientClinicsDepartmentNameAr }}</td>
+                    <td>{{ item.CreatedDate  | date}}</td>
                     <td>{{ item.Sorting }}</td>
                     <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td class="text-center">

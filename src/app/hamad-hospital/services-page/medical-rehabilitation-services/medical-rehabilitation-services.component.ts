@@ -44,7 +44,7 @@ export class MedicalRehabilitationServicesComponent implements OnInit {
             ID: [],
             NameAr: ['نص'],
             NameEn: ['نص'],
-            DescAr: [null , Validators.required],
+            DescAr: ['نص'],
             DescEn: ['نص'],
             OutpatientClinicsDepartmentID: [null ,Validators.required],
             IsActive: [false],
@@ -105,10 +105,8 @@ export class MedicalRehabilitationServicesComponent implements OnInit {
       this.formOutpatient.get('NameAr')?.patchValue('نص');
       this.formOutpatient.get('NameEn')?.patchValue('نص');
       this.formOutpatient.get('DescEn')?.patchValue('نص');
-      this.formOutpatient.get('DescAr')?.patchValue('نص');
       this.ID = null;
     }
-
 
     editItem(item: any) {
       this.formOutpatient.patchValue(item);
@@ -147,9 +145,11 @@ export class MedicalRehabilitationServicesComponent implements OnInit {
     this.formSections.reset();
     this.formSections.get('TypeID')?.patchValue(3);
     this.formSections.get('IsActive')?.patchValue(false);
+    this.formSections.get('NameAr')?.patchValue('نص');
     this.formSections.get('NameEn')?.patchValue('نص');
     this.formSections.get('DescEn')?.patchValue('نص');
-    this.formSections.get('DescAr')?.patchValue('نص');
+    this.formSections.get('DescAr')?.patchValue('');
+
     }
 
 

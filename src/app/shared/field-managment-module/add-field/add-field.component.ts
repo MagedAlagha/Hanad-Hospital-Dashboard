@@ -1,5 +1,4 @@
 import { Router } from '@angular/router';
-import { VerificationModule } from './../../../auth/verification/verification.module';
 import { Observable } from 'rxjs/internal/Observable';
 import { Component, Input, OnInit } from '@angular/core';
 import { FieldManagmentService } from '../field-managment-module.service';

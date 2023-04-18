@@ -139,7 +139,6 @@
 <form [formGroup]="formSections">
     <div class="grid p-fluid mt-3">
 
-
         <!-- <div class="col-12 mb-2 lg:col-6 lg:mb-0">
             <app-text-area-field
                 [rows]="2"
@@ -203,11 +202,7 @@
                 <p-editor dir="rtl" formControlName="DescAr" [style]="{'height':'450px'}">
                 </p-editor>
             </div>
-
         </div>
-
-
-
     </div>
     <br />
     <ng-container *ngIf="OutpatientClinicsDepartmentsServices$ | async as data">
@@ -256,6 +251,7 @@
                     <td>
                         <span class="reorder-row-icon">{{ index + 1 }}</span>
                     </td>
+
                     <td [width]="'30%'" [innerHTML]="item.DescAr| slice:0:100"></td>
                     <!-- <td>{{ item.NameEn }}</td> -->
                     <td>{{ item.OutpatientClinicsDepartmentNameAr }}</td>
