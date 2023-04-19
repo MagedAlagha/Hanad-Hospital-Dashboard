@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
         if (this.formSlider.invalid) {
             this.messageService.add({
                 severity: 'error',
-                detail: this._translateService.instant('يوجد حقول مطلوبة'),
+                detail: this._translateService.instant('العنوان مطلوب'),
             });
         } else {
             if (this.fileSelected) {
