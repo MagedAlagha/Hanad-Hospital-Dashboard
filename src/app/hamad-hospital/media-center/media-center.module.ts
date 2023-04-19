@@ -20,6 +20,7 @@ import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-share
 import { EditorModule } from 'primeng/editor';
 import { SearchFieldComponent } from 'src/app/shared/Module-shared/search-field/search-field.component';
 import { IsImagePipe } from 'src/app/shared/pipes/is-image.pipe';
+import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-number-field/input-number-field.component';
 
 @NgModule({
     declarations: [MediaCenterComponent, AddPhotosModalComponent],
@@ -47,7 +48,8 @@ import { IsImagePipe } from 'src/app/shared/pipes/is-image.pipe';
         EditorModule,
         SearchFieldComponent,
         FormsModule,
-        MultiSelectFieldComponent,IsImagePipe
+        MultiSelectFieldComponent,IsImagePipe ,
+        InputNumberFieldComponent
     ],
 })
 export class MediaCenterModule {}

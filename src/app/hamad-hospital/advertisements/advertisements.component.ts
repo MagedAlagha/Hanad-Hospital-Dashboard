@@ -29,7 +29,7 @@ export class AdvertisementsComponent implements OnInit {
             ButtonTitleEn: ['نص'],
             ButtonLink: ['',Validators.required],
             IsActive: [false ],
-            Sorting: ['', Validators.required],
+            Sorting: [''],
         });
     }
 

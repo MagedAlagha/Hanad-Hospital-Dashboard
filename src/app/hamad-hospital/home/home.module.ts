@@ -16,6 +16,7 @@ import { ServicesCardsComponent } from './services-cards/services-cards.componen
 import { TabViewModule } from 'primeng/tabview';
 import { ImageModule } from 'primeng/image';
 import { NgxImageCompressService } from 'ngx-image-compress';
+import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-number-field/input-number-field.component';
 
 @NgModule({
     declarations: [HomeComponent, ServicesCardsComponent],
@@ -39,6 +40,7 @@ import { NgxImageCompressService } from 'ngx-image-compress';
         UploadFilesComponent,
         TabViewModule,
         ImageModule,
+        InputNumberFieldComponent
 
     ],
     providers: [NgxImageCompressService],

@@ -13,6 +13,7 @@ import { CheckBoxComponent } from 'src/app/shared/Module-shared/check-box/check-
 import {EditorModule} from 'primeng/editor';
 import { ShowMessageModalComponent } from './Modals/show-message-modal/show-message-modal.component';
 import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-shared/dialog-shared.component';
+import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-number-field/input-number-field.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-share
     CheckBoxComponent,
     EditorModule,
     FormsModule ,
-    DialogSharedComponent
+    DialogSharedComponent,
+    InputNumberFieldComponent
 ]
 })
 export class AboutHospitalModule { }

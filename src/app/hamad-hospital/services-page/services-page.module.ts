@@ -25,6 +25,7 @@ import { TreeComponent } from 'src/app/shared/Module-shared/tree/tree.component'
 import { AddSubitemModalComponent } from './Modal/add-subitem-modal/add-subitem-modal.component';
 import { EditorModule } from 'primeng/editor';
 import { SupportiveComponent } from './supportive/supportive.component';
+import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-number-field/input-number-field.component';
 
 
 
@@ -64,7 +65,8 @@ import { SupportiveComponent } from './supportive/supportive.component';
     DialogSharedComponent,
     TreeComponent,
     SelectFieldComponent,
-    EditorModule
+    EditorModule,
+    InputNumberFieldComponent
   ]
 })
 export class ServicesPageModule { }

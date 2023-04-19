@@ -19,8 +19,8 @@
             </app-input-field>
         </div> -->
         <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-            <app-input-field label="ترتيب القسم" formControlName="Sorting">
-            </app-input-field>
+            <app-input-number-field   label="الترتيب"
+            formControlName="Sorting"></app-input-number-field>
         </div>
         <div
             class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
@@ -147,10 +147,6 @@
             </app-text-area-field>
         </div> -->
         <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-            <app-input-field label="الترتيب " formControlName="Sorting">
-            </app-input-field>
-        </div>
-         <div class="col-12 mb-2 lg:col-2 lg:mb-0">
             <ng-container *ngIf="getOutpatientClinicsDepartments$ | async as data">
                 <app-select-field
                 [dropdownItems]="data"
@@ -160,6 +156,10 @@
                 [label]="'اختيار القسم'">
             </app-select-field>
             </ng-container>
+        </div>
+        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <app-input-number-field   label="الترتيب"
+            formControlName="Sorting"></app-input-number-field>
         </div>
 
         <div

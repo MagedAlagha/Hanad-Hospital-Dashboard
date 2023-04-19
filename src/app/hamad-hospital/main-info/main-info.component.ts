@@ -43,7 +43,7 @@ export class MainInfoComponent implements OnInit {
             NameEn: ['نص'],
             Count: [''],
             IsActive: [false],
-            Sorting: ['',Validators.required],
+            Sorting: [''],
         });
     }
 

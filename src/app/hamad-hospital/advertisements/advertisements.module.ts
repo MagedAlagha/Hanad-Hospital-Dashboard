@@ -9,6 +9,7 @@ import { IconSharedComponent } from 'src/app/shared/Module-shared/icon-shared/ic
 import { TextAreaFieldComponent } from 'src/app/shared/Module-shared/text-area-field/text-area-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CheckBoxComponent } from 'src/app/shared/Module-shared/check-box/check-box.component';
+import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-number-field/input-number-field.component';
 
 
 
@@ -31,6 +32,7 @@ import { CheckBoxComponent } from 'src/app/shared/Module-shared/check-box/check-
     IconSharedComponent,
     TextAreaFieldComponent ,
     ReactiveFormsModule,
-    CheckBoxComponent,  ]
+    CheckBoxComponent,
+     InputNumberFieldComponent ]
 })
 export class AdvertisementsModule { }

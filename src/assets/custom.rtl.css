@@ -414,8 +414,8 @@ ul.p-treenode-children > p-treenode.p-element::before {
     box-shadow: inset 0 0 0 0.2rem  #8a15381f;
 }
 
- .p-inputtext.p-inputtext-sm , .p-button.p-button-sm {
-    padding: 0.45625rem 0.65625rem;
+ .p-inputtext.p-inputtext-sm , .p-button.p-button-sm  , .p-inputnumber-input {
+    padding: 0.45625rem 0.65625rem !important;
  }
  .p-button.p-button-icon-only{
     padding: 0.40rem 1rem;
