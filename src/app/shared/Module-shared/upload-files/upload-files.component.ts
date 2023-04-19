@@ -94,23 +94,26 @@ export class UploadFilesComponent implements OnInit {
             'png',
             'svg',
             'webp',
+
         ];
         let AllFiles: any = [...files?.target.files];
         let Images: any = [];
         let filesPdf: any = [];
         AllFiles.forEach((file: File) => {
-            if (arrTypesImg.includes(file.type)) {
+            if (arrTypesImg.includes(file.type)||file.type?.includes('image')) {
                 Images.push(file);
             } else {
                 filesPdf.push(file);
             }
+            console.log("file.type888888888888 " , file.type )
+
         });
         this.convertFileToBase64(Images).then((value: any) => {
             let Files: any = [];
             value.forEach((item: any, index: any) => {
                 this.imgResultBeforeCompression = item?.image;
                 this.imageCompress
-                    .compressFile(item?.image, item?.orientation, 50, 65)
+                    .compressFile(item?.image, item?.orientation, 50, 70)
                     .then((compressedImage) => {
                         this.compressedImage = compressedImage;
                         let file = this.base64ToFile(
