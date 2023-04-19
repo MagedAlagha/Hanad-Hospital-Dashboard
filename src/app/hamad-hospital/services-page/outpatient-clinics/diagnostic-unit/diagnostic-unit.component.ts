@@ -32,7 +32,7 @@ export class DiagnosticUnitComponent {
         this.formOutpatient = fb.group({
             ID: [],
             IconPath: [],
-            NameAr: ['', Validators.required],
+            NameAr: [null, Validators.required],
             NameEn: ['نص'],
             DescAr: ['نص'],
             DescEn: ['نص'],
@@ -44,7 +44,7 @@ export class DiagnosticUnitComponent {
             ID: [],
             NameAr: ['نص'],
             NameEn: ['نص'],
-            DescAr: [null , Validators.required],
+            DescAr: [null],
             DescEn: ['نص'],
             OutpatientClinicsDepartmentID: [null,Validators.required],
             IsActive: [false],
@@ -81,7 +81,7 @@ export class DiagnosticUnitComponent {
             this.messageService.add({
                 severity: 'error',
                 detail: this._translateService.instant(
-                    ' يوجد حقول مطلوبة '
+                    ' حقل الاسم مطلوب  '
                 ),
             });
         } else{
@@ -105,10 +105,10 @@ export class DiagnosticUnitComponent {
     this.formOutpatient.reset();
     this.formOutpatient.get('TypeID')?.patchValue(4);
     this.formOutpatient.get('IsActive')?.patchValue(false);
-    this.formOutpatient.get('NameAr')?.patchValue('نص');
-    this.formOutpatient.get('NameEn')?.patchValue('نص')
-    this.formOutpatient.get('DescAr')?.patchValue('نص')
-    this.formOutpatient.get('DescEn')?.patchValue('نص')
+    this.formOutpatient.get('NameAr')?.patchValue('');
+    this.formOutpatient.get('NameEn')?.patchValue('نص');
+    this.formOutpatient.get('DescEn')?.patchValue('نص');
+    this.formOutpatient.get('DescAr')?.patchValue('نص');
     this.ID = null;
     }
 
@@ -129,7 +129,7 @@ export class DiagnosticUnitComponent {
             this.messageService.add({
                 severity: 'error',
                 detail: this._translateService.instant(
-                    ' يوجد حقول مطلوبة '
+                    ' حقل القسم مطلوب '
                 ),
             });
         } else{

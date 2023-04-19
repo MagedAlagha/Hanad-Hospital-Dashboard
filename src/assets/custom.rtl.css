@@ -439,3 +439,7 @@ ul.p-treenode-children > p-treenode.p-element::before {
     width: 100%;
     border-radius: 8px;
 }
+.p-message .p-message-detail {
+    margin-right: 0.5rem !important;
+    margin-left:0 !important;
+}

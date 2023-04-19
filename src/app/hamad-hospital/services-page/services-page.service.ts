@@ -149,6 +149,7 @@ export class ServicesPageService {
             })
             .subscribe((value) => {
                 this.getProstheticsTypes();
+                this.getprosthetics();
             });
     }
     getProstheticsTypes() {

@@ -79,7 +79,7 @@ export class MedicalRehabilitationServicesComponent implements OnInit {
             this.messageService.add({
                 severity: 'error',
                 detail: this._translateService.instant(
-                    ' يوجد حقول مطلوبة '
+                    ' حقل الاسم مطلوب  '
                 ),
             });
         } else{
@@ -102,9 +102,10 @@ export class MedicalRehabilitationServicesComponent implements OnInit {
       this.formOutpatient.reset()
       this.formOutpatient.get('TypeID')?.patchValue(3);
       this.formOutpatient.get('IsActive')?.patchValue(false);
-      this.formOutpatient.get('NameAr')?.patchValue('نص');
+      this.formOutpatient.get('NameAr')?.patchValue('');
       this.formOutpatient.get('NameEn')?.patchValue('نص');
       this.formOutpatient.get('DescEn')?.patchValue('نص');
+      this.formOutpatient.get('DescAr')?.patchValue('نص');
       this.ID = null;
     }
 
@@ -121,7 +122,7 @@ export class MedicalRehabilitationServicesComponent implements OnInit {
             this.messageService.add({
                 severity: 'error',
                 detail: this._translateService.instant(
-                    ' يوجد حقول مطلوبة '
+                    ' حقل القسم مطلوب '
                 ),
             });
         } else{
@@ -143,7 +144,7 @@ export class MedicalRehabilitationServicesComponent implements OnInit {
     }
     clearFormSections(){
     this.formSections.reset();
-    this.formSections.get('TypeID')?.patchValue(3);
+    this.formSections.get('TypeID')?.patchValue(1);
     this.formSections.get('IsActive')?.patchValue(false);
     this.formSections.get('NameAr')?.patchValue('نص');
     this.formSections.get('NameEn')?.patchValue('نص');

@@ -30,7 +30,7 @@ export class ProstheticsComponent {
             AgeAr: [null, Validators.required],
             AgeEn: ['نص'],
             IsActive: [false],
-            Sorting: [null, Validators.required],
+            Sorting: [null],
         });
     }
 
@@ -78,7 +78,7 @@ export class ProstheticsComponent {
         if (this.formprosthetics.invalid) {
             this.messageService.add({
                 severity: 'error',
-                detail: this._translateService.instant('الحقول مطلوبة'),
+                detail: this._translateService.instant('حقل نوع الطرف وحقل العمر | مطلوب'),
             });
         } else {
             this._servicesPageService.saveprosthetics(

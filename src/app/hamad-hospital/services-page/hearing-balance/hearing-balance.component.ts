@@ -50,7 +50,7 @@ export class HearingBalanceComponent implements OnInit {
             ID: [],
             NameAr: ['نص'],
             NameEn: ['نص'],
-            DescAr: [null , Validators.required],
+            DescAr: [null],
             DescEn: ['نص'],
             OutpatientClinicsDepartmentID: [null ,Validators.required],
             IsActive: [false],
@@ -85,7 +85,7 @@ export class HearingBalanceComponent implements OnInit {
             this.messageService.add({
                 severity: 'error',
                 detail: this._translateService.instant(
-                    ' يوجد حقول مطلوبة '
+                    ' حقل الاسم مطلوب '
                 ),
             });
         } else{
@@ -108,7 +108,7 @@ export class HearingBalanceComponent implements OnInit {
       this.formOutpatient.reset()
       this.formOutpatient.get('TypeID')?.patchValue(3);
       this.formOutpatient.get('IsActive')?.patchValue(false);
-      this.formOutpatient.get('NameAr')?.patchValue('نص');
+      this.formOutpatient.get('NameAr')?.patchValue('');
       this.formOutpatient.get('NameEn')?.patchValue('نص');
       this.formOutpatient.get('DescEn')?.patchValue('نص');
       this.formOutpatient.get('DescAr')?.patchValue('نص');
@@ -129,7 +129,7 @@ export class HearingBalanceComponent implements OnInit {
             this.messageService.add({
                 severity: 'error',
                 detail: this._translateService.instant(
-                    ' يوجد حقول مطلوبة '
+                    ' حقل القسم مطلوب '
                 ),
             });
         } else{

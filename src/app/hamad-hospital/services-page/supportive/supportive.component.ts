@@ -32,7 +32,7 @@ export class SupportiveComponent {
         this.formOutpatient = fb.group({
             ID: [],
             IconPath: [],
-            NameAr: ['' , Validators.required],
+            NameAr: [null , Validators.required],
             NameEn:['نص'],
             DescAr: ['نص'],
             DescEn: ['نص'],
@@ -44,7 +44,7 @@ export class SupportiveComponent {
             ID: [],
             NameAr: ['نص'],
             NameEn: ['نص'],
-            DescAr: ['' , Validators.required],
+            DescAr: [''],
             DescEn:['نص'],
             OutpatientClinicsDepartmentID: [null , Validators.required],
             IsActive: [false],
@@ -76,14 +76,11 @@ export class SupportiveComponent {
 
 
     saveFormOutpatient() {
-
-
-
         if (this.formOutpatient.invalid) {
             this.messageService.add({
                 severity: 'error',
                 detail: this._translateService.instant(
-                    ' يوجد حقول مطلوبة '
+                    ' حقل الاسم مطلوب '
                 ),
             });
         } else{
@@ -106,13 +103,12 @@ export class SupportiveComponent {
     clear(){
      this.formOutpatient.reset();
      this.formOutpatient.get('TypeID')?.patchValue(5);
-        this.formOutpatient.get('IsActive')?.patchValue(false);
-        this.formOutpatient.get('NameAr')?.patchValue('نص');
-
-        this.formOutpatient.get('NameEn')?.patchValue('نص')
-        this.formOutpatient.get('DescAr')?.patchValue('نص')
-        this.formOutpatient.get('DescEn')?.patchValue('نص')
-        this.ID = null;
+     this.formOutpatient.get('IsActive')?.patchValue(false);
+     this.formOutpatient.get('NameAr')?.patchValue('');
+     this.formOutpatient.get('NameEn')?.patchValue('نص');
+     this.formOutpatient.get('DescEn')?.patchValue('نص');
+     this.formOutpatient.get('DescAr')?.patchValue('نص');
+     this.ID = null;
     }
 
     clearFormOutpatient() {
@@ -131,7 +127,7 @@ export class SupportiveComponent {
             this.messageService.add({
                 severity: 'error',
                 detail: this._translateService.instant(
-                    ' يوجد حقول مطلوبة '
+                    ' حقل القسم مطلوب '
                 ),
             });
         } else{
