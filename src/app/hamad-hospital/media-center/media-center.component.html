@@ -195,7 +195,7 @@
                             [dropdownItems]="listSections"
                             [formControl]="MediaSectionID"
                             placeholder="المركز الاعلامي"
-                            (onSelectionChange)="filterbySection($event)"
+                            (onSelectionChange)="filterbySection()"
                         >
                         </app-select-field>
 
@@ -212,7 +212,7 @@
                                 { Code: 5, Name: 'خدمات طبية مساندة' },
                                 { Code: 6, Name: 'غير مصنف' }
                             ]"
-                            (onSelectionChange)="filterbyServices($event)"
+                            (onSelectionChange)="filterbyServices()"
                             [formControl]="MainServiceID"
                             placeholder="القسم الرئيسي"
                         >

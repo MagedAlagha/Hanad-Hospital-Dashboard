@@ -109,6 +109,8 @@ export class MediaCenterComponent implements OnInit {
                     console.log('valueeee', value);
                     this.MediaSectionsItemsWithoutFilter = value?.data;
                     this.MediaSectionsItems = value?.data;
+                    this.filterbySection();
+                    this.filterbyServices();
                 })
             );
 
@@ -155,12 +157,14 @@ export class MediaCenterComponent implements OnInit {
         this.Form_MediaSectionsItems.get('DescEn')?.patchValue('نص');
         this.Form_MediaSectionsItems.get('TitleEn')?.patchValue('نص');
         this.ID = null;
-        this.fileUpload.clear()
+        this.fileUpload.clear();
     }
 
     edit(item: any) {
         this.Form_MediaSectionsItems.patchValue(item);
-        this.fileUpload.takeNameReturnFilesSelected([item?.ImagePath?.split('/')?.pop()])
+        this.fileUpload.takeNameReturnFilesSelected([
+            item?.ImagePath?.split('/')?.pop(),
+        ]);
         this.ID = item.ID;
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -233,16 +237,24 @@ export class MediaCenterComponent implements OnInit {
         }
         return '';
     }
-    filterbySection(data: any) {
-        this.MainServiceID.reset();
-        this.MediaSectionsItems = this.MediaSectionsItemsWithoutFilter.filter(
-            (value: any) => value?.MediaSectionID == data?.Code
-        );
+    filterbySection() {
+        if (this.MediaSectionID?.value) {
+            this.MainServiceID.reset();
+            this.MediaSectionsItems =
+                this.MediaSectionsItemsWithoutFilter.filter(
+                    (value: any) =>
+                        value?.MediaSectionID == this.MediaSectionID?.value
+                );
+        }
     }
-    filterbyServices(data: any) {
-        this.MediaSectionID.reset();
-        this.MediaSectionsItems = this.MediaSectionsItemsWithoutFilter.filter(
-            (value: any) => value?.MainServiceID == data?.Code
-        );
+    filterbyServices() {
+        if (this.MainServiceID?.value) {
+            this.MediaSectionID.reset();
+            this.MediaSectionsItems =
+                this.MediaSectionsItemsWithoutFilter.filter(
+                    (value: any) =>
+                        value?.MainServiceID == this.MainServiceID?.value
+                );
+        }
     }
 }

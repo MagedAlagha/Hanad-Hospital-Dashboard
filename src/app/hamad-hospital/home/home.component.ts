@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     sliderData$!: Observable<any>;
     ID: any;
 
-    Avatar=environment.FileUrl
+    Avatar = environment.FileUrl;
     @ViewChild('fileUpload') fileUpload: any;
     imgResultBeforeCompression: string = '';
     imgResultAfterCompression: string = '';
@@ -27,17 +27,17 @@ export class HomeComponent implements OnInit {
         fb: FormBuilder,
         private _homeService: HomeService,
         private messageService: MessageService,
-        private _translateService: TranslateService ,
+        private _translateService: TranslateService
     ) {
         this.formSlider = fb.group({
             ID: [],
-            Image: ['' ],
-            TitleAr: ['' , Validators.required],
+            Image: [''],
+            TitleAr: ['', Validators.required],
             TitleEn: ['نص'],
             Link: [''],
             Sorting: [''],
             IsActive: [false],
-             ShowTitle: [false],
+            ShowTitle: [false],
             /* ShowLink: [false], */
         });
     }
@@ -52,27 +52,30 @@ export class HomeComponent implements OnInit {
         if (this.formSlider.invalid) {
             this.messageService.add({
                 severity: 'error',
-                detail: this._translateService.instant(
-                    'يوجد حقول مطلوبة'
-                ),
+                detail: this._translateService.instant('يوجد حقول مطلوبة'),
             });
         } else {
-            /* console.log(this.formSlider.value, 'fffpeoeoeoeo'); */
-            if (!this.ID) {
-                this._homeService.saveData({
-                    ...this.formSlider.value,
-                    Image: this.fileSelected,
-                });
-                this.clear()
+            if (this.fileSelected) {
+                if (!this.ID) {
+                    this._homeService.saveData({
+                        ...this.formSlider.value,
+                        Image: this.fileSelected,
+                    });
+                    this.clear();
+                } else {
+                    this._homeService.saveData({
+                        ...this.formSlider.value,
+                        Image: this.fileSelected,
+                        /*  ID:this.ID */
+                    });
+                    this.clear();
+                }
             } else {
-                this._homeService.saveData({
-                    ...this.formSlider.value,
-                    Image: this.fileSelected,
-                   /*  ID:this.ID */
+                this.messageService.add({
+                    severity: 'error',
+                    detail: this._translateService.instant('الصورة مطلوبة   '),
                 });
-                this.clear()
             }
-
         }
         console.log(this.formSlider.value, 'gegegegeg');
     }
@@ -81,17 +84,17 @@ export class HomeComponent implements OnInit {
         this.formSlider.patchValue(item);
         /* this.ID = item.ID; */
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        console.log(item , "itemitemitem")
+        console.log(item, 'itemitemitem');
     }
     deleteItem(item: any) {
         this._homeService.deleteSlider(item.ID);
-
     }
     clear() {
         this.formSlider.reset();
-        this.formSlider.get('TitleEn')?.patchValue('نص')
-        this.formSlider.get('IsActive')?.patchValue(false)
-        this.formSlider.get('ShowTitle')?.patchValue(false)
+        this.formSlider.get('TitleEn')?.patchValue('نص');
+        this.formSlider.get('IsActive')?.patchValue(false);
+        this.formSlider.get('ShowTitle')?.patchValue(false);
         this.ID = null;
+        this.fileSelected = null;
     }
 }
