@@ -8,7 +8,8 @@
     <form [formGroup]="Form_MediaSectionsItems">
         <div class="grid p-fluid mt-3">
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                <label for="">اضافة صورة للمقال (مطلوب)</label>
+                <label for="">اضافة صورة</label>
+                <br>
                 <app-upload-files
                     #fileUpload
                     (onSelectFiles)="fileSelected = $event"
@@ -158,7 +159,7 @@
     <ng-container *ngIf="MediaSectionsItems$ | async as data">
         <p-table
             styleClass="p-datatable-gridlines"
-            [rows]="8"
+            [rows]="10"
             [paginator]="true"
             [style.width]="'100%'"
             [value]="MediaSectionsItems"
@@ -167,11 +168,7 @@
             [rowsPerPageOptions]="[10, 25, 50]"
             sortMode="multiple"
         >
-            <!--   [globalFilterFields]="[
-        'TitleAr',
-        'MainServiceName',
-        'MediaSectionName'
-    ]" -->
+
             <ng-template pTemplate="caption">
                 <div class="grid" style="place-items: end">
                     <div class="col-12 lg:col-4 serch-input">

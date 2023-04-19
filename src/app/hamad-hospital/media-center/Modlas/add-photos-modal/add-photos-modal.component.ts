@@ -61,6 +61,8 @@ export class AddPhotosModalComponent implements OnInit {
     }
     clearImageSection() {
         this.Form_ImageSection.reset();
+        this.fileUpload.clear();
+
         this.ID = null;
     }
 

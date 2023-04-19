@@ -59,9 +59,9 @@ export class MediaCenterComponent implements OnInit {
             MediaSectionID: ['', Validators.required],
             SubTitleAr: [''],
             TitleAr: ['', Validators.required],
-            TitleEn: ['نص'],
+            TitleEn: [' '],
             DescAr: [''],
-            DescEn: ['نص'],
+            DescEn: [' '],
             MainServiceID: [''],
             VideoPath: [''],
             IsActive: [false],
@@ -154,10 +154,9 @@ export class MediaCenterComponent implements OnInit {
         this.Form_MediaSectionsItems.get('IsActive')?.patchValue(false);
         this.Form_MediaSectionsItems.get('ShowHome')?.patchValue(false);
         this.Form_MediaSectionsItems.get('ShowVarious')?.patchValue(false);
-        this.Form_MediaSectionsItems.get('DescEn')?.patchValue('نص');
-        this.Form_MediaSectionsItems.get('TitleEn')?.patchValue('نص');
+        this.Form_MediaSectionsItems.get('DescEn')?.patchValue(' ');
+        this.Form_MediaSectionsItems.get('TitleEn')?.patchValue(' ');
         this.ID = null;
-        this.fileUpload.clear();
     }
 
     edit(item: any) {
