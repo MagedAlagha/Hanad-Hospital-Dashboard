@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit {
             } else {
                 this.messageService.add({
                     severity: 'error',
-                    detail: this._translateService.instant('الصورة مطلوبة   '),
+                    detail: this._translateService.instant('الصورة مطلوبة '),
                 });
             }
         }

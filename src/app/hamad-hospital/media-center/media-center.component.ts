@@ -72,6 +72,8 @@ export class MediaCenterComponent implements OnInit {
     }
 
     ngOnInit(): void {
+
+
         this._mediaCenterService.getImageSection();
         this._mediaCenterService.getMediaType();
         this._mediaCenterService.getMediaSectionsItems();
@@ -117,18 +119,24 @@ export class MediaCenterComponent implements OnInit {
         this.addPhotosDialog$ =
             this._mediaCenterService.Selector$('addPhotosDialog');
         this.MediaType$ = this._mediaCenterService.Selector$('MediaType');
+
+
+
+
     }
 
+
     save() {
-        if (!this.ID) {
+         if (!this.ID) {
             if (this.Form_MediaSectionsItems.invalid) {
                 this.messageService.add({
                     severity: 'error',
                     detail: this._translateService.instant(
-                        ' يوجد حقول مطلوبة '
+                        ' حقل العنوان مطلوب '
                     ),
                 });
             } else {
+
                 this._mediaCenterService.saveMediaSectionsItems({
                     ...this.Form_MediaSectionsItems.value,
                     ImagePath: this.fileSelected,
@@ -145,6 +153,7 @@ export class MediaCenterComponent implements OnInit {
 
             this.clear();
         }
+
     }
 
     openDialog(item: any) {}
