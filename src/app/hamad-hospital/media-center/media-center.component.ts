@@ -72,8 +72,6 @@ export class MediaCenterComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
-
         this._mediaCenterService.getImageSection();
         this._mediaCenterService.getMediaType();
         this._mediaCenterService.getMediaSectionsItems();
@@ -119,15 +117,10 @@ export class MediaCenterComponent implements OnInit {
         this.addPhotosDialog$ =
             this._mediaCenterService.Selector$('addPhotosDialog');
         this.MediaType$ = this._mediaCenterService.Selector$('MediaType');
-
-
-
-
     }
 
-
     save() {
-         if (!this.ID) {
+        if (!this.ID) {
             if (this.Form_MediaSectionsItems.invalid) {
                 this.messageService.add({
                     severity: 'error',
@@ -136,13 +129,26 @@ export class MediaCenterComponent implements OnInit {
                     ),
                 });
             } else {
+                if (
+                    this.Form_MediaSectionsItems.get(
+                        'MediaSectionID'
+                    )?.value?.includes('3') &&
+                    !this.Form_MediaSectionsItems.get('VideoPath')?.value
+                ) {
+                    this.messageService.add({
+                        severity: 'error',
+                        detail: this._translateService.instant(
+                            ' الرجاء ادخال رابط الفيديو  '
+                        ),
+                    });
+                } else {
+                    this._mediaCenterService.saveMediaSectionsItems({
+                        ...this.Form_MediaSectionsItems.value,
+                        ImagePath: this.fileSelected,
+                    });
 
-                this._mediaCenterService.saveMediaSectionsItems({
-                    ...this.Form_MediaSectionsItems.value,
-                    ImagePath: this.fileSelected,
-                });
-
-                this.clear();
+                    this.clear();
+                }
             }
         } else {
             this._mediaCenterService.saveMediaSectionsItems({
@@ -154,8 +160,7 @@ export class MediaCenterComponent implements OnInit {
             this.clear();
         }
 
-
-      /*   if(this.Form_MediaSectionsItems.value.MediaSectionID.includes('3')){
+        /*   if(this.Form_MediaSectionsItems.value.MediaSectionID.includes('3')){
             this.Form_MediaSectionsItems.get('VideoPath')?.setValidators(Validators.required) ;
             if(this.Form_MediaSectionsItems.get('VideoPath')?.value == ''){
                 this.messageService.add({
@@ -164,10 +169,6 @@ export class MediaCenterComponent implements OnInit {
                 });
             }
         } */
-
-
-
-
     }
 
     openDialog(item: any) {}
@@ -180,7 +181,7 @@ export class MediaCenterComponent implements OnInit {
         this.Form_MediaSectionsItems.get('DescEn')?.patchValue(' نص');
         this.Form_MediaSectionsItems.get('TitleEn')?.patchValue('نص ');
         this.ID = null;
-        this.fileUpload.clear()
+        this.fileUpload.clear();
     }
 
     edit(item: any) {
@@ -191,7 +192,7 @@ export class MediaCenterComponent implements OnInit {
             item?.ImagePath?.split('/')?.pop(),
         ]);
         this.ID = item.ID;
-
+        this.ShowHome(item?.ShowHome);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     deleteItem(item: any) {
@@ -270,6 +271,8 @@ export class MediaCenterComponent implements OnInit {
                     (value: any) =>
                         value?.MediaSectionID == this.MediaSectionID?.value
                 );
+        } else {
+            this.MediaSectionsItems = this.MediaSectionsItemsWithoutFilter;
         }
     }
     filterbyServices() {
@@ -280,6 +283,15 @@ export class MediaCenterComponent implements OnInit {
                     (value: any) =>
                         value?.MainServiceID == this.MainServiceID?.value
                 );
+        } else {
+            this.MediaSectionsItems = this.MediaSectionsItemsWithoutFilter;
+        }
+    }
+    ShowHome(event: any) {
+        if (event) {
+            this.Form_MediaSectionsItems.get('VideoPath')?.disable();
+        } else {
+            this.Form_MediaSectionsItems.get('VideoPath')?.enable();
         }
     }
 }
