@@ -154,6 +154,20 @@ export class MediaCenterComponent implements OnInit {
             this.clear();
         }
 
+
+      /*   if(this.Form_MediaSectionsItems.value.MediaSectionID.includes('3')){
+            this.Form_MediaSectionsItems.get('VideoPath')?.setValidators(Validators.required) ;
+            if(this.Form_MediaSectionsItems.get('VideoPath')?.value == ''){
+                this.messageService.add({
+                    severity: 'error',
+                    detail: this._translateService.instant('يرجى ادخال رابط فيديو اليوتيوب '),
+                });
+            }
+        } */
+
+
+
+
     }
 
     openDialog(item: any) {}
