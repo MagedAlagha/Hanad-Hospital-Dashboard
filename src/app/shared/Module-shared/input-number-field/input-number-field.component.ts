@@ -73,7 +73,7 @@ export class InputNumberFieldComponent
     @Input() labelSideField: any = '';
 
     @Input() maxFractionDigits: number = 5;
-    @Input() min: any = 0;
+    @Input() min: any = null;
     @Input() max: any = null;
     @Input() useGrouping: boolean = false;
     required: boolean = false;

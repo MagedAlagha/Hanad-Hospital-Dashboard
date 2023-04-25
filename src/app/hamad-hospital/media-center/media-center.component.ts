@@ -67,7 +67,7 @@ export class MediaCenterComponent implements OnInit {
             IsActive: [false],
             ShowHome: [false],
             ShowVarious: [false],
-            Sorting: [''],
+            Sorting: [null],
         });
     }
 
@@ -111,6 +111,7 @@ export class MediaCenterComponent implements OnInit {
                     this.MediaSectionsItems = value?.data;
                     this.filterbySection();
                     this.filterbyServices();
+                    /*  value.data.reverse(); */
                 })
             );
 
@@ -142,22 +143,27 @@ export class MediaCenterComponent implements OnInit {
                         ),
                     });
                 } else {
-                    this._mediaCenterService.saveMediaSectionsItems({
-                        ...this.Form_MediaSectionsItems.value,
-                        ImagePath: this.fileSelected,
-                    });
-
-                    this.clear();
+                    this._mediaCenterService
+                        .saveMediaSectionsItems({
+                            ...this.Form_MediaSectionsItems.value,
+                            ImagePath: this.fileSelected,
+                        })
+                        .subscribe((value) => {
+                            this.clear();
+                        });
                 }
             }
         } else {
-            this._mediaCenterService.saveMediaSectionsItems({
-                ...this.Form_MediaSectionsItems.value,
-                ImagePath: this.fileSelected,
-                ID: this.ID,
-            });
-
-            this.clear();
+            console.log(this.fileSelected);
+            this._mediaCenterService
+                .saveMediaSectionsItems({
+                    ...this.Form_MediaSectionsItems.value,
+                    ImagePath: this.fileSelected,
+                    ID: this.ID,
+                })
+                .subscribe((value) => {
+                    this.clear();
+                });
         }
 
         /*   if(this.Form_MediaSectionsItems.value.MediaSectionID.includes('3')){
@@ -181,6 +187,7 @@ export class MediaCenterComponent implements OnInit {
         this.Form_MediaSectionsItems.get('DescEn')?.patchValue(' نص');
         this.Form_MediaSectionsItems.get('TitleEn')?.patchValue('نص ');
         this.ID = null;
+        this.fileSelected = null;
         this.fileUpload.clear();
     }
 
@@ -267,9 +274,8 @@ export class MediaCenterComponent implements OnInit {
         if (this.MediaSectionID?.value) {
             this.MainServiceID.reset();
             this.MediaSectionsItems =
-                this.MediaSectionsItemsWithoutFilter.filter(
-                    (value: any) =>
-                        value?.MediaSectionID == this.MediaSectionID?.value
+                this.MediaSectionsItemsWithoutFilter.filter((value: any) =>
+                    value?.MediaSectionID?.includes(this.MediaSectionID?.value)
                 );
         } else {
             this.MediaSectionsItems = this.MediaSectionsItemsWithoutFilter;

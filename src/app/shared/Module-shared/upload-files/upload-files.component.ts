@@ -113,7 +113,7 @@ export class UploadFilesComponent implements OnInit {
             value.forEach((item: any, index: any) => {
                 this.imgResultBeforeCompression = item?.image;
                 this.imageCompress
-                    .compressFile(item?.image, item?.orientation, 50, 70)
+                    .compressFile(item?.image, item?.orientation, 50, 65)
                     .then((compressedImage) => {
                         this.compressedImage = compressedImage;
                         let file = this.base64ToFile(

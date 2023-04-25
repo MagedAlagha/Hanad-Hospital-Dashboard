@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, distinctUntilChanged, map } from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, map, tap } from 'rxjs';
 import { getFormApiGonfig } from 'src/app/shared/models';
 import { GetFormApiService } from 'src/app/shared/services/functionsForHandelWithApi/getFormApi.service';
 import { HttpService } from 'src/app/shared/services/http.service';
@@ -65,10 +65,11 @@ export class MediaCenterService {
     /*  *******  Start MediaSectionsItems - API ******* */
     saveMediaSectionsItems(data: any) {
         return this._http
-            .saveFormData('MediaSectionsItems/MediaSectionsItemsSave', data)
-            .subscribe((value) => {
+            .saveFormData('MediaSectionsItems/MediaSectionsItemsSave', data).pipe(tap(value=>{
                 this.getMediaSectionsItems();
-            });
+
+            }))
+
     }
     deleteMediaSectionsItems(ID: any) {
         return this._http
