@@ -5,7 +5,6 @@
         </label>
         <ng-content [side-label]></ng-content>
     </div>
-
     <p-dropdown
         [ngClass]="{'ng-invalid ng-dirty': (!!(selectFieldControl.errors?.['required']) && (selectFieldControl.touched || submitted)), 'p-inputtext-sm': true}"
         appendTo="body"

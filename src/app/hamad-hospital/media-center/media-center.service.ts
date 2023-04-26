@@ -60,8 +60,6 @@ export class MediaCenterService {
         );
     }
 
-
-
     /*  *******  Start MediaSectionsItems - API ******* */
     saveMediaSectionsItems(data: any) {
         return this._http
