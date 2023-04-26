@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
                 detail: this._translateService.instant('العنوان مطلوب'),
             });
         } else {
-            if (this.fileSelected) {
+            if (this.fileSelected||!this.ID) {
                 if (!this.ID) {
                     this._homeService.saveData({
                         ...this.formSlider.value,
@@ -84,8 +84,9 @@ export class HomeComponent implements OnInit {
         this.formSlider.patchValue(item);
         /* this.ID = item.ID; */
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        console.log(item, 'itemitemitem');
-    }
+        this.fileUpload.takeNameReturnFilesSelected([
+            item?.ImagePath?.split('/')?.pop(),
+        ]);    }
     deleteItem(item: any) {
         this._homeService.deleteSlider(item.ID);
     }
@@ -96,5 +97,6 @@ export class HomeComponent implements OnInit {
         this.formSlider.get('ShowTitle')?.patchValue(false);
         this.ID = null;
         this.fileSelected = null;
+        this.fileUpload.clear();
     }
 }
