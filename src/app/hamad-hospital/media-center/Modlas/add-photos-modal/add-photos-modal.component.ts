@@ -40,29 +40,50 @@ export class AddPhotosModalComponent implements OnInit {
         }
     }
     saveImageSection() {
-        if (this.Form_ImageSection.invalid) {
-            this.messageService.add({
-                severity: 'error',
-                detail: this._translateService.instant('الحقول مطلوبة'),
-            });
-        } else {
-            this._mediaCenterService
-                .saveImageSection({
-                    ...this.Form_ImageSection.value,
-                    ImagePath: this.fileSelected,
-                    MediaSectionsItemID: this.data.ID,
-                })
-                .subscribe((value) =>
-                    this._mediaCenterService.getImageSection(this.itmsID)
-                );
+        if(!this.ID){
+            if (this.Form_ImageSection.invalid) {
+                this.messageService.add({
+                    severity: 'error',
+                    detail: this._translateService.instant('الحقول مطلوبة'),
+                });
+            } else {
+                this._mediaCenterService
+                    .saveImageSection({
+                        ...this.Form_ImageSection.value,
+                        ImagePath: this.fileSelected,
+                        MediaSectionsItemID: this.data.ID,
+                    })
+                    .subscribe((value) =>
+                        this._mediaCenterService.getImageSection(this.itmsID)
+                    );
 
-            this.clearImageSection();
+                this.clearImageSection();
+            }
+        }else{
+            if (this.Form_ImageSection.invalid) {
+                this.messageService.add({
+                    severity: 'error',
+                    detail: this._translateService.instant('الحقول مطلوبة'),
+                });
+            } else {
+                this._mediaCenterService
+                    .saveImageSection({
+                        ...this.Form_ImageSection.value,
+                        ImagePath: this.fileSelected,
+                        MediaSectionsItemID: this.data.ID,
+                        ID:this.ID
+                    })
+                    .subscribe((value) =>
+                        this._mediaCenterService.getImageSection(this.itmsID)
+                    );
+
+                this.clearImageSection();
+            }
         }
     }
     clearImageSection() {
         this.Form_ImageSection.reset();
         this.fileUpload.clear();
-
         this.ID = null;
     }
 

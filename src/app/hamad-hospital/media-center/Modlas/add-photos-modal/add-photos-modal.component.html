@@ -8,9 +8,9 @@
             <div class="grid p-fluid mt-3">
                 <div class="col-12 mb-2 lg:col-3 lg:mb-0">
                     <label for="">اضافة صور + ملف pdf</label>
-                    <br>
+                    <br />
                     <app-upload-files
-                    #fileUpload
+                        #fileUpload
                         [multiple]="true"
                         (onSelectFiles)="fileSelected = $event"
                         [showFilesUploaded]="true"
@@ -28,7 +28,7 @@
         <ng-container *ngIf="ImageSection$ | async as data">
             <p-table
                 styleClass="p-datatable-gridlines"
-                [rows]="7"
+                [rows]="10"
                 [paginator]="true"
                 [style.width]="'100%'"
                 [value]="data.data"
@@ -56,7 +56,10 @@
                                     [src]="Avatar + item?.ImagePath"
                                     alt="Image"
                                     width="45px"
-                                    style="height: 45px; object-fit: cover"
+                                    [ngStyle]="{
+                                        'height': '45px',
+                                        'object-fit': 'cover'
+                                    }"
                                     [preview]="true"
                                 ></p-image>
                             </span>
@@ -66,9 +69,7 @@
                                     [href]="Avatar + item?.ImagePath"
                                     target="_blank"
                                 >
-                                    {{
-                                        item?.ImagePath
-                                    }}</a
+                                    {{ item?.ImagePath }}</a
                                 >
                             </span>
                         </td>
