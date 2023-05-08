@@ -16,6 +16,7 @@ export class HomeService {
 store = new BehaviorSubject<jobFunctionalModel>({
     codes: undefined,
     needsTable: { data: [], loading: false },
+    serviceCardsTable: { data: [], loading: false },
     sliderData: { data: [], loading: false },
     Stats: undefined,
     filterForNeedsTable: undefined,
@@ -54,6 +55,9 @@ deleteSlider(ID: any) {
 getSliderData() {
     this.getFormApi('HeaderSlider/HeaderSliderSearch', 'sliderData' ,{}, { isLoading: true });
 }
+getService() {
+    this.getFormApi('Services/ServicesSearch', 'serviceCardsTable' ,{});
+}
 getStats() {
     this.getFormApi('Stats/StatsSearch', 'Stats');
 }
@@ -61,7 +65,7 @@ getStats() {
 /*  ******* Save Data Services ******* */
 /*  */
 updateServices(data: any){
-    return this._http.updateFormData('Services/ServicesUpdate', data).subscribe();
+    return this._http.updateFormData('Services/ServicesUpdate', data);
 }
 
 getFormApi(
@@ -82,6 +86,7 @@ getFormApi(
 export interface jobFunctionalModel {
 codes?: any;
 needsTable?: { data: any; loading: boolean };
+serviceCardsTable?: { data: any; loading: boolean };
 filterForNeedsTable?: any;
 Stats?: any;
 sliderData:{ data: any; loading: boolean };

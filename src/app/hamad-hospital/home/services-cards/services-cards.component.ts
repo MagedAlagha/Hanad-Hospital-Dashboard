@@ -1,15 +1,18 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { HomeService } from '../home.service';
+import { Observable, tap } from 'rxjs';
 
 @Component({
     selector: 'app-services-cards',
     templateUrl: './services-cards.component.html',
     styleUrls: ['./services-cards.component.scss'],
 })
-export class ServicesCardsComponent {
+export class ServicesCardsComponent implements OnInit {
+    serviceCardsTable$!:Observable<any>;
+
     formServices: FormGroup;
     fileSelected_01: any;
     fileSelected_02: any;
@@ -29,22 +32,27 @@ export class ServicesCardsComponent {
         private _translateService: TranslateService
     ) {
         this.formServices = fb.group({
-            MedicalRehabilitationIconPath: [],
-            MedicalRehabilitationDescAr: [],
+            MedicalRehabilitationIconPath: [ ''],
+            MedicalRehabilitationDescAr: [''],
             MedicalRehabilitationDescEn:  ['نص'],
-            ProstheticsIconPath: [],
-            ProstheticsDescAr: [],
+            ProstheticsIconPath: [''],
+            ProstheticsDescAr: [''],
             ProstheticsDescEn: ['نص'],
-            HearingIconPath: [],
-            HearingDescAr: [],
+            HearingIconPath: [''],
+            HearingDescAr: [''],
             HearingDescEn:  ['نص'],
-            SupportiveMedicalBackgroundPath: [],
-            SupportiveMedicalDescAr: [],
+            SupportiveMedicalBackgroundPath: [''],
+            SupportiveMedicalDescAr: [''],
             SupportiveMedicalDescEn:  ['نص'],
-            OutpatientClinicsIconPath: [],
-            OutpatientClinicsDescAr: [],
+            OutpatientClinicsIconPath: [''],
+            OutpatientClinicsDescAr: [''],
             OutpatientClinicsDescEn:  ['نص'],
         });
+    }
+    ngOnInit(): void {
+       this._homeService.getService();
+       this.serviceCardsTable$ = this._homeService.Selector$('serviceCardsTable');
+
     }
 
     save() {
@@ -70,6 +78,8 @@ export class ServicesCardsComponent {
                 OutpatientClinicsBackgroundPath: this.fileSelected_bg4,
                 SupportiveMedicalIconPath: this.fileSelected_05,
                 SupportiveMedicalBackgroundPath: this.fileSelected_bg5,
+            }).subscribe(value=>{
+                this._homeService.getService();
             });
         }
     }
@@ -81,5 +91,11 @@ export class ServicesCardsComponent {
         this.formServices.get('HearingDescEn')?.patchValue('نص')
         this.formServices.get('SupportiveMedicalDescEn')?.patchValue('نص')
         this.formServices.get('OutpatientClinicsDescEn')?.patchValue('نص')
+    }
+    editItem(item:any){
+
+    }
+    deleteItem(item:any){
+
     }
 }

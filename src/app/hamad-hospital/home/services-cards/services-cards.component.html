@@ -9,7 +9,7 @@
         <p-tabPanel header="التأهيل الطبي">
             <div class="grid p-fluid mt-3">
                 <div class="col-12 mb-2 lg:col-12 lg:mb-0">
-                    <label for="">اضافة صورة للقسم</label>
+                    <label for="" class="mr-3">اضافة صورة للقسم</label>
                     <app-upload-files
                     (onSelectFiles)="fileSelected_bg1 = $event"
                     [showFilesUploaded]="true"
@@ -17,7 +17,7 @@
                 <hr>
                 </div>
                 <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                    <label for="">اضافة ايقونة</label>
+                    <label for="" class="mr-3">اضافة ايقونة</label>
                     <app-upload-files
                     (onSelectFiles)="fileSelected_01 = $event"
                     [showFilesUploaded]="true"
@@ -31,20 +31,43 @@
                     >
                     </app-text-area-field>
                 </div>
-                <!-- <div class="col-12 mb-2 lg:col-5 lg:mb-0">
-                    <app-text-area-field
-                    [rows]="3"
-                        [label]="'وصف التاهيل الطبي /انجليزي'"
-                        formControlName="MedicalRehabilitationDescEn"
-                    >
-                    </app-text-area-field>
-                </div> -->
             </div>
+
+            <ng-container *ngIf="serviceCardsTable$ | async as data">
+                <p-table
+                    styleClass="p-datatable-gridlines"
+                    [rows]="1"
+                    [paginator]="false"
+                    [style.width]="'100%'"
+                    [value]="[1]"
+                    #dt1
+
+                    sortMode="multiple"
+                >
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th class="text-center">وصف التأهيل الطبي</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body"  let-index="rowIndex">
+                        <tr>
+                            <td>{{ data.MedicalRehabilitationDescAr }}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </ng-container>
+
         </p-tabPanel>
         <p-tabPanel header="الأطراف الصناعية">
             <div class="grid p-fluid mt-3">
                 <div class="col-12 mb-2 lg:col-12 lg:mb-0">
-                    <label for="">اضافة صورة للقسم</label>
+                    <label for="" class="mr-3">اضافة صورة للقسم</label>
                     <app-upload-files
                     (onSelectFiles)="fileSelected_bg2 = $event"
                     [showFilesUploaded]="true"
@@ -52,6 +75,7 @@
                 <hr>
                 </div>
                 <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                    <label for="" class="mr-3">اضافة ايقونة</label>
                     <app-upload-files
                     (onSelectFiles)="fileSelected_02 = $event"
                     [showFilesUploaded]="true"
@@ -65,20 +89,41 @@
                     >
                     </app-text-area-field>
                 </div>
-                <!-- <div class="col-12 mb-2 lg:col-5 lg:mb-0">
-                    <app-text-area-field
-                    [rows]="3"
-                        [label]="'وصف الأطراف الصناعية /انجليزي'"
-                        formControlName="ProstheticsDescEn"
-                    >
-                    </app-text-area-field>
-                </div> -->
             </div>
+            <ng-container *ngIf="serviceCardsTable$ | async as data">
+                <p-table
+                    styleClass="p-datatable-gridlines"
+                    [rows]="1"
+                    [paginator]="false"
+                    [style.width]="'100%'"
+                    [value]="[1]"
+                    #dt1
+
+                    sortMode="multiple"
+                >
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th class="text-center">وصف الأطراف الصناعية</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body"  let-index="rowIndex">
+                        <tr>
+                            <td>{{ data.ProstheticsDescAr }}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </ng-container>
         </p-tabPanel>
         <p-tabPanel header="السموع والتوازن">
             <div class="grid p-fluid mt-3">
                 <div class="col-12 mb-2 lg:col-12 lg:mb-0">
-                    <label for="">اضافة صورة للقسم</label>
+                    <label for="" class="mr-3">اضافة صورة للقسم</label>
                     <app-upload-files
                     (onSelectFiles)="fileSelected_bg3 = $event"
                     [showFilesUploaded]="true"
@@ -86,6 +131,7 @@
                 <hr>
                 </div>
                 <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                    <label for="" class="mr-3">اضافة ايقونة</label>
                     <app-upload-files
                     (onSelectFiles)="fileSelected_03 = $event"
                     [showFilesUploaded]="true"
@@ -108,11 +154,38 @@
                     </app-text-area-field>
                 </div> -->
             </div>
+            <ng-container *ngIf="serviceCardsTable$ | async as data">
+                <p-table
+                    styleClass="p-datatable-gridlines"
+                    [rows]="1"
+                    [paginator]="false"
+                    [style.width]="'100%'"
+                    [value]="[1]"
+                    #dt1
+                >
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th class="text-center">وصف السموع والتوازن</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body"  let-index="rowIndex">
+                        <tr>
+                            <td>{{ data.HearingDescAr }}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </ng-container>
         </p-tabPanel>
         <p-tabPanel header="العيادات الخارجية">
             <div class="grid p-fluid mt-3">
                 <div class="col-12 mb-2 lg:col-12 lg:mb-0">
-                    <label for="">اضافة صورة للقسم</label>
+                    <label for="" class="mr-3">اضافة صورة للقسم</label>
                     <app-upload-files
                     (onSelectFiles)="fileSelected_bg4 = $event"
                     [showFilesUploaded]="true"
@@ -120,6 +193,7 @@
                 <hr>
                 </div>
                 <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                    <label for="" class="mr-3">اضافة ايقونة</label>
                     <app-upload-files
                     (onSelectFiles)="fileSelected_04 = $event"
                     [showFilesUploaded]="true"
@@ -142,23 +216,50 @@
                     </app-text-area-field>
                 </div> -->
             </div>
+            <ng-container *ngIf="serviceCardsTable$ | async as data">
+                <p-table
+                    styleClass="p-datatable-gridlines"
+                    [rows]="1"
+                    [paginator]="false"
+                    [style.width]="'100%'"
+                    [value]="[1]"
+                    #dt1
+                >
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th class="text-center">وصف العيادات الخارجية</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body"  let-index="rowIndex">
+                        <tr>
+                            <td>{{ data.OutpatientClinicsDescAr }}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </ng-container>
         </p-tabPanel>
         <p-tabPanel header="خدمات طبية مساندة">
             <div class="grid p-fluid mt-3">
                 <div class="col-12 mb-2 lg:col-12 lg:mb-0">
-                    <label for="">اضافة صورة للقسم</label>
+                    <label for="" class="mr-3">اضافة صورة للقسم</label>
                     <app-upload-files
                     (onSelectFiles)="fileSelected_bg5 = $event"
                     [showFilesUploaded]="true"
                 ></app-upload-files>
                 <hr>
                 </div>
-                <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+              <!--   <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                     <app-upload-files
                     (onSelectFiles)="fileSelected_05 = $event"
                     [showFilesUploaded]="true"
                 ></app-upload-files>
-                </div>
+                </div> -->
                 <div class="col-12 mb-2 lg:col-12 lg:mb-0">
                     <app-text-area-field
                     [rows]="4"
@@ -176,6 +277,33 @@
                     </app-text-area-field>
                 </div> -->
             </div>
+            <ng-container *ngIf="serviceCardsTable$ | async as data">
+                <p-table
+                    styleClass="p-datatable-gridlines"
+                    [rows]="1"
+                    [paginator]="false"
+                    [style.width]="'100%'"
+                    [value]="[1]"
+                    #dt1
+                >
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th class="text-center">وصف خدمات طبية مساندة</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body"  let-index="rowIndex">
+                        <tr>
+                            <td>{{ data.SupportiveMedicalDescAr }}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </ng-container>
         </p-tabPanel>
     </p-tabView>
     </form>
@@ -188,9 +316,9 @@
             [classColor]="'p-button-raised'"
             (action)="save()"
             [Icon]="'pi pi-id-card'"
-            label="حفظ"
+            label="تعديل"
             [isCustomLable]="true"
-            [pTooltipCustom]="'حفظ'"
+            [pTooltipCustom]="'تعديل'"
         >
         </app-button-component>
         <app-button-component
@@ -204,7 +332,11 @@
     </div>
 </div>
 
+
 </div>
+
+
+
 
 
 
