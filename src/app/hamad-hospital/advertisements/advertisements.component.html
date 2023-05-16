@@ -1,7 +1,7 @@
 <div class="card">
     <div class="flex flex-column md:flex-row mb-3">
         <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
-            اضافة اعلان توظيف
+            اضافة إعلانات
         </div>
     </div>
     <hr />
@@ -43,6 +43,20 @@
                     formControlName="ButtonLink"
                 >
                 </app-input-field>
+            </div>
+
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <ng-container *ngIf="codes$ |async as code">
+                    <app-select-field
+                    (onSelectionChange)="onChange($event)"
+                    [dropdownItems]="code"
+                    [optionLabel]="'Name'"
+                    [optionValue]="'ID'"
+                    formControlName="CategoryID"
+                    [label]="'تصنيف الإعلان'"
+                >
+                </app-select-field>
+                  </ng-container>
             </div>
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-input-number-field   label="الترتيب"
@@ -93,10 +107,10 @@
 <div class="card">
     <div class="flex flex-column md:flex-row mb-3">
         <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
-            الاعلانات الحالية
+             الإعلانات الحالية
         </div>
     </div>
-    <hr />
+    <hr/>
 
     <ng-container *ngIf="dataTable$ | async as data">
         <p-table

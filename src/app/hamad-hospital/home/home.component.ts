@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
     fileSelected: any;
     sliderData$!: Observable<any>;
     ID: any;
-
+    color1!: string;
     Avatar = environment.FileUrl;
     @ViewChild('fileUpload') fileUpload: any;
     imgResultBeforeCompression: string = '';
@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
             TitleAr: ['', Validators.required],
             TitleEn: ['نص'],
             Link: [''],
+            TitleBackgroundColor: [''],
             Sorting: [''],
             IsActive: [false],
             ShowTitle: [false],

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { AdvertisementsService } from './advertisements.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class AdvertisementsComponent implements OnInit {
     formAdvertisements!: FormGroup;
     dataTable$!: Observable<any>;
     ID: any;
+    codes$!: Observable<any>;
     constructor(
         private _advertisementsService: AdvertisementsService,
         private messageService: MessageService,
@@ -28,6 +29,7 @@ export class AdvertisementsComponent implements OnInit {
             ButtonTitleAr: ['' ,Validators.required],
             ButtonTitleEn: ['نص'],
             ButtonLink: ['',Validators.required],
+            CategoryID: [''],
             IsActive: [false ],
             Sorting: [''],
         });
@@ -35,7 +37,9 @@ export class AdvertisementsComponent implements OnInit {
 
     ngOnInit(): void {
         this._advertisementsService.getAdvertisements();
+        this._advertisementsService.getCodes();
         this.dataTable$ = this._advertisementsService.Selector$('dataTable');
+        this.codes$ = this._advertisementsService.Selector$('codes')
     }
     save() {
 
@@ -61,10 +65,6 @@ export class AdvertisementsComponent implements OnInit {
 
             this.clear();
         }
-
-
-
-
     }
     clear() {
         this.formAdvertisements.reset();
@@ -81,5 +81,9 @@ export class AdvertisementsComponent implements OnInit {
     }
     deleteItem(items?: any) {
         this._advertisementsService.deleteAdvertisements(items.ID);
+    }
+
+    onChange(event:any){
+
     }
 }

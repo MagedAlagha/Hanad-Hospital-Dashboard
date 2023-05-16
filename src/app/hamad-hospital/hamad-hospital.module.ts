@@ -40,7 +40,7 @@ import { HamadHospitalComponent } from './hamad-hospital.component';
                 },
                 {
                     path: 'advertisements',
-                    data: { breadcrumb: 'اعلان التوظيف' },
+                    data: { breadcrumb: 'إعلانات' },
                     loadChildren: () =>
                         import(
                             './advertisements/advertisements.module'

@@ -1,0 +1,281 @@
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { map, Observable, filter, tap } from 'rxjs';
+import { ServicesPageService } from '../services-page.service';
+import { MessageService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
+
+@Component({
+    selector: 'app-prosthetics',
+    templateUrl: './prosthetics.component.html',
+    styleUrls: ['./prosthetics.component.scss'],
+})
+export class ProstheticsComponent {
+    formprosthetics!: FormGroup<any>;
+    prosthetics$!: Observable<any>;
+    prostheticsTypes$!: Observable<any>;
+    ProstheticsTypeselect$!: Observable<any>;
+    isEn = document.dir == 'ltr' ? true : false;
+    constructor(
+        fb: FormBuilder,
+        private _servicesPageService: ServicesPageService,
+        private messageService: MessageService,
+        private _translateService: TranslateService
+    ) {
+        this.formprosthetics = fb.group({
+            ID: [null],
+            ProstheticsTypeID: [null, Validators.required],
+            NameAr: [null, Validators.required],
+            NameEn: ['نص'],
+            AgeAr: [null, Validators.required],
+            AgeEn: ['نص'],
+            IsActive: [false],
+            Sorting: [null],
+        });
+    }
+
+    /* id:[''], */
+
+    ngOnInit() {
+        console.log('test');
+        this.prosthetics$ = this._servicesPageService
+            .Selector$('prosthetics')
+            .pipe(
+                map((prostheticsTypes) => {
+                    console.log('prostheticsTypes',prostheticsTypes)
+                    return prostheticsTypes.filter(
+                        (value: any) => value?.ProstheticsTypeName != null
+                    );
+                })
+            );
+        this.prostheticsTypes$ = this._servicesPageService
+            .Selector$('prostheticsTypes')
+            .pipe(
+                tap((value) => {
+                    console.log('value', value);
+                }),
+                map((prostheticsTypes) => {
+                    return prostheticsTypes.filter(
+                        (value: any) => value?.ParentID
+                    );
+                })
+            );
+        this.ProstheticsTypeselect$ = this._servicesPageService
+            .Selector$('ProstheticsTypeselect')
+            .pipe(
+                tap((value) => {
+                    console.log('value1011010101', value);
+                }),
+              map((prostheticsTypes) => {
+                     return prostheticsTypes.filter(
+                         (value: any) => value?.ParentID != null
+                    );
+               })
+            );
+    }
+
+    save() {
+        if (this.formprosthetics.invalid) {
+            this.messageService.add({
+                severity: 'error',
+                detail: this._translateService.instant('حقل نوع الطرف وحقل العمر | مطلوب'),
+            });
+        } else {
+            this._servicesPageService.saveprosthetics(
+                this.formprosthetics.value
+            );
+            this.clear();
+        }
+    }
+    clear() {
+        this.formprosthetics.reset();
+        this.formprosthetics.get('IsActive')?.patchValue(false);
+        this.formprosthetics.get('AgeEn')?.patchValue('نص');
+        this.formprosthetics.get('NameEn')?.patchValue('نص');
+    }
+    editItem(item: any) {
+        this.formprosthetics.patchValue(item);
+        window.scrollTo({ top: 2 });
+    }
+    deleteItem(item: any) {
+        this._servicesPageService.deleteprosthetics(item.ID);
+    }
+
+    addArtificiallimbDialog(item?: any) {
+        this._servicesPageService.displayDialogs(
+            'prostheticsTypesDialog',
+            true,
+            item
+        );
+    }
+}
+
+
+
+---------------------------------------------------------------------------------------------------------
+<!-- <div
+    class="flex flex-column md:flex-row md:align-items-start md:justify-content-between mb-3"
+>
+    <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
+        الاطراف الصناعية
+    </div>
+    <div class="inline-flex align-items-center">
+        <span class="p-input-icon-left flex-auto mr-2">
+            <app-button-component
+                [classColor]="'p-button-outlined'"
+                [Icon]="'pi pi-plus'"
+                label="انواع الاطراف الصناعية"
+                [isCustomLable]="true"
+                [pTooltipCustom]="' اضافة نوع'"
+                (action)="addArtificiallimbDialog()"
+            >
+            </app-button-component>
+        </span>
+    </div>
+</div>
+<hr />
+
+<form [formGroup]="formprosthetics">
+    <div class="grid p-fluid mt-3">
+        <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+            <app-input-field [label]="'الاسم /عربي'" formControlName="NameAr">
+            </app-input-field>
+        </div>
+        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <ng-container *ngIf="ProstheticsTypeselect$ | async as data">
+                <app-select-field
+                    [dropdownItems]="data"
+                    [optionLabel]="isEn ? 'NameEn' : 'NameAr'"
+                    [optionValue]="'ID'"
+                    formControlName="ProstheticsTypeID"
+                    [label]="'اختيار نوع الطرف'"
+                >
+                </app-select-field>
+            </ng-container>
+        </div>
+        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <app-input-field
+                [label]="'العمر / العربية'"
+                formControlName="AgeAr"
+            >
+            </app-input-field>
+        </div>
+        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <app-input-number-field   label="الترتيب"
+            formControlName="Sorting"></app-input-number-field>
+        </div>
+
+        <div
+            class="col-12 mb-2 lg:col-2 lg:mb-0 align-items-center justify-content-evenly"
+            style="margin-top: 2.9rem"
+        >
+            <app-check-box label="فعال" formControlName="IsActive">
+            </app-check-box>
+        </div>
+
+        <div
+            class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
+            style="margin-top: 2.5rem"
+        >
+            <div class="inline-flex align-items-center">
+                <app-button-component
+                    [classColor]="'p-button-raised'"
+                    (action)="save()"
+                    [Icon]="'pi pi-id-card'"
+                    label="حفظ"
+                    [isCustomLable]="true"
+                    [pTooltipCustom]="'حفظ'"
+                >
+                </app-button-component>
+                <app-button-component
+                    label="مسح الحقول"
+                    class="pr-2"
+                    (action)="clear()"
+                    [classColor]="'p-button-raised p-button-secondary '"
+                    [pTooltipCustom]="'مسح الحقول '"
+                    [Icon]="'pi pi-eraser'"
+                ></app-button-component>
+            </div>
+        </div>
+    </div>
+    <br />
+    <ng-container *ngIf="prosthetics$ | async as data">
+        <p-table
+            styleClass="p-datatable-gridlines"
+            [rows]="10"
+            [paginator]="true"
+            [style.width]="'100%'"
+            [value]="data"
+            [rowsPerPageOptions]="[10, 25, 50]"
+            #dt1
+        >
+
+        <ng-template pTemplate="caption">
+            <div class="grid">
+               <div class="col-12 lg:col-6 serch-input">
+                   <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'NameAr', 'contains')"
+                   [value]="$any(dt1.filters['NameAr'])?.value" placeholder="بحث العنوان" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
+               </div>
+               <div class="col-12 lg:col-3 serch-input">
+                   <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'AgeAr', 'contains')"
+                   [value]="$any(dt1.filters['AgeAr'])?.value" placeholder="بحث العمر" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
+               </div>
+               <div class="col-12 lg:col-3 serch-input">
+                   <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'Sorting', 'contains')"
+                   [value]="$any(dt1.filters['Sorting'])?.value" placeholder="بحث الترتيب" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
+               </div>
+           </div>
+           <tr>
+       </tr>
+       </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="text-center">#</th>
+                    <th pSortableColumn="NameAr" class="text-center">العنوان <p-sortIcon ></p-sortIcon></th>
+                    <th pSortableColumn="ProstheticsTypeName" class="text-center">التصنيف <p-sortIcon ></p-sortIcon></th>
+                    <th pSortableColumn="AgeAr" class="text-center">العمر <p-sortIcon ></p-sortIcon></th>
+                    <th pSortableColumn="CreatedDate" class="text-center">تاريخ النشر <p-sortIcon></p-sortIcon></th>
+                    <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
+                    <th class="text-center">الحالة</th>
+                    <th class="text-center">الاجراءات</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item let-index="rowIndex">
+                <tr>
+                    <td>
+                        <span class="reorder-row-icon">{{ index + 1 }}</span>
+                    </td>
+                    <td>{{ item.NameAr }}</td>
+                    <td>{{ item.ProstheticsTypeName }}</td>
+                    <td>{{ item.AgeAr }}</td>
+                    <td>{{ item.CreatedDate  | date}}</td>
+                    <td>{{ item.Sorting }}</td>
+                    <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
+                    <td class="text-center">
+                        <app-icon-shared
+                            [Icon]="'pi pi-pencil'"
+                            [classColor]="'var(--blue-400)'"
+                            [pTooltipCustom]="'تعديل البيانات'"
+                            (action)="editItem(item)"
+                        ></app-icon-shared>
+
+                        <app-icon-shared
+                            [Icon]="'pi pi-trash'"
+                            [classColor]="'var(--red-400)'"
+                            [pTooltipCustom]="'حذف'"
+                            (action)="deleteItem(item)"
+                        ></app-icon-shared>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="footer"> </ng-template>
+            <ng-template pTemplate="loadingbody"> </ng-template>
+        </p-table>
+    </ng-container>
+</form>
+ -->

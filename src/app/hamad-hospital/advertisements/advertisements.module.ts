@@ -10,6 +10,7 @@ import { TextAreaFieldComponent } from 'src/app/shared/Module-shared/text-area-f
 import { ReactiveFormsModule } from '@angular/forms';
 import { CheckBoxComponent } from 'src/app/shared/Module-shared/check-box/check-box.component';
 import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-number-field/input-number-field.component';
+import { SelectFieldComponent } from 'src/app/shared/Module-shared/select-field/select-field.component';
 
 
 
@@ -33,6 +34,8 @@ import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-nu
     TextAreaFieldComponent ,
     ReactiveFormsModule,
     CheckBoxComponent,
-     InputNumberFieldComponent ]
+     InputNumberFieldComponent ,
+     SelectFieldComponent
+    ]
 })
 export class AdvertisementsModule { }

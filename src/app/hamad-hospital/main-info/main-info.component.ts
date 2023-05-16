@@ -35,6 +35,9 @@ export class MainInfoComponent implements OnInit {
             Mobile: [''],
             Phone: [''],
             Email: [''],
+            HomeVariousTitleAr: [''],
+            HomeVariousTitleEn: ['نص'],
+            BookAppointment: ['نص'],
             LogoImagePath: [''],
         });
         this.formStats = fb.group({

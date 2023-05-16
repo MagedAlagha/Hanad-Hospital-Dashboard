@@ -17,6 +17,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { ImageModule } from 'primeng/image';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-number-field/input-number-field.component';
+import {ColorPickerModule} from 'primeng/colorpicker';
 
 @NgModule({
     declarations: [HomeComponent, ServicesCardsComponent],
@@ -40,7 +41,8 @@ import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-nu
         UploadFilesComponent,
         TabViewModule,
         ImageModule,
-        InputNumberFieldComponent
+        InputNumberFieldComponent,
+        ColorPickerModule
 
     ],
     providers: [NgxImageCompressService],

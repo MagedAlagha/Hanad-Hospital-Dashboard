@@ -15,6 +15,7 @@ export class AdvertisementsService {
 
     store = new BehaviorSubject<jobFunctionalModel>({
         dataTable: { data: [], loading: false },
+        codes: undefined,
     });
     store$ = this.store.asObservable();
     updateStore(newSate: jobFunctionalModel) {
@@ -57,6 +58,17 @@ export class AdvertisementsService {
         });
     }
 
+    getCodes() {
+        this.getFormApi(
+            'Codes/CodesSelect',
+            'codes',
+            {
+                ParentID:4
+            },
+
+        );
+    }
+
     getFormApi(
         api: string,
         selector: selectorsType,
@@ -74,5 +86,6 @@ export class AdvertisementsService {
 }
 export interface jobFunctionalModel {
     dataTable?: { data: any; loading: boolean };
+    codes?:any
 }
 export type selectorsType = keyof jobFunctionalModel;

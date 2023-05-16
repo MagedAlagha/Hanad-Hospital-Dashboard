@@ -1,7 +1,7 @@
 <div class="card">
     <div class="flex flex-column md:flex-row mb-3">
         <div class="text-900 text-xl font-semibold mb-3 md:mb-0">
-            المعلومات الاساسية -الفوتر
+            الإعدادات العامة - الفوتر
         </div>
     </div>
     <hr />
@@ -119,6 +119,24 @@
                 <app-input-field
                     [label]="'الايميل'"
                     formControlName="Email"
+                >
+                </app-input-field>
+            </div>
+            <div class="col-12 mb-2 lg:mb-0">
+                الصفحة الرئيسية
+               <hr>
+            </div>
+            <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                <app-input-field
+                    [label]="'رابط حجز الموعد'"
+                    formControlName="BookAppointment"
+                >
+                </app-input-field>
+            </div>
+            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                <app-input-field
+                    [label]="'عنوان قسم المنوعات'"
+                    formControlName="HomeVariousTitleAr"
                 >
                 </app-input-field>
             </div>

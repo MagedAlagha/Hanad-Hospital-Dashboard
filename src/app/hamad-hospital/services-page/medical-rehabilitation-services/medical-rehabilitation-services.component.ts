@@ -100,7 +100,7 @@ export class MedicalRehabilitationServicesComponent implements OnInit {
 
     clear(){
       this.formOutpatient.reset()
-      this.formOutpatient.get('TypeID')?.patchValue(3);
+      this.formOutpatient.get('TypeID')?.patchValue(1);
       this.formOutpatient.get('IsActive')?.patchValue(false);
       this.formOutpatient.get('NameAr')?.patchValue('');
       this.formOutpatient.get('NameEn')?.patchValue('نص');

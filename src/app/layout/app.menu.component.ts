@@ -104,14 +104,14 @@ export class AppMenuComponent implements OnInit {
                         {
                             id: '3',
 
-                            label: 'اعلان التوظيف',
+                            label: 'إعلانات',
                             icon: 'pi pi-compass',
                             routerLink: ['/hamad-hospital/advertisements'],
                         },
                         {
                             id: '4',
 
-                            label: 'اعدادات الموقع',
+                            label: 'اعدادات عامة',
                             icon: 'pi pi-box',
                             routerLink: ['/hamad-hospital/main-info'],
                         },
