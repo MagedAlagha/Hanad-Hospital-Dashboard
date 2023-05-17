@@ -171,7 +171,10 @@ export class MediaCenterComponent implements OnInit {
                     ID: this.ID,
                 })
                 .subscribe((value: any) => {
-                    this.saveImageSection(value?.rv);
+                    if(value){
+                        this.saveImageSection(value?.rv);
+
+                    }
                     this.clear();
                 });
         }
@@ -203,7 +206,6 @@ export class MediaCenterComponent implements OnInit {
 
     edit(item: any) {
         this.clear();
-
         this.Form_MediaSectionsItems.patchValue(item);
         this.fileUpload.takeNameReturnFilesSelected([
             item?.ImagePath?.split('/')?.pop(),
@@ -219,7 +221,8 @@ export class MediaCenterComponent implements OnInit {
     /* ********************************************************** */
 
     saveImageSection(ID: any) {
-        this._mediaCenterService
+        if(this.fileSelected2?.length){
+            this._mediaCenterService
             .saveImageSection(
                 {
                     ...this.Form_ImageSection.value,
@@ -231,6 +234,8 @@ export class MediaCenterComponent implements OnInit {
             .subscribe((VALUE) => {
                 this.fileUploadD.clear();
             });
+        }
+
     }
 
     clearImageSection() {
