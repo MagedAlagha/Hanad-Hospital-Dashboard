@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { MediaCenterService } from './media-center.service';
 import { Table } from 'primeng/table';
 import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/upload-files.component';
+import { HomeService } from '../home/home.service';
 
 @Component({
     selector: 'app-media-center',
@@ -53,7 +54,7 @@ export class MediaCenterComponent implements OnInit {
         private fb: FormBuilder,
         private messageService: MessageService,
         private _translateService: TranslateService,
-        private renderer: Renderer2
+        private _homeService:HomeService
     ) {
         this.Form_MediaSectionsItems = fb.group({
             MediaSectionID: ['', Validators.required],
@@ -64,6 +65,7 @@ export class MediaCenterComponent implements OnInit {
             DescEn: [' نص'],
             MainServiceID: [''],
             VideoPath: [''],
+            ItemDate:[''],
             IsActive: [false],
             ShowHome: [false],
             ShowVarious: [false],
@@ -116,7 +118,7 @@ export class MediaCenterComponent implements OnInit {
             );
 
         this.addPhotosDialog$ =
-            this._mediaCenterService.Selector$('addPhotosDialog');
+        this._mediaCenterService.Selector$('addPhotosDialog');
         this.MediaType$ = this._mediaCenterService.Selector$('MediaType');
     }
 
@@ -201,6 +203,8 @@ export class MediaCenterComponent implements OnInit {
         this.ID = item.ID;
         this.ShowHome(item?.ShowHome);
         window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        this._mediaCenterService.store.value.ItemID = this.ID;
     }
     deleteItem(item: any) {
         this._mediaCenterService.deleteMediaSectionsItems(item.ID);
@@ -208,8 +212,11 @@ export class MediaCenterComponent implements OnInit {
 
     addPhotosDialog(item?: any) {
         this._mediaCenterService.displayDialogs('addPhotosDialog', true, item);
-        this.itemShow = item.ID;
-        this._mediaCenterService.getImageSection(item.ID);
+        if(this.ID){
+            this._mediaCenterService.getImageSection(this.ID);
+        }else{
+            this._mediaCenterService.dataStore.ImageSection = {data:null , loading: false}
+        }
     }
 
     onGlobalFilter(table: Table, event: Event) {
@@ -299,5 +306,20 @@ export class MediaCenterComponent implements OnInit {
         } else {
             this.Form_MediaSectionsItems.get('VideoPath')?.enable();
         }
+    }
+
+    onRowReorder(event: any, value: any) {
+        console.log('event', event);
+        console.log('value', value);
+        console.log('value', value);
+        let newVlue = value?.data.map((element: any, index: any) => {
+            return { id: element.ID, sorting: index };
+        });
+        console.log('newVlue', newVlue);
+        this._homeService.RowReorder(newVlue , 'MediaSectionsItems').subscribe((res: any) => {
+            if (res.rv > 0) {
+                this._homeService.getSliderData();
+            }
+        });
     }
 }

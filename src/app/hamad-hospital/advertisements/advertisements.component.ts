@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { Observable, map } from 'rxjs';
 import { AdvertisementsService } from './advertisements.service';
+import { HomeService } from '../home/home.service';
 
 @Component({
     selector: 'app-advertisements',
@@ -19,6 +20,7 @@ export class AdvertisementsComponent implements OnInit {
         private _advertisementsService: AdvertisementsService,
         private messageService: MessageService,
         private _translateService: TranslateService,
+        private _homeService:HomeService,
         fb: FormBuilder
     ) {
         this.formAdvertisements = fb.group({
@@ -86,4 +88,19 @@ export class AdvertisementsComponent implements OnInit {
     onChange(event:any){
 
     }
+
+
+    onRowReorder(event: any, value: any) {
+        console.log('event', event);
+        console.log('value', value);
+        console.log('value', value);
+        let newVlue = value?.data.map((element: any, index: any) => {
+            return { id: element.ID, sorting: index };
+        });
+        console.log('newVlue', newVlue);
+        this._homeService.RowReorder(newVlue , 'Advertisements').subscribe();
+    }
+
+
+
 }

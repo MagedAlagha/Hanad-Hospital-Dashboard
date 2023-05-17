@@ -196,8 +196,7 @@
             </app-input-field>
             </div>
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-                <app-input-number-field   label="الترتيب"
-                formControlName="Sorting"></app-input-number-field>
+                <app-input-number-field  [label]="'الترتيب'" formControlName="Sorting"></app-input-number-field>
             </div>
             <div
                 class="col-12 mb-2 lg:col-1 lg:mb-0 align-items-center justify-content-evenly"
@@ -237,6 +236,8 @@
 
     <ng-container *ngIf="Stats$ | async as data">
         <p-table
+            (onRowReorder)="onRowReorder($event, data)"
+            [reorderableColumns]="true"
             styleClass="p-datatable-gridlines"
             [rows]="10"
             [paginator]="true"
@@ -278,9 +279,12 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item let-index="rowIndex">
-                <tr>
+                <tr [pReorderableRow]="index">
                     <td>
-                        <span class="reorder-row-icon">{{ index + 1 }}</span>
+                        <span
+                            class="pi pi-bars"
+                            pReorderableRowHandle
+                        ></span>
                     </td>
                     <td>{{ item.NameAr }}</td>
                     <!-- <td>{{ item.NameEn }}</td> -->

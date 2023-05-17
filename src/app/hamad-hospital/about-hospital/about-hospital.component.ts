@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { AboutHospitalService } from './about-hospital.service';
 import { ViewportScroller , DOCUMENT } from '@angular/common';
+import { HomeService } from '../home/home.service';
 
 @Component({
     selector: 'app-about-hospital',
@@ -24,6 +25,7 @@ export class AboutHospitalComponent implements OnInit {
         private messageService: MessageService,
         private _translateService: TranslateService ,
         private  _viewportScroller: ViewportScroller ,
+        private _homeService:HomeService
 
     ) {
         this.Form_AboutHospital = fb.group({
@@ -84,4 +86,23 @@ console.log('fsfsfeg')
             item
         );
     }
+
+
+    onRowReorder(event: any, value: any) {
+        console.log('event', event);
+        console.log('value', value);
+        console.log('value', value);
+        let newVlue = value?.data.map((element: any, index: any) => {
+            return { id: element.ID, sorting: index };
+        });
+        console.log('newVlue', newVlue);
+        this._homeService.RowReorder(newVlue , 'AboutHospitalPoints').subscribe((res: any) => {
+            if (res.rv > 0) {
+                this._homeService.getSliderData();
+            }
+        });
+    }
+
+
+
 }

@@ -18,6 +18,7 @@ export class MediaCenterService {
         MediaType:undefined,
         ImageSection: { data: [], loading: false },
         addPhotosDialog: { isOpen: false, data: '' },
+        ItemID: undefined,
     });
     store$ = this.store.asObservable();
     updateStore(newSate: jobFunctionalModel) {
@@ -141,5 +142,6 @@ export interface jobFunctionalModel {
     MediaType?: any;
     ImageSection?: { data: any; loading: boolean };
     addPhotosDialog?: { isOpen: false; data: any };
+    ItemID?: any;
 }
 export type selectorsType = keyof jobFunctionalModel;

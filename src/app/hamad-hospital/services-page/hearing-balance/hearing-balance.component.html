@@ -1,6 +1,6 @@
 <div class="flex flex-column md:flex-row mb-3">
     <div class="text-900 text-xl font-bold mb-3 md:mb-0">
-        الاقسام الرئيسية
+        التأهيل الطبي
     </div>
 </div>
 <hr />
@@ -57,6 +57,8 @@
     <br />
     <ng-container *ngIf="getOutpatientClinicsDepartments$ | async as data">
         <p-table
+        (onRowReorder)="onRowReorder($event, data)"
+            [reorderableColumns]="true"
             styleClass="p-datatable-gridlines"
             [rows]="5"
             [paginator]="true"
@@ -93,9 +95,12 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item let-index="rowIndex">
-                <tr>
+                <tr [pReorderableRow]="index">
                     <td>
-                        <span class="reorder-row-icon">{{ index + 1 }}</span>
+                        <span
+                            class="pi pi-bars"
+                            pReorderableRowHandle
+                        ></span>
                     </td>
                     <td>{{ item.NameAr }}</td>
                     <td>{{ item.CreatedDate  | date}}</td>
@@ -208,10 +213,12 @@
     <br />
     <ng-container *ngIf="OutpatientClinicsDepartmentsServices$ | async as data">
         <p-table
+            (onRowReorder)="onRowReorder2($event, data)"
+            [reorderableColumns]="true"
             styleClass="p-datatable-gridlines"
             [rows]="5"
             [paginator]="true"
-           [style.width]="'100%'"
+            [style.width]="'100%'"
             [value]="data"
             [loading]="data.loading"
             [rowsPerPageOptions]="[10, 25, 50]"
@@ -248,9 +255,12 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item let-index="rowIndex">
-                <tr class="editor-html">
+                <tr class="editor-html" [pReorderableRow]="index">
                     <td>
-                        <span class="reorder-row-icon">{{ index + 1 }}</span>
+                        <span
+                            class="pi pi-bars"
+                            pReorderableRowHandle
+                        ></span>
                     </td>
 
                     <td [width]="'30%'" [innerHTML]="item.DescAr| slice:0:100"></td>

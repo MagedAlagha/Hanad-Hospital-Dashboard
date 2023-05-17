@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { MainInfoService } from './main-info.service';
+import { HomeService } from '../home/home.service';
 
 @Component({
     selector: 'app-main-info',
@@ -17,8 +18,8 @@ export class MainInfoComponent implements OnInit {
     ID: any;
     Stats$!: Observable<any>;
     @ViewChild('fileUpload') fileUpload: any;
-    constructor(private _mainInfoService: MainInfoService, fb: FormBuilder  , private messageService: MessageService,
-        private _translateService: TranslateService) {
+    constructor(private _mainInfoService: MainInfoService, fb: FormBuilder  , private messageService: MessageService,private _homeService:HomeService
+       , private _translateService: TranslateService) {
         this.formMainInfo = fb.group({
             HospitalNameAr: ['نص'],
             HospitalNamEn: ['نص'],
@@ -37,7 +38,7 @@ export class MainInfoComponent implements OnInit {
             Email: [''],
             HomeVariousTitleAr: [''],
             HomeVariousTitleEn: ['نص'],
-            BookAppointment: ['نص'],
+            BookAppointment: [''],
             LogoImagePath: [''],
         });
         this.formStats = fb.group({
@@ -46,7 +47,7 @@ export class MainInfoComponent implements OnInit {
             NameEn: ['نص'],
             Count: [''],
             IsActive: [false],
-            Sorting: [''],
+            Sorting: [null],
         });
     }
 
@@ -104,5 +105,16 @@ export class MainInfoComponent implements OnInit {
     }
     deleteItem(item?: any) {
         this._mainInfoService.deleteStats(item.ID);
+    }
+
+
+    onRowReorder(event: any, value: any) {
+        console.log('event', event);
+        console.log('value', value);
+        let newVlue = value?.data.map((element: any, index: any) => {
+            return { id: element.ID, sorting: index };
+        });
+        console.log('newVlue', newVlue);
+        this._homeService.RowReorder(newVlue , 'Stats').subscribe();
     }
 }

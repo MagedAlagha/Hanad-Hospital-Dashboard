@@ -115,6 +115,8 @@
     <ng-container *ngIf="dataTable$ | async as data">
         <p-table
             styleClass="p-datatable-gridlines"
+            (onRowReorder)="onRowReorder($event, data)"
+            [reorderableColumns]="true"
             [rows]="10"
             [paginator]="true"
             [style.width]="'100%'"
@@ -153,10 +155,13 @@
                     <th class="text-center">الاجراءات</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-item let-index="rowIndex">
-                <tr>
+            <ng-template  pTemplate="body" let-item let-index="rowIndex">
+                <tr [pReorderableRow]="index">
                     <td>
-                        <span class="reorder-row-icon">{{ index + 1 }}</span>
+                        <span
+                            class="pi pi-bars"
+                            pReorderableRowHandle
+                        ></span>
                     </td>
                     <td>{{ item.TitleAr }}</td>
                     <!-- <td>{{ item.TitleEn }}</td> -->

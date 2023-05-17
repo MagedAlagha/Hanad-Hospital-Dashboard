@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
     @ViewChild('fileUpload') fileUpload: any;
     imgResultBeforeCompression: string = '';
     imgResultAfterCompression: string = '';
-
     constructor(
         fb: FormBuilder,
         private _homeService: HomeService,
@@ -99,5 +98,20 @@ export class HomeComponent implements OnInit {
         this.ID = null;
         this.fileSelected = null;
         this.fileUpload.clear();
+    }
+
+    onRowReorder(event: any, value: any) {
+        console.log('event', event);
+        console.log('value', value);
+        console.log('value', value);
+        let newVlue = value?.data.map((element: any, index: any) => {
+            return { id: element.ID, sorting: index };
+        });
+        console.log('newVlue', newVlue);
+        this._homeService.RowReorder(newVlue , 'HeaderSlider').subscribe((res: any) => {
+            if (res.rv > 0) {
+                this._homeService.getSliderData();
+            }
+        });
     }
 }

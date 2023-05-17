@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, distinctUntilChanged, map } from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, map, tap } from 'rxjs';
 import { getFormApiGonfig } from 'src/app/shared/models';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { GetFormApiService } from 'src/app/shared/services/functionsForHandelWithApi/getFormApi.service';
@@ -60,6 +60,13 @@ getService() {
 }
 getStats() {
     this.getFormApi('Stats/StatsSearch', 'Stats');
+}
+
+
+RowReorder(data: any , TableName?:any) {
+    return this._http
+        .saveDataArray(`Codes/TableSortingSave/Sorting?TableName=${TableName}` , data )
+
 }
 
 /*  ******* Save Data Services ******* */

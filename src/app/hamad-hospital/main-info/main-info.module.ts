@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CheckBoxComponent } from 'src/app/shared/Module-shared/check-box/check-box.component';
 import { FileUploadModule } from 'primeng/fileupload';
 import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/upload-files.component';
+import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-number-field/input-number-field.component';
 
 
 
@@ -36,6 +37,7 @@ import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/
     CheckBoxComponent,
     FileUploadModule,
     UploadFilesComponent,
+    InputNumberFieldComponent
  ]
 })
 export class MainInfoModule { }

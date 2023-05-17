@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { Observable, map } from 'rxjs';
 import { ServicesPageService } from '../services-page.service';
+import { HomeService } from '../../home/home.service';
 
 @Component({
   selector: 'app-medical-rehabilitation-services',
@@ -27,7 +28,9 @@ export class MedicalRehabilitationServicesComponent implements OnInit {
         fb: FormBuilder,
         private _servicesPageService: ServicesPageService ,
         private messageService: MessageService,
-        private _translateService: TranslateService
+        private _translateService: TranslateService ,
+        private _homeService: HomeService
+
     ) {
         this.formOutpatient = fb.group({
             ID: [],
@@ -150,7 +153,6 @@ export class MedicalRehabilitationServicesComponent implements OnInit {
     this.formSections.get('NameEn')?.patchValue('نص');
     this.formSections.get('DescEn')?.patchValue('نص');
     this.formSections.get('DescAr')?.patchValue('');
-
     }
 
 
@@ -161,5 +163,27 @@ export class MedicalRehabilitationServicesComponent implements OnInit {
     deleteServices(item: any){
       this._servicesPageService.deleteOutpatientClinicsDepartmentsServices(item.ID);
     }
+
+    onRowReorder(event: any, value: any) {
+        console.log('event', event);
+        console.log('value', value);
+        console.log('value', value);
+        let newVlue = value?.map((element: any, index: any) => {
+            return { id: element.ID, sorting: index };
+        });
+        console.log('newVlue', newVlue);
+        this._homeService.RowReorder(newVlue , 'OutpatientClinicsDepartments').subscribe();
+    }
+    onRowReorder2(event: any, value: any) {
+        console.log('event', event);
+        console.log('value', value);
+        console.log('value', value);
+        let newVlue = value?.map((element: any, index: any) => {
+            return { id: element.ID, sorting: index };
+        });
+        console.log('newVlue', newVlue);
+        this._homeService.RowReorder(newVlue , 'OutpatientClinicsDepartmentsServices').subscribe();
+    }
+
 
 }

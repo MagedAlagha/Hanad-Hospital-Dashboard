@@ -87,6 +87,7 @@
     <br />
     <ng-container *ngIf="sliderData$ | async as data">
         <p-table
+           (onRowReorder)="onRowReorder($event, data)"
             styleClass="p-datatable-gridlines"
             [rows]="10"
             [paginator]="true"
@@ -94,6 +95,7 @@
             [value]="data.data"
             #dt1
             [loading]="data.loading"
+            [reorderableColumns]="true"
             [rowsPerPageOptions]="[10, 25, 50]"
             sortMode="multiple"
         >
@@ -111,20 +113,23 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
-                    <th pSortableColumn="TitleAr" class="text-center">العنوان <p-sortIcon ></p-sortIcon></th>
+                    <th pSortableColumn="TitleAr"  class="text-center">العنوان <p-sortIcon ></p-sortIcon></th>
                     <!-- <th class="text-center">العنوان انجليزي</th> -->
-                    <th pSortableColumn="CreatedDate" class="text-center">تاريخ النشر <p-sortIcon></p-sortIcon></th>
-                    <th class="text-center">الحالة</th>
-                    <th class="text-center">ظهور العنوان</th>
-                    <th class="text-center">الترتيب</th>
-                    <th class="text-center">الصورة</th>
+                    <th pSortableColumn="CreatedDate"  class="text-center">تاريخ النشر <p-sortIcon></p-sortIcon></th>
+                    <th class="text-center" >الحالة</th>
+                    <th class="text-center" >ظهور العنوان</th>
+                    <th class="text-center" >الترتيب</th>
+                    <th class="text-center" >الصورة</th>
                     <th class="text-center">الاجراءات</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item let-index="rowIndex">
-                <tr>
+                <tr [pReorderableRow]="index">
                     <td>
-                        <span class="reorder-row-icon">{{ index + 1 }}</span>
+                        <span
+                            class="pi pi-bars"
+                            pReorderableRowHandle
+                        ></span>
                     </td>
                     <td [width]="'30%'">{{ item.TitleAr }}</td>
                     <td>{{ item.CreatedDate  | date}}</td>
