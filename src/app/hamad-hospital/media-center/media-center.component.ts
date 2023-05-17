@@ -26,12 +26,13 @@ export class MediaCenterComponent implements OnInit {
     Form_MediaSectionsItems!: FormGroup;
     fileSelected: any;
     fileSelected2: any;
-    fileSelected3: any;
     addPhotosDialog$!: Observable<any>;
     MediaSectionsItems$!: Observable<any>;
     MediaType$!: Observable<any>;
     itemShow: any;
     ID: any;
+    Form_ImageSection!: FormGroup;
+
     @ViewChild('fileUpload') fileUpload!: UploadFilesComponent;
     Avatar = environment.FileUrl;
     isEn = document.dir == 'ltr' ? true : false;
@@ -70,6 +71,10 @@ export class MediaCenterComponent implements OnInit {
             ShowHome: [false],
             ShowVarious: [false],
             Sorting: [null],
+        });
+
+        this.Form_ImageSection = fb.group({
+            Sorting: [''],
         });
     }
 
@@ -203,20 +208,68 @@ export class MediaCenterComponent implements OnInit {
         this.ID = item.ID;
         this.ShowHome(item?.ShowHome);
         window.scrollTo({ top: 0, behavior: 'smooth' });
-
-        this._mediaCenterService.store.value.ItemID = this.ID;
     }
     deleteItem(item: any) {
         this._mediaCenterService.deleteMediaSectionsItems(item.ID);
     }
 
+
+    /* ********************************************************** */
+
+    saveImageSection() {
+        if(!this.ID){
+            if (this.Form_ImageSection.invalid) {
+                this.messageService.add({
+                    severity: 'error',
+                    detail: this._translateService.instant('الحقول مطلوبة'),
+                });
+            } else {
+                this._mediaCenterService
+                    .saveImageSection({
+                        ...this.Form_ImageSection.value,
+                        ImagePath: this.fileSelected2,
+                        MediaSectionsItemID: this.data.ID,
+                    })
+                    .subscribe((value) =>
+                        this._mediaCenterService.getImageSection(this.itmsID)
+                    );
+
+                this.clearImageSection();
+            }
+        }else{
+            if (this.Form_ImageSection.invalid) {
+                this.messageService.add({
+                    severity: 'error',
+                    detail: this._translateService.instant('الحقول مطلوبة'),
+                });
+            } else {
+                this._mediaCenterService
+                    .saveImageSection({
+                        ...this.Form_ImageSection.value,
+                        ImagePath: this.fileSelected,
+                        MediaSectionsItemID: this.data.ID,
+                    })
+                    .subscribe((value) =>
+                        this._mediaCenterService.getImageSection(this.itmsID)
+                    );
+
+                this.clearImageSection();
+            }
+        }
+    }
+    clearImageSection() {
+        this.Form_ImageSection.reset();
+        this.fileUpload.clear();
+        this.ID = null;
+    }
+
+
+    /* ********************************************************** */
+
     addPhotosDialog(item?: any) {
         this._mediaCenterService.displayDialogs('addPhotosDialog', true, item);
-        if(this.ID){
-            this._mediaCenterService.getImageSection(this.ID);
-        }else{
-            this._mediaCenterService.dataStore.ImageSection = {data:null , loading: false}
-        }
+        this.itemShow = item.ID;
+        this._mediaCenterService.getImageSection(item.ID);
     }
 
     onGlobalFilter(table: Table, event: Event) {

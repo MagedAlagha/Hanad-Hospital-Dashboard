@@ -33,10 +33,11 @@ export class AddPhotosModalComponent implements OnInit {
 
     ngOnInit(): void {
         this.ImageSection$ = this._mediaCenterService.Selector$('ImageSection');
-        this.data = this._mediaCenterService.dataStore.ItemID;
+        this.data = this._mediaCenterService.dataStore.addPhotosDialog?.data;
         if (this.data) {
-            /*   this.Form_ImageSection.patchValue(this.data); */
-            this.itmsID = this.data;
+              /*  this.Form_ImageSection.patchValue(this.data); */
+               this.itmsID = this.data.ID;
+
         }
     }
     saveImageSection() {
@@ -51,17 +52,10 @@ export class AddPhotosModalComponent implements OnInit {
                     .saveImageSection({
                         ...this.Form_ImageSection.value,
                         ImagePath: this.fileSelected,
-                        MediaSectionsItemID: this.data,
+                        MediaSectionsItemID: this.data.ID,
                     })
                     .subscribe((value) =>
-                       {
-                        if(this.itmsID){
-                            this._mediaCenterService.getImageSection(this.itmsID)
-                        }else{
-
-                        }
-
-                       }
+                        this._mediaCenterService.getImageSection(this.itmsID)
                     );
 
                 this.clearImageSection();
@@ -78,7 +72,6 @@ export class AddPhotosModalComponent implements OnInit {
                         ...this.Form_ImageSection.value,
                         ImagePath: this.fileSelected,
                         MediaSectionsItemID: this.data.ID,
-                        ID:this.ID
                     })
                     .subscribe((value) =>
                         this._mediaCenterService.getImageSection(this.itmsID)
