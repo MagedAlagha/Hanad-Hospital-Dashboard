@@ -1,6 +1,6 @@
 import { saveAs } from 'file-saver';
 import { tap, map } from 'rxjs/operators';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import * as moment from 'moment';
@@ -93,8 +93,6 @@ export class HttpService {
             type: EXCEL_TYPE,
         });
         saveAs(blobData, Name);
-
-
     }
     saveData(route: string, body: any) {
         return this.http.post(this.baseUrl + route, this.convartData(body));
@@ -144,7 +142,8 @@ export class HttpService {
                 })
             );
     }
-    saveFormData(route: string, body: any) {
+    saveFormData(route: string, body: any, skip?: string) {
+        console.log('skip',skip)
         const data = new FormData();
         Object.keys(body).forEach((key) => {
             if (body[key] instanceof Date)
@@ -154,13 +153,16 @@ export class HttpService {
                     data.append(key, element);
                 });
             } else {
-                if( body[key]!=null){
+                if (body[key] != null) {
                     data.append(key, body[key]);
                 }
-
             }
         });
-        return this.http.post(this.baseUrl + route, data);
+        return this.http.post(this.baseUrl + route, data, {
+            headers: new HttpHeaders({
+                'skip':skip!||''
+            })
+        });
     }
     updateFormData(route: string, body: any) {
         const data = new FormData();

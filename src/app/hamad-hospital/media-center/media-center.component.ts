@@ -34,6 +34,7 @@ export class MediaCenterComponent implements OnInit {
     Form_ImageSection!: FormGroup;
 
     @ViewChild('fileUpload') fileUpload!: UploadFilesComponent;
+    @ViewChild('fileUploadD') fileUploadD!: UploadFilesComponent;
     Avatar = environment.FileUrl;
     isEn = document.dir == 'ltr' ? true : false;
     MainService?: any[];
@@ -55,7 +56,7 @@ export class MediaCenterComponent implements OnInit {
         private fb: FormBuilder,
         private messageService: MessageService,
         private _translateService: TranslateService,
-        private _homeService:HomeService
+        private _homeService: HomeService
     ) {
         this.Form_MediaSectionsItems = fb.group({
             MediaSectionID: ['', Validators.required],
@@ -66,7 +67,7 @@ export class MediaCenterComponent implements OnInit {
             DescEn: [' نص'],
             MainServiceID: [''],
             VideoPath: [''],
-            ItemDate:[''],
+            ItemDate: [''],
             IsActive: [false],
             ShowHome: [false],
             ShowVarious: [false],
@@ -123,7 +124,7 @@ export class MediaCenterComponent implements OnInit {
             );
 
         this.addPhotosDialog$ =
-        this._mediaCenterService.Selector$('addPhotosDialog');
+            this._mediaCenterService.Selector$('addPhotosDialog');
         this.MediaType$ = this._mediaCenterService.Selector$('MediaType');
     }
 
@@ -155,7 +156,8 @@ export class MediaCenterComponent implements OnInit {
                             ...this.Form_MediaSectionsItems.value,
                             ImagePath: this.fileSelected,
                         })
-                        .subscribe((value) => {
+                        .subscribe((value: any) => {
+                            this.saveImageSection(value?.rv);
                             this.clear();
                         });
                 }
@@ -168,7 +170,8 @@ export class MediaCenterComponent implements OnInit {
                     ImagePath: this.fileSelected,
                     ID: this.ID,
                 })
-                .subscribe((value) => {
+                .subscribe((value: any) => {
+                    this.saveImageSection(value?.rv);
                     this.clear();
                 });
         }
@@ -213,56 +216,28 @@ export class MediaCenterComponent implements OnInit {
         this._mediaCenterService.deleteMediaSectionsItems(item.ID);
     }
 
-
     /* ********************************************************** */
 
-    saveImageSection() {
-        if(!this.ID){
-            if (this.Form_ImageSection.invalid) {
-                this.messageService.add({
-                    severity: 'error',
-                    detail: this._translateService.instant('الحقول مطلوبة'),
-                });
-            } else {
-                this._mediaCenterService
-                    .saveImageSection({
-                        ...this.Form_ImageSection.value,
-                        ImagePath: this.fileSelected2,
-                        MediaSectionsItemID: this.data.ID,
-                    })
-                    .subscribe((value) =>
-                        this._mediaCenterService.getImageSection(this.itmsID)
-                    );
-
-                this.clearImageSection();
-            }
-        }else{
-            if (this.Form_ImageSection.invalid) {
-                this.messageService.add({
-                    severity: 'error',
-                    detail: this._translateService.instant('الحقول مطلوبة'),
-                });
-            } else {
-                this._mediaCenterService
-                    .saveImageSection({
-                        ...this.Form_ImageSection.value,
-                        ImagePath: this.fileSelected,
-                        MediaSectionsItemID: this.data.ID,
-                    })
-                    .subscribe((value) =>
-                        this._mediaCenterService.getImageSection(this.itmsID)
-                    );
-
-                this.clearImageSection();
-            }
-        }
+    saveImageSection(ID: any) {
+        this._mediaCenterService
+            .saveImageSection(
+                {
+                    ...this.Form_ImageSection.value,
+                    ImagePath: this.fileSelected2,
+                    MediaSectionsItemID: ID,
+                },
+                'true'
+            )
+            .subscribe((VALUE) => {
+                this.fileUploadD.clear();
+            });
     }
+
     clearImageSection() {
         this.Form_ImageSection.reset();
         this.fileUpload.clear();
         this.ID = null;
     }
-
 
     /* ********************************************************** */
 
@@ -369,10 +344,12 @@ export class MediaCenterComponent implements OnInit {
             return { id: element.ID, sorting: index };
         });
         console.log('newVlue', newVlue);
-        this._homeService.RowReorder(newVlue , 'MediaSectionsItems').subscribe((res: any) => {
-            if (res.rv > 0) {
-                this._homeService.getSliderData();
-            }
-        });
+        this._homeService
+            .RowReorder(newVlue, 'MediaSectionsItems')
+            .subscribe((res: any) => {
+                if (res.rv > 0) {
+                    this._homeService.getSliderData();
+                }
+            });
     }
 }

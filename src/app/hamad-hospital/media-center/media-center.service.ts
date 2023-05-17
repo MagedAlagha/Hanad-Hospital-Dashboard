@@ -92,11 +92,11 @@ export class MediaCenterService {
  /*    MediaSectionID: 2 */
 
     /*  *******  Start ImageSection - API ******* */
-    saveImageSection(data: any) {
+    saveImageSection(data: any,skip?:string) {
         return this._http
             .saveFormData(
                 'MediaSectionsItemsImages/MediaSectionsItemsImagesSave',
-                data
+                data,skip
             )
     }
   /*   MediaSectionsItemID: 1 */

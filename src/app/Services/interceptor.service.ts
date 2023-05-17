@@ -32,7 +32,8 @@ export class InterceptorService implements HttpInterceptor {
         req: HttpRequest<HttpEvent<any>>,
         next: HttpHandler
     ): Observable<any> {
-        console.log('dddd')
+     let skip=req.headers.get('skip')
+        console.log('dddd',skip)
         if (this.router.url.includes('KGguardians')) {
             if (this._authGuardiansService.isActive) {
                 req = req.clone({
@@ -60,7 +61,8 @@ export class InterceptorService implements HttpInterceptor {
 
         const reqAfterClone = next.handle(req).pipe(
             mergeMap((value: any) => {
-                if (value instanceof HttpResponse) {
+
+                if (value instanceof HttpResponse&&skip!='true') {
                     if (typeof value!.body! === 'string') {
                         const response = this.HandleStringResponse(value!.body);
                         if (response!.status! > 0 && response!.message) {
