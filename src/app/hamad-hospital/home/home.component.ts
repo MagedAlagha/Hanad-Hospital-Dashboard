@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
             TitleAr: ['', Validators.required],
             TitleEn: ['نص'],
             Link: [''],
-            TitleBackgroundColor: [''],
+            TitleBackgroundColor: [null],
             Sorting: [''],
             IsActive: [false],
             ShowTitle: [false],
