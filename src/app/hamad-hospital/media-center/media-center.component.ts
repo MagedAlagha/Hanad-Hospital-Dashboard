@@ -341,7 +341,7 @@ export class MediaCenterComponent implements OnInit {
         }
     }
 
-    onRowReorder(event: any, value: any) {
+    /* onRowReorder(event: any, value: any) {
         console.log('event', event);
         console.log('value', value);
         console.log('value', value);
@@ -353,8 +353,23 @@ export class MediaCenterComponent implements OnInit {
             .RowReorder(newVlue, 'MediaSectionsItems')
             .subscribe((res: any) => {
                 if (res.rv > 0) {
-                    this._homeService.getSliderData();
+                    this._homeService.getMediaSectionsItems();
                 }
             });
+    } */
+
+
+    onRowReorder(event: any, value: any) {
+        console.log('event', event);
+        console.log('value', value);
+        let newVlue = value?.data.map((element: any, index: any) => {
+            return { id: element.ID, sorting: index };
+        });
+        console.log('newVlue', newVlue);
+        this._homeService.RowReorder(newVlue , 'MediaSectionsItems').subscribe(value=>{
+           /*  this._mediaCenterService.getMediaSectionsItems() */
+        });
     }
+
+
 }

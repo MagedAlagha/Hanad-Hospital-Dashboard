@@ -17,8 +17,8 @@ import { TabViewModule } from 'primeng/tabview';
 import { ImageModule } from 'primeng/image';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-number-field/input-number-field.component';
-import {ColorPickerModule} from 'primeng/colorpicker';
 import { DragDropModule } from 'primeng/dragdrop';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
     declarations: [HomeComponent, ServicesCardsComponent],
@@ -44,7 +44,8 @@ import { DragDropModule } from 'primeng/dragdrop';
         ImageModule,
         InputNumberFieldComponent,
         DragDropModule,
-        ColorPickerModule
+        ColorPickerModule,
+
 
     ],
     providers: [NgxImageCompressService],

@@ -9,11 +9,24 @@
         <div class="grid p-fluid mt-3">
             <div class="col-12 mb-2 lg:col-12 lg:mb-0">
                 <app-text-area-field
-                    [rows]="2"
-                    [label]="'وصف الاعلان /عربي'"
+                    [rows]="1"
+                    [label]="'عنوان الإعلان'"
                     formControlName="TitleAr"
                 >
                 </app-text-area-field>
+            </div>
+            <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                    <label for="">الوصف /عربي</label>
+                    <div class="DescAr">
+                        <p-editor
+                            dir="rtl"
+                            formControlName="DescriptionAr"
+                            [style]="{ height: '320px' }"
+                        >
+                        </p-editor>
+                    </div>
+                </div>
             </div>
             <!-- <div class="col-12 mb-2 lg:col-6 lg:mb-0">
                 <app-text-area-field
@@ -144,7 +157,7 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
-                    <th pSortableColumn="TitleAr" class="text-center">الوصف <p-sortIcon ></p-sortIcon></th>
+                    <th pSortableColumn="TitleAr" class="text-center">العنوان <p-sortIcon ></p-sortIcon></th>
                     <!-- <th class="text-center">الوصف انجليزي</th> -->
                     <th class="text-center">لينك التقديم</th>
                     <th pSortableColumn="CreatedDate" class="text-center">

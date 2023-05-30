@@ -25,6 +25,8 @@ export class MainInfoComponent implements OnInit {
             HospitalNamEn: ['نص'],
             AboutAr: [''],
             AboutEn: ['نص'],
+            FooterAr: [''],
+            FooterEn: ['نص'],
             FacebookLink: [''],
             YoutubeLink: [''],
             InstagramLink: [''],

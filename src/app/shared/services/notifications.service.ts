@@ -1,6 +1,4 @@
 import { HttpService } from 'src/app/shared/services/http.service';
-import { AuthService } from './auth.service';
-import { HttpHRService } from 'src/app/shared/services/httpHR.service';
 import { Observable, map, distinctUntilChanged, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 

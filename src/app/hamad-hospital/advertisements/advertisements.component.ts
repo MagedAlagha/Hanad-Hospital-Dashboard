@@ -27,9 +27,11 @@ export class AdvertisementsComponent implements OnInit {
             ID: [],
             TitleAr: ['', Validators.required],
             TitleEn: ['نص'],
-            ButtonAdded: ['',],
+            ButtonAdded: [false],
             ButtonTitleAr: ['' ,Validators.required],
             ButtonTitleEn: ['نص'],
+            DescriptionAr: [''],
+            DescriptionEn: ['نص'],
             ButtonLink: ['',Validators.required],
             CategoryID: [''],
             IsActive: [false ],
@@ -74,6 +76,7 @@ export class AdvertisementsComponent implements OnInit {
         this.formAdvertisements.get('IsActive')?.patchValue(false)
         this.formAdvertisements.get('TitleEn')?.patchValue('نص')
         this.formAdvertisements.get('ButtonTitleEn')?.patchValue('نص')
+        this.formAdvertisements.get('DescriptionEn')?.patchValue('نص')
     }
 
     editItem(items?: any) {

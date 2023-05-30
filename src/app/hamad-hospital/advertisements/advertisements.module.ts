@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CheckBoxComponent } from 'src/app/shared/Module-shared/check-box/check-box.component';
 import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-number-field/input-number-field.component';
 import { SelectFieldComponent } from 'src/app/shared/Module-shared/select-field/select-field.component';
+import { EditorModule } from 'primeng/editor';
 
 
 
@@ -35,7 +36,8 @@ import { SelectFieldComponent } from 'src/app/shared/Module-shared/select-field/
     ReactiveFormsModule,
     CheckBoxComponent,
      InputNumberFieldComponent ,
-     SelectFieldComponent
+     SelectFieldComponent,
+     EditorModule
     ]
 })
 export class AdvertisementsModule { }

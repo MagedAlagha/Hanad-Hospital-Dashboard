@@ -82,4 +82,8 @@ export class CodesComponent {
             this._codesService.getCodes(this.ParentD);
         });
     }
+
+
+
+
 }

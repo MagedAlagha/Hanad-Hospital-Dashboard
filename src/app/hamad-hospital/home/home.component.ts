@@ -4,8 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { HamadHospitalService } from '../hamad-hospital.service';
 import { HomeService } from './home.service';
+import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/upload-files.component';
 
 @Component({
     selector: 'app-home',
@@ -18,8 +18,10 @@ export class HomeComponent implements OnInit {
     sliderData$!: Observable<any>;
     ID: any;
     color1!: string;
+    color:any;
     Avatar = environment.FileUrl;
-    @ViewChild('fileUpload') fileUpload: any;
+    @ViewChild('fileUpload') fileUpload!: UploadFilesComponent;
+
     imgResultBeforeCompression: string = '';
     imgResultAfterCompression: string = '';
     constructor(
@@ -48,28 +50,20 @@ export class HomeComponent implements OnInit {
     }
 
     save() {
-        console.log('fileUpload', this.fileUpload);
         if (this.formSlider.invalid) {
             this.messageService.add({
                 severity: 'error',
                 detail: this._translateService.instant('العنوان مطلوب'),
             });
         } else {
-            if (this.fileSelected||!this.ID) {
-                if (!this.ID) {
+            if (this.fileSelected || this.ID) {
                     this._homeService.saveData({
                         ...this.formSlider.value,
                         Image: this.fileSelected,
+                        TitleBackgroundColor:this.color
                     });
                     this.clear();
-                } else {
-                    this._homeService.saveData({
-                        ...this.formSlider.value,
-                        Image: this.fileSelected,
-                        /*  ID:this.ID */
-                    });
-                    this.clear();
-                }
+
             } else {
                 this.messageService.add({
                     severity: 'error',
@@ -81,15 +75,19 @@ export class HomeComponent implements OnInit {
     }
 
     editItem(item: any) {
+        this.clear();
         this.formSlider.patchValue(item);
-        /* this.ID = item.ID; */
+        this.ID = item.ID;
         window.scrollTo({ top: 0, behavior: 'smooth' });
         this.fileUpload.takeNameReturnFilesSelected([
             item?.ImagePath?.split('/')?.pop(),
-        ]);    }
+        ]);
+    }
+
     deleteItem(item: any) {
         this._homeService.deleteSlider(item.ID);
     }
+
     clear() {
         this.formSlider.reset();
         this.formSlider.get('TitleEn')?.patchValue('نص');
@@ -107,6 +105,7 @@ export class HomeComponent implements OnInit {
         let newVlue = value?.data.map((element: any, index: any) => {
             return { id: element.ID, sorting: index };
         });
+
         console.log('newVlue', newVlue);
         this._homeService.RowReorder(newVlue , 'HeaderSlider').subscribe((res: any) => {
             if (res.rv > 0) {
