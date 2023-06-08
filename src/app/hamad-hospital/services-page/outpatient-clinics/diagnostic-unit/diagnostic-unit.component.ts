@@ -164,11 +164,10 @@ export class DiagnosticUnitComponent {
 
     }
 
-
     editServices(item: any){
     this.formSections.patchValue(item);
-
     }
+
     deleteServices(item: any){
       this._servicesPageService.deleteOutpatientClinicsDepartmentsServices(item.ID);
     }
@@ -193,5 +192,14 @@ export class DiagnosticUnitComponent {
         console.log('newVlue', newVlue);
         this._homeService.RowReorder(newVlue , 'OutpatientClinicsDepartmentsServices').subscribe();
     }
+
+    addDescription(item?: any){
+        this._servicesPageService.displayDialogs(
+            'prostheticsTypesDialog',
+            true,
+            item
+        );
+    console.log("item :" , item)
+}
 
 }

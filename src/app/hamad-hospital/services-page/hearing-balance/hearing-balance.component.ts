@@ -193,4 +193,14 @@ export class HearingBalanceComponent implements OnInit {
         this._homeService.RowReorder(newVlue , 'OutpatientClinicsDepartmentsServices').subscribe();
     }
 
+
+    addDescription(item?: any){
+        this._servicesPageService.displayDialogs(
+            'prostheticsTypesDialog',
+            true,
+            item
+        );
+    console.log("item :" , item)
+}
+
 }

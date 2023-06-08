@@ -92,6 +92,22 @@ export class ServicesCardsComponent implements OnInit {
         this.formServices.get('SupportiveMedicalDescEn')?.patchValue('نص')
         this.formServices.get('OutpatientClinicsDescEn')?.patchValue('نص')
     }
+    editDescription1(item:any){
+       this.formServices.get('MedicalRehabilitationDescAr')?.patchValue(item.MedicalRehabilitationDescAr)
+    }
+    editDescription2(item:any){
+       this.formServices.get('ProstheticsDescAr')?.patchValue(item.ProstheticsDescAr)
+    }
+    editDescription3(item:any){
+       this.formServices.get('HearingDescAr')?.patchValue(item.HearingDescAr)
+    }
+    editDescription4(item:any){
+       this.formServices.get('OutpatientClinicsDescAr')?.patchValue(item.OutpatientClinicsDescAr)
+    }
+    editDescription5(item:any){
+       this.formServices.get('SupportiveMedicalDescAr')?.patchValue(item.SupportiveMedicalDescAr)
+    }
+
     editItem(item:any){
 
     }

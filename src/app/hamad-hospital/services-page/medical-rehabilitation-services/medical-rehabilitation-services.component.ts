@@ -14,12 +14,9 @@ import { HomeService } from '../../home/home.service';
 export class MedicalRehabilitationServicesComponent implements OnInit {
     prosthetics$!: Observable<any>;
     getOutpatientClinicsDepartments$!: Observable<any>;
-    OutpatientClinicsDepartmentsServices$!: Observable<any>;
     formOutpatient!: FormGroup;
-    formSections!: FormGroup;
     fileSelected: any;
     ID:any;
-    Services_ID:any;
     isEn = document.dir == 'ltr' ? true : false;
     fileSelected_2: any;
 
@@ -43,17 +40,7 @@ export class MedicalRehabilitationServicesComponent implements OnInit {
             Sorting: [],
             TypeID: [1],
         });
-        this.formSections = fb.group({
-            ID: [],
-            NameAr: ['نص'],
-            NameEn: ['نص'],
-            DescAr: ['نص'],
-            DescEn: ['نص'],
-            OutpatientClinicsDepartmentID: [null ,Validators.required],
-            IsActive: [false],
-            Sorting: [],
-            TypeID: [1],
-        })
+
     }
 
     ngOnInit() {
@@ -66,15 +53,7 @@ export class MedicalRehabilitationServicesComponent implements OnInit {
             })
           );
 
-
-        this.OutpatientClinicsDepartmentsServices$ = this._servicesPageService.Selector$('OutpatientClinicsDepartmentsServices').pipe(
-            map((val) => {
-              return val?.data?.filter((item: any) => {
-                return item.TypeID == 1;
-              });
-            })
-          );
-        }
+    }
 
     saveFormOutpatient() {
 
@@ -120,49 +99,10 @@ export class MedicalRehabilitationServicesComponent implements OnInit {
         this._servicesPageService.deleteOutpatientClinicsDepartments(item.ID);
     }
 
-    saveFormSections(){
-        if (this.formSections.invalid) {
-            this.messageService.add({
-                severity: 'error',
-                detail: this._translateService.instant(
-                    ' حقل القسم مطلوب '
-                ),
-            });
-        } else{
-
-            console.log(this.formSections.value);
-            if(!this.Services_ID){
-                this._servicesPageService.saveOutpatientClinicsDepartmentsServices(this.formSections.value);
-
-            }else{
-                this._servicesPageService.saveOutpatientClinicsDepartmentsServices({
-                    ...this.formSections.value ,
-                    ID:this.Services_ID
-                });
-
-            }
-            this.clearFormSections();
-        }
-
-    }
-    clearFormSections(){
-    this.formSections.reset();
-    this.formSections.get('TypeID')?.patchValue(1);
-    this.formSections.get('IsActive')?.patchValue(false);
-    this.formSections.get('NameAr')?.patchValue('نص');
-    this.formSections.get('NameEn')?.patchValue('نص');
-    this.formSections.get('DescEn')?.patchValue('نص');
-    this.formSections.get('DescAr')?.patchValue('');
-    }
 
 
-    editServices(item: any){
-    this.formSections.patchValue(item);
 
-    }
-    deleteServices(item: any){
-      this._servicesPageService.deleteOutpatientClinicsDepartmentsServices(item.ID);
-    }
+
 
     onRowReorder(event: any, value: any) {
         console.log('event', event);
@@ -174,16 +114,16 @@ export class MedicalRehabilitationServicesComponent implements OnInit {
         console.log('newVlue', newVlue);
         this._homeService.RowReorder(newVlue , 'OutpatientClinicsDepartments').subscribe();
     }
-    onRowReorder2(event: any, value: any) {
-        console.log('event', event);
-        console.log('value', value);
-        console.log('value', value);
-        let newVlue = value?.map((element: any, index: any) => {
-            return { id: element.ID, sorting: index };
-        });
-        console.log('newVlue', newVlue);
-        this._homeService.RowReorder(newVlue , 'OutpatientClinicsDepartmentsServices').subscribe();
-    }
 
+
+
+    addDescription(item?: any){
+            this._servicesPageService.displayDialogs(
+                'prostheticsTypesDialog',
+                true,
+                item
+            );
+        console.log("item :" , item)
+    }
 
 }

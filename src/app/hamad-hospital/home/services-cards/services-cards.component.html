@@ -48,11 +48,21 @@
                     <ng-template pTemplate="header">
                         <tr>
                             <th class="text-center">وصف التأهيل الطبي</th>
+                            <th class="text-center">تعديل الوصف</th>
                         </tr>
+
                     </ng-template>
                     <ng-template pTemplate="body"  let-index="rowIndex">
                         <tr>
                             <td>{{ data.MedicalRehabilitationDescAr }}</td>
+                            <td>
+                                <app-icon-shared
+                                [Icon]="'pi pi-pencil'"
+                                [classColor]="'var(--blue-400)'"
+                                [pTooltipCustom]="'تعديل الوصف'"
+                                (action)="editDescription1(data)"
+                            ></app-icon-shared>
+                        </td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="emptymessage">
@@ -105,11 +115,21 @@
                     <ng-template pTemplate="header">
                         <tr>
                             <th class="text-center">وصف الأطراف الصناعية</th>
+                            <th class="text-center">تعديل الوصف</th>
+
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body"  let-index="rowIndex">
                         <tr>
                             <td>{{ data.ProstheticsDescAr }}</td>
+                            <td>
+                                <app-icon-shared
+                                [Icon]="'pi pi-pencil'"
+                                [classColor]="'var(--blue-400)'"
+                                [pTooltipCustom]="'تعديل الوصف'"
+                                (action)="editDescription2(data)"
+                            ></app-icon-shared>
+                        </td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="emptymessage">
@@ -167,11 +187,21 @@
                     <ng-template pTemplate="header">
                         <tr>
                             <th class="text-center">وصف السموع والتوازن</th>
+                            <th class="text-center">تعديل الوصف</th>
+
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body"  let-index="rowIndex">
                         <tr>
                             <td>{{ data.HearingDescAr }}</td>
+                            <td>
+                                <app-icon-shared
+                                [Icon]="'pi pi-pencil'"
+                                [classColor]="'var(--blue-400)'"
+                                [pTooltipCustom]="'تعديل الوصف'"
+                                (action)="editDescription3(data)"
+                            ></app-icon-shared>
+                        </td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="emptymessage">
@@ -229,16 +259,27 @@
                     <ng-template pTemplate="header">
                         <tr>
                             <th class="text-center">وصف العيادات الخارجية</th>
+                            <th class="text-center">تعديل الوصف</th>
+
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body"  let-index="rowIndex">
                         <tr>
                             <td>{{ data.OutpatientClinicsDescAr }}</td>
+                            <td>
+                                <app-icon-shared
+                                [Icon]="'pi pi-pencil'"
+                                [classColor]="'var(--blue-400)'"
+                                [pTooltipCustom]="'تعديل الوصف'"
+                                (action)="editDescription4(data)"
+                            ></app-icon-shared>
+                        </td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="emptymessage">
                         <tr>
                             <td class="text-center" colspan="6">لا يوجد بيانات</td>
+
                         </tr>
                     </ng-template>
                 </p-table>
@@ -290,11 +331,21 @@
                     <ng-template pTemplate="header">
                         <tr>
                             <th class="text-center">وصف خدمات طبية مساندة</th>
+                            <th class="text-center">تعديل الوصف</th>
+
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body"  let-index="rowIndex">
                         <tr>
                             <td>{{ data.SupportiveMedicalDescAr }}</td>
+                            <td>
+                                <app-icon-shared
+                                [Icon]="'pi pi-pencil'"
+                                [classColor]="'var(--blue-400)'"
+                                [pTooltipCustom]="'تعديل الوصف'"
+                                (action)="editDescription5(data)"
+                            ></app-icon-shared>
+                        </td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="emptymessage">

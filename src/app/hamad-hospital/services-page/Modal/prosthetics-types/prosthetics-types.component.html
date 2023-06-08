@@ -1,33 +1,148 @@
 <app-dialog-shared
-    [width]="'70vw'"
-    [dialogHeader]="'انواع الاطراف الصناعية'"
+    [width]="'80vw'"
+    [dialogHeader]="'اضافة وصف'"
     (close)="closeDialog()"
 >
     <div class="bodyDialog">
-        <div class="inline-flex align-items-center">
-            <span class="p-input-icon-left flex-auto mr-2">
-                <app-button-component
-                    [classColor]="'p-button-outlined'"
-                    [Icon]="'pi pi-plus'"
-                    label="اضافة قائمة رئيسية"
-                    [isCustomLable]="true"
-                    [pTooltipCustom]="' اضافة قائمة رئيسية'"
-                    (action)="addOrEdit()"
-                >
-                </app-button-component>
-            </span>
-        </div>
-        <br />
-        <br />
 
-        <app-tree
-            [data$]="prostheticsTypes$"
-            [keyName]="'NameAr'"
-            [keyParent]="'ParentID'"
-            [keyID]="'ID'"
-            (onNodeAdd)="addOrEdit(null, $event?.ID)"
-            (onNodeDelete)="del($event)"
-            (onNodeEdit)="addOrEdit($event)"
-        ></app-tree>
+    <ng-container *ngIf="prostheticsTypes$ |async as data"></ng-container>
+
+    <form [formGroup]="formSections">
+            <div class="grid p-fluid mt-3">
+
+             <!--    <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                    <app-input-number-field   label="الترتيب"
+                    formControlName="Sorting"></app-input-number-field>
+                </div> -->
+
+                <div
+                    class="col-12 mb-2 lg:col-1 lg:mb-0 align-items-center justify-content-evenly"
+                    style="margin-top: 2.9rem"
+                >
+                    <app-check-box label="فعال" formControlName="IsActive">
+                    </app-check-box>
+                </div>
+
+                <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                    <label>الوصف</label>
+                    <div class="DescAr">
+                        <p-editor dir="rtl" formControlName="DescAr" [style]="{'height':'400px'}">
+                        </p-editor>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <ng-container *ngIf="OutpatientClinicsDepartmentsServices$ | async as data">
+                <p-table
+
+
+                    styleClass="p-datatable-gridlines"
+                    [rows]="5"
+                    [paginator]="true"
+                    [style.width]="'100%'"
+
+                    [rowsPerPageOptions]="[10, 25, 50]"
+                    #dt1
+                >
+              <!--   [value]="data"
+                [loading]="data.loading" -->
+               <!--  <ng-template pTemplate="caption">
+                    <div class="grid">
+                    <div class="col-12 lg:col-6 serch-input">
+                        <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'DescAr', 'contains')"
+                        [value]="$any(dt1.filters['DescAr'])?.value" placeholder="بحث العنوان" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
+                    </div>
+                    <div class="col-12 lg:col-3 serch-input">
+                        <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'OutpatientClinicsDepartmentNameAr', 'contains')"
+                        [value]="$any(dt1.filters['OutpatientClinicsDepartmentNameAr'])?.value" placeholder="بحث القسم" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
+                    </div>
+                    <div class="col-12 lg:col-3 serch-input">
+                        <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'Sorting', 'contains')"
+                        [value]="$any(dt1.filters['Sorting'])?.value" placeholder="بحث الترتيب" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
+                    </div>
+
+                  </div>
+                </ng-template> -->
+
+
+                    <ng-template pTemplate="header">
+                        <tr>
+<!--                             <th class="text-center">#</th>
+ -->                            <th pSortableColumn="DescAr" class="text-center">الوصف <p-sortIcon ></p-sortIcon></th>
+<!--                             <th pSortableColumn="OutpatientClinicsDepartmentNameAr" class="text-center">القسم <p-sortIcon ></p-sortIcon></th>
+ -->                            <th pSortableColumn="CreatedDate" class="text-center">تاريخ النشر <p-sortIcon></p-sortIcon></th>
+<!--                             <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
+ -->                            <th class="text-center">الحالة</th>
+                            <th class="text-center">الاجراءات</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage" >
+                        <tr class="editor-html" >
+                          <!--   <td>
+                                <span
+                                    class="pi pi-bars"
+                                    pReorderableRowHandle
+                                ></span>
+                            </td> -->
+
+                            <td [width]="'30%'" [innerHTML]="data[0].DescAr| slice:0:100"></td>
+                            <!-- <td>{{ item.NameEn }}</td> -->
+<!--                             <td>{{ item.OutpatientClinicsDepartmentNameAr }}</td>
+ -->                            <td>{{ data[0].CreatedDate  | date}}</td>
+<!--                             <td>{{ item.Sorting }}</td>
+ -->                            <td>{{ data[0].IsActive?'فعال':'غير فعال' }}</td>
+                            <td class="text-center">
+                                <app-icon-shared
+                                    [Icon]="'pi pi-pencil'"
+                                    [classColor]="'var(--blue-400)'"
+                                    [pTooltipCustom]="'تعديل البيانات'"
+                                    (action)="editServices(data[0])"
+                                ></app-icon-shared>
+
+                              <!--   <app-icon-shared
+                                    [Icon]="'pi pi-trash'"
+                                    [classColor]="'var(--red-400)'"
+                                    [pTooltipCustom]="'حذف'"
+                                    (action)="deleteServices(data[0])"
+                                ></app-icon-shared> -->
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body">
+                        <tr>
+                            <td class="text-center" colspan="6">لا يوجد بيانات</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="footer"> </ng-template>
+                    <ng-template pTemplate="loadingbody"> </ng-template>
+                </p-table>
+            </ng-container>
+    </form>
+
+
+    </div>
+    <div class="footerDialog">
+
+                <div class="flex align-items-center justify-content-start">
+                    <app-button-component
+                        [classColor]="'p-button-raised'"
+                        (action)="saveFormSections()"
+                        [Icon]="'pi pi-id-card'"
+                        label="حفظ"
+                        [isCustomLable]="true"
+                        [pTooltipCustom]="'حفظ'"
+                        [disabled]="editItem"
+                    >
+                    </app-button-component>
+                  <!--   <app-button-component
+                        label="مسح الحقول"
+                        class="pr-2"
+                        (action)="clearFormSections()"
+                        [classColor]="'p-button-raised p-button-secondary '"
+                        [pTooltipCustom]="'مسح الحقول '"
+                        [Icon]="'pi pi-eraser'"
+                    ></app-button-component> -->
+                </div>
+
     </div>
 </app-dialog-shared>

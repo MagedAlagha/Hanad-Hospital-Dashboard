@@ -1,10 +1,4 @@
-<div class="flex flex-column md:flex-row mb-3">
-    <div class="text-900 text-xl font-bold mb-3 md:mb-0">
-        الاقسام الرئيسية
-    </div>
-</div>
-<hr />
-
+<!-- التاهيل الطبي -->
 <form [formGroup]="formOutpatient">
     <div class="grid p-fluid mt-3">
         <div class="col-12 mb-2 lg:col-5 lg:mb-0">
@@ -92,6 +86,8 @@
                     <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
                     <th class="text-center">الحالة</th>
                     <th class="text-center">الاجراءات</th>
+                    <th class="text-center">الوصف</th>
+
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item let-index="rowIndex">
@@ -122,168 +118,16 @@
                             (action)="deleteItem(item)"
                         ></app-icon-shared>
                     </td>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="emptymessage">
-                <tr>
-                    <td class="text-center" colspan="6">لا يوجد بيانات</td>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="footer"> </ng-template>
-            <ng-template pTemplate="loadingbody"> </ng-template>
-        </p-table>
-    </ng-container>
-</form>
 
-<br />
-<div class="flex flex-column md:flex-row mb-3">
-    <div class="text-900 text-xl font-bold mb-3 md:mb-0">العيادات</div>
-</div>
-<hr />
-
-<form [formGroup]="formSections">
-    <div class="grid p-fluid mt-3">
-
-        <!-- <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-            <app-text-area-field
-                [rows]="2"
-                [label]="'الوصف / انجليزي'"
-                formControlName="DescEn"
-            >
-            </app-text-area-field>
-        </div> -->
-        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-            <ng-container *ngIf="getOutpatientClinicsDepartments$ | async as data">
-                <app-select-field
-                [dropdownItems]="data"
-                [optionLabel]="isEn?'NameEn':'NameAr'"
-                [optionValue]="'ID'"
-                formControlName="OutpatientClinicsDepartmentID"
-                [label]="'اختيار القسم'">
-            </app-select-field>
-            </ng-container>
-        </div>
-        <div class="col-12 mb-2 lg:col-2 lg:mb-0">
-            <app-input-number-field   label="الترتيب"
-            formControlName="Sorting"></app-input-number-field>
-        </div>
-
-
-        <div
-            class="col-12 mb-2 lg:col-1 lg:mb-0 align-items-center justify-content-evenly"
-            style="margin-top: 2.9rem"
-        >
-            <app-check-box label="فعال" formControlName="IsActive">
-            </app-check-box>
-        </div>
-
-        <div
-            class="col-12 mb-2 lg:col-4 lg:mb-0 align-items-center justify-content-evenly"
-            style="margin-top: 2.5rem"
-        >
-            <div class="inline-flex align-items-center">
-                <app-button-component
-                    [classColor]="'p-button-raised'"
-                    (action)="saveFormSections()"
-                    [Icon]="'pi pi-id-card'"
-                    label="حفظ"
-                    [isCustomLable]="true"
-                    [pTooltipCustom]="'حفظ'"
-                >
-                </app-button-component>
-                <app-button-component
-                    label="مسح الحقول"
-                    class="pr-2"
-                    (action)="clearFormSections()"
-                    [classColor]="'p-button-raised p-button-secondary '"
-                    [pTooltipCustom]="'مسح الحقول '"
-                    [Icon]="'pi pi-eraser'"
-                ></app-button-component>
-            </div>
-        </div>
-
-        <div class="col-12 mb-2 lg:col-12 lg:mb-0">
-            <label>الوصف</label>
-            <div class="DescAr">
-                <p-editor dir="rtl" formControlName="DescAr" [style]="{'height':'450px'}">
-                </p-editor>
-            </div>
-        </div>
-    </div>
-    <br />
-    <ng-container *ngIf="OutpatientClinicsDepartmentsServices$ | async as data">
-        <p-table
-            (onRowReorder)="onRowReorder2($event, data)"
-            [reorderableColumns]="true"
-            styleClass="p-datatable-gridlines"
-            [rows]="5"
-            [paginator]="true"
-            [style.width]="'100%'"
-            [value]="data"
-            [loading]="data.loading"
-            [rowsPerPageOptions]="[10, 25, 50]"
-            #dt1
-        >
-        <ng-template pTemplate="caption">
-            <div class="grid">
-               <div class="col-12 lg:col-6 serch-input">
-                   <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'DescAr', 'contains')"
-                   [value]="$any(dt1.filters['DescAr'])?.value" placeholder="بحث العنوان" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
-               </div>
-               <div class="col-12 lg:col-3 serch-input">
-                   <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'OutpatientClinicsDepartmentNameAr', 'contains')"
-                   [value]="$any(dt1.filters['OutpatientClinicsDepartmentNameAr'])?.value" placeholder="بحث القسم" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
-               </div>
-               <div class="col-12 lg:col-3 serch-input">
-                   <input pInputText type="text" (input)="dt1.filter($any($event.target)?.value, 'Sorting', 'contains')"
-                   [value]="$any(dt1.filters['Sorting'])?.value" placeholder="بحث الترتيب" class=" w-full p-column-filter p-inputtext p-component p-element p-inputtext-sm  ">
-               </div>
-
-           </div>
-           <tr>
-       </tr>
-       </ng-template>
-            <ng-template pTemplate="header">
-                <tr>
-                    <th class="text-center">#</th>
-                    <th pSortableColumn="DescAr" class="text-center">الوصف <p-sortIcon ></p-sortIcon></th>
-                    <th pSortableColumn="OutpatientClinicsDepartmentNameAr" class="text-center">القسم <p-sortIcon ></p-sortIcon></th>
-                    <th pSortableColumn="CreatedDate" class="text-center">تاريخ النشر <p-sortIcon></p-sortIcon></th>
-                    <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
-                    <th class="text-center">الحالة</th>
-                    <th class="text-center">الاجراءات</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-item let-index="rowIndex">
-                <tr class="editor-html" [pReorderableRow]="index">
-                    <td>
-                        <span
-                            class="pi pi-bars"
-                            pReorderableRowHandle
-                        ></span>
-                    </td>
-
-                    <td [width]="'30%'" [innerHTML]="item.DescAr| slice:0:100"></td>
-                    <!-- <td>{{ item.NameEn }}</td> -->
-                    <td>{{ item.OutpatientClinicsDepartmentNameAr }}</td>
-                    <td>{{ item.CreatedDate  | date}}</td>
-                    <td>{{ item.Sorting }}</td>
-                    <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
-                    <td class="text-center">
-                        <app-icon-shared
-                            [Icon]="'pi pi-pencil'"
+                        <td>
+                            <app-icon-shared
+                            [Icon]="'pi pi-plus'"
                             [classColor]="'var(--blue-400)'"
-                            [pTooltipCustom]="'تعديل البيانات'"
-                            (action)="editServices(item)"
+                            [pTooltipCustom]="'اضافة الوصف'"
+                            (action)="addDescription(item)"
                         ></app-icon-shared>
+                        </td>
 
-                        <app-icon-shared
-                            [Icon]="'pi pi-trash'"
-                            [classColor]="'var(--red-400)'"
-                            [pTooltipCustom]="'حذف'"
-                            (action)="deleteServices(item)"
-                        ></app-icon-shared>
-                    </td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">
@@ -296,4 +140,6 @@
         </p-table>
     </ng-container>
 </form>
+
+
 
