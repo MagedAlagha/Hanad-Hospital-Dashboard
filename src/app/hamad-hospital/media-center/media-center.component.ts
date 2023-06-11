@@ -71,7 +71,7 @@ export class MediaCenterComponent implements OnInit {
             IsActive: [false],
             ShowHome: [false],
             ShowVarious: [false],
-            Sorting: [null],
+           /*  Sorting: [null], */
         });
 
         this.Form_ImageSection = fb.group({
@@ -120,6 +120,7 @@ export class MediaCenterComponent implements OnInit {
                     this.filterbySection();
                     this.filterbyServices();
                     /*  value.data.reverse(); */
+                    console.log("MediaSectionsItems : ", value?.data)
                 })
             );
 
@@ -134,7 +135,7 @@ export class MediaCenterComponent implements OnInit {
                 this.messageService.add({
                     severity: 'error',
                     detail: this._translateService.instant(
-                        ' حقل العنوان مطلوب '
+                        ' العنوان والمركز الاعلامي مطلوب '
                     ),
                 });
             } else {
@@ -360,9 +361,8 @@ export class MediaCenterComponent implements OnInit {
 
 
     onRowReorder(event: any, value: any) {
-        console.log('event', event);
-        console.log('value', value);
-        let newVlue = value?.data.map((element: any, index: any) => {
+
+        let newVlue = value?.data.map((value:any)=>{return{...value}}).reverse().map((element: any, index: any) => {
             return { id: element.ID, sorting: index };
         });
         console.log('newVlue', newVlue);
