@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HomeService } from './home.service';
 import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/upload-files.component';
@@ -46,7 +46,10 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         this._homeService.getSliderData();
-        this.sliderData$ = this._homeService.Selector$('sliderData');
+        this.sliderData$ = this._homeService.Selector$('sliderData').pipe(tap(value=>{
+            console.log("value : ", value)
+            value.data.reverse()
+        }));
     }
 
     save() {

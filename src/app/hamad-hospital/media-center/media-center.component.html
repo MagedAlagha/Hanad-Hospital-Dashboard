@@ -54,15 +54,12 @@
             </div> -->
             <div class="col-12 mb-2 lg:col-12 lg:mb-0">
                 <label for="">الوصف /عربي</label>
-                <div class="DescAr">
-                    <p-editor
-                        dir="rtl"
-                        formControlName="DescAr"
-                        [style]="{ height: '420px' }"
-                    >
-                    </p-editor>
-                </div>
+
+                <ckeditor  dir="rtl"
+                formControlName="DescAr"  [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+
             </div>
+
             <!--   <div class="col-12 mb-2 lg:col-12 lg:mb-0">
 
                 <label for="">وصف  /انجليزي</label>

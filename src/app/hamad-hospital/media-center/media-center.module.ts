@@ -22,6 +22,7 @@ import { SearchFieldComponent } from 'src/app/shared/Module-shared/search-field/
 import { IsImagePipe } from 'src/app/shared/pipes/is-image.pipe';
 import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-number-field/input-number-field.component';
 import { CalenderFeildComponent } from 'src/app/shared/Module-shared/calender-feild/calender-feild.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
     declarations: [MediaCenterComponent, AddPhotosModalComponent],
@@ -51,7 +52,8 @@ import { CalenderFeildComponent } from 'src/app/shared/Module-shared/calender-fe
         FormsModule,
         MultiSelectFieldComponent,IsImagePipe ,
         InputNumberFieldComponent,
-        CalenderFeildComponent
+        CalenderFeildComponent,
+        CKEditorModule
     ],
 })
 export class MediaCenterModule {}

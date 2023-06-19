@@ -14,6 +14,7 @@ import { MediaCenterService } from './media-center.service';
 import { Table } from 'primeng/table';
 import { UploadFilesComponent } from 'src/app/shared/Module-shared/upload-files/upload-files.component';
 import { HomeService } from '../home/home.service';
+import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
     selector: 'app-media-center',
@@ -78,7 +79,7 @@ export class MediaCenterComponent implements OnInit {
             Sorting: [''],
         });
     }
-
+      public Editor = ClassicEditorBuild;
     ngOnInit(): void {
         this._mediaCenterService.getImageSection();
         this._mediaCenterService.getMediaType();

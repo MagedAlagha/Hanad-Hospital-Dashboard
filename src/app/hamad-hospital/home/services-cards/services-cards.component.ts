@@ -32,7 +32,7 @@ export class ServicesCardsComponent implements OnInit {
         private _translateService: TranslateService
     ) {
         this.formServices = fb.group({
-            MedicalRehabilitationIconPath: [ ''],
+            MedicalRehabilitationIconPath: [''],
             MedicalRehabilitationDescAr: [''],
             MedicalRehabilitationDescEn:  ['نص'],
             ProstheticsIconPath: [''],
