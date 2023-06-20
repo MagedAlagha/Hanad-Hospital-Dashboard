@@ -1,6 +1,11 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    Validators,
+} from '@angular/forms';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -9,6 +14,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
+    disable=true
     constructor(
         private layoutService: LayoutService,
         fb: FormBuilder,
@@ -16,12 +22,12 @@ export class LoginComponent implements OnInit {
         private router: Router
     ) {
         this.loginForm = fb.group({
-            Username: ['' , Validators.required],
+            Username: ['', Validators.required],
             Password: ['', Validators.required],
         });
 
-        if(auth.isActive){
-            this.router.navigate(['/'])
+        if (auth.isActive) {
+            this.router.navigate(['/']);
         }
     }
 
@@ -31,7 +37,7 @@ export class LoginComponent implements OnInit {
     loginDropdown = new FormControl();
     userID!: string;
     login() {
-        console.log(this.loginForm.value , "'''''")
+        console.log(this.loginForm.value, "'''''");
         this.auth.login(this.loginForm.value).subscribe({
             next: () => {
                 console.log('login');
@@ -46,7 +52,9 @@ export class LoginComponent implements OnInit {
             },
         });
     }
-
+    showResponse(event:any) {
+        this.disable = false;
+    }
     ngOnInit() {
         this.loginDropdown.valueChanges.subscribe((x) => {
             this.userID = x;

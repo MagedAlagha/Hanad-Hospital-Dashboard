@@ -20,8 +20,12 @@
 <!--             <input type="password" pInputText placeholder="كلمة المرور" class="w-full">
  -->        </span>
 
-        <button [routerLink]="['/']" (click)="login()" pButton pRipple label="تسجيل الدخول" class="mb-4 btn-login "></button>
-
+        <button [disabled]="disable" [routerLink]="['/']" (click)="login()" pButton pRipple label="تسجيل الدخول" class="mb-4 btn-login "></button>
+        <p-captcha
+        siteKey="6LeeT7QmAAAAAEnHpRDr9oRQcPUNVQWv1D5_oSBv"
+        initCallback="onloadCallback"
+        (onResponse)="showResponse($event)"
+      ></p-captcha>
     </div>
 </div>
 </form>

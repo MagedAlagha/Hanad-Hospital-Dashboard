@@ -54,7 +54,7 @@ export class AppMenuComponent implements OnInit {
                             routerLink: ['/hamad-hospital/users'],
                         },
                         {
-                            id: '8',
+                            id: '11',
 
                             label: 'الصلاحيات',
                             icon: 'pi pi-cog',

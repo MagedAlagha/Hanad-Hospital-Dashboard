@@ -9,6 +9,7 @@ import { RippleModule } from 'primeng/ripple';
 import { DropdownModule } from 'primeng/dropdown';
 import { PasswordModule } from 'primeng/password';
 import { ReactiveFormsModule } from '@angular/forms';
+import {CaptchaModule} from 'primeng/captcha';
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         AppConfigModule,
         DropdownModule,
         PasswordModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        CaptchaModule
     ],
     declarations: [LoginComponent]
 })
