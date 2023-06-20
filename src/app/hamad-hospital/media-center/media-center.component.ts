@@ -370,6 +370,7 @@ export class MediaCenterComponent implements OnInit {
         this._homeService.RowReorder(newVlue , 'MediaSectionsItems').subscribe(value=>{
            /*  this._mediaCenterService.getMediaSectionsItems() */
         });
+
     }
 
 
