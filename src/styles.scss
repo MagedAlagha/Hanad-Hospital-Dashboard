@@ -240,3 +240,6 @@ html {
 .ck-editor__editable_inline {
     min-height: 500px;
 }
+.ck.ck-editor__editable_inline[dir=ltr]{
+    text-align: right !important;
+}

@@ -173,20 +173,14 @@ export class HearingBalanceComponent implements OnInit {
 
 
     onRowReorder(event: any, value: any) {
-        console.log('event', event);
-        console.log('value', value);
-        console.log('value', value);
-        let newVlue = value?.map((element: any, index: any) => {
+        let newVlue = value?.map((value:any)=>{return{...value}}).reverse().map((element: any, index: any) => {
             return { id: element.ID, sorting: index };
         });
         console.log('newVlue', newVlue);
         this._homeService.RowReorder(newVlue , 'OutpatientClinicsDepartments').subscribe();
     }
     onRowReorder2(event: any, value: any) {
-        console.log('event', event);
-        console.log('value', value);
-        console.log('value', value);
-        let newVlue = value?.map((element: any, index: any) => {
+        let newVlue = value?.map((value:any)=>{return{...value}}).reverse().map((element: any, index: any) => {
             return { id: element.ID, sorting: index };
         });
         console.log('newVlue', newVlue);

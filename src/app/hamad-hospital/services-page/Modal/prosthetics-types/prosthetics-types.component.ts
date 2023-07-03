@@ -5,6 +5,7 @@ import { ServicesPageService } from '../../services-page.service';
 import { HomeService } from 'src/app/hamad-hospital/home/home.service';
 import { MessageService } from 'primeng/api';
 import { TranslateService } from '@ngx-translate/core';
+import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
     selector: 'app-prosthetics-types',
@@ -13,6 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ProstheticsTypesComponent {
     formprostheticsTypes!: FormGroup<any>;
+    public Editor = ClassicEditorBuild;
     prostheticsTypes$!: Observable<any>;
     OutpatientClinicsDepartmentsServices$!: Observable<any>;
     formSections!: FormGroup;

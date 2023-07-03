@@ -55,7 +55,7 @@
             <div class="col-12 mb-2 lg:col-12 lg:mb-0">
                 <label for="">الوصف /عربي</label>
 
-                <ckeditor  dir="rtl"
+                <ckeditor [dir]="'rtl'"
                 formControlName="DescAr"  [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
 
             </div>
@@ -77,14 +77,17 @@
                     formControlName="Sorting"
                 ></app-input-number-field>
             </div> -->
-            <div class="col-12 mb-2 lg:col-3 lg:mb-0 multi-select">
-                <app-multi-select-field
-                    [dropdownItems]="listSections"
-                    formControlName="MediaSectionID"
-                    [label]="' المركز الاعلامي (مطلوب)'"
-                >
-                </app-multi-select-field>
-            </div>
+
+                <div class="col-12 mb-2 lg:col-3 lg:mb-0 multi-select">
+                    <app-multi-select-field
+                       (onSelectionChange)="onChange($event)"
+                        [dropdownItems]="listSections"
+                        formControlName="MediaSectionID"
+                        [label]="' المركز الاعلامي (مطلوب)'"
+                    >
+                    </app-multi-select-field>
+                </div>
+
 
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-select-field
@@ -101,13 +104,16 @@
                 >
                 </app-select-field>
             </div>
-            <div class="col-12 mb-2 lg:col-5 lg:mb-0">
-                <app-input-field
-                    [label]="'اضافة لينك الفيديو / يوتيوب'"
-                    formControlName="VideoPath"
-                >
-                </app-input-field>
-            </div>
+            <ng-container *ngIf="VideoLink">
+                <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                    <app-input-field
+                        [label]="'اضافة لينك معرض الفيديو / يوتيوب'"
+                        formControlName="VideoPath">
+                    </app-input-field>
+                </div>
+            </ng-container>
+
+
             <div
                 class="col-12 mb-2 lg:col-1 lg:mb-0 align-items-center justify-content-evenly"
                 style="margin-top: 2.9rem"
@@ -125,6 +131,7 @@
                 >
                 </app-check-box>
             </div>
+
             <div
                 class="col-12 mb-2 lg:col-3 lg:mb-0 align-items-center justify-content-evenly"
                 style="margin-top: 3rem"
@@ -136,12 +143,19 @@
                 >
                 </app-check-box>
             </div>
-
+            <div
+            class="col-12 mb-2 lg:col-3 lg:mb-0 align-items-center justify-content-evenly"
+            style="margin-top: 2.9rem"
+        >
+            <app-check-box
+                label=" منوعات رئيسية (الرئيسية)"
+                formControlName="ShowLastVarious">
+            </app-check-box>
+        </div>
 
             <div
                 class="col-12 mb-2 lg:col-3 lg:mb-0 align-items-end justify-content-evenly"
-                style="margin-top: 2rem"
-            >
+                style="margin-top: 2rem">
                 <div class="inline-flex align-items-center">
                     <app-button-component
                         [classColor]="'p-button-raised'"

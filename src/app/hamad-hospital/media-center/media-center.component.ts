@@ -41,6 +41,7 @@ export class MediaCenterComponent implements OnInit {
     MainService?: any[];
     MediaSection?: any[];
     MediaSectionsItems: any;
+    VideoLink:boolean = false;
     MediaSectionsItemsWithoutFilter: any;
     listSections = [
         { Code: 1, Name: 'الأخبار', value: false },
@@ -72,7 +73,7 @@ export class MediaCenterComponent implements OnInit {
             IsActive: [false],
             ShowHome: [false],
             ShowVarious: [false],
-           /*  Sorting: [null], */
+            ShowLastVarious: [false],
         });
 
         this.Form_ImageSection = fb.group({
@@ -219,6 +220,16 @@ export class MediaCenterComponent implements OnInit {
     deleteItem(item: any) {
         this._mediaCenterService.deleteMediaSectionsItems(item.ID);
     }
+     onChange(item:any){
+
+        if(item.includes(3)){
+            this.VideoLink = true;
+        }else{
+            this.VideoLink = false;
+        }
+    }
+
+
 
     /* ********************************************************** */
 
@@ -366,7 +377,6 @@ export class MediaCenterComponent implements OnInit {
         let newVlue = value?.data.map((value:any)=>{return{...value}}).reverse().map((element: any, index: any) => {
             return { id: element.ID, sorting: index };
         });
-        console.log('newVlue', newVlue);
         this._homeService.RowReorder(newVlue , 'MediaSectionsItems').subscribe(value=>{
            /*  this._mediaCenterService.getMediaSectionsItems() */
         });

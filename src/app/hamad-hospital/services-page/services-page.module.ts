@@ -26,6 +26,7 @@ import { AddSubitemModalComponent } from './Modal/add-subitem-modal/add-subitem-
 import { EditorModule } from 'primeng/editor';
 import { SupportiveComponent } from './supportive/supportive.component';
 import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-number-field/input-number-field.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 
@@ -56,6 +57,7 @@ import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-nu
     IconSharedComponent,
     TextAreaFieldComponent ,
     ReactiveFormsModule,
+    CKEditorModule,
     InputSwitchModule,
     CheckBoxComponent,
     FileUploadModule,

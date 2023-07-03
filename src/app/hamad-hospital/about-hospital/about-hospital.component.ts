@@ -35,7 +35,7 @@ export class AboutHospitalComponent implements OnInit {
             DescAr: ['' , Validators.required],
             DescEn: ['نص'],
             IsActive: [false],
-            Sorting: [ , Validators.required],
+            Sorting: [],
         });
     }
     ngOnInit(): void {

@@ -26,8 +26,9 @@
                 <div class="col-12 mb-2 lg:col-12 lg:mb-0">
                     <label>الوصف</label>
                     <div class="DescAr">
-                        <p-editor dir="rtl" formControlName="DescAr" [style]="{'height':'400px'}">
-                        </p-editor>
+
+                <ckeditor [dir]="'rtl'"
+                formControlName="DescAr"  [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
                     </div>
                 </div>
             </div>
