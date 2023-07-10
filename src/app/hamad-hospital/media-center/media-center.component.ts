@@ -166,7 +166,7 @@ export class MediaCenterComponent implements OnInit {
                 }
             }
         } else {
-            console.log(this.fileSelected);
+          console.log(this.fileSelected);
             this._mediaCenterService
                 .saveMediaSectionsItems({
                     ...this.Form_MediaSectionsItems.value,
@@ -174,11 +174,12 @@ export class MediaCenterComponent implements OnInit {
                     ID: this.ID,
                 })
                 .subscribe((value: any) => {
-                    if(value){
+                  /*   if(value){
                         this.saveImageSection(value?.rv);
 
-                    }
+                    } */
                     this.clear();
+                    this.clearImageSection();
                 });
         }
 
@@ -228,7 +229,6 @@ export class MediaCenterComponent implements OnInit {
             this.VideoLink = false;
         }
     }
-
 
 
     /* ********************************************************** */

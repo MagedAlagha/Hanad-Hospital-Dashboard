@@ -55,6 +55,7 @@ export class UploadFilesComponent implements OnInit {
     onSelect(event: any) {
         console.log('event', event);
         if (this.multiple) {
+            console.log(" [...this.uploadedFiles, ...event.currentFiles]" ,  [...this.uploadedFiles, ...event.currentFiles])
             this.uploadedFiles = [...this.uploadedFiles, ...event.currentFiles];
             this.onSelectFiles.emit(this.uploadedFiles);
         } else {
@@ -120,14 +121,17 @@ export class UploadFilesComponent implements OnInit {
                             compressedImage,
                             item?.fileName
                         );
-                        Files.push(file);
+                        this.onSelect({
+                            currentFiles: [file],
+                        });
                     })
                     .then(() => {
-                        if (index + 1 == value?.length) {
-                            this.onSelect({
-                                currentFiles: Files,
-                            });
-                        }
+                        console.log("Files : 7777" , Files)
+
+                        // if (index + 1 == value?.length) {
+                        //     console.log("Files : 9999999" , Files)
+
+                        // }
                     });
             });
         });
