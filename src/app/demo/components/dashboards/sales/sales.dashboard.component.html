@@ -141,7 +141,8 @@
                 <p-dropdown [options]="orderWeek" [(ngModel)]="selectedOrderWeek" optionLabel="name" (onChange)="recentSales($event.value.code)" styleClass="w-10rem"></p-dropdown>
             </div>
 
-            <p-table [value]="products" [rows]="5">
+            <p-table        [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50,100,200,300]"
+[value]="products" [rows]="5">
                 <ng-template pTemplate="header">
                     <tr>
                         <th>

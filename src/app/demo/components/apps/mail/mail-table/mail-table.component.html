@@ -1,4 +1,5 @@
-<p-table #dt [value]="mails" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['from','title','message']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [(selection)]="selectedMails" selectionMode="multiple" [rowHover]="true" dataKey="id">
+<p-table        [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50,100,200,300]"
+#dt [value]="mails" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['from','title','message']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [(selection)]="selectedMails" selectionMode="multiple" [rowHover]="true" dataKey="id">
     <ng-template pTemplate="caption">
         <div class="flex flex-wrap align-items-center justify-content-between gap-3">
             <div class="flex gap-2 align-items-center">
@@ -7,7 +8,7 @@
                 <button pButton pRipple type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain ml-3" (click)="menu.toggle($event)"></button>
                 <p-menu #menu [model]="menuItems" [appendTo]="dt" [popup]="true"></p-menu>
             </div>
-            
+
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search Mail" class="w-full sm:w-auto"/>
