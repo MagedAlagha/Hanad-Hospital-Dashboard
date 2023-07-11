@@ -95,6 +95,8 @@ export class ProstheticsTypesComponent {
                     OutpatientClinicsDepartmentID:this.OutpatientClinicsDepartmentID,
                     TypeID:this.TypeID
                 });
+                this.closeDialog()
+                this.formSections.reset();
 
             }else{
                 this.messageService.add({
@@ -113,9 +115,9 @@ export class ProstheticsTypesComponent {
         this.formSections.reset();
         this.formSections.get('TypeID')?.patchValue(this.TypeID);
         this.formSections.get('IsActive')?.patchValue(false);
-        this.formSections.get('NameAr')?.patchValue('نص');
-        this.formSections.get('NameEn')?.patchValue('نص');
-        this.formSections.get('DescEn')?.patchValue('نص');
+        this.formSections.get('NameAr')?.patchValue('');
+        this.formSections.get('NameEn')?.patchValue('');
+        this.formSections.get('DescEn')?.patchValue('');
         this.formSections.get('DescAr')?.patchValue('');
         }
 
