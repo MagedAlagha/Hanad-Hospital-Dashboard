@@ -15,27 +15,39 @@
                 >
                 </app-text-area-field>
             </div>
-            <div class="col-12 mb-2 lg:col-12 lg:mb-0">
-                <div class="col-12 mb-2 lg:col-12 lg:mb-0">
-                    <label for="">الوصف /عربي</label>
-                    <div class="DescAr">
-                        <p-editor
-                            dir="rtl"
-                            formControlName="DescriptionAr"
-                            [style]="{ height: '320px' }"
-                        >
-                        </p-editor>
-                    </div>
+            <div class="col-12 mb-2 lg:col-12 lg:mb-0 lang-en">
+                <app-text-area-field
+                    [rows]="1"
+                    [label]="'Title'"
+                    formControlName="TitleEn">
+                </app-text-area-field>
+            </div>
+
+
+            <div class="col-12 mb-2 lg:col-12 lg:mb-0 Description">
+                <label>الوصف</label>
+                <div class="DescEn">
+                    <ckeditor
+                        [dir]="'ltl'"
+                        formControlName="DescriptionAr"
+                        [editor]="Editor"
+                        data="<p>Hello, world!</p>"
+                    ></ckeditor>
                 </div>
             </div>
-            <!-- <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-                <app-text-area-field
-                    [rows]="2"
-                    [label]="'وصف الاعلان /عربي'"
-                    formControlName="TitleEn"
-                >
-                </app-text-area-field>
-            </div> -->
+
+
+            <div class="col-12 mb-2 lg:col-12 lg:mb-0 lang-en">
+                <label>Description</label>
+                    <ckeditor
+                       style="text-align: left !important;"
+                        formControlName="DescriptionEn"
+                        [editor]="Editor"
+                        data="<p>Hello, world!</p>"
+                    ></ckeditor>
+            </div>
+
+
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-input-field
                     [label]="'اسم الزر  /عربي'"
@@ -43,13 +55,13 @@
                 >
                 </app-input-field>
             </div>
-           <!--  <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+             <div class="col-12 mb-2 lg:col-2 lg:mb-0 lang-en">
                 <app-input-field
-                    [label]="'اسم الزر  /انجليزي'"
+                    [label]="'ButtonTitle'"
                     formControlName="ButtonTitleEn"
                 >
                 </app-input-field>
-            </div> -->
+            </div>
             <div class="col-12 mb-2 lg:col-3 lg:mb-0">
                 <app-input-field
                     [label]="'لينك الاعلان '"
@@ -77,8 +89,7 @@
             </div>
             <div
                 class="col-12 mb-2 lg:col-1 lg:mb-0 align-items-center justify-content-evenly"
-                style="margin-top: 2.9rem"
-            >
+                style="margin-top: 2.9rem">
                 <app-check-box label="فعال" formControlName="IsActive">
                 </app-check-box>
             </div>
@@ -158,13 +169,13 @@
                 <tr>
                     <th class="text-center">#</th>
                     <th pSortableColumn="TitleAr" class="text-center">العنوان <p-sortIcon ></p-sortIcon></th>
-                    <!-- <th class="text-center">الوصف انجليزي</th> -->
+                     <th class="text-center">Description</th>
                     <th class="text-center">لينك التقديم</th>
                     <th pSortableColumn="CreatedDate" class="text-center">
                         تاريخ النشر <p-sortIcon></p-sortIcon>
                     </th>
-                    <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
-                    <th class="text-center">الحالة</th>
+<!--                     <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
+ -->                    <th class="text-center">الحالة</th>
                     <th class="text-center">الاجراءات</th>
                 </tr>
             </ng-template>
@@ -176,14 +187,14 @@
                             pReorderableRowHandle
                         ></span>
                     </td>
-                    <td>{{ item.TitleAr }}</td>
-                    <!-- <td>{{ item.TitleEn }}</td> -->
-                    <td> <a [href]="item.ButtonLink" target="_blank">  {{ item.ButtonLink }}</a> </td>
-                    <td>{{ item?.CreatedDate | date }}</td>
+                    <td style="width: 20%;">{{ item.TitleAr }}</td>
+                    <td style="width: 25%;">{{ item.TitleEn }}</td>
+                    <td style="width: 15%;"> <a [href]="item.ButtonLink" target="_blank">  {{ item.ButtonLink }}</a> </td>
+                    <td  style="width: 15%;">{{ item?.CreatedDate | date }}</td>
 
-                    <td>{{ item.Sorting }}</td>
-                    <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
-                    <td class="text-center d-flex " >
+<!--                     <td  style="width: 5%;">{{ item.Sorting }}</td>
+ -->                    <td  style="width: 5%;">{{ item.IsActive?'فعال':'غير فعال' }}</td>
+                    <td  style="width: 40%;" class="text-center d-flex " >
                         <app-icon-shared
                             [Icon]="'pi pi-pencil'"
                             [classColor]="'var(--blue-400)'"

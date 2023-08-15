@@ -36,7 +36,7 @@ export class ProstheticsComponent {
             ID: [],
             IconPath: [],
             NameAr: [null , Validators.required],
-            NameEn: ['نص'],
+            NameEn: [null , Validators.required],
             DescAr: ['نص'],
             DescEn: ['نص'],
             IsActive: [false],
@@ -106,7 +106,7 @@ export class ProstheticsComponent {
       this.formOutpatient.get('TypeID')?.patchValue(2);
       this.formOutpatient.get('IsActive')?.patchValue(false);
       this.formOutpatient.get('NameAr')?.patchValue('');
-      this.formOutpatient.get('NameEn')?.patchValue('نص');
+      this.formOutpatient.get('NameEn')?.patchValue('');
       this.formOutpatient.get('DescEn')?.patchValue('نص');
       this.formOutpatient.get('DescAr')?.patchValue('نص');
       this.ID = null;
@@ -179,7 +179,6 @@ export class ProstheticsComponent {
         console.log('newVlue', newVlue);
         this._homeService.RowReorder(newVlue , 'OutpatientClinicsDepartmentsServices').subscribe();
     }
-
 
 
     addDescription(item?: any){

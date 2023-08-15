@@ -4,10 +4,9 @@
     (close)="closeDialog()"
 >
     <div class="bodyDialog">
-        <p class="p-3" style="word-break: break-all;  border-radius: 4px; background-color: #f5f6fa; border: 1px dotted #ccc;">{{
-            isEn
-              ? data?.DescEn
-              : data?.DescAr
-          }}</p>
+
+        <div class="p-3" style="word-break: break-all;  border-radius: 4px; background-color: #f5f6fa; border: 1px dotted #ccc;" [innerHTML]="data?.DescAr"></div>
+
+           <div class="p-3 mt-4" style="word-break: break-all;  border-radius: 4px; background-color: #f5f6fa; border: 1px dotted #ccc;" [innerHTML]="data?.DescEn"></div>
     </div>
 </app-dialog-shared>

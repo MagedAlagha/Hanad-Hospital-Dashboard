@@ -14,6 +14,7 @@ import {EditorModule} from 'primeng/editor';
 import { ShowMessageModalComponent } from './Modals/show-message-modal/show-message-modal.component';
 import { DialogSharedComponent } from 'src/app/shared/Module-shared/dialog-shared/dialog-shared.component';
 import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-number-field/input-number-field.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 @NgModule({
@@ -28,8 +29,6 @@ import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-nu
             path: '',
             component: AboutHospitalComponent,
         },
-
-
     ]),
     TableModule,
     ButtonComponentComponent,
@@ -41,7 +40,8 @@ import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-nu
     EditorModule,
     FormsModule ,
     DialogSharedComponent,
-    InputNumberFieldComponent
+    InputNumberFieldComponent,
+    CKEditorModule
 ]
 })
 export class AboutHospitalModule { }

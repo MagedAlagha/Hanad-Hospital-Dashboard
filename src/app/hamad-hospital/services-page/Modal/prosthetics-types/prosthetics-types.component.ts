@@ -33,9 +33,9 @@ export class ProstheticsTypesComponent {
         this.formSections = fb.group({
             ID: [],
             NameAr: [''],
-            NameEn: ['نص'],
+            NameEn: [''],
             DescAr: [''],
-            DescEn: ['نص'],
+            DescEn: [''],
             IsActive: [false],
             Sorting: [],
         })

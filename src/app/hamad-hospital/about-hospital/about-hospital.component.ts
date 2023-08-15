@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { AboutHospitalService } from './about-hospital.service';
 import { ViewportScroller , DOCUMENT } from '@angular/common';
 import { HomeService } from '../home/home.service';
+import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
     selector: 'app-about-hospital',
@@ -13,11 +14,11 @@ import { HomeService } from '../home/home.service';
     styleUrls: ['./about-hospital.component.scss'],
 })
 export class AboutHospitalComponent implements OnInit {
+    public Editor = ClassicEditorBuild;
     text2: any;
     Form_AboutHospital!: FormGroup<any>;
     AboutHospital$!: Observable<any>;
     showMessageDialog$!:Observable<any>;
-
 
     constructor(
         private fb: FormBuilder,
@@ -31,9 +32,9 @@ export class AboutHospitalComponent implements OnInit {
         this.Form_AboutHospital = fb.group({
             ID: [],
             NameAr: ['' , Validators.required],
-            NameEn: ['نص'],
+            NameEn: ['', Validators.required],
             DescAr: ['' , Validators.required],
-            DescEn: ['نص'],
+            DescEn: ['', Validators.required],
             IsActive: [false],
             Sorting: [],
         });

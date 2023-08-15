@@ -12,6 +12,7 @@ import { CheckBoxComponent } from 'src/app/shared/Module-shared/check-box/check-
 import { InputNumberFieldComponent } from 'src/app/shared/Module-shared/input-number-field/input-number-field.component';
 import { SelectFieldComponent } from 'src/app/shared/Module-shared/select-field/select-field.component';
 import { EditorModule } from 'primeng/editor';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 
@@ -37,7 +38,8 @@ import { EditorModule } from 'primeng/editor';
     CheckBoxComponent,
      InputNumberFieldComponent ,
      SelectFieldComponent,
-     EditorModule
+     EditorModule,
+     CKEditorModule
     ]
 })
 export class AdvertisementsModule { }

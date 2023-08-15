@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
             ID: [],
             Image: [''],
             TitleAr: ['', Validators.required],
-            TitleEn: ['نص'],
+            TitleEn: ['', Validators.required],
             Link: [''],
             TitleBackgroundColor: [null],
             Sorting: [''],
@@ -95,7 +95,6 @@ export class HomeComponent implements OnInit {
 
     clear() {
         this.formSlider.reset();
-        this.formSlider.get('TitleEn')?.patchValue('نص');
         this.formSlider.get('IsActive')?.patchValue(false);
         this.formSlider.get('ShowTitle')?.patchValue(false);
         this.ID = null;

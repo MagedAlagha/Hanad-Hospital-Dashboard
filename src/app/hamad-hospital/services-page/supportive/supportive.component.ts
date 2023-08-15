@@ -36,7 +36,7 @@ export class SupportiveComponent {
             ID: [],
             IconPath: [],
             NameAr: [null , Validators.required],
-            NameEn:['نص'],
+            NameEn:[null , Validators.required],
             DescAr: ['نص'],
             DescEn: ['نص'],
             IsActive: [false],
@@ -108,7 +108,7 @@ export class SupportiveComponent {
      this.formOutpatient.get('TypeID')?.patchValue(5);
      this.formOutpatient.get('IsActive')?.patchValue(false);
      this.formOutpatient.get('NameAr')?.patchValue('');
-     this.formOutpatient.get('NameEn')?.patchValue('نص');
+     this.formOutpatient.get('NameEn')?.patchValue('');
      this.formOutpatient.get('DescEn')?.patchValue('نص');
      this.formOutpatient.get('DescAr')?.patchValue('نص');
      this.ID = null;

@@ -14,19 +14,6 @@
                     [showFilesUploaded]="true"
                 ></app-upload-files>
             </div>
-           <!--  <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-                <app-input-field
-                [label]="'اسم المستشفى  /عربي'"
-                formControlName="HospitalNameAr">
-            </app-input-field>
-            </div> -->
-            <!-- <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-                <app-input-field
-                [label]="'اسم المستشفى  /انجليزي'"
-                formControlName="HospitalNamEn">
-            </app-input-field>
-            </div> -->
-
             <div class="col-12 mb-2 lg:col-12 lg:mb-0">
                 <app-text-area-field
                     [rows]="2"
@@ -35,8 +22,16 @@
                 >
                 </app-text-area-field>
             </div>
-
             <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                <app-text-area-field
+                    [rows]="2"
+                    [label]="'About / Home'"
+                    formControlName="AboutEn"
+                >
+                </app-text-area-field>
+            </div>
+
+            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
                 <app-text-area-field
                     [rows]="2"
                     [label]="'وصف الفوتر'"
@@ -44,14 +39,14 @@
                 >
                 </app-text-area-field>
             </div>
-            <!-- <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+             <div class="col-12 mb-2 lg:col-6 lg:mb-0">
                 <app-text-area-field
                     [rows]="2"
-                    [label]="'وصف  /انجليزي'"
-                    formControlName="AboutEn"
+                    [label]="'Footer Description'"
+                    formControlName="FooterEn"
                 >
                 </app-text-area-field>
-            </div> -->
+            </div>
 
 
             <div class="col-12 mb-2 lg:col-4 lg:mb-0">
@@ -98,18 +93,19 @@
             </div>
              <div class="col-12 mb-2 lg:col-3 lg:mb-0">
                 <app-input-field
-                    [label]="'الموقع  /عربي'"
+                    [label]="'الموقع'"
                     formControlName="LocationAr"
                 >
                 </app-input-field>
             </div>
-            <!-- <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+             <div class="col-12 mb-2 lg:col-3 lg:mb-0">
                 <app-input-field
-                    [label]="'الموقع  /انجليزي'"
-                    formControlName="LocationAr"
+                    [label]="'Location'"
+                    formControlName="LocationEn"
                 >
                 </app-input-field>
-            </div> -->
+            </div>
+
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-input-field
                     [label]="'موبايل'"
@@ -141,6 +137,15 @@
                     formControlName="HomeVariousTitleAr"
                 >
                 </app-input-field>
+
+            </div>
+            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                <app-input-field
+                [label]="'Variety section title'"
+                formControlName="HomeVariousTitleEn"
+            >
+            </app-input-field>
+
             </div>
             <div
                 class="col-12 mb-2  lg:mb-0 align-items-center justify-content-evenly"
@@ -181,16 +186,16 @@
         <div class="grid p-fluid mt-3">
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-input-field
-                [label]="'الاسم  /عربي'"
+                [label]="'الاسم'"
                 formControlName="NameAr">
             </app-input-field>
             </div>
-           <!--  <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-input-field
-                [label]="'الاسم  /انجليزي'"
+                [label]="'Name'"
                 formControlName="NameEn">
             </app-input-field>
-            </div> -->
+            </div>
              <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-input-number-field [label]="'العدد  /انجليزي'"
                 formControlName="Count"></app-input-number-field>
@@ -274,8 +279,8 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th class="text-center">#</th>
-                    <th pSortableColumn="NameAr" class="text-center">الاسم عربي <p-sortIcon ></p-sortIcon></th>
-       <!--     <th class="text-center">الاسم انجليزي</th>-->
+                    <th pSortableColumn="NameAr" class="text-center">الاسم <p-sortIcon ></p-sortIcon></th>
+               <th class="text-center">Name</th>
                <th pSortableColumn="Count" class="text-center">العدد <p-sortIcon ></p-sortIcon></th>
                <th pSortableColumn="Sorting" class="text-center">الترتيب <p-sortIcon ></p-sortIcon></th>
                     <th class="text-center">الحالة</th>
@@ -291,7 +296,7 @@
                         ></span>
                     </td>
                     <td>{{ item.NameAr }}</td>
-                    <!-- <td>{{ item.NameEn }}</td> -->
+                    <td>{{ item.NameEn }}</td>
                     <td>{{ item.Count }}</td>
                     <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td>{{ item.Sorting }}</td>

@@ -16,18 +16,26 @@
                 ></app-upload-files>
                 <hr>
                 </div>
-                <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <div class="col-12 mb-2  lg:mb-0">
                     <label for="" class="mr-3">اضافة ايقونة</label>
                     <app-upload-files
                     (onSelectFiles)="fileSelected_01 = $event"
                     [showFilesUploaded]="true"
                 ></app-upload-files>
                 </div>
-                <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                <div class="col-12 mb-2 lg:col-6 lg:mb-0 ">
                     <app-text-area-field
                     [rows]="4"
                         [label]="'وصف التاهيل الطبي /عربي'"
                         formControlName="MedicalRehabilitationDescAr"
+                    >
+                    </app-text-area-field>
+                </div>
+                <div class="col-12 mb-2 lg:col-6 lg:mb-0 lang-en">
+                    <app-text-area-field
+                    [rows]="4"
+                        [label]="'Medical rehabilitation description'"
+                        formControlName="MedicalRehabilitationDescEn"
                     >
                     </app-text-area-field>
                 </div>
@@ -48,14 +56,16 @@
                     <ng-template pTemplate="header">
                         <tr>
                             <th class="text-center">وصف التأهيل الطبي</th>
-                            <th class="text-center">تعديل الوصف</th>
+                            <th class="text-center">Medical rehabilitation description</th>
+                            <th class="text-center">تعديل </th>
                         </tr>
 
                     </ng-template>
                     <ng-template pTemplate="body"  let-index="rowIndex">
                         <tr>
-                            <td>{{ data.MedicalRehabilitationDescAr }}</td>
-                            <td>
+                            <td width="41%">{{ data.MedicalRehabilitationDescAr }}</td>
+                            <td width="41%">{{ data.MedicalRehabilitationDescEn }}</td>
+                            <td width="8%">
                                 <app-icon-shared
                                 [Icon]="'pi pi-pencil'"
                                 [classColor]="'var(--blue-400)'"
@@ -84,19 +94,25 @@
                 ></app-upload-files>
                 <hr>
                 </div>
-                <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <div class="col-12 mb-2 lg:mb-0">
                     <label for="" class="mr-3">اضافة ايقونة</label>
                     <app-upload-files
                     (onSelectFiles)="fileSelected_02 = $event"
                     [showFilesUploaded]="true"
                 ></app-upload-files>
                 </div>
-                <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                <div class="col-12 mb-2 lg:col-6 lg:mb-0">
                     <app-text-area-field
                     [rows]="4"
                         [label]="'وصف الأطراف الصناعية /عربي'"
-                        formControlName="ProstheticsDescAr"
-                    >
+                        formControlName="ProstheticsDescAr">
+                    </app-text-area-field>
+                </div>
+                <div class="col-12 mb-2 lg:col-6 lg:mb-0 lang-en">
+                    <app-text-area-field
+                    [rows]="4"
+                        [label]="'Description of the prosthesis'"
+                        formControlName="ProstheticsDescEn">
                     </app-text-area-field>
                 </div>
             </div>
@@ -115,14 +131,16 @@
                     <ng-template pTemplate="header">
                         <tr>
                             <th class="text-center">وصف الأطراف الصناعية</th>
+                            <th class="text-center">Description of the prosthesis</th>
                             <th class="text-center">تعديل الوصف</th>
 
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body"  let-index="rowIndex">
                         <tr>
-                            <td>{{ data.ProstheticsDescAr }}</td>
-                            <td>
+                            <td width="41%">{{ data.ProstheticsDescAr }}</td>
+                            <td width="41%">{{ data.ProstheticsDescEn }}</td>
+                            <td width="8%">
                                 <app-icon-shared
                                 [Icon]="'pi pi-pencil'"
                                 [classColor]="'var(--blue-400)'"
@@ -150,14 +168,14 @@
                 ></app-upload-files>
                 <hr>
                 </div>
-                <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <div class="col-12 mb-2 lg:mb-0">
                     <label for="" class="mr-3">اضافة ايقونة</label>
                     <app-upload-files
                     (onSelectFiles)="fileSelected_03 = $event"
                     [showFilesUploaded]="true"
                 ></app-upload-files>
                 </div>
-                <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                <div class="col-12 mb-2 lg:col-6 lg:mb-0">
                     <app-text-area-field
                     [rows]="4"
                         [label]="'وصف السموع والتوازن /عربي'"
@@ -165,14 +183,14 @@
                     >
                     </app-text-area-field>
                 </div>
-                <!-- <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                <div class="col-12 mb-2 lg:col-6 lg:mb-0 lang-en">
                     <app-text-area-field
-                    [rows]="3"
-                        [label]="'وصف السموع والتوازن /انجليزي'"
+                    [rows]="4"
+                        [label]="'Description of hearing and balance'"
                         formControlName="HearingDescEn"
                     >
                     </app-text-area-field>
-                </div> -->
+                </div>
             </div>
             <ng-container *ngIf="serviceCardsTable$ | async as data">
                 <p-table
@@ -181,20 +199,20 @@
                     [paginator]="false"
                     [style.width]="'100%'"
                     [value]="[1]"
-                    #dt1
-                >
+                    #dt1>
 
                     <ng-template pTemplate="header">
                         <tr>
                             <th class="text-center">وصف السموع والتوازن</th>
+                            <th class="text-center">Description</th>
                             <th class="text-center">تعديل الوصف</th>
-
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body"  let-index="rowIndex">
                         <tr>
-                            <td>{{ data.HearingDescAr }}</td>
-                            <td>
+                            <td width="41%">{{ data.HearingDescAr }}</td>
+                            <td width="41%">{{ data.HearingDescEn }}</td>
+                            <td width="8%">
                                 <app-icon-shared
                                 [Icon]="'pi pi-pencil'"
                                 [classColor]="'var(--blue-400)'"
@@ -222,14 +240,14 @@
                 ></app-upload-files>
                 <hr>
                 </div>
-                <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+                <div class="col-12 mb-2 lg:mb-0">
                     <label for="" class="mr-3">اضافة ايقونة</label>
                     <app-upload-files
                     (onSelectFiles)="fileSelected_04 = $event"
                     [showFilesUploaded]="true"
                 ></app-upload-files>
                 </div>
-                <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                <div class="col-12 mb-2 lg:col-6 lg:mb-0">
                     <app-text-area-field
                     [rows]="4"
                         [label]="'العيادات الخارجية /عربي'"
@@ -237,14 +255,15 @@
                     >
                     </app-text-area-field>
                 </div>
-                <!-- <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                <div class="col-12 mb-2 lg:col-6 lg:mb-0 lang-en" >
                     <app-text-area-field
-                    [rows]="3"
-                        [label]="'العيادات الخارجية /انجليزي'"
+                    [rows]="4"
+                        [label]="'Outpatient description'"
                         formControlName="OutpatientClinicsDescEn"
                     >
                     </app-text-area-field>
-                </div> -->
+                </div>
+
             </div>
             <ng-container *ngIf="serviceCardsTable$ | async as data">
                 <p-table
@@ -259,14 +278,16 @@
                     <ng-template pTemplate="header">
                         <tr>
                             <th class="text-center">وصف العيادات الخارجية</th>
+                            <th class="text-center">Description</th>
                             <th class="text-center">تعديل الوصف</th>
 
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body"  let-index="rowIndex">
                         <tr>
-                            <td>{{ data.OutpatientClinicsDescAr }}</td>
-                            <td>
+                            <td width="41%">{{ data.OutpatientClinicsDescAr }}</td>
+                            <td width="41%">{{ data.OutpatientClinicsDescEn }}</td>
+                            <td width="8%">
                                 <app-icon-shared
                                 [Icon]="'pi pi-pencil'"
                                 [classColor]="'var(--blue-400)'"
@@ -301,7 +322,7 @@
                     [showFilesUploaded]="true"
                 ></app-upload-files>
                 </div> -->
-                <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+                <div class="col-12 mb-2 lg:col-6 lg:mb-0">
                     <app-text-area-field
                     [rows]="4"
                         [label]="'خدمات طبية مساندة /عربي'"
@@ -309,14 +330,13 @@
                     >
                     </app-text-area-field>
                 </div>
-                <!-- <div class="col-12 mb-2 lg:col-5 lg:mb-0">
+                <div class="col-12 mb-2 lg:col-6 lg:mb-0 lang-en">
                     <app-text-area-field
-                    [rows]="3"
-                        [label]="'العيادات الخارجية /انجليزي'"
-                        formControlName="SupportiveMedicalDescEn"
-                    >
+                    [rows]="4"
+                        [label]="'خدمات طبية مساندة /عربي'"
+                        formControlName="SupportiveMedicalDescEn">
                     </app-text-area-field>
-                </div> -->
+                </div>
             </div>
             <ng-container *ngIf="serviceCardsTable$ | async as data">
                 <p-table
@@ -325,20 +345,20 @@
                     [paginator]="false"
                     [style.width]="'100%'"
                     [value]="[1]"
-                    #dt1
-                >
+                    #dt1>
 
                     <ng-template pTemplate="header">
                         <tr>
                             <th class="text-center">وصف خدمات طبية مساندة</th>
+                            <th class="text-center">Description</th>
                             <th class="text-center">تعديل الوصف</th>
-
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body"  let-index="rowIndex">
                         <tr>
-                            <td>{{ data.SupportiveMedicalDescAr }}</td>
-                            <td>
+                            <td width="41%">{{ data.SupportiveMedicalDescAr }}</td>
+                            <td width="41%">{{ data.SupportiveMedicalDescEn }}</td>
+                            <td width="8%">
                                 <app-icon-shared
                                 [Icon]="'pi pi-pencil'"
                                 [classColor]="'var(--blue-400)'"

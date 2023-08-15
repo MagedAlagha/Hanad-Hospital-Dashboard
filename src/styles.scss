@@ -244,3 +244,13 @@ html {
     text-align: right !important;
     direction: rtl;
 }
+
+.lang-en , .lang-en input , .lang-en textarea{
+    text-align:end;
+}
+
+
+.lang-en .ck.ck-editor__editable_inline[dir=ltr]{
+    text-align: left !important;
+
+}

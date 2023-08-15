@@ -34,19 +34,19 @@ export class ServicesCardsComponent implements OnInit {
         this.formServices = fb.group({
             MedicalRehabilitationIconPath: [''],
             MedicalRehabilitationDescAr: [''],
-            MedicalRehabilitationDescEn:  ['نص'],
+            MedicalRehabilitationDescEn:  [''],
             ProstheticsIconPath: [''],
             ProstheticsDescAr: [''],
-            ProstheticsDescEn: ['نص'],
+            ProstheticsDescEn: [''],
             HearingIconPath: [''],
             HearingDescAr: [''],
-            HearingDescEn:  ['نص'],
+            HearingDescEn:  [''],
             SupportiveMedicalBackgroundPath: [''],
             SupportiveMedicalDescAr: [''],
-            SupportiveMedicalDescEn:  ['نص'],
+            SupportiveMedicalDescEn:  [''],
             OutpatientClinicsIconPath: [''],
             OutpatientClinicsDescAr: [''],
-            OutpatientClinicsDescEn:  ['نص'],
+            OutpatientClinicsDescEn:  [''],
         });
     }
     ngOnInit(): void {
@@ -86,32 +86,27 @@ export class ServicesCardsComponent implements OnInit {
 
     clear() {
         this.formServices.reset();
-        this.formServices.get('MedicalRehabilitationDescEn')?.patchValue('نص')
-        this.formServices.get('ProstheticsDescEn')?.patchValue('نص')
-        this.formServices.get('HearingDescEn')?.patchValue('نص')
-        this.formServices.get('SupportiveMedicalDescEn')?.patchValue('نص')
-        this.formServices.get('OutpatientClinicsDescEn')?.patchValue('نص')
     }
     editDescription1(item:any){
        this.formServices.get('MedicalRehabilitationDescAr')?.patchValue(item.MedicalRehabilitationDescAr)
+       this.formServices.get('MedicalRehabilitationDescEn')?.patchValue(item.MedicalRehabilitationDescEn)
     }
     editDescription2(item:any){
        this.formServices.get('ProstheticsDescAr')?.patchValue(item.ProstheticsDescAr)
+       this.formServices.get('ProstheticsDescEn')?.patchValue(item.ProstheticsDescEn)
     }
     editDescription3(item:any){
-       this.formServices.get('HearingDescAr')?.patchValue(item.HearingDescAr)
+       this.formServices.get('HearingDescAr')?.patchValue(item.HearingDescAr);
+       this.formServices.get('HearingDescEn')?.patchValue(item.HearingDescEn)
+
     }
     editDescription4(item:any){
        this.formServices.get('OutpatientClinicsDescAr')?.patchValue(item.OutpatientClinicsDescAr)
+       this.formServices.get('OutpatientClinicsDescEn')?.patchValue(item.OutpatientClinicsDescEn)
     }
     editDescription5(item:any){
        this.formServices.get('SupportiveMedicalDescAr')?.patchValue(item.SupportiveMedicalDescAr)
+       this.formServices.get('SupportiveMedicalDescEn')?.patchValue(item.SupportiveMedicalDescEn)
     }
 
-    editItem(item:any){
-
-    }
-    deleteItem(item:any){
-
-    }
 }

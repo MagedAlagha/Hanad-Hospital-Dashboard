@@ -63,10 +63,11 @@ export class MediaCenterComponent implements OnInit {
         this.Form_MediaSectionsItems = fb.group({
             MediaSectionID: ['', Validators.required],
             SubTitleAr: [''],
+            SubTitleEn: [''],
             TitleAr: ['', Validators.required],
-            TitleEn: ['نص'],
+            TitleEn: [, Validators.required],
             DescAr: [''],
-            DescEn: [' نص'],
+            DescEn: [' '],
             MainServiceID: [''],
             VideoPath: [''],
             ItemDate: [''],
@@ -201,8 +202,6 @@ export class MediaCenterComponent implements OnInit {
         this.Form_MediaSectionsItems.get('IsActive')?.patchValue(false);
         this.Form_MediaSectionsItems.get('ShowHome')?.patchValue(false);
         this.Form_MediaSectionsItems.get('ShowVarious')?.patchValue(false);
-        this.Form_MediaSectionsItems.get('DescEn')?.patchValue(' نص');
-        this.Form_MediaSectionsItems.get('TitleEn')?.patchValue('نص ');
         this.ID = null;
         this.fileSelected = null;
         this.fileUpload.clear();

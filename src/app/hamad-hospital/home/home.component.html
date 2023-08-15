@@ -11,7 +11,7 @@
 
     <form [formGroup]="formSlider">
         <div class="grid p-fluid">
-            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
+            <div class="col-12 mb-2  lg:mb-0">
                 <label for="" class="block"> اضافة صورة (مطلوب)</label>
                 <app-upload-files
                     #fileUpload
@@ -26,6 +26,12 @@
                     formControlName="TitleAr">
                 </app-input-field>
             </div>
+            <div class="col-12 mb-2 lg:col-6 lg:mb-0 lang-en">
+                <app-input-field
+                    label="Title (required)"
+                    formControlName="TitleEn">
+                </app-input-field>
+            </div>
             <div class="col-12 mb-2 lg:col-4 lg:mb-0">
                 <app-input-field
                     label="لينك الانتقال"
@@ -33,7 +39,7 @@
                 >
                 </app-input-field>
             </div>
-            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+            <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <label> لون خلفية العنوان</label>
                 <br>
                 <!-- <p-colorPicker [inline]="true"  formControlName="TitleBackgroundColor"></p-colorPicker> -->
@@ -101,6 +107,7 @@
             [reorderableColumns]="true"
             [rowsPerPageOptions]="[10, 25, 50]"
             sortMode="multiple"
+            [scrollable]="true"
         >
         <ng-template pTemplate="caption">
             <div class="grid">
@@ -117,6 +124,7 @@
                 <tr>
                     <th class="text-center">#</th>
                     <th pSortableColumn="TitleAr"  class="text-center">العنوان <p-sortIcon ></p-sortIcon></th>
+                    <th pSortableColumn="TitleEn"  class="text-center">Title <p-sortIcon ></p-sortIcon></th>
                     <!-- <th class="text-center">العنوان انجليزي</th> -->
                     <th pSortableColumn="CreatedDate"  class="text-center">تاريخ النشر <p-sortIcon></p-sortIcon></th>
                     <th class="text-center" >الحالة</th>
@@ -134,7 +142,8 @@
                             pReorderableRowHandle
                         ></span>
                     </td>
-                    <td [width]="'30%'">{{ item.TitleAr }}</td>
+                    <td [width]="'20%'">{{ item.TitleAr }}</td>
+                    <td [width]="'20%'">{{ item.TitleEn }}</td>
                     <td>{{ item.CreatedDate  | date}}</td>
                     <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                     <td>{{ item.ShowTitle?'ظاهر':'مخفي' }}</td>

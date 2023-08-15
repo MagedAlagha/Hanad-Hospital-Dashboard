@@ -9,41 +9,52 @@
     <div class="grid p-fluid mt-3">
         <div class="col-12 mb-2 lg:col-3 lg:mb-0">
             <app-input-field
-            [label]="'اسم القسم  /عربي'"
+            [label]="'اسم القسم'"
             formControlName="NameAr">
         </app-input-field>
         </div>
-        <!-- <div class="col-12 mb-2 lg:col-3 lg:mb-0">
+        <div class="col-12 mb-2 lg:col-3 lg:mb-0">
             <app-input-field
-            [label]="'اسم القسم  /انجليزي'"
+            [label]="'Section Name'"
             formControlName="NameEn">
         </app-input-field>
-        </div> -->
+        </div>
         <div class="col-12 mb-2 lg:col-2 lg:mb-0">
             <app-input-number-field   label="الترتيب"
             formControlName="Sorting"></app-input-number-field>
         </div>
         <div
             class="col-12 mb-2 lg:col-1 lg:mb-0 align-items-center justify-content-evenly"
-            style="margin-top: 2.9rem"
-        >
+            style="margin-top: 2.9rem">
             <app-check-box label="فعال" formControlName="IsActive">
             </app-check-box>
         </div>
-        <div class="col-12 mb-2 lg:col-12 lg:mb-0">
-            <label for="">محتوى القسم / عربي</label>
-            <div class="DescAr">
-                <p-editor dir="rtl" formControlName="DescAr" [style]="{'height':'480px'}">
-                </p-editor>
+
+
+        <div class="col-12 mb-2 lg:col-12 lg:mb-0 Description">
+            <label>الوصف</label>
+            <div class="DescEn">
+                <ckeditor
+                    [dir]="'ltl'"
+                    formControlName="DescAr"
+                    [editor]="Editor"
+                    data="<p>Hello, world!</p>"
+                ></ckeditor>
             </div>
-            <!-- <p-editor dir="ltr" formControlName="DescAr" [style]="{'height':'420px'}">
-            </p-editor> -->
         </div>
-       <!--  <div class="col-12 mb-2 lg:col-6 lg:mb-0">
-            <label for="">محتوى القسم / انجليزي</label>
-            <p-editor dir="ltr" formControlName="DescEn" [style]="{'height':'320px'}">
-            </p-editor>
-        </div> -->
+
+
+        <div class="col-12 mb-2 lg:col-12 lg:mb-0 lang-en">
+            <label>Description</label>
+                <ckeditor
+                   style="text-align: left !important;"
+                    formControlName="DescEn"
+                    [editor]="Editor"
+                    data="<p>Hello, world!</p>"
+                ></ckeditor>
+        </div>
+
+
     </div>
    </form>
 
@@ -93,8 +104,7 @@
             <tr>
                 <th class="text-center">#</th>
                 <th class="text-center">الاسم</th>
-           <!--   <th class="text-center">الاسم انجليزي</th> -->
-
+                <th class="text-center">Name</th>
                 <th class="text-center">فعال</th>
                 <th class="text-center">الترتيب</th>
                 <th class="text-center">الوصف</th>
@@ -110,7 +120,7 @@
                     ></span>
                 </td>
                 <td>{{ item.NameAr }}</td>
-               <!--  <td>{{ item.NameEn }}</td> -->
+                 <td>{{ item.NameEn }}</td>
                 <td>{{ item.IsActive?'فعال':'غير فعال' }}</td>
                 <td>{{ item.Sorting }}</td>
                 <td class="text-center">
@@ -148,6 +158,4 @@
     </p-table>
 </ng-container>
 
-<app-show-message-modal
-*ngIf="(showMessageDialog$ | async).isOpen"
-></app-show-message-modal>
+<app-show-message-modal *ngIf="(showMessageDialog$ | async).isOpen"></app-show-message-modal>

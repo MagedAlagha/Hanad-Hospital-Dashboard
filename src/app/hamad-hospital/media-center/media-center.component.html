@@ -31,41 +31,55 @@
             <div class="col-12 mb-2 lg:col-4 lg:mb-0">
                 <app-text-area-field
                     [rows]="3"
-                    [label]="'العنوان/عربي (مطلوب)'"
+                    [label]="'العنوان (مطلوب)'"
                     formControlName="TitleAr"
                 >
                 </app-text-area-field>
             </div>
             <div class="col-12 mb-2 lg:col-4 lg:mb-0">
                 <app-text-area-field
+
                     [rows]="3"
+                    [label]="'Title (required)'"
+                    formControlName="TitleEn"
+                >
+                </app-text-area-field>
+            </div>
+            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+                <app-text-area-field
+                    [rows]="2"
                     [label]="'عنوان الخبر الفرعي'"
                     formControlName="SubTitleAr"
                 >
                 </app-text-area-field>
             </div>
-
-            <!--   <div class="col-12 mb-2 lg:col-5 lg:mb-0">
-                <app-input-field
-                    [label]="'العنوان  /انجليزي'"
-                    formControlName="TitleEn"
+            <div class="col-12 mb-2 lg:col-6 lg:mb-0">
+                <app-text-area-field
+                    [rows]="2"
+                    [label]="'Sub heading'"
+                    formControlName="SubTitleEn"
                 >
-                </app-input-field>
-            </div> -->
+                </app-text-area-field>
+            </div>
+
             <div class="col-12 mb-2 lg:col-12 lg:mb-0">
-                <label for="">الوصف /عربي</label>
+                <label for="">الوصف</label>
 
                 <ckeditor [dir]="'rtl'"
                 formControlName="DescAr"  [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
 
             </div>
 
-            <!--  <div class="col-12 mb-2 lg:col-12 lg:mb-0">
+            <div class="col-12 mb-2 lg:col-12 lg:mb-0 lang-en">
+                <label>Description</label>
+                    <ckeditor
+                       style="text-align: left !important;"
+                        formControlName="DescEn"
+                        [editor]="Editor"
+                        data="<p>Hello, world!</p>"
+                    ></ckeditor>
+            </div>
 
-                <label for="">وصف  /انجليزي</label>
-                <p-editor dir="ltr" formControlName="DescEn" [style]="{'height':'420px'}">
-                </p-editor>
-            </div> -->
 
             <div class="col-12 mb-2 lg:col-2 lg:mb-0">
                 <app-calender-feild label="التاريخ" formControlName="ItemDate">
@@ -94,7 +108,7 @@
                     [dropdownItems]="[
                         { Code: 6, Name: 'غير مصنف' },
                         { Code: 1, Name: 'التأهيل الطبي' },
-                        { Code: 2, Name: 'الاطراف الصناعية' },
+                        { Code: 2, Name: 'الأطراف الصناعية' },
                         { Code: 3, Name: 'السمع والتوازن' },
                         { Code: 4, Name: 'العيادة الخارجية' },
                         { Code: 5, Name: 'خدمات طبية مساندة' }
@@ -238,7 +252,7 @@
                         <app-select-field
                             [dropdownItems]="[
                                 { Code: 1, Name: 'التأهيل الطبي' },
-                                { Code: 2, Name: 'الاطراف الصناعية' },
+                                { Code: 2, Name: 'الأطراف الصناعية' },
                                 { Code: 3, Name: 'السمع والتوازن' },
                                 { Code: 4, Name: 'العيادة الخارجية' },
                                 { Code: 5, Name: 'خدمات طبية مساندة' },
@@ -266,6 +280,13 @@
                         class="text-center"
                     >
                         العنوان <p-sortIcon></p-sortIcon>
+                    </th>
+                    <th
+                        [width]="'20%'"
+                        pSortableColumn="TitleAr"
+                        class="text-center"
+                    >
+                        Title <p-sortIcon></p-sortIcon>
                     </th>
                     <th
                         [width]="'15%'"
@@ -297,12 +318,13 @@
                         ></span>
                     </td>
                     <td>
-                        {{
-                            isEn
-                                ? item?.TitleEn
-                                : (item?.TitleAr | slice : 0 : 40)
-                        }}
+                        {{ (item?.TitleAr | slice : 0 : 40)}}
                     </td>
+
+                    <td>
+                        {{ (item?.TitleEn | slice : 0 : 40)}}
+                    </td>
+
                     <td>{{ item?.MediaSectionName }}</td>
                     <td>{{ item?.MainServiceName }}</td>
                     <td>{{ item?.ItemDate | date }}</td>

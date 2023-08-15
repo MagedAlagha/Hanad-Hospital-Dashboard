@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api';
 import { Observable, map } from 'rxjs';
 import { AdvertisementsService } from './advertisements.service';
 import { HomeService } from '../home/home.service';
+import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
     selector: 'app-advertisements',
@@ -12,6 +13,7 @@ import { HomeService } from '../home/home.service';
     styleUrls: ['./advertisements.component.scss'],
 })
 export class AdvertisementsComponent implements OnInit {
+    public Editor = ClassicEditorBuild;
     formAdvertisements!: FormGroup;
     dataTable$!: Observable<any>;
     ID: any;
@@ -26,12 +28,12 @@ export class AdvertisementsComponent implements OnInit {
         this.formAdvertisements = fb.group({
             ID: [],
             TitleAr: ['', Validators.required],
-            TitleEn: ['نص'],
+            TitleEn: ['', Validators.required],
             ButtonAdded: [false],
             ButtonTitleAr: ['' ,Validators.required],
-            ButtonTitleEn: ['نص'],
+            ButtonTitleEn: ['',Validators.required],
             DescriptionAr: [''],
-            DescriptionEn: ['نص'],
+            DescriptionEn: [''],
             ButtonLink: ['',Validators.required],
             CategoryID: [''],
             IsActive: [false ],
@@ -74,9 +76,6 @@ export class AdvertisementsComponent implements OnInit {
         this.formAdvertisements.reset();
         this.ID = 0;
         this.formAdvertisements.get('IsActive')?.patchValue(false)
-        this.formAdvertisements.get('TitleEn')?.patchValue('نص')
-        this.formAdvertisements.get('ButtonTitleEn')?.patchValue('نص')
-        this.formAdvertisements.get('DescriptionEn')?.patchValue('نص')
     }
 
     editItem(items?: any) {
