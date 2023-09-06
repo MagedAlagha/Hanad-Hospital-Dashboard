@@ -49,16 +49,14 @@
                 <app-text-area-field
                     [rows]="2"
                     [label]="'عنوان الخبر الفرعي'"
-                    formControlName="SubTitleAr"
-                >
+                    formControlName="SubTitleAr">
                 </app-text-area-field>
             </div>
             <div class="col-12 mb-2 lg:col-6 lg:mb-0">
                 <app-text-area-field
                     [rows]="2"
                     [label]="'Sub heading'"
-                    formControlName="SubTitleEn"
-                >
+                    formControlName="SubTitleEn">
                 </app-text-area-field>
             </div>
 
@@ -205,7 +203,7 @@
     <ng-container *ngIf="MediaSectionsItems$ | async as data">
         <p-table
 
-           (onRowReorder)="onRowReorder($event, data)"
+           (onRowReorder)="onRowReorder($event, MediaSectionsItems)"
             [reorderableColumns]="true"
             styleClass="p-datatable-gridlines"
             [rows]="10"

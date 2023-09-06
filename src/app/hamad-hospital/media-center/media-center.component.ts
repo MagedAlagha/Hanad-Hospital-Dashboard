@@ -373,7 +373,7 @@ export class MediaCenterComponent implements OnInit {
 
     onRowReorder(event: any, value: any) {
 
-        let newVlue = value?.data.map((value:any)=>{return{...value}}).reverse().map((element: any, index: any) => {
+        let newVlue = value?.map((value:any)=>{return{...value}}).reverse().map((element: any, index: any) => {
             return { id: element.ID, sorting: index };
         });
         this._homeService.RowReorder(newVlue , 'MediaSectionsItems').subscribe(value=>{

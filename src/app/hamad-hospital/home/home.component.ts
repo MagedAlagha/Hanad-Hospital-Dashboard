@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
             TitleAr: ['', Validators.required],
             TitleEn: ['', Validators.required],
             Link: [''],
-            TitleBackgroundColor: [null],
+            TitleBackgroundColor: [''],
             Sorting: [''],
             IsActive: [false],
             ShowTitle: [false],
@@ -82,7 +82,10 @@ export class HomeComponent implements OnInit {
     editItem(item: any) {
         this.clear();
         this.formSlider.patchValue(item);
+        this.formSlider.get('TitleBackgroundColor')?.patchValue(item.TitleBackgroundColor)
+        this.color = item.TitleBackgroundColor;
         this.ID = item.ID;
+        console.log('1111111', item.TitleBackgroundColor)
         window.scrollTo({ top: 0, behavior: 'smooth' });
         this.fileUpload.takeNameReturnFilesSelected([
             item?.ImagePath?.split('/')?.pop(),
