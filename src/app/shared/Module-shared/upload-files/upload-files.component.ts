@@ -79,7 +79,7 @@ export class UploadFilesComponent implements OnInit {
                 });
             }
         }
-        /* this.fileUpload.clear(); */
+        /* ; */
     }
     imgResultBeforeCompression: any;
     compressFile(files: any) {
@@ -116,6 +116,7 @@ export class UploadFilesComponent implements OnInit {
                 this.imageCompress
                     .compressFile(item?.image, item?.orientation, 50, 50)
                     .then((compressedImage) => {
+
                         this.compressedImage = compressedImage;
                         let file = this.base64ToFile(
                             compressedImage,
@@ -124,14 +125,14 @@ export class UploadFilesComponent implements OnInit {
                         this.onSelect({
                             currentFiles: [file],
                         });
+                        if (index + 1 == value?.length) {
+
+                        }
                     })
                     .then(() => {
-                        console.log("Files : 7777" , Files)
 
-                        // if (index + 1 == value?.length) {
-                        //     console.log("Files : 9999999" , Files)
 
-                        // }
+
                     });
             });
         });

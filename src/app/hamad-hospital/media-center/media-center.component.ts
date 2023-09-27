@@ -65,7 +65,7 @@ export class MediaCenterComponent implements OnInit {
             SubTitleAr: [''],
             SubTitleEn: [''],
             TitleAr: ['', Validators.required],
-            TitleEn: [, Validators.required],
+            TitleEn: [''],
             DescAr: [''],
             DescEn: [' '],
             MainServiceID: [''],
@@ -216,6 +216,12 @@ export class MediaCenterComponent implements OnInit {
         this.ID = item.ID;
         this.ShowHome(item?.ShowHome);
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        console.log('item7777' , item)
+        if(item.MediaSectionID =='3'){
+            this.VideoLink = true;
+        }else{
+            this.VideoLink = false;
+        }
     }
     deleteItem(item: any) {
         this._mediaCenterService.deleteMediaSectionsItems(item.ID);

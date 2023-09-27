@@ -28,7 +28,7 @@ export class AdvertisementsComponent implements OnInit {
         this.formAdvertisements = fb.group({
             ID: [],
             TitleAr: ['', Validators.required],
-            TitleEn: ['', Validators.required],
+            TitleEn: [''],
             ButtonAdded: [false],
             ButtonTitleAr: ['' ,Validators.required],
             ButtonTitleEn: ['',Validators.required],

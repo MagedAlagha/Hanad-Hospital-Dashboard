@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
             ID: [],
             Image: [''],
             TitleAr: ['', Validators.required],
-            TitleEn: ['', Validators.required],
+            TitleEn: [''],
             Link: [''],
             TitleBackgroundColor: [''],
             Sorting: [''],

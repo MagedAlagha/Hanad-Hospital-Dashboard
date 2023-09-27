@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { MediaCenterService } from '../../media-center.service';
 
@@ -32,7 +32,9 @@ export class AddPhotosModalComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.ImageSection$ = this._mediaCenterService.Selector$('ImageSection');
+        this.ImageSection$ = this._mediaCenterService.Selector$('ImageSection').pipe(tap(value=>{
+             value.data.reverse()
+        }));
         this.data = this._mediaCenterService.dataStore.addPhotosDialog?.data;
         if (this.data) {
               /*  this.Form_ImageSection.patchValue(this.data); */
