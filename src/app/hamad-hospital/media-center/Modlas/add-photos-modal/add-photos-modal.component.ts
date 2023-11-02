@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api';
 import { Observable, map, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { MediaCenterService } from '../../media-center.service';
+import { HomeService } from 'src/app/hamad-hospital/home/home.service';
 
 @Component({
     selector: 'app-add-photos-modal',
@@ -24,7 +25,8 @@ export class AddPhotosModalComponent implements OnInit {
         private _mediaCenterService: MediaCenterService,
         private fb: FormBuilder,
         private messageService: MessageService,
-        private _translateService: TranslateService
+        private _translateService: TranslateService,
+        private _homeService: HomeService
     ) {
         this.Form_ImageSection = fb.group({
             Sorting: [''],
@@ -33,7 +35,7 @@ export class AddPhotosModalComponent implements OnInit {
 
     ngOnInit(): void {
         this.ImageSection$ = this._mediaCenterService.Selector$('ImageSection').pipe(tap(value=>{
-             value.data.reverse()
+             value.data
         }));
         this.data = this._mediaCenterService.dataStore.addPhotosDialog?.data;
         if (this.data) {
@@ -104,5 +106,15 @@ export class AddPhotosModalComponent implements OnInit {
         this.Form_ImageSection.patchValue(item);
         this.ID = item.ID;
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    onRowReorder(event: any, value: any) {
+        let newVlue = value?.data.map((value:any)=>{return{...value}}).reverse().map((element: any, index: any) => {
+            return { id: element.ID, sorting: index };
+        });
+
+        this._homeService.RowReorder(newVlue , 'MediaSectionsItemsImages').subscribe((res: any) => {
+
+        });
     }
 }
